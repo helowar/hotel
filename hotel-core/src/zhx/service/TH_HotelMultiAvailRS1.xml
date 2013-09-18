@@ -1,0 +1,2630 @@
+﻿<OTResponse>
+  <HotelAvailRS>
+    <RoomStays>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO1522" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+          <RatePlan HotelCode="SOHOTO1522" RatePlanName="航旅通-预付" RatePlanCode="BS001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO1522" HotelName="海口丽华大酒店" CityCode="HAK" HotelEnglishName="lihua   hotel" CountryCode="CN">
+          <Position Longitude="110.360337" Latitude="19.988665"/>
+          <Rank>3A</Rank>
+          <Address>海口 琼山区 凤翔路158号</Address>
+          <Tel>0898-65929888</Tel>
+          <PostCode>571100</PostCode>
+          <District>琼山区</District>
+          <Fax>089865915888</Fax>
+          <Opendate>200601</Opendate>
+          <Fitment>200601</Fitment>
+          <MinRate>149</MinRate>
+          <LongDesc>丽华大酒店位于海口市凤翔路158号，毗邻海口南北水果市场,至美兰机场仅20分钟.是一家按四星级标准兴建的商务型酒店。拥有365间/套客房； 3个会议室，大会议室能容纳200人；中、西餐厅及大中小豪华包厢；设有茶艺包厢、夜总会、游泳池等配备设施。</LongDesc>
+          <POR>|海口美兰机场|</POR>
+          <Images>
+            <Image Category="WJ">
+              <URL>/59H/WJ/59HWJ01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/59H/DT/59HDT01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/59H/KF/59HKF01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO1522" RoomTypeCode="INCE003" NoSmoking="Y" BedType="双床" RoomTypeName="商务标间" Category="商务">
+            <RoomDescription>所在楼层:16-17层;房型面积:31.5平方米;床型:双床;床面积:1.2*2;宽带免费;房间有电脑;该房型不可加床;酒店商务标间设于酒店最高楼层！为商务专用楼层！楼层专设商务办公区！房间均配备商务电脑免费供客人使用！。;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO1522" RoomTypeCode="INCE007" NoSmoking="Y" BedType="大床" RoomTypeName="商务豪华桑拿套房" Category="DEL">
+            <RoomDescription>所在楼层:16-17;房型面积:52;床型:大床;床面积:2*2;宽带免费;房间有电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO1522" RoomTypeCode="INCE005" NoSmoking="Y" BedType="双床" RoomTypeName="商务套房" Category="商务">
+            <RoomDescription>所在楼层:5-16层;房型面积:42;床型:双床;床面积:1.5*2、1.2*2;宽带免费;房间有电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO1522" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大床" RoomTypeName="豪华套房" Category="DEL">
+            <RoomDescription>所在楼层:5-17;房型面积:55平方米;床型:大床;床面积:2*2;宽带免费;房间无电脑;该房型不可加床;一房一厅客厅;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO1522" RoomTypeCode="INCE002" NoSmoking="Y" BedType="双床" RoomTypeName="普通套房">
+            <RoomDescription>所在楼层:5-16层;房型面积:40平方米;床型:双床;床面积:1.5*2、1.2*2;宽带免费;该房型不可加床;一房一厅客厅，房间配备一张1.5米宽床及1.2米宽床供两张床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO1522" RoomTypeCode="INCE006" NoSmoking="Y" BedType="大床" RoomTypeName="豪华桑拿套房" Category="DEL">
+            <RoomDescription>所在楼层:5-17;房型面积:52;床型:大床;床面积:2*2;宽带免费;房间无电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO1522" RoomTypeCode="INCE004" NoSmoking="Y" BedType="双床" RoomTypeName="普通双标房">
+            <RoomDescription>所在楼层:5-17层;房型面积:31.5平方米;床型:双床;床面积:1.2*2;宽带免费;房间无电脑;该房型不可加床;丽华酒店标准间均带阳台!通风好!采光足!房间均配置宽带接口!地中海式风格!房间简洁大方。;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE006" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华桑拿套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="280.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE006" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE005" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="286.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE005" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="253.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="282.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE006" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华桑拿套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="312.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE006" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE007" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务豪华桑拿套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="298.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE007" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="普通套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="230.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="普通套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="256.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE007" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务豪华桑拿套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="332.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE007" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务标间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="186.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务标间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="167.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="普通双标房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="149.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE005" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="257.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE005" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="普通双标房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="166.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO1522" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO1522" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-05-04" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO2671" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO2671" HotelName="五指山国际酒店" CityCode="HAK" HotelEnglishName="wuzhishan hotel" CountryCode="CN">
+          <Position Longitude="110.347867" Latitude="20.031033"/>
+          <Rank>4S</Rank>
+          <Address>海口 美兰区 五指山路8号</Address>
+          <Tel>0898-65386666</Tel>
+          <District>美兰区</District>
+          <Fax>089865235222</Fax>
+          <Opendate>200701</Opendate>
+          <Fitment>200701</Fitment>
+          <MinRate>298</MinRate>
+          <LongDesc>海口五指山国际酒店位于五指山路8号，是集城市商务、休闲购物、娱乐度假为一体的多功能商务酒店。</LongDesc>
+          <POR>|市区|</POR>
+          <Images>
+            <Image Category="KF">
+              <URL>/3KY/KF/3KYKF01.jpg</URL>
+            </Image>
+            <Image Category="WJ">
+              <URL>/3KY/WJ/3KYWJ01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/3KY/DT/3KYDT01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE008" NoSmoking="Y" BedType="大床" RoomTypeName="豪华大床房" Category="DEL">
+            <RoomDescription>所在楼层:7;房型面积:35-36;床型:大床;床面积:1.8*2;宽带免费;房间有电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE012" NoSmoking="Y" BedType="大床" RoomTypeName="标准大床房" Category="STA">
+            <RoomDescription>所在楼层:3-7层;房型面积:26-28平方米;床型:大床;床面积:大床1.6米;宽带免费;房间无电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE005" NoSmoking="Y" BedType="大床" RoomTypeName="标准商务大床间" Category="STA">
+            <RoomDescription>所在楼层:8;房型面积:26-28;床型:大床;床面积:1.6*2;宽带免费;房间无电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE010" NoSmoking="Y" BedType="双床" RoomTypeName="高级双人房">
+            <RoomDescription>所在楼层:3-7;房型面积:30-34;床型:双床;床面积:1.2*2;宽带免费;房间有电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE002" NoSmoking="Y" BedType="大床" RoomTypeName="豪华商务大床房" Category="DEL">
+            <RoomDescription>所在楼层:9;房型面积:35-36;床型:大床;床面积:1.8*2;宽带免费;房间有电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE006" NoSmoking="Y" BedType="大床" RoomTypeName="标准小套房" Category="STA">
+            <RoomDescription>所在楼层:4-7层;房型面积:36-37平方米;床型:大床;床面积:大床1.8米;宽带免费;房间无电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE011" NoSmoking="Y" BedType="大床" RoomTypeName="高级大床房">
+            <RoomDescription>所在楼层:4-7;房型面积:30-34;床型:大床;床面积:1.8*2;宽带免费;房间有电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE003" NoSmoking="Y" RoomTypeName="豪华商务双人间" Category="DEL">
+            <RoomDescription>所在楼层:8;房型面积:35-36;床面积:1.6*2/1.2*2;宽带免费;房间有电脑;该房型不可加床;子母房;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE007" NoSmoking="Y" BedType="大床" RoomTypeName="花园大床房">
+            <RoomDescription>所在楼层:4;房型面积:35-36;床型:大床;床面积:1.8*2;宽带免费;房间无电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE013" NoSmoking="Y" BedType="大床" RoomTypeName="行政套房" Category="行政">
+            <RoomDescription>所在楼层:8-9层;房型面积:40-46平方米;床型:大床;床面积:大床1.8米;宽带免费;房间有电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大床" RoomTypeName="商务小套房" Category="商务">
+            <RoomDescription>所在楼层:8;房型面积:36-37;床型:大床;床面积:1.8*2;宽带免费;房间无电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE009" NoSmoking="Y" RoomTypeName="豪华双人房" Category="DEL">
+            <RoomDescription>所在楼层:5-6.8;房型面积:35-36;床面积:1.6*2/1.2*2;宽带免费;房间有电脑;该房型不可加床;子母房;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2671" RoomTypeCode="INCE004" NoSmoking="Y" BedType="大床" RoomTypeName="高级商务大床间" Category="商务">
+            <RoomDescription>所在楼层:8;房型面积:30;床型:大床;床面积:1.8*2;宽带免费;房间有电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华商务大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="398.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE005" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准商务大床间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="318.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE005" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE013" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="行政套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="598.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE013" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务小套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="448.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE009" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华双人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="368.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE009" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE012" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="298.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE012" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE006" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准小套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="418.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE006" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE007" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="花园大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="398.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE007" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE011" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高级大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="318.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE011" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华商务双人间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="398.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE008" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="368.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE008" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE010" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高级双人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="318.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE010" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高级商务大床间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="368.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2671" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>1</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>所有的房型均不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO2671" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO4800" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+          <RatePlan HotelCode="SOHOTO4800" RatePlanName="航旅通-预付" RatePlanCode="BS001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO4800" HotelName="海南民航宾馆" CityCode="HAK" HotelEnglishName="Hai Nan Civil Aviation Hotel" CountryCode="CN">
+          <Position Longitude="110.341195" Latitude="20.030212"/>
+          <Rank>3S</Rank>
+          <Address>海口 龙华区 海秀路9号</Address>
+          <Tel>0898-66506888</Tel>
+          <District>龙华区</District>
+          <Fax>089866772610</Fax>
+          <Opendate>199801</Opendate>
+          <Fitment>200801</Fitment>
+          <MinRate>144</MinRate>
+          <LongDesc>酒店隶属于中国民航海南省管理局，位于海口市中心，交通便利</LongDesc>
+          <POR>市区</POR>
+          <Images>
+            <Image Category="WJ">
+              <URL>/AQT/WJ/AQTWJ01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/AQT/KF/AQTKF01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/AQT/DT/AQTDT01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO4800" RoomTypeCode="INCE003" NoSmoking="Y" BedType="大床" RoomTypeName="新豪华蜜月房" Category="DEL">
+            <RoomDescription>所在楼层:11-12;房型面积:23;床型:大床;床面积:2*2;宽带免费;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO4800" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大床" RoomTypeName="蜜月房">
+            <RoomDescription>所在楼层:3-10;房型面积:23;床型:大床;床面积:1.5*2;不能上网;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO4800" RoomTypeCode="INCE002" NoSmoking="Y" BedType="双床" RoomTypeName="标准双人间" Category="STA">
+            <RoomDescription>所在楼层:3.4.67.8.9.10;房型面积:23;床型:双床;床面积:1.1*2;不能上网;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO4800" RoomTypeCode="INCE004" NoSmoking="Y" BedType="双床" RoomTypeName="新豪双标月房">
+            <RoomDescription>房型面积:23;床型:双床;床面积:1.1*2;不能上网;该房型不可加床;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准双人间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="144.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="蜜月房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="144.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准双人间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="160.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>自选</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="新豪双标月房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="180.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>自选</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="新豪华蜜月房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="162.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="蜜月房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="160.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>自选</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="新豪双标月房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="162.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="新豪华蜜月房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="180.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4800" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4800" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>自选</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO3761" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO3761" HotelName="海南金誉大酒店" CityCode="HAK" HotelEnglishName="Jinyu Hotel" CountryCode="CN">
+          <Position Longitude="110.347866" Latitude="20.033855"/>
+          <Rank>3S</Rank>
+          <Address>海口 美兰区 海府路7号</Address>
+          <Tel>0898-65386888</Tel>
+          <PostCode>570203</PostCode>
+          <District>美兰区</District>
+          <Fax>089865387797</Fax>
+          <Opendate>200601</Opendate>
+          <Fitment>200801</Fitment>
+          <MinRate>108</MinRate>
+          <LongDesc>海南金誉大酒店荣获三星级酒店称号,酒店座落于海口中心商业繁华的金三角地段,田联风景优美的海口东,西湖,地理位置优越,交通十分便利.</LongDesc>
+          <POR>市区</POR>
+          <Images>
+            <Image Category="WJ">
+              <URL>/97X/WJ/97XWJ01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/97X/KF/97XKF01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/97X/DT/97XDT01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO3761" RoomTypeCode="INCE003" NoSmoking="Y" RoomTypeName="豪华三人间" Category="DEL">
+            <RoomDescription>所在楼层:3.5;房面积:48;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3761" RoomTypeCode="INCE007" NoSmoking="Y" BedType="大/双" RoomTypeName="普通标准房" Category="STA">
+            <RoomDescription>所在楼层:3-5层;房型面积:28平方米;床型:大/双;床面积:大床1.5米；双床1.2米;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3761" RoomTypeCode="INCE005" NoSmoking="Y" BedType="双床" RoomTypeName="麻将休闲房">
+            <RoomDescription>所在楼层:4-5;房面积:40;床型:双床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3761" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大床" RoomTypeName="普通单间">
+            <RoomDescription>所在楼层:4-5;房型面积:38;床型:大床;床面积:1.5*1.8;宽带免费;如加床的话是加1.2*1.8的床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3761" RoomTypeCode="INCE002" NoSmoking="Y" BedType="双床" RoomTypeName="豪华双标房" Category="DEL">
+            <RoomDescription>所在楼层:3-5层;房型面积:38平方米;床型:双床;床面积:双床1.2米;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3761" RoomTypeCode="INCE006" NoSmoking="Y" BedType="双床" RoomTypeName="商务电脑房" Category="商务">
+            <RoomDescription>所在楼层:4层;房型面积:38平方米;床型:双床;床面积:双床1.2米;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3761" RoomTypeCode="INCE004" NoSmoking="Y" BedType="大床" RoomTypeName="豪华大床房" Category="DEL">
+            <RoomDescription>所在楼层:3-4;房面积:35;床型:大床;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华双标房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="118.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2011-06-17" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-01-03" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE006" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务电脑房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="148.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE006" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2011-06-17" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-01-03" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="148.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2011-06-17" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-01-03" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="普通单间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="108.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2011-06-17" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-01-03" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华三人间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="168.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2011-06-17" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-01-03" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE007" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="普通标准房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="108.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE007" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2011-06-17" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-01-03" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE005" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="麻将休闲房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="128.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3761" RoomTypeCode="INCE005" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2011-06-17" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3761" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2009-01-03" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO0306" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO0306" HotelName="太阳城大酒店" CityCode="HAK" HotelEnglishName="Sun City Hotel" CountryCode="CN">
+          <Position Longitude="110.336672" Latitude="20.038814"/>
+          <Rank>4S</Rank>
+          <Address>海口 龙华区 龙华路16号</Address>
+          <Tel>0898-66206666</Tel>
+          <PostCode>570102</PostCode>
+          <District>龙华区</District>
+          <Fax>089866243117</Fax>
+          <Opendate>200201</Opendate>
+          <Fitment>200701</Fitment>
+          <MinRate>268</MinRate>
+          <LongDesc>海南太阳城大酒店是一家四星级酒店。地处市中心黄金商业区，面向繁华街景，背面可远眺琼州海峡，风景优美，交通便捷。</LongDesc>
+          <POR>市区</POR>
+          <Images>
+            <Image Category="KF">
+              <URL>/2L6/KF/2L6KF01.jpg</URL>
+            </Image>
+            <Image Category="WJ">
+              <URL>/2L6/WJ/2L6WJ01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/2L6/DT/2L6DT01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO0306" RoomTypeCode="INCE003" NoSmoking="Y" BedType="大/双" RoomTypeName="行政房" Category="行政">
+            <RoomDescription>所在楼层:12层;房型面积:30平方米;床型:大/双;床面积:大床1.5米；双床1.2米;宽带免费;房间有电脑;有电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0306" RoomTypeCode="INCE008" NoSmoking="Y" BedType="大床" RoomTypeName="高级大床房">
+            <RoomDescription>所在楼层:17-19层;房型面积:27平方米;床型:大床;床面积:大床1.5米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0306" RoomTypeCode="INCE007" NoSmoking="Y" BedType="大/双" RoomTypeName="无烟房">
+            <RoomDescription>所在楼层:20层;房型面积:27平方米;床型:大/双;床面积:大床1.8米；双床1.2米;宽带免费;房间有电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0306" RoomTypeCode="INCE005" NoSmoking="Y" BedType="大/双" RoomTypeName="女士房">
+            <RoomDescription>所在楼层:13;房型面积:29;床型:大/双;床面积:1.2*2/1.8*2;宽带免费;房间有电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0306" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大床" RoomTypeName="VIP楼层(两房一厅)">
+            <RoomDescription>所在楼层:22;房型面积:84;床型:大床;床面积:1.8*2;宽带免费;房间有电脑;有电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0306" RoomTypeCode="INCE002" NoSmoking="Y" BedType="大床" RoomTypeName="VIP楼层(一房一厅)">
+            <RoomDescription>所在楼层:22;房型面积:51;床型:大床;床面积:1.8*2;宽带免费;房间有电脑;有电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0306" RoomTypeCode="INCE006" NoSmoking="Y" BedType="双床" RoomTypeName="高级双人房">
+            <RoomDescription>所在楼层:19;房型面积:29;床型:双床;床面积:1.5*2;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0306" RoomTypeCode="INCE004" NoSmoking="Y" BedType="大/双" RoomTypeName="商务房" Category="商务">
+            <RoomDescription>所在楼层:21  层;房型面积:27平方米;床型:大/双;床面积:大床1.8米；双床1.2米;宽带免费;房间有电脑;有电脑;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE006" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高级双人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="268.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE006" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2009-12-01" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>1次</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-02" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不含早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-01" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE008" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高级大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="278.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE008" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2009-12-01" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>1次</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-02" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不含早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-01" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE005" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="女士房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="288.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE005" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2009-12-01" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>1次</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-02" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不含早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-01" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="VIP楼层(一房一厅)" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="630.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2009-12-01" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>1次</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-02" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不含早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-01" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="行政房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="318.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2009-12-01" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>1次</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-02" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不含早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-01" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE007" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="无烟房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="288.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE007" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2009-12-01" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>1次</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-02" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不含早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-01" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="VIP楼层(两房一厅)" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="910.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2009-12-01" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>1次</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-02" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不含早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-01" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="298.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0306" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2009-12-01" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>1次</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-02" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不含早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0306" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-01" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO0969" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO0969" HotelName="海口天佑大酒店(原海南华运凯莱大酒店)" CityCode="HAK" HotelEnglishName="TianYou Hotel (YHuayun Gloria Hotel)" CountryCode="CN">
+          <Position Longitude="110.228958" Latitude="20.040733"/>
+          <Rank>5S</Rank>
+          <Address>海口 秀英区 滨海大道239号</Address>
+          <Tel>0898-31688855</Tel>
+          <PostCode>570311</PostCode>
+          <District>秀英区</District>
+          <Fax>089831688878</Fax>
+          <Opendate>200501</Opendate>
+          <Fitment>200501</Fitment>
+          <MinRate>488</MinRate>
+          <LongDesc>海南华运凯莱大酒店 位于海口美丽西海岸的华运凯莱大饭店毗邻西海岸高尔夫俱乐部、美视高尔夫球会和假日海滩。</LongDesc>
+          <POR>西海岸</POR>
+          <Images>
+            <Image Category="WJ">
+              <URL>/6CL/WJ/6CLWJ01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/6CL/DT/6CLDT01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/6CL/KF/6CLKF01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO0969" RoomTypeCode="INCE003" NoSmoking="Y" BedType="大床" RoomTypeName="园景套房" RoomView="园景">
+            <RoomDescription>所在楼层:3-8;房型面积:75;床型:大床;床面积:2*2;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0969" RoomTypeCode="INCE008" NoSmoking="Y" BedType="大床" RoomTypeName="行政商务套房" Category="行政">
+            <RoomDescription>所在楼层:3-8;房型面积:60;床型:大床;床面积:2*2;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0969" RoomTypeCode="INCE007" NoSmoking="Y" BedType="大/双" RoomTypeName="行政高尔夫海景房" Category="行政" RoomView="OCE">
+            <RoomDescription>所在楼层:3-8;房型面积:35;床型:大/双;床面积:1.7*2/1.35*2;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0969" RoomTypeCode="INCE005" NoSmoking="Y" BedType="大/双" RoomTypeName="高尔夫海景房" RoomView="OCE">
+            <RoomDescription>所在楼层:3-8;房型面积:35;床型:大/双;床面积:1.7*2/1.35*2;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0969" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大/双" RoomTypeName="海景房" RoomView="OCE">
+            <RoomDescription>所在楼层:3-8;房型面积:35;床型:大/双;床面积:1.7*2/1.35*2;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0969" RoomTypeCode="INCE002" NoSmoking="Y" BedType="大床" RoomTypeName="商务套房" Category="商务">
+            <RoomDescription>所在楼层:3-8;房型面积:60;床型:大床;床面积:2*2;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0969" RoomTypeCode="INCE006" NoSmoking="Y" BedType="大/双" RoomTypeName="行政海景房" Category="行政" RoomView="OCE">
+            <RoomDescription>所在楼层:3-8;房型面积:38;床型:大/双;床面积:1.7*2/1.35*2;宽带免费;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0969" RoomTypeCode="INCE004" NoSmoking="Y" BedType="大床" RoomTypeName="海景套房" RoomView="OCE">
+            <RoomDescription>所在楼层:3-8;房型面积:75;床型:大床;床面积:2*2;宽带免费;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE006" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="行政海景房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="620.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE006" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-10-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>含一早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE005" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高尔夫海景房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="528.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE005" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-10-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>含一早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE008" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="行政商务套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="1080.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE008" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-10-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>含一早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="880.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-10-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>含一早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="园景套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="980.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-10-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>含一早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="海景房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="488.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-10-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>含一早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE007" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="行政高尔夫海景房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="660.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE007" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-10-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>含一早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="海景套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="1380.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0969" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-10-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>含一早</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0969" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-01" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO3954" RatePlanName="航旅通-预付" RatePlanCode="BS001" VendorCode="SOHOTO"/>
+          <RatePlan HotelCode="SOHOTO3954" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO3954" HotelName="海南凯威大酒店" CityCode="HAK" HotelEnglishName="Kai Wei Hotel" CountryCode="CN">
+          <Position Longitude="110.281669" Latitude="20.017012"/>
+          <Rank>4S</Rank>
+          <Address>海口 秀英区 海港路20号</Address>
+          <Tel>0898-68628288</Tel>
+          <PostCode>570311</PostCode>
+          <District>秀英区</District>
+          <Fax>089868657613</Fax>
+          <Opendate>200401</Opendate>
+          <Fitment>200801</Fitment>
+          <MinRate>205</MinRate>
+          <LongDesc>酒店位于海口西海岸带状公园前沿，坐落在远近闻名、风景秀丽的“港中湖”公园之中，北依浩瀚的琼州海峡，西邻美丽的“假日海滩”，距海口美兰机场20分钟车程。</LongDesc>
+          <POR>|西海岸|</POR>
+          <Images>
+            <Image Category="WJ">
+              <URL>/3DC/WJ/3DCWJ01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/3DC/DT/3DCDT01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/3DC/KF/3DCKF01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO3954" RoomTypeCode="INCE003" NoSmoking="Y" BedType="大/双" RoomTypeName="标准间" Category="STA">
+            <RoomDescription>所在楼层:3-8层;房型面积:34平方米;床型:大/双;床面积:大床1.8米；双床1.2米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3954" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大床" RoomTypeName="豪华商务房" Category="DEL">
+            <RoomDescription>所在楼层:3;房型面积:40;床型:大床;床面积:1.8*2;宽带免费;房间无电脑;豪华蜜月房;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3954" RoomTypeCode="INCE002" NoSmoking="Y" BedType="双床" RoomTypeName="商务间" Category="商务">
+            <RoomDescription>所在楼层:3层;房型面积:34平方米;床型:双床;床面积:双床1.2米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3954" RoomTypeCode="INCE004" NoSmoking="Y" BedType="大/双" RoomTypeName="海景房" RoomView="OCE">
+            <RoomDescription>所在楼层:7-8层;房型面积:34平方米;床型:大/双;床面积:1.5*2/1.8*2;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="海景房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="223.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="228.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-26" EndDate="2009-12-30" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>房费的半价</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-31" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-26" EndDate="2009-12-30" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>客人自选</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="250.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华商务房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="286.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="278.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-26" EndDate="2009-12-30" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>房费的半价</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-31" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-26" EndDate="2009-12-30" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>客人自选</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="海景房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="248.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-26" EndDate="2009-12-30" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>房费的半价</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-31" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-26" EndDate="2009-12-30" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>客人自选</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准间" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="205.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee>
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华商务房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="318.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3954" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-26" EndDate="2009-12-30" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>房费的半价</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-12-31" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3954" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-26" EndDate="2009-12-30" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>客人自选</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO0668" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO0668" HotelName="望海海航商务酒店(原望海国际大酒店)" CityCode="HAK" HotelEnglishName="wanghaiinternationalhotel" CountryCode="CN">
+          <Position Longitude="110.344081" Latitude="20.031365"/>
+          <Rank>4S</Rank>
+          <Address>海口 美兰区 海秀东路6号</Address>
+          <Tel>0898-66773381</Tel>
+          <District>美兰区</District>
+          <Fax>089866779640</Fax>
+          <Opendate>198401</Opendate>
+          <Fitment>200501</Fitment>
+          <MinRate>248</MinRate>
+          <LongDesc>酒店坐落于海口市中心商业区黄金地段；酒店装修华丽典雅，位于海口市中心繁华商业区，位置优越，交通便利。</LongDesc>
+          <POR>|海口美兰机场||市区|</POR>
+          <Images>
+            <Image Category="WJ">
+              <URL>/7ZX/WJ/7ZXWJ01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/7ZX/DT/7ZXDT01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/7ZX/KF/7ZXKF01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE003" NoSmoking="Y" BedType="大床" RoomTypeName="高级套房">
+            <RoomDescription>所在楼层:3-10;房型面积:48;床型:大床;床面积:1.5*2;宽带免费;房间无电脑;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE008" NoSmoking="Y" BedType="双床" RoomTypeName="高级双人房">
+            <RoomDescription>所在楼层:3-7层;房型面积:24平方米;床型:双床;床面积:双床1.2米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE007" NoSmoking="Y" BedType="大床" RoomTypeName="高级大床房">
+            <RoomDescription>所在楼层:3-11层;房型面积:24平方米;床型:大床;床面积:大床1.5米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE005" NoSmoking="Y" BedType="大/双" RoomTypeName="电脑商务房" Category="商务">
+            <RoomDescription>所在楼层:8层;房型面积:35平方米;床型:大/双;床面积:大床1.5米；双床1.2米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大床" RoomTypeName="行政套房" Category="行政">
+            <RoomDescription>所在楼层:8;房型面积:28;床型:大床;床面积:1.8*2;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE002" NoSmoking="Y" BedType="大床" RoomTypeName="豪华商务套房" Category="DEL">
+            <RoomDescription>所在楼层:8-10;房型面积:66;床型:大床;床面积:1.8*2;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE009" NoSmoking="Y" BedType="双床" RoomTypeName="标准双人房" Category="STA">
+            <RoomDescription>所在楼层:3-6层;房型面积:20平方米;床型:双床;床面积:1.1*2;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE006" NoSmoking="Y" BedType="双床" RoomTypeName="豪华双人房" Category="DEL">
+            <RoomDescription>所在楼层:7、9-10层;房型面积:30平方米;床型:双床;床面积:双床1.2米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO0668" RoomTypeCode="INCE004" NoSmoking="Y" BedType="大床" RoomTypeName="电脑商务大床房" Category="商务">
+            <RoomDescription>所在楼层:8;房型面积:30;床型:大床;床面积:1.8*2;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE006" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华双人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="288.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE006" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高级套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="468.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE008" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高级双人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="268.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE008" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="行政套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="1280.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE005" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="电脑商务房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="318.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE005" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE009" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准双人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="248.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE009" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="豪华商务套房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="638.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE007" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="高级大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="268.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE007" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE004" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="电脑商务大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="318.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO0668" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-04-08" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO0668" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-02-16" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO3276" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO3276" HotelName="蓝海阳光酒店（原昌隆宾馆）" CityCode="HAK" HotelEnglishName="Chang Long Hotel" CountryCode="CN">
+          <Position Longitude="110.342553" Latitude="20.024084"/>
+          <Rank>4S</Rank>
+          <Address>海口 博鳌镇 机场西路</Address>
+          <Tel>0898-68522322</Tel>
+          <PostCode>570203</PostCode>
+          <District>博鳌镇</District>
+          <Fax>089868522322</Fax>
+          <Opendate>200101</Opendate>
+          <Fitment>200301</Fitment>
+          <MinRate>93</MinRate>
+          <LongDesc>蓝海阳光酒店是具有准二星级的外商独资经营酒店，矗立于海口市中心(步行只需5分钟)，地理位置优越，交通便捷，是中外宾客下榻的理想选择。</LongDesc>
+          <POR>|海口美兰机场|</POR>
+          <Images>
+            <Image Category="WJ">
+              <URL>/64S/WJ/64SWJ01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/64S/KF/64SKF01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/64S/DT/64SDT01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO3276" RoomTypeCode="INCE003" NoSmoking="Y" BedType="三床" RoomTypeName="三人房">
+            <RoomDescription>所在楼层:7-8;房型面积:15;床型:三床;床面积:1.2*2;不能上网;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3276" RoomTypeCode="INCE001" NoSmoking="Y" BedType="小床" RoomTypeName="单人房">
+            <RoomDescription>所在楼层:1-8;房型面积:10;床型:小床;床面积:1.2*2;不能上网;该房型不可加床;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO3276" RoomTypeCode="INCE002" NoSmoking="Y" BedType="双床" RoomTypeName="双人房">
+            <RoomDescription>所在楼层:5-6;房型面积:12;床型:双床;床面积:1.5*2;不能上网;该房型不可加床;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3276" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="三人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="156.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3276" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3276" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="双人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="114.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3276" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3276" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="单人房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="93.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO3276" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-03-23" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-01-01" EndDate="2010-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Comments>不能加床</Comments>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO3276" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-01" EndDate="2010-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO4183" RatePlanName="航旅通-现付" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty ChainCode="RJ" HotelCode="SOHOTO4183" HotelName="如家快捷酒店（海口白龙路店）" CityCode="HAK" HotelEnglishName="HOME INN HAIKOU" CountryCode="CN">
+          <Position Longitude="110.361920" Latitude="20.040590"/>
+          <Rank>2A</Rank>
+          <Address>海口 美兰区 白龙南路61号</Address>
+          <Tel>0898-65348686</Tel>
+          <District>美兰区</District>
+          <Fax>089865345656</Fax>
+          <Opendate>200801</Opendate>
+          <Fitment>200801</Fitment>
+          <MinRate>132</MinRate>
+          <LongDesc>如家快捷酒店海口白龙路店，位于海口市美兰区白龙南路，近邻海南省委、海南省政府、海口旅游职业学校、海口公园、东湖、明珠广场，环境优越，出行便捷。</LongDesc>
+          <POR>|市区|</POR>
+          <Images>
+            <Image Category="WJ">
+              <URL>/8ZS/WJ/8ZSWJ01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/8ZS/DT/8ZSDT01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/8ZS/KF/8ZSKF01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO4183" RoomTypeCode="INCE003" NoSmoking="Y" BedType="大床" RoomTypeName="特惠房(无窗)">
+            <RoomDescription>所在楼层:3;房型面积:22-23;床型:大床;床面积:1.8;宽带免费;房间无电脑;该房型不可加床;位置偏，或者是暗房;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO4183" RoomTypeCode="INCE001" NoSmoking="Y" BedType="大床" RoomTypeName="商务大床房" Category="商务">
+            <RoomDescription>床型:大床;床面积:1.5*2;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO4183" RoomTypeCode="INCE002" NoSmoking="Y" BedType="双床" RoomTypeName="标准房" Category="STA">
+            <RoomDescription>所在楼层:2-7;房型面积:25;床型:双床;床面积:1.2*2;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4183" RoomTypeCode="INCE002" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="标准房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="159.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4183" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO4183" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-05-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4183" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-31" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4183" RoomTypeCode="INCE003" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="特惠房(无窗)" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="132.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4183" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO4183" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-05-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4183" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-31" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4183" RoomTypeCode="INCE001" StartDate="2010-09-13" EndDate="2010-09-18" RoomTypeName="商务大床房" AvailabilityStatus="avail" CrsIndicator="Y" CrsPath="SOHOTO" AuthorizedChannel="All" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="159.0" StartDate="2010-09-13" EndDate="2010-09-17" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO4183" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Fees>
+              <Fee HotelCode="SOHOTO4183" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2008-05-01" EndDate="2009-12-31" FeeCode="BED" FeeName="加床">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+              <Fee HotelCode="SOHOTO4183" RoomTypeCode="ALL" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2009-01-31" EndDate="2009-12-31" FeeCode="FEE" FeeName="加餐">
+                <ChargeFrequence>0</ChargeFrequence>
+                <ChargeUnit>0</ChargeUnit>
+                <Count>0</Count>
+                <Amount>0.0</Amount>
+              </Fee>
+            </Fees>
+            <Internet>Y</Internet>
+          </RoomRate>
+        </RoomRates>
+        <TimeSpan StartDate="2010-09-13" EndDate="2010-09-18"/>
+        <AvailabilityStatus>avail</AvailabilityStatus>
+      </RoomStay>
+    </RoomStays>
+    <RespPageInfo>
+      <TotalPageNum>2</TotalPageNum>
+      <TotalNum>16</TotalNum>
+      <CurrentPage>1</CurrentPage>
+    </RespPageInfo>
+  </HotelAvailRS>
+  <TransactionName>TH_HotelMultiAvailRS</TransactionName>
+  <Header>
+    <Application>hotelbe</Application>
+    <Language>CN</Language>
+  </Header>
+  <IdentityInfo>
+    <OfficeID>NATEST</OfficeID>
+    <UserID>NATEST00C</UserID>
+    <Password>12345678</Password>
+  </IdentityInfo>
+</OTResponse>

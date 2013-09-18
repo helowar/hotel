@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+	<sqlMap namespace="contractFile">
+	
+			<resultMap id="ContractFileResult" class="com.mangocity.hotel.base.persistence.ContractFile">
+					<result property="id" javaType="long" jdbcType="NUMERIC" column="ID" nullValue="0" />
+					<result property="contractId" javaType="long" jdbcType="NUMERIC" column="CONTRACTID" nullValue="0" />
+					<result property="fileName" javaType="string" jdbcType="VARCHAR" column="FILENAME" />
+					<result property="filePath" javaType="string" jdbcType="VARCHAR" column="FILEPATH" />
+			</resultMap>
+			
+			<!-- auto generate begin -->
+				<!--method-->
+				<!--ContractFilemethod-->
+			<select id="selectContractFileById" resultMap="contractFile.ContractFileResult" parameterClass="com.mangocity.hotel.base.persistence.ContractFile">
+			    select ID, CONTRACTID, FILENAME, FILEPATH
+			    from HTL_CONTRACTFILE
+			    where ID = #id:NUMERIC#
+			</select>
+			
+			<select id="selectContractFile" resultMap="contractFile.ContractFileResult" parameterClass="com.mangocity.hotel.base.persistence.ContractFile">
+			    select ID, CONTRACTID, FILENAME, FILEPATH
+			    from HTL_CONTRACTFILE
+			    where CONTRACTID = #contractId:NUMERIC#
+			</select>
+						
+			<delete id="deleteContractFile" parameterClass="com.mangocity.hotel.base.persistence.ContractFile">
+				delete from HTL_CONTRACTFILE where ID = #id:NUMERIC#
+			</delete>
+			
+			
+			<update id="updateContractFile" parameterClass="com.mangocity.hotel.base.persistence.ContractFile">
+				update HTL_CONTRACTFILE
+				set
+						CONTRACTID = #contractId:NUMERIC:0#
+						,FILENAME = #fileName:VARCHAR#
+						,FILEPATH = #filePath:VARCHAR#
+				where ID = #id:NUMERIC#
+			</update>
+			
+			<insert id="insertContractFile" parameterClass="com.mangocity.hotel.base.persistence.ContractFile">
+					<selectKey resultClass="long" keyProperty="id">
+					select seq_hotel_contract_file.nextval as id from dual
+					</selectKey>
+				insert into HTL_CONTRACTFILE
+				(ID
+					, CONTRACTID
+					, FILENAME
+					, FILEPATH)
+				values (#id:NUMERIC#,#contractId:NUMERIC:0#,#fileName:VARCHAR#,#filePath:VARCHAR#)
+			 </insert>
+	
+	</sqlMap>

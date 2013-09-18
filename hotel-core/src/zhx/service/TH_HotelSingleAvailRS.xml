@@ -1,0 +1,204 @@
+﻿<OTResponse>
+  <HotelAvailRS>
+    <RoomStays>
+      <RoomStay>
+        <RatePlans>
+          <RatePlan HotelCode="SOHOTO2718" RatePlanCode="BS001" VendorCode="SOHOTO"/>
+          <RatePlan HotelCode="SOHOTO2718" RatePlanCode="BK001" VendorCode="SOHOTO"/>
+        </RatePlans>
+        <BasicProperty HotelCode="SOHOTO2718" HotelName="奥友宾馆" CityCode="PEK">
+          <Position Longitude="116.403184" Latitude="39.994082"/>
+          <Rank>3S</Rank>
+          <Address>北京市 北京 朝阳区 亚运村汇园公寓J座11门</Address>
+          <Tel>010-84988668</Tel>
+          <PostCode>100101</PostCode>
+          <District>朝阳区</District>
+          <Opendate>200701</Opendate>
+          <Fitment>200701</Fitment>
+          <Floor>14</Floor>
+          <LongDesc>奥友宾馆位于北四环安慧桥北，奥林匹克公园东侧，西距奥运会主会场鸟巢仅200米，紧邻北京国际会议中心、奥林匹克体育中心，地理位置优越，交通便利。</LongDesc>
+          <RoomQuantity>100</RoomQuantity>
+          <Images>
+            <Image Category="WJ">
+              <URL>/6ZR/WJ/6ZRWJ01.jpg</URL>
+            </Image>
+            <Image Category="DT">
+              <URL>/6ZR/DT/6ZRDT01.jpg</URL>
+            </Image>
+            <Image Category="KF">
+              <URL>/6ZR/KF/6ZRKF01.jpg</URL>
+            </Image>
+          </Images>
+        </BasicProperty>
+        <RoomTypes>
+          <RoomType HotelCode="SOHOTO2718" RoomTypeCode="INCE003" NoSmoking="N" RoomTypeName="标准间"/>
+          <RoomType HotelCode="SOHOTO2718" RoomTypeCode="INCE001" NoSmoking="N" BedType="大床" RoomTypeName="豪华套间">
+            <RoomDescription>所在楼层:5-12层;房型面积:40平方米;床型:大床;床面积:大床1.8米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2718" RoomTypeCode="INCE002" NoSmoking="N" BedType="大床" RoomTypeName="标准套间">
+            <RoomDescription>所在楼层:5-12层;房型面积:35平方米;床型:大床;床面积:大床1.8米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+          <RoomType HotelCode="SOHOTO2718" RoomTypeCode="INCE004" NoSmoking="N" BedType="小床" RoomTypeName="单人间">
+            <RoomDescription>所在楼层:5-14层;房型面积:18平方米;床型:小床;床面积:单人床1.2米;宽带免费;房间无电脑;</RoomDescription>
+          </RoomType>
+        </RoomTypes>
+        <RoomRates>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE004" StartDate="2010-10-21" EndDate="2010-10-25" RoomTypeName="单人间" BedType="小床" AvailabilityStatus="onRequest" RoomTypeDesc="所在楼层:5-14层;房型面积:18平方米;床型:小床;床面积:单人床1.2米;宽带免费;房间无电脑;" Payment="Y" CrsIndicator="N" AuthorizedChannel="ALL" GuestTypeIndicator="A" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="216.0" StartDate="2010-10-21" EndDate="2010-10-24" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Commissions>
+              <Commission HotelCode="SOHOTO2718" RoomTypeCode="INCE004" VendorCode="SOHOTO" RatePlanCode="BS001" StartDate="2010-10-21" EndDate="2010-10-24" CommissionType="PCT">
+                <Fix>0</Fix>
+                <Percent>0.0</Percent>
+                <Tax>0.0</Tax>
+              </Commission>
+            </Commissions>
+            <Internet>Y</Internet>
+            <MaxGuestNum></MaxGuestNum>
+            <Total AmountPrice="864.0"/>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE001" StartDate="2010-10-21" EndDate="2010-10-25" RoomTypeName="豪华套间" BedType="大床" AvailabilityStatus="avail" RoomTypeDesc="所在楼层:5-12层;房型面积:40平方米;床型:大床;床面积:大床1.8米;宽带免费;房间无电脑;" Payment="T" CrsIndicator="N" AuthorizedChannel="ALL" GuestTypeIndicator="A" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="680.0" StartDate="2010-10-21" EndDate="2010-10-24" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Commissions>
+              <Commission HotelCode="SOHOTO2718" RoomTypeCode="INCE001" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-10-21" EndDate="2010-10-24" CommissionType="PCT">
+                <Fix>0</Fix>
+                <Percent>0.06</Percent>
+                <Tax>0.0</Tax>
+              </Commission>
+            </Commissions>
+            <Internet>Y</Internet>
+            <MaxGuestNum></MaxGuestNum>
+            <Total AmountPrice="2720.0"/>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE001" StartDate="2010-10-21" EndDate="2010-10-25" RoomTypeName="豪华套间" BedType="大床" AvailabilityStatus="onRequest" RoomTypeDesc="所在楼层:5-12层;房型面积:40平方米;床型:大床;床面积:大床1.8米;宽带免费;房间无电脑;" Payment="Y" CrsIndicator="N" AuthorizedChannel="ALL" GuestTypeIndicator="A" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="639.0" StartDate="2010-10-21" EndDate="2010-10-24" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Commissions>
+              <Commission HotelCode="SOHOTO2718" RoomTypeCode="INCE001" VendorCode="SOHOTO" RatePlanCode="BS001" StartDate="2010-10-21" EndDate="2010-10-24" CommissionType="PCT">
+                <Fix>0</Fix>
+                <Percent>0.0</Percent>
+                <Tax>0.0</Tax>
+              </Commission>
+            </Commissions>
+            <Internet>Y</Internet>
+            <MaxGuestNum></MaxGuestNum>
+            <Total AmountPrice="2556.0"/>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE003" StartDate="2010-10-21" EndDate="2010-10-25" RoomTypeName="标准间" BedType="" AvailabilityStatus="avail" Payment="T" CrsIndicator="N" AuthorizedChannel="ALL" GuestTypeIndicator="A" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="360.0" StartDate="2010-10-21" EndDate="2010-10-24" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Commissions>
+              <Commission HotelCode="SOHOTO2718" RoomTypeCode="INCE003" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-10-21" EndDate="2010-10-24" CommissionType="PCT">
+                <Fix>0</Fix>
+                <Percent>0.1</Percent>
+                <Tax>0.0</Tax>
+              </Commission>
+            </Commissions>
+            <Internet>Y</Internet>
+            <MaxGuestNum></MaxGuestNum>
+            <Total AmountPrice="1440.0"/>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE002" StartDate="2010-10-21" EndDate="2010-10-25" RoomTypeName="标准套间" BedType="大床" AvailabilityStatus="onRequest" RoomTypeDesc="所在楼层:5-12层;房型面积:35平方米;床型:大床;床面积:大床1.8米;宽带免费;房间无电脑;" Payment="Y" CrsIndicator="N" AuthorizedChannel="ALL" GuestTypeIndicator="A" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="558.0" StartDate="2010-10-21" EndDate="2010-10-24" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Commissions>
+              <Commission HotelCode="SOHOTO2718" RoomTypeCode="INCE002" VendorCode="SOHOTO" RatePlanCode="BS001" StartDate="2010-10-21" EndDate="2010-10-24" CommissionType="PCT">
+                <Fix>0</Fix>
+                <Percent>0.0</Percent>
+                <Tax>0.0</Tax>
+              </Commission>
+            </Commissions>
+            <Internet>Y</Internet>
+            <MaxGuestNum></MaxGuestNum>
+            <Total AmountPrice="2232.0"/>
+          </RoomRate>
+          <RoomRate RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE003" StartDate="2010-10-21" EndDate="2010-10-25" RoomTypeName="标准间" BedType="" AvailabilityStatus="onRequest" Payment="Y" CrsIndicator="N" AuthorizedChannel="ALL" GuestTypeIndicator="A" VendorName="SOHOTO" RatePlanName="航旅通-预付">
+            <Rates>
+              <Rate AmountPrice="324.0" StartDate="2010-10-21" EndDate="2010-10-24" RatePlanCode="BS001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE003" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Commissions>
+              <Commission HotelCode="SOHOTO2718" RoomTypeCode="INCE003" VendorCode="SOHOTO" RatePlanCode="BS001" StartDate="2010-10-21" EndDate="2010-10-24" CommissionType="PCT">
+                <Fix>0</Fix>
+                <Percent>0.0</Percent>
+                <Tax>0.0</Tax>
+              </Commission>
+            </Commissions>
+            <Internet>Y</Internet>
+            <MaxGuestNum></MaxGuestNum>
+            <Total AmountPrice="1296.0"/>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE002" StartDate="2010-10-21" EndDate="2010-10-25" RoomTypeName="标准套间" BedType="大床" AvailabilityStatus="avail" RoomTypeDesc="所在楼层:5-12层;房型面积:35平方米;床型:大床;床面积:大床1.8米;宽带免费;房间无电脑;" Payment="T" CrsIndicator="N" AuthorizedChannel="ALL" GuestTypeIndicator="A" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="600.0" StartDate="2010-10-21" EndDate="2010-10-24" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE002" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>2</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Commissions>
+              <Commission HotelCode="SOHOTO2718" RoomTypeCode="INCE002" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-10-21" EndDate="2010-10-24" CommissionType="PCT">
+                <Fix>0</Fix>
+                <Percent>0.07</Percent>
+                <Tax>0.0</Tax>
+              </Commission>
+            </Commissions>
+            <Internet>Y</Internet>
+            <MaxGuestNum></MaxGuestNum>
+            <Total AmountPrice="2400.0"/>
+          </RoomRate>
+          <RoomRate RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE004" StartDate="2010-10-21" EndDate="2010-10-25" RoomTypeName="单人间" BedType="小床" AvailabilityStatus="avail" RoomTypeDesc="所在楼层:5-14层;房型面积:18平方米;床型:小床;床面积:单人床1.2米;宽带免费;房间无电脑;" Payment="T" CrsIndicator="N" AuthorizedChannel="ALL" GuestTypeIndicator="A" VendorName="SOHOTO" RatePlanName="航旅通-现付">
+            <Rates>
+              <Rate AmountPrice="240.0" StartDate="2010-10-21" EndDate="2010-10-24" RatePlanCode="BK001" VendorCode="SOHOTO" HotelCode="SOHOTO2718" RoomTypeCode="INCE004" FeePercent="0.0" FeeFix="0.0" Fee="0.0" DisplayPrice="0.0">
+                <FreeMeal>0</FreeMeal>
+              </Rate>
+            </Rates>
+            <Quantity>0</Quantity>
+            <Commissions>
+              <Commission HotelCode="SOHOTO2718" RoomTypeCode="INCE004" VendorCode="SOHOTO" RatePlanCode="BK001" StartDate="2010-10-21" EndDate="2010-10-24" CommissionType="PCT">
+                <Fix>0</Fix>
+                <Percent>0.1</Percent>
+                <Tax>0.0</Tax>
+              </Commission>
+            </Commissions>
+            <Internet>Y</Internet>
+            <MaxGuestNum></MaxGuestNum>
+            <Total AmountPrice="960.0"/>
+          </RoomRate>
+        </RoomRates>
+      </RoomStay>
+    </RoomStays>
+  </HotelAvailRS>
+  <TransactionName>TH_HotelSingleAvailRS</TransactionName>
+  <Header>
+    <Application>hotelbe</Application>
+    <Language>CN</Language>
+  </Header>
+  <IdentityInfo>
+    <OfficeID>SZX899</OfficeID>
+    <UserID>SZX89900C</UserID>
+    <Password>12345678</Password>
+  </IdentityInfo>
+</OTResponse>

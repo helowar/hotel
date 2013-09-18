@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="Gen114Member" table="gen_114_member" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID">
+			<generator class="sequence">
+				<param name="sequence">seq_gen_114_member</param>
+			</generator>
+	</id>          
+
+         <property name="memberCD" />
+         <property name="memberState" />         
+         <property name="genTxt" />
+         <property name="genExcel" />
+         <property name="createTime" />
+
+                  
+        <!-- 和Gen114File关联 -->
+    	<bag name="genFiles" cascade="all-delete-orphan"
+			inverse="true" lazy="true" order-by="FILEDATE">
+			<key column="ID"></key>
+			<one-to-many class="Gen114File" />
+		</bag>		
+	</class>
+   
+</hibernate-mapping>

@@ -1,0 +1,319 @@
+@charset "utf-8";
+.red{color:#E80010;font-family:"Microsoft Yahei";}
+.inputSel{color: #999999 !important;}
+/*搜索框*/
+.hotel_search{width:427px;height:406px;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/search_bg.png) no-repeat;float:left;font-family:SimSun;}
+.hotel_search h1{float:left;display:block;width:135px;height:26px;margin:25px 0 15px 65px;_margin-left:33px;text-indent:-9999em;}
+.hotel_search p{margin-top:79px;color:#0054AA;}
+.hotel_search p .first{margin-left:313px;}
+.hotel_search p .first .haiwai:hover{color:#f28e18 !important;}
+.hotel_search p a{color:#0054AA !important;font-size:12px;font-weight:bold;}
+.hotel_search p span{color:#0054AA !important;font-weight:normal;}
+.hotel_search ul{margin-left:52px;margin-top:40px;}
+.hotel_search ul li{margin-bottom:15px;}
+.hotel_search ul li .title{display:inline-block;width:65px;margin-right:6px;text-align:right;font:13px "Microsoft Yahei",Simsun;color:#333;font-weight:normal;}
+.hotel_search ul li span,.hotel_search ul li input,.hotel_search ul li a{vertical-align:middle;font:13px/29px "Microsoft Yahei",Simsun;font-weight:normal;}
+.hotel_search ul li .inp_txt,.hotel_search ul li .inp_time{width:232px;height:30px;line-height:30px;border:0 none;text-indent:5px;}
+.hotel_search ul li .start_city{background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon_keyword.png)  no-repeat  bottom right;}
+.hotel_search ul li .keywordinput{background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon_city.png) no-repeat bottom right;}
+
+.hotel_search ul li .inp_time{background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon2.png) no-repeat -60px -130px;}
+.hotel_search ul li .keyword{background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon_city.png) no-repeat;background-attachment:fixed;}
+.hotel_search ul li .search_btn{width:109px;height:35px;line-height:36px;display:block;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/search_btn.png) no-repeat -9px -10px;color:#fff !important;font-size:16px;font-weight:bold;text-align:center;vertical-align:middle;float:left;margin-left:25px;_margin-left:44px;}
+.hotel_search ul li .search_btn:hover{background-position:-9px -49px;color:#fff;text-decoration:none}
+.hotel_search ul li .map_icon{width:23px;height:25px;display:block;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon.png) no-repeat -410px 0;margin:5px 0 0 105px;float:left; cursor:pointer;}
+.hotel_search ul li .map_icon_ie6{width:23px;height:25px;display:block;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon.png) no-repeat -410px 0;margin:5px 0 0 42px;float:left; cursor:pointer;}
+
+.hotel_search ul li .map_btn{float:left;margin:4px 0 0 2px;font-size:12px;font-family:"宋体";}
+.hotel_search ul li .map_btn:hover{text-decoration:underline;color:#000;}
+
+/*轮播广告*/
+.cycleWrap {width:571px;height:250px;overflow:hidden;position:relative;margin-bottom:15px;}
+.cycleWrap ul {width:3050px;}
+.cycleWrap li {float:left;width:610px;height:265px;overflow:hidden;}
+.cycleimgWrap {width:610px;height:265px;overflow:hidden;}
+.cyclebg {width:610px;height:57px;position:absolute;top:208px;background:#000;opacity:0.6;filter:alpha(opacity = 60);z-index:20;}
+.cycleList {position:absolute;height:23px;bottom:10px;right:10px;z-index:1000;}
+.cycleList li {margin-right:5px;float:left;width: 20px; height:20px;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/banner.png) no-repeat -30px -2px;text-align:center;line-height:23px;color:#777;cursor:pointer;font-size:12px;}
+.cycleList li.on { background-position:0 -2px;color:#333;}
+.codeDescription {margin-top:10px;padding:20px;background:#f5f5f5;border:1px solid #ccc;}
+.cytleshow {display:block;}
+.cyclehide {display:none;}
+
+/*地标周边酒店*/
+.nearby_hotel{width:571px;border:1px solid #d8d8d8;}
+.nearby_hotel .nearby_til{position:relative;}
+.nearby_hotel .nearby_til h3{height:34px;line-height:34px;background-color:#F4F4F4;color:#f08300;font-family:"Microsoft Yahei";font-size:19px;font-weight:normal;text-indent:15px;}
+.nearby_hotel .nearby_til .inputCity{width:52px;height:20px;line-height:20px;padding-left:5px;padding-right:20px;cursor:pointer;background:#fff url(http://himg.mangocity.com/hotel/img/h/hotel-index/index_select.png) no-repeat -210px -10px;border:1px solid #dcdcdc;margin-top:5px;position:absolute;left:470px;top:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nearby_hotel .nearby_til .inputCity:hover{background-position:-210px -41px;}
+
+.nearby_hotel .nearby_con{margin-bottom:11px;}
+.nearby_hotel .nearby_con .mod ul{margin:19px 0 0 25px;}
+.nearby_hotel .nearby_con .mod li{width:68px;margin-right:8px;float:left;}
+/*周边小图标*/
+.nearby_hotel .nearby_con .mod li .mod_icon{width:49px;height:48px;margin:0 2px;cursor:pointer;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/index_select.png) no-repeat 0 0;display:block;margin-left:8px;}
+.nearby_hotel .nearby_con .mod li:hover a{color:#F08300;}
+.nearby_hotel .nearby_con .mod li .mod_1{background-position:-4px -105px;}
+.nearby_hotel .nearby_con .mod li .mod_1:hover{background-position:-74px -105px;}
+.nearby_hotel .nearby_con .mod li .mod_1_not_allowed{background-position:-215px -105px;cursor:not-allowed; color:#ccc;}
+.nearby_hotel .nearby_con .mod li .mod_1_not_allowed:active{background-position:-215px -105px;}
+.nearby_hotel .nearby_con .mod li .mod_1:active,.nearby_hotel .nearby_con .mod li .mod_1.on{background-position:-144px -105px;}
+
+.nearby_hotel .nearby_con .mod li .mod_2{background-position:-4px -199px;}
+.nearby_hotel .nearby_con .mod li .mod_2:hover{background-position:-74px -199px;}
+.nearby_hotel .nearby_con .mod li .mod_2_not_allowed{background-position:-215px -199px;cursor:not-allowed}
+.nearby_hotel .nearby_con .mod li .mod_2_not_allowed:active{background-position:-215px -199px;}
+.nearby_hotel .nearby_con .mod li .mod_2:active,.nearby_hotel .nearby_con .mod li .mod_2.on{background-position:-144px -199px;}
+
+.nearby_hotel .nearby_con .mod li .mod_3{background-position:-4px -293px;}
+.nearby_hotel .nearby_con .mod li .mod_3:hover{background-position:-74px -293px;}
+.nearby_hotel .nearby_con .mod li .mod_3_not_allowed{background-position:-215px -293px;cursor:not-allowed}
+.nearby_hotel .nearby_con .mod li .mod_3_not_allowed:active{background-position:-215px -293px;}
+.nearby_hotel .nearby_con .mod li .mod_3:active,.nearby_hotel .nearby_con .mod li .mod_3.on{background-position:-144px -293px;}
+
+.nearby_hotel .nearby_con .mod li .mod_4{background-position:-4px -387px;}
+.nearby_hotel .nearby_con .mod li .mod_4:hover{background-position:-74px -387px;}
+.nearby_hotel .nearby_con .mod li .mod_4_not_allowed{background-position:-215px -387px;cursor:not-allowed}
+.nearby_hotel .nearby_con .mod li .mod_4_not_allowed:active{background-position:-215px -387px;}
+.nearby_hotel .nearby_con .mod li .mod_4:active,.nearby_hotel .nearby_con .mod li .mod_4.on{background-position:-144px -387px;}
+
+.nearby_hotel .nearby_con .mod li .mod_5{background-position:-4px -575px;}
+.nearby_hotel .nearby_con .mod li .mod_5:hover{background-position:-74px -575px;}
+.nearby_hotel .nearby_con .mod li .mod_5_not_allowed{background-position:-215px -575px;cursor:not-allowed}
+.nearby_hotel .nearby_con .mod li .mod_5_not_allowed:active{background-position:-215px -575px;}
+.nearby_hotel .nearby_con .mod li .mod_5:active,.nearby_hotel .nearby_con .mod li .mod_5.on{background-position:-144px -574px;}
+
+.nearby_hotel .nearby_con .mod li .mod_6{background-position:-4px -669px;}
+.nearby_hotel .nearby_con .mod li .mod_6:hover{background-position:-74px -669px;}
+.nearby_hotel .nearby_con .mod li .mod_6_not_allowed{background-position:-215px -669px;cursor:not-allowed}
+.nearby_hotel .nearby_con .mod li .mod_6_not_allowed:active{background-position:-215px -669px;}
+.nearby_hotel .nearby_con .mod li .mod_6:active,.nearby_hotel .nearby_con .mod li .mod_6.on{background-position:-144px -669px;}
+
+.nearby_hotel .nearby_con .mod li .mod_7{background-position:-4px -763px;}
+.nearby_hotel .nearby_con .mod li .mod_7:hover{background-position:-74px -763px;}
+.nearby_hotel .nearby_con .mod li .mod_7_not_allowed{background-position:-215px -763px;cursor:not-allowed}
+.nearby_hotel .nearby_con .mod li .mod_7_not_allowed:active{background-position:-215px -763px;}
+.nearby_hotel .nearby_con .mod li .mod_7:active,.nearby_hotel .nearby_con .mod li .mod_7.on{background-position:-144px -763px;}
+
+.nearby_hotel .nearby_con .mod li a{display:block;height:27px;line-height:27px;text-align:center;color:#666;text-decoration:none;outline:0}
+.nearby_hotel .nearby_con .mod li .on{font-weight:bold;color:000;}
+
+/*周边酒店弹出层*/
+.catemod{position:absolute; z-index: 999;padding:15px;float:left;left:-1px;border:1px solid #d8d8d8;background:#f7f7f7;display:none;}
+.catemod i{position:absolute;width:21px;height:11px;display:block;background:url(http://www.elongstatic.com/hotels/pic/select.png?t=201304161616) no-repeat 0 -73px}
+.catemod i.action01{top:-11px;left:48px}
+.catemod i.action02{top:-11px;left:124px}
+.catemod i.action03{top:-11px;left:200px}
+.catemod i.action04{top:-11px;left:276px}
+.catemod i.action05{top:-11px;left:352px}
+.catemod i.action06{top:-11px;left:428px}
+.catemod i.action07{top:-11px;left:504px}
+.cate_more{width:541px;overflow:hidden;zoom:1;padding:0 0 7px;border-bottom:1px solid #d9d9d9}
+.cate_more li{float:left;padding:0 5px 3px 0;width:85px;height:22px;line-height:22px;}
+.cate_more li a{display:inline-block;padding:0 8px;color:#666;text-decoration:none}
+.cate_more .cur a,.cate_more li a:hover{background-color:#82AAD1;color:#fff;text-decoration:none}
+.cate_area{width:541px;padding:8px 0 0;overflow:hidden;zoom:1}
+.cate_area li{width:82px;height:25px;line-height:25px;float:left;padding:0 0 0 8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.cate_area li a{color:#06c !important;text-decoration:none}
+.cate_area li a:hover{text-decoration:underline}
+
+/*特惠酒店*/
+.sale_hol{height:270px;width:1014px;border:1px solid #d8d8d8;margin-top:15px;border-top:2px solid #f08300;}
+.sale_hol ul{margin:13px 0 0 19px;}
+.sale_hol ul li{width:199px;float:left;}
+.sale_hol h3{height:34px;line-height:34px;background-color:#F4F4F4;color:#f08300;font-family:"Microsoft Yahei";font-size:21px;font-weight:normal;text-indent:15px;}
+.sale_hol .clearfix li a:hover img{opacity:0.8;filter:alpha(opacity=50);}
+.sale_hol .hol_til{margin-top:2px;width:180px;height:25px;font-weight:bolder;font-size:14px;line-height:25px;color:#0055aa !important;display:block;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;}
+.sale_hol .hol_til:hover{color:#f08300 !important;}
+.sale_hol .font_color{font-family: tahoma;font-size: 14px;color:#F60;font-weight:normal;}
+.sale_hol .con{width:168px;height:30px;display:block;font-size:13px;font-family:Arial;color:#666 !important;margin-top:5px;}
+.sale_hol .price{color:#666;font:12px/1.5 arial,SimSun,Verdana,Geneva,Helvetica}
+.sale_hol .price em.pf{font-size:22px;color:#F60;margin-right:2px;}
+.sale_hol .price em.old{text-decoration:line-through;font-family:Arial;}
+
+/*手机客户端*/
+.hol_phone{width:427px;margin-top:15px;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_phone_bg.png) no-repeat;border-bottom:1px dotted #ccc;float:left;}
+.hol_phone h3{display:block;text-indent:-9999em;}
+.hol_phone .iphone_btn,.hol_phone .android_btn{height:40px;width:136px;background:url(http://wimg.mangocity.com/img/f/banner/banner_2013/ticket_sprit.png) no-repeat -4px -563px;display:block;float:left;margin:35px 0 0 15px;_margin-left:8px;}
+.hol_phone .iphone_btn:hover{background-position:-4px -612px;}
+.hol_phone .android_btn{background-position:-193px -563px;}
+.hol_phone .android_btn:hover{background-position:-193px -612px;}
+.hol_phone .code_wei {color: #0055AA;float: left;height: 90px;margin-left: 20px;overflow: hidden;text-align: center;width: 90px;}
+.hol_phone .news{margin:18px 0 0 16px;}
+.hol_phone .news li{height:20px;line-height:20px;}
+.hol_phone .news_google{margin:20px 0 0 16px;}
+.hol_phone .news_google li{height:20px;line-height:20px;}
+.hol_phone .news_ie{margin:24px 0 0 16px;}
+.hol_phone .news_ie li{height:20px;line-height:20px;}
+.hol_phone .news_ie_9{margin:22px 0 0 16px;}
+.hol_phone .news_ie_9 li{height:20px;line-height:20px;}
+.hol_phone .more_news{color:#1160AE !important;margin:0 0 5px 350px;display:block;}
+.hol_phone .more_news:hover{text-decoration:underline;}
+/*微博*/
+.weibo{width:573px;height:220px;border:1px solid #d8d8d8;float:right;margin-top:15px;border-top:2px solid #f08300;}
+
+/*侧栏广告*/
+.sidebar{width:429px;float:left;margin-top:15px;}
+.sidebar .nav{margin-bottom:32px;}
+.sidebar .nav{} .bar{height:53px;width:429px;display:block;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/sidebar_bg.png) no-repeat #fff;text-decoration:none;padding-top:17px;color:#000 !important;text-indent:80px;}
+.sidebar .nav{} .bar em{color:#05a;font-size:19px;display:block;font-family:"Microsoft Yahei";margin-bottom:5px;}
+.sidebar .nav{} .bar span{display:block;}
+.sidebar .nav{} .bar1{background-position:-15px -20px;}
+.sidebar .nav{} .bar1:hover{background-position:-455px -20px;}
+.sidebar .nav{} .bar2{background-position:-15px -89px;}
+.sidebar .nav{} .bar2:hover{background-position:-455px -89px;}
+.sidebar .nav{} .bar3{background-position:-15px -159px;}
+.sidebar .nav{} .bar3:hover{background-position:-455px -159px;}
+.sidebar .nav{} .bar4{background-position:-15px -230px;}
+.sidebar .nav{} .bar4:hover{background-position:-455px -230px;}
+.sidebar .nav{} .bar5{background-position:-15px -299px;}
+.sidebar .nav{} .bar5:hover{background-position:-455px -299px;}
+
+/*为什么选择我们*/
+.sidebar .whyus{font:14px "Microsoft Yahei",Simsun;color:#666;margin:15px 0}
+.sidebar .whyus h3{font-size:24px;color:#F08300;margin-bottom:15px;font-weight:normal;}
+.sidebar .whyus dt{height:30px;line-height:30px;font-size:17px;color:#F08300;font-weight:400;position:relative;text-indent:45px;}
+.sidebar .whyus dt i{width:35px;height:27px;display:inline-block;margin-right:5px;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon.png) no-repeat -465px -310px;position:absolute;top:15px;left:0;}
+.sidebar .whyus dd{margin-bottom:20px;text-indent:45px;font-size:12px;}
+.sidebar .whyus dd a{text-decoration:underline;color:#666;}
+.sidebar .whyus dd a:hover{color:#f08300;}
+/*热门城市*/
+.hot_city{width:572px;float:right;border:1px solid #d8d8d8;border-top:2px solid #f08300;margin-top:15px;padding-bottom:30px;}
+.hot_city h3{height:34px;line-height:34px;background-color:#F4F4F4;color:#f08300;font-family:"Microsoft Yahei";font-size:21px;font-weight:normal;text-indent:15px;margin-bottom:10px;}
+
+.hot_city .cityBox{margin:4px 0 0 0px;}
+.hot_city .cityBox{float:left;width:273px;height:118px;}
+.hot_city .cityBox:hover{background-color:#f3f1f1;cursor:pointer;}
+.hot_city .cityBox:hover a em{color:#f08300;}
+
+.hot_city .cityBox a{display:inline-block;float:left;margin-left:23px;margin-top:8px;}
+.hot_city .cityBox .txt{margin-left:15px;float:left;}
+.hot_city .cityBox a em{display:block;font-size:16px;color:#333;font-weight:bold;margin-bottom:5px;}
+.hot_city .cityBox a span{color:#666;font-family:"Arial";}
+.hot_city .cityBox a img{border-radius: 5px 5px 5px 5px;}
+
+/*品牌酒店*/
+.brand_til{margin-top:15px;}
+.brand_til span{font-size:19px;color:#666;font-family:"Microsoft Yahei";vertical-align:middle}
+.brand_til .cleftb,.brand_til .crightb{height:23px;width:23px;display:inline-block;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon.png) no-repeat;vertical-align:middle;}
+.brand_til .lyes{background-position:-446px -400px;}
+.brand_til .lno{background-position:-446px -370px;}
+.brand_til .ryes{background-position:-477px -400px;}
+.brand_til .rno{background-position:-477px -370px;}
+#slider{width:1016px;height:70px;overflow:hidden;position:relative;margin:15px 0;}
+#slider #scroll_wrapper{position:relative;}
+#scroll_wrapper .child .clearfix li a:hover img{opacity:0.8;filter:alpha(opacity=50);}
+#scroll_wrapper .child .clearfix li a img{display:inline-block;}
+#scroll_wrapper .child .clearfix li a{display:inline-block;height:55px;}
+#slider .child{left: 1016px;width:1016px;height:70px;position:absolute;z-index:10;}
+#slider .child ul li{width:101px;float:left;text-align:center;color:#666;}
+.slider-img{display:inline-block;*margin:0 5px;_margin-top:12px;}
+.slider-img a{height:6px;width:6px;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon.png) no-repeat -480px -350px;display:inline-block;vertical-align:middle;*margin-left:5px;}
+.slider-img a.cur{background-position:-490px -350px;}
+
+.slider-img-ie6{display:inline-block;*margin:0 5px;_margin-top:12px;}
+.slider-img-ie6 a{height:6px;width:6px;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon.png) no-repeat -480px -345px;display:inline-block;vertical-align:middle;*margin-left:5px;}
+.slider-img-ie6 a.cur{background-position:-490px -345px;}
+
+
+
+/*酒店底部*/
+.hol_footer{width:974px;height:145px;margin:0 auto;border:1px solid #d8d8d8;background-color:#F9F9F9;padding:2px 20px 0 20px;position:relative;}
+.hol_footer dl{width:205px;float:left;}
+.hol_footer dl dt{width:155px;height:40px;line-height:40px;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon.png) no-repeat;border-bottom:1px solid #ccc;font-size:15px;color:#666;margin-right:10px;text-indent:35px;margin-bottom:10px;}
+.hol_footer dl dt.dt1{background-position:-233px -173px;}
+.hol_footer dl dt.dt2{background-position:-233px -232px;}
+.hol_footer dl dt.dt3{background-position:-233px -286px;}
+.hol_footer dl dt.dt4{background-position:-233px -358px;}
+.hol_footer dl dd{height:20px;line-height:20px;}
+.hol_footer dl dd a{color:#666 !important;}
+.hol_footer dl dd a:hover{text-decoration:underline;color:#666;}
+.hol_footer .telphone{width:183px;height:62px;text-indent:-9999em;overflow:hidden;background:url(http://himg.mangocity.com/hotel/img/h/hotel-index/hotel_icon.png) no-repeat 0 -407px;position:absolute;right:10px;top:45px;}
+
+/*酒店热门城市预订*/
+.hotcity{clear:both;padding:10px 0;}
+.hotcity h2{height:21px;padding:0 10px;line-height:21px;color:#9A9A9A;}
+.hotcity h2 a{color:#9A9A9A;}
+.hotcity h2 a:hover{text-decoration:underline;color:#f08300;}
+.hotcity p,.hotcity .hotcitylist{padding:0 10px;line-height:21px;}
+.hotcity p a{margin-right:6px;color:#999;}
+.hotcity p a:hover{text-decoration:underline;color:#999;}
+
+
+
+
+/* css for citylist */
+.cityWrap{margin-top:-1px; display:none; position:absolute; background:#fff; border:1px solid #ccc; z-index:99999; -webkit-box-shadow:2px 2px 4px 0 #999; -moz-box-shadow:2px 2px 3px 0 #999; box-shadow:2px 2px 3px 0 #999;}
+.cityWrap a:link, .cityWrap a:visited{ color:#333;}
+.cityWrap a:hover{ text-decoration:none;}
+.hotWrap{ width:335px;}
+.keylist{ width:198px;}
+.cpWrap{ width:281px;}
+.hotWrap .hottip, .cpWrap .cptip, .hotWrap .cptip{height:28px; padding:0 6px; line-height:28px; color:#777;text-indent:10px;}
+.cpWrap .cptip, .hotWrap .cptip{ background:#fff5c8;}
+.hotWrap .hotnav{ height:23px; padding-left:7px; border-bottom:1px solid #ccc;}
+.hotnav a, .hotnav span{float:left;margin-right:2px;padding:0 7px 0 7px;border-bottom:none; line-height:22px; font-family:Arial;}
+.hotnav a:link, .hotWrap a:visited{color:#333;}
+.hotnav a.on, .hotnav span.on{background:#fff;margin-bottom:-1px;border:1px solid #ccc;border-bottom:1px solid #fff; cursor:text; position:relative;color:#000;}
+.hotnav a.on:link, .hotWrap a.on:visited{ color:#fe6600;}
+.hotnav span{ color:#666; cursor:pointer;}
+.hotnav span.on{ cursor:text;}
+
+.hotWrap a:link, .hotWrap a:visited{ color:#333;}
+.hotWrap a:hover{ color:#f60;}
+
+
+.hotpanel{ width:100%; clear:both; padding:4px 0 7px;}
+.hotpanel h2{ clear:both; height:25px; padding-left:10px; line-height:25px;}
+.hotpanel .hotlist{ width:324px; padding-left:10px; overflow:auto; zoom:1;}
+.hotlist a{ float:left; width:54px; height:24px; overflow:hidden; white-space:nowrap; line-height:24px;}
+.hotlist a:hover{ text-decoration:none; color:#f60;}
+.hotpanel dl{ padding-left:10px; line-height:18px;}
+.hotpanel dl dt{ clear:both; display:block; height:18px; font-family:Arial; color:#f60;}
+.hotpanel dl dd{ width:100%; overflow:auto; zoom:1;}
+.hotpanel dl dd a{ float:left; width:54px; height:18px; overflow:hidden; white-space:nowrap;}
+.hothidden{ display:none;}
+
+.cpWrap .hotpanel .hotlist{ width:270px;}
+
+.keylist .keytitle{ width:186px; height:27px; overflow:hidden; margin:0 auto; padding:0 6px; background:#fff5c8; white-space:no-wrap; line-height:27px; white-space:nowrap;}
+.keydata a{ display:block; height:24px; padding:0 6px; line-height:24px; cursor:pointer;}
+.keydata a:hover{ background:#fef7da; color:#333; text-decoration:none;}
+.keydata .mg_c_name, .keydata .mg_c_pinyin{ float:left; width:90px; height:24px; overflow:hidden; white-space:nowrap;}
+.keydata .mg_c_pinyin{ float:right; text-align:right;}
+.keydata .red{ color:#f00;}
+
+.keydata a.current{ background:#f5f5f5; border-color:#f5f5f5;}
+.keydata a.current:hover{ background:#fef7da; color:#333;}
+.key_page{height:25px; border-top:1px dashed #ccc; line-height:25px; text-align:center; font-size:14px;}
+.key_page a{padding:2px 5px; display:none;}
+.key_page a.address_current{ font-weight:bold; font-size:16px;}
+.warn{ display:none; position:absolute; height:17px; padding:1px 10px 1px 24px; background:#ffe5e5 url(http://wimg.mangocity.com/img/home/2011/warnIcon.png) no-repeat 3px center; border:1px solid #f00; line-height:17px; white-space:nowrap; }
+
+#mgKeyWrap{ display:none;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

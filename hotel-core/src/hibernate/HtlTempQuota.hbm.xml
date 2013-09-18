@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlTempQuota" table="htl_temp_quota" 
+		dynamic-insert="true" dynamic-update="true">
+
+		<id name="ID" column="temp_id" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_temp_quota</param>
+			</generator>
+		</id>
+
+		<property name="roomId" column="room_Id"></property>
+		<property name="bedId" column="bed_id"></property>
+		<property name="bedStatus" column="bed_Status"></property>		
+		<property name="tempQuotaMode" column="temp_quota_mode"></property>
+		<property name="quotaQty" column="quota_qty"></property>
+		
+		<property name="create_by" column="create_by" update="false"></property>
+		<property name="create_by_id" column="create_by_id" update="false"></property>
+		<property name="modify_by" column="modify_by"></property>
+		<property name="modify_by_id" column="modify_by_id"></property>
+		<property name="create_time" column="create_time" update="false"></property>
+		<property name="modify_time" column="modify_time"></property>
+		<property name="cutofftime" column="cutofftime"></property>
+	</class>
+	
+	<query name="getTempQuotaByRoomId">
+		<![CDATA[
+			from HtlTempQuota t where t.roomId=?
+		]]>
+	</query>
+</hibernate-mapping>

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+
+	<bean id="hibernateProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<!--<prop key="hibernate.hbm2ddl.auto">update</prop>
+				-->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+				<prop key="hibernate.query.substitutions">
+					true 1, false 0
+				</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop>  -->
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+ 
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<!-- <prop key="hibernate.jdbc.batch_size">50</prop> -->
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.c3p0.minPoolSize">5</prop>
+				<prop key="hibernate.c3p0.maxPoolSize">20</prop>
+				<prop key="hibernate.c3p0.timeout">600</prop>
+				<prop key="hibernate.c3p0.max_statement">50</prop>
+				<prop key="hibernate.c3p0.testConnectionOnCheckout">
+					false
+				</prop>
+
+				<prop key="hibernate.cache.use_second_level_cache">
+					false
+				</prop>
+				  
+				<prop key="hibernate.cache.use_query_cache">
+					false
+				</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.EhCacheProvider
+				</prop>
+
+				
+			</props>
+		</property>
+	</bean>
+
+
+
+	<!--Spring TransactionManager-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties" ref="hibernateProperties" />
+
+		<!-- 
+			<property name="mappingDirectoryLocations">
+			<list>　
+			<value>/Web-INF/classes/hibernate/</value>
+			</list>
+			
+		-->
+
+		<property name="mappingResources">
+
+			<list>
+				<!--<value>hibernate/Account.hbm.xml</value>
+				<value>hibernate/Person.hbm.xml</value>
+				  
+					<value>hibernate/Event.hbm.xml</value>
+				-->
+				<!-- add by kun.chen begin-->
+				<value>hibernate/HtlPresale.hbm.xml</value>
+				<value>hibernate/HtlPresaleHotel.hbm.xml</value>
+				<value>hibernate/HtlRoomtype.hbm.xml</value>
+				<value>hibernate/HtlMainCommend.hbm.xml</value>
+				<value>hibernate/HtlSalesPromo.hbm.xml</value>
+				<value>hibernate/HtlBreakfast.hbm.xml</value>
+				<value>hibernate/HtlPriceType.hbm.xml</value>
+				<value>hibernate/HtlInternet.hbm.xml</value>
+				<value>hibernate/HtlArea.hbm.xml</value>
+				<value>hibernate/HtlBatchMtnPrice.hbm.xml</value>
+				<!-- add by kun.chen end -->
+				<value>hibernate/HtlHotel.hbm.xml</value>
+				<value>hibernate/HtlBatchSalePrice.hbm.xml</value>
+				<value>hibernate/HtlCtct.hbm.xml</value>
+				<value>hibernate/SellSeason.hbm.xml</value>
+				<value>hibernate/HtlContract.hbm.xml</value>
+				<value>hibernate/HtlBatchCutoffDay.hbm.xml</value>
+				<value>hibernate/HtlQuotabatch.hbm.xml</value>
+				<value>hibernate/HtlCreditAssure.hbm.xml</value>
+				<value>hibernate/HtlAssureItem.hbm.xml</value>
+				<value>hibernate/HtlWelcomePrice.hbm.xml</value>
+				<value>hibernate/HtlAddBedPrice.hbm.xml</value>		
+				<value>hibernate/HtlChargeBreakfast.hbm.xml</value>	
+				<value>hibernate/HtlChildWelcomePrice.hbm.xml</value>	
+				<value>hibernate/HtlChangePriceWarning.hbm.xml</value>	
+												
+				<!-- add by XiaowuMi 2007-06-04 -->
+				<value>hibernate/HtlNameplate.hbm.xml</value>
+				<value>hibernate/HtlHotelGroup.hbm.xml</value>				
+				<value>hibernate/HtlContactInfo.hbm.xml</value>
+				<value>hibernate/HtlChangePrice.hbm.xml</value>
+				<value>hibernate/HtlChangePriceLog.hbm.xml</value>
+				<value>hibernate/HtlTempQuota.hbm.xml</value>
+				<value>hibernate/HtlRoomStatusProcess.hbm.xml</value>
+				<!-- add end by Xiaowumi  -->
+				
+				<value>hibernate/HtlUsesComment.hbm.xml</value>
+				<value>hibernate/HtlExhibit.hbm.xml</value>
+				<value>hibernate/HtlRoom.hbm.xml</value>
+				<value>hibernate/HtlPrice.hbm.xml</value>
+				<value>hibernate/HtlQuota.hbm.xml</value>
+				<value>hibernate/QuotaForCC.hbm.xml</value>
+				<value>hibernate/HtlCutoffDayQuota.hbm.xml</value>
+				<value>hibernate/HtlBatchAssign.hbm.xml</value>
+				<value>hibernate/HtlFreeOperate.hbm.xml</value>
+				<value>hibernate/HtlAddscope.hbm.xml</value>
+			    <value>hibernate/HtlAddscopeHdr.hbm.xml</value>
+				<value>hibernate/HtlAssigncustom.hbm.xml</value>
+				
+				<value>hibernate/HtlRewardinfo.hbm.xml</value>
+				<value>hibernate/HtlTrafficInfo.hbm.xml</value>
+				<value>hibernate/HtlBookSetup.hbm.xml</value>
+                <value>hibernate/HtlHotelScore.hbm.xml</value>
+                <value>hibernate/HtlTaxCharge.hbm.xml</value>
+                <value>hibernate/HtlPicture.hbm.xml</value>				
+
+				<!-- CC的mapping files -->
+				<value>hibernate/OrCreditcard.hbm.xml</value>
+				<value>hibernate/OrDailyaudit.hbm.xml</value>
+				<value>hibernate/OrOrder.hbm.xml</value>
+				<value>hibernate/OrFellowinfo.hbm.xml</value>
+				<value>hibernate/OrFulfillment.hbm.xml</value>
+				<value>hibernate/OrHandlelog.hbm.xml</value>
+				<value>hibernate/OrMemberconfirm.hbm.xml</value>
+				<value>hibernate/OrOrderfax.hbm.xml</value>
+				<value>hibernate/OrOrderitemTemp.hbm.xml</value>				
+				<value>hibernate/OrOrderitem.hbm.xml</value>
+				<value>hibernate/OrOrderExtInfo.hbm.xml</value>
+				<value>hibernate/OrPapercontact.hbm.xml</value>
+				<value>hibernate/OrPaperdailyaudit.hbm.xml</value>
+				<value>hibernate/OrPaperdailyaudititem.hbm.xml</value>
+				<value>hibernate/OrPayment.hbm.xml</value>
+				<value>hibernate/OrRefund.hbm.xml</value>
+				<value>hibernate/OrRemark.hbm.xml</value>
+				<value>hibernate/OrReservation.hbm.xml</value>				
+				<value>hibernate/OrWorkstates.hbm.xml</value>
+				<value>hibernate/OrWorkstatesbygroup.hbm.xml</value>
+				<value>hibernate/OrWorkstateslog.hbm.xml</value>
+				<value>hibernate/OrOrderStatistics.hbm.xml</value>
+				<value>hibernate/OrCreditCardTemp.hbm.xml</value>
+				<value>hibernate/OrFaxLog.hbm.xml</value>				
+				<value>hibernate/OrParam.hbm.xml</value>
+				<value>hibernate/OrAssureItem.hbm.xml</value>
+				<value>hibernate/OrAuditFaxLog.hbm.xml</value>	
+				<value>hibernate/VOrOrder.hbm.xml</value>	
+				<value>hibernate/VOrOrderItem.hbm.xml</value>				
+				
+				<!-- v2.6新增CC映射文件 add by chenkeming@2009-02-03 -->						
+				<value>hibernate/OrPriceDetail.hbm.xml</value>
+				<value>hibernate/OrOrderMoney.hbm.xml</value>
+				<value>hibernate/HOrder.hbm.xml</value>
+				<value>hibernate/HFellowinfo.hbm.xml</value>
+				<value>hibernate/HFulfillment.hbm.xml</value>
+				<!-- <value>hibernate/HHandlelog.hbm.xml</value> -->
+				<!-- <value>hibernate/HMemberconfirm.hbm.xml</value> -->
+				<!-- <value>hibernate/HOrderfax.hbm.xml</value> -->
+				<value>hibernate/HOrderitem.hbm.xml</value>
+				<value>hibernate/HPayment.hbm.xml</value>
+				<value>hibernate/HRefund.hbm.xml</value>
+				<value>hibernate/HRemark.hbm.xml</value>
+				<value>hibernate/HCreditCardTemp.hbm.xml</value>
+				<!-- <value>hibernate/HFaxLog.hbm.xml</value> -->
+				<value>hibernate/HPriceDetail.hbm.xml</value>	
+				<value>hibernate/OrQuotaRecord.hbm.xml</value>			
+				<value>hibernate/OrPreSale.hbm.xml</value>						
+				<value>hibernate/OrTaxCharge.hbm.xml</value>
+				<value>hibernate/OrGuaranteeItem.hbm.xml</value>	
+				<value>hibernate/OrAssureItemEvery.hbm.xml</value>	
+				<value>hibernate/HReservation.hbm.xml</value>		
+				<value>hibernate/HGuaranteeItem.hbm.xml</value>	
+				<value>hibernate/HAssureItemEvery.hbm.xml</value>							
+				<value>hibernate/HPreSale.hbm.xml</value>						
+				<value>hibernate/HTaxCharge.hbm.xml</value>																								
+								
+				<value>hibernate/HtlAssureCardItem.hbm.xml</value>
+				<value>hibernate/HtlCreditAssureDate.hbm.xml</value>
+				<value>hibernate/HtlOpenCloseRoom.hbm.xml</value>
+				<value>hibernate/HtlSetPriority.hbm.xml</value>
+				<value>hibernate/HtlExchange.hbm.xml</value>
+				<value>hibernate/HtlRoomstateCcBed.hbm.xml</value>
+				<value>hibernate/HtlRoomstateCc.hbm.xml</value>	
+				<value>hibernate/HtlPriceLOG.hbm.xml</value>
+				
+				<!-- 114历史订单信息相关 -->
+				<value>hibernate/Gen114Member.hbm.xml</value>
+				<value>hibernate/Gen114File.hbm.xml</value>
+				<value>hibernate/Gen114CityMember.hbm.xml</value>					
+				
+				<!-- 114号百需求 -->
+				<value>hibernate/OrOrderFor114.hbm.xml</value>
+				<value>hibernate/OrOrderFor114Log.hbm.xml</value>
+				
+				<value>hibernate/HtlHotelExt.hbm.xml</value>	
+				<value>hibernate/HwHotelIndex.hbm.xml</value>
+ 				<value>hibernate/HwClickAmount.hbm.xml</value>
+				<value>hibernate/ExMapping.hbm.xml</value>	
+				<value>hibernate/HtlHdlAddscope.hbm.xml</value>
+				
+				<!-- Begin Add by Shengwei.Zuo 2009-02-04 -->
+				<value>hibernate/HtlPreconcertItemTemplet.hbm.xml</value>
+				<!-- End Add -->
+				
+				<!-- Add by Shengwei.Zuo 2009-02-05 -->
+				<value>hibernate/HtlAssure.hbm.xml</value>
+				<value>hibernate/HtlAssureBatch.hbm.xml</value>
+				<value>hibernate/HtlAssureItemEveryday.hbm.xml</value>
+				<value>hibernate/HtlAssureItemEverydayBatch.hbm.xml</value>
+				<value>hibernate/HtlAssureItemTemplate.hbm.xml</value>	
+				<value>hibernate/HtlAssureTemplate.hbm.xml</value>
+				<value>hibernate/HtlPreconcertItem.hbm.xml</value>
+				<value>hibernate/HtlPreconcertItemBatch.hbm.xml</value>
+				<value>hibernate/HtlPrepayEveryday.hbm.xml</value>	
+				<value>hibernate/HtlPrepayEverydayBatch.hbm.xml</value>
+				<value>hibernate/HtlPrepayItemEveryday.hbm.xml</value>
+				<value>hibernate/HtlPrepayItemEverydayBatch.hbm.xml</value>
+				<value>hibernate/HtlPrepayItemTemplate.hbm.xml</value>
+				<value>hibernate/HtlPrepayTemplate.hbm.xml</value>
+				<value>hibernate/HtlReservation.hbm.xml</value>	
+				<value>hibernate/HtlReservationBatch.hbm.xml</value>
+				<value>hibernate/HtlReservationTemplate.hbm.xml</value>
+				<value>hibernate/HtlReservCont.hbm.xml</value>
+				<value>hibernate/HtlReservContBatch.hbm.xml</value>	
+				<value>hibernate/HtlReservContTemplate.hbm.xml</value>		
+				
+				<!-- v2.6 新增预定条款计算规则 add by shengwei.zuo 2009-02-12 -->
+				<value>hibernate/HtlBookCaulClause.hbm.xml</value>	
+				<!-- 酒店V2.6操作日志明细 add by haibo.li 2009-5-2 -->
+				<value>hibernate/HtlModifRecord.hbm.xml</value>				
+				
+				<value>hibernate/OrUserPower.hbm.xml</value>	
+				
+				<value>hibernate/OrOrderOfSMS.hbm.xml</value>		
+				
+				<!-- v2.8 增加中旅订单关联表  add by chenkeming-->
+				<value>hibernate/OrChannelNo.hbm.xml</value>				
+				
+				<value>hibernate/HtlCtlDsply.hbm.xml</value>
+				<!-- ebooking酒店设置 add by haibo.li -->
+				<value>hibernate/HtlEbooking.hbm.xml</value>	
+				
+				<!-- HK add by shizhongwen 2009-03-17		
+				<value>hibernate/ExOrder.hbm.xml</value>
+				<value>hibernate/ExOrderitem.hbm.xml</value>
+													 -->	
+				<value>hibernate/HtlIncreasePrice.hbm.xml</value>																						
+
+				<!-- v2.8.1转合约组-->
+				<value>hibernate/OrToContractgroup.hbm.xml</value>																
+				<!-- 电子地图 2009-04-13 BEGIN-->																					
+				<value>hibernate/GisBaseInfo.hbm.xml</value>	
+				<value>hibernate/HotelsTemp.hbm.xml</value>	
+				<!-- 电子地图 END-->
+			        <!--地理位置/名胜-->
+				<value>hibernate/HtlGeographicalposition.hbm.xml</value>	
+				
+				<!-- Ebooking实体映射 add by shengwei.zuo hotel2.9  2009-07-03 BEGIN-->													
+				<value>hibernate/HtlEbookingOperationlog.hbm.xml</value>
+				<value>hibernate/HtlEbookingPriceRedressal.hbm.xml</value>	
+				<value>hibernate/HtlEbookingFunctionMaster.hbm.xml</value>		
+				<!-- Ebooking实体映射 add by shengwei.zuo hotel2.9  2009-07-03 END-->		
+				<!-- ebooking留言板实体 add by chenjuesu -->
+				<value>hibernate/LeavewordAnnalBean.hbm.xml</value>
+				<value>hibernate/HtlEbookingPersonFunction.hbm.xml</value>
+				<value>hibernate/HtlEbookingPersonnelInfo.hbm.xml</value>
+				<!-- 权限管理 add by juesu.chen hotel2.9  2009-07-03 BEGIN-->
+				<value>hibernate/RightManageBean.hbm.xml</value>						
+				<!-- 权限管理 add by juesu.chen hotel2.9  2009-07-03 end-->
+				
+				<!-- v2.9.2 新增预定条款计算规则修改字段定义字段 add by chenjiajie 2009-08-06 begin -->
+				<value>hibernate/HtlBookModifyField.hbm.xml</value>
+				<!-- v2.9.2 新增预定条款计算规则修改字段定义字段 add by chenjiajie 2009-08-06 end -->
+				
+				<!-- v2.9.2 提示信息-->
+				<value>hibernate/HtlAlerttypeInfo.hbm.xml</value>
+				<value>hibernate/HtlAlerttypeInfoLog.hbm.xml</value>	
+				
+				<!-- v2.9.3 配额改造-->
+				<value>hibernate/HtlQuotaCutoffDayNew.hbm.xml</value>																					
+				<value>hibernate/HtlQuotaJudge.hbm.xml</value>
+				<value>hibernate/HtlQuotaJudgeException.hbm.xml</value>
+				<value>hibernate/HtlQuotaLog.hbm.xml</value>
+				<value>hibernate/HtlQuotaNew.hbm.xml</value>
+				
+				<!-- v2.9.3 连住优惠-->
+				<value>hibernate/HtlEveningsRent.hbm.xml</value>
+				<value>hibernate/HtlFavourableclause.hbm.xml</value>
+				<value>hibernate/HtlFavouraParameter.hbm.xml</value>
+				<value>hibernate/HtlPublicOperationlog.hbm.xml</value>	
+				
+				<!-- v2.9.3订单使用的代金券记录 add by chenjiajie 2009-08-24 -->
+				<value>hibernate/OrCouponRecords.hbm.xml</value>									
+				
+				<!-- v2.9.3 日审信息-->
+				<value>hibernate/HtlAuditInfo.hbm.xml</value>
+				<value>hibernate/HtlAuditInfoHotel.hbm.xml</value>
+				<value>hibernate/HtlAuditInfoSetup.hbm.xml</value>
+				<!-- v2.9.3 日审信息 -->
+				<value>hibernate/DaAuditingWorkload.hbm.xml</value>
+				<value>hibernate/DaDailyaudit.hbm.xml</value>
+				<value>hibernate/DaDailyauditItem.hbm.xml</value>
+				<value>hibernate/DaDailyauditItemSubtable.hbm.xml</value>
+				<value>hibernate/DaPersonalWorkload.hbm.xml</value>
+				<value>hibernate/DaReturnvisit.hbm.xml</value>
+				<value>hibernate/DaPaperfaxitem.hbm.xml</value>								
+				
+				<!-- v2.9.3 重新预授权担保 -->
+				<value>hibernate/CreditCardSerialNo.hbm.xml</value>
+				<!-- v2.9.3 优惠立减 add by chenjiajie 2009-10-16 -->
+				<value>hibernate/HtlFavourableDecrease.hbm.xml</value>
+				<value>hibernate/HtlPopedomControl.hbm.xml</value>				
+					
+				<value>hibernate/HtlEbookingRoomstate.hbm.xml</value>
+				<!-- v2.9.3 新房控 add by chenjiajie 2009-10-16 -->	
+				<value>hibernate/HtlRoomControlWorkSchedule.hbm.xml</value>
+				<value>hibernate/HtlRoomcontrolHotelSchedule.hbm.xml</value>	
+				<value>hibernate/HtlRoomcontrolOperationLogs.hbm.xml</value>
+				<value>hibernate/HtlRoomcontrolWorkstation.hbm.xml</value>
+				<value>hibernate/HtlRoomcontrolSorting.hbm.xml</value>
+				<value>hibernate/HtlRoomcontrolOptsublogs.hbm.xml</value>
+				<!-- v2.9.代理系统 add by lixiaoyong 2010-01-05 -->	
+				<value>hibernate/StatisticsInfo.hbm.xml</value>	
+				<value>hibernate/AgentOrder.hbm.xml</value>
+				<value>hibernate/B2bmodifyorder.hbm.xml</value>
+				
+				<!-- B2B代理系统  代理佣金信息表  add by shengwei.zuo  2010-01-13 -->	
+				<value>hibernate/HtlB2bComminfo.hbm.xml</value>	
+
+	
+				<value>hibernate/WorkStatesSkill.hbm.xml</value>
+				<!-- B2b二期 佣金设置和调整表 add by yong.zeng 2010-3-12-->
+				<value>hibernate/CommisionSet.hbm.xml</value>
+				<value>hibernate/CommisionAdjust.hbm.xml</value>
+				<value>hibernate/CommPolicySecond.hbm.xml</value>
+				<value>hibernate/AgentOrderitem.hbm.xml</value>
+				<!-- 允许调用hessian接口的ip信息 2010-7-23-->
+				<value>hibernate/HtlHessianIpcontrol.hbm.xml</value>
+				
+				<!-- B2b佣金设置模板 add by zhijie.gu 2010-8-10-->
+				<value>hibernate/HtlB2bTempComminfo.hbm.xml</value>
+				<value>hibernate/HtlB2bTempComminfoItem.hbm.xml</value>
+				 
+				<!-- v2.9.3 现金返还 add by xiaojun.xiong 2010-9-13 -->
+				<value>hibernate/HtlFavourableReturn.hbm.xml</value> 
+				<value>hibernate/FITOrderCash.hbm.xml</value>
+				<value>hibernate/FITCashItem.hbm.xml</value>
+				<value>hibernate/HtlFITAlias.hbm.xml</value> 
+				<value>hibernate/HtlGeoDistance.hbm.xml</value> 
+				
+				<!-- 新查询日志  -->
+				<value>hibernate/HtlQueryspeedLog.hbm.xml</value>
+					
+				<!-- 保存cookie中的projectcode、exprojectcode1和exprojectcode2 add by xuyiwen 2011-3-17 -->
+				<value>hibernate/HtlProjectCode.hbm.xml</value>
+				
+				<!-- 芒果五周年331限量返现活动 add by xiaojun.xiong 2011-3-4 -->
+				<value>hibernate/HtlLimitFavourable.hbm.xml</value>
+				<!-- 统计用户渠道日志 -->
+				<value>hibernate/HtlChannelClickLog.hbm.xml</value>
+				
+				<!-- 为电商统计网站来源订单用 add by xuyiwen 2011-4-6 -->
+				<value>hibernate/HtlIndexPageHbCount.xml</value>
+				
+				<!-- 多供应商传真 add by xieyanhui 2011-09-06 -->
+				<value>hibernate/HtlSupplierBookSetup.hbm.xml</value>
+				<value>hibernate/HtlSupplierInfo.hbm.xml</value>
+				<value>hibernate/HtlSupplierCtct.hbm.xml</value>
+				<!-- 网站出错日志记录 add by diandian.hou 2011-11-16 
+				<value>com/mangocity/hweb/hibernate/HtlWebErrorLog.hbm.xml</value> -->
+				<!-- 酒店订单积分记录 add by diandian.hou 2011-11-21 -->
+				<value>hibernate/OrPointRecords.hbm.xml</value>   
+				
+					<!-- 网站订单填写页信息监控记录 -->
+				<value>hibernate/OrderRecord.hbm.xml</value>
+				
+				<!-- 酒店点评信息 by ting.li -->
+				<value>hibernate/HotelScore.hbm.xml</value>
+				<value>hibernate/ImpressionStatistics.hbm.xml</value>
+				<value>hibernate/CommentStatistics.hbm.xml</value>
+				<value>hibernate/DaoDaoBasicComment.hbm.xml</value>
+				
+				
+				<!-- 网站生成最低价用到的 -->
+				<value>hibernate/HtlLowestTask.hbm.xml</value>
+				<value>hibernate/HtlLowestPrice.hbm.xml</value>
+				
+				<!-- 网站生成最高返现用到的 -->
+				<value>hibernate/HtlHighestReturn.hbm.xml</value>
+				<value>hibernate/HtlHighestReturnTask.hbm.xml</value>
+				
+				<!-- 网站订单取消申请 -->
+				<value>hibernate/HtlWebCancel.hbm.xml</value>
+				
+				<!-- CC工作表TempOrder -->
+				<value>hibernate/TempOrder.hbm.xml</value>
+				
+				<!-- 醒狮计划活动 -->
+				<value>hibernate/HtlFavourable.hbm.xml</value>
+				
+				<!-- 艺龙担保条款 -->
+				<value>hibernate/HtlElAssureRule.hbm.xml</value>
+				<!-- add by ting.li 发送机票促销信息记录 -->
+				<value>hibernate/SendPromotionMsgRecord.hbm.xml</value>
+				
+				<!-- 港澳酒店发送促销短息 -->
+				<value>hibernate/PromotionTicketHotel.hbm.xml</value>
+				<value>hibernate/PromotionTicket.hbm.xml</value>
+			 
+				<value>hibernate/PromotionTicketType.hbm.xml</value>
+				
+				<!-- 魅影订单 -->
+				<value>hibernate/OrOrderRMP.hbm.xml</value>
+				
+			</list>
+
+		</property>
+
+	</bean>
+
+
+	<!-- Hibernate的事务管理机制 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>
+

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="OrOrder" table="or_order" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="orderId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_order</param>
+			</generator>
+	</id>          
+		 <!-- v2.6 无用字段用来表示历史单编号 add by chenkeming@2009-02-26 -->
+         <property name="hisNo"/>
+         <!-- v2.6 无用字段(SURETYCURRENCY)用来表示当为恢复单时,其恢复目标单的历史序号 -->
+         <property name="resumeNo" column="SURETYCURRENCY"/>                  
+
+         <property name="orderCD" />
+         <property name="orderCDHotel" />         
+         <property name="originCD" />
+         <property name="hotelId" />
+         <property name="hotelName" />
+         <property name="memberId" />
+         <property name="memberName" />
+         <property name="type" />
+         <property name="source" />
+         <property name="channel" />
+         <property name="orderState" />
+         <property name="suretyState" />
+         <!-- 该字段已经没用 从V2.7.1开始存放会员的VIP级别 modify by chenjiajie@2009.02.19 v2.7.1-->
+         <property name="memberVipLevel" column="payState"/>
+         <property name="auditState" />
+         <property name="roomTypeId" />
+         <property name="roomTypeName" />
+         <property name="roomQuantity" />
+         <property name="checkinDate" />
+         <property name="checkoutDate" />
+         <property name="emergencyLevel" />
+         <property name="payAmount" />
+         <property name="suretyPrice" />
+         <!-- 该字段已经没用 从V2.9.3开始存放优惠立减总金额 modify by chenjiajie@2009.10.15 -->
+         <property name="favourableAmount" column="penalty"/>
+         <property name="refund" />
+         <property name="fulfillmentCD" />
+         <property name="prepayType" />
+         <property name="paymentCurrency" />
+         <property name="payMethod" />
+         <property name="prepayLimitDate" />
+      <!--  <property name="suretyCurrency" /> -->  
+         <property name="createDate" />
+         <property name="creator" />
+         <property name="creatorName" />
+         <property name="modifier" />
+         <property name="modifierName" />
+         <!-- 该字段已经没用 从V2.7.1开始存放会员的联名商家项目号 modify by chenjiajie@2009.02.19 v2.7.1-->
+         <property name="memberAliasId" column="modifierRole"/>
+         <property name="assignTo" />
+         <property name="assignToName" />
+         <property name="modifiedTime" />
+         <property name="hotelConfirm" />
+         <property name="customerConfirm" />
+         <property name="confirmType" />
+         <property name="childRoomTypeId" />
+         <property name="sum" />         
+         <property name="illusive" />                  
+         <property name="taskId" />         
+         <property name="cancelReason" />  
+         <property name="cancelMessage" />
+         <property name="guestCancelMessage" />         
+         <property name="vipLevel" />
+         <property name="agentCode" />              
+         <property name="isManualOrder" />                       
+         <property name="hraOrderType" />                                
+         <property name="rateId" />                                         
+         <property name="sumRmb" />                                                  
+         
+         <property name="reservedDate"/>             
+                                                       
+         <property name="linkMan" />                                                                    
+         <property name="title" />                                                                             
+         <property name="mobile" />                                                                                      
+         <property name="telephone" />                                                                                               
+         <property name="customerFax" />                                                                                                        
+         <property name="email" />                                                                                                                 
+         <property name="arrivalTraffic" />                                                                                                                                   
+         <property name="flight" />                                         
+         <property name="arrivalTime" />                                                           
+         <property name="latestArrivalTime" />                                                                    
+         <property name="fellowNames" />                                                                             
+         <property name="sendedHotelFax" />                                                                                      
+         <property name="quotaOk" />                                                                                               
+         <property name="memberState" />                                                                                                        
+         <property name="sequence114" />                                                                                                                 
+         <property name="frontCancel" />                                                   
+         <property name="isCreditAssured" />                                                                                               
+         <property name="creditCardIdsSelect" />                                                                                                                                                                                                                        
+         <property name="balanceTotal" />                                                            
+         <property name="payToPrepay" />                                                                                               
+         <property name="prepayTotalRmb" />                                                                                                        
+         <property name="needRefund" />                                                                                                                 
+         <property name="refundMessage" />                                                   
+         <property name="hasRefund" />                                                                                               
+         <property name="refundLimitTime" />
+         <property name="payToHotel" />
+         <property name="refundBillAuditPass" />                                                   
+         <!-- 该字段已经没用.  从 TMC-V2.0 开始用来标记 出行性质  add by shengwei.zuo 2010-3-17 -->                                                   
+         <property name="tripNature"   column="refundDoneForFinance" />
+         <!-- 该字段已经没用.  从 TMC-V2.0 开始用来标记 返回现金  add by shengwei.zuo 2010-3-17 -->                                                                                                           
+         <property name="cashBackTotal" column="confirmTotal"  />           
+          <!-- TMC-V2.0 公司会员CD  add by shengwei.zuo 2010-3-22 -->                                                         
+         <property name="companyMemCd"/>          
+         
+         <!-- 该字段已经没用.  从 HAGTB2B  用来表示 佣金类型  add by shengwei.zuo 2010-1-9 -->                                                                                        
+         <property name="footWay"  column="refundStateForHotel"/> 
+         
+         <!-- HAGTB2B 中 用来表示 佣金类型对应的值  add by shengwei.zuo 2010-1-9 -->
+         <property name="footFee" column="locker" /> 
+         
+         <!-- 该字段已经没用 从V2.8.1用于记录合约组常量 -->
+         <property name="contractlog" column="fax"/>
+         <!-- paymentRate无用,用于记录订单的实际币种 香港组紧急需求 modify by chenjiajie 2009-11-23 -->
+         <property name="actualPayCurrency" column="paymentRate"/>
+         <property name="hasPrepayed" />    
+         <property name="hotelConfirmTel" />              
+         <property name="hotelConfirmFax" />
+         <property name="hotelConfirmFaxReturn" />
+         <property name="sendedMemberFax" />
+         <property name="specialRequest" />
+         <property name="inNextTeam" />
+         <property name="memberCd" />
+         <!-- 该字段已经没用 从V2.9.3开始标志是否优惠立减订单 modify by chenjiajie@2009.10.15 -->
+         <property name="favourableFlag" column="auditOpState"/>
+         <property name="noshowReason" />
+         <property name="specialNote" />
+         <property name="isStayInMid" />         
+         <property name="bedType" />           
+         <property name="childRoomTypeName" />                 
+         <property name="hotelStar" />                     
+         <property name="city" />
+         <property name="toMidTime" />
+         <property name="showBasePrice" />      
+         <property name="quotaCanReturn" />  
+         <property name="quotaTypeOld" />          
+         <property name="modifiedFrontTime" />  
+         <property name="modifiedMidTime" />
+         <property name="guestPrepayLimitDate" />
+         <property name="refundNote"/>
+         <property name="agentid"/>
+         <property name="appendMobile"/>                                       
+         <property name="instantConfirm"/>                         
+         <property name="validTime"/>
+         <property name="completeTime"/>       
+         <!-- add by chenkeming@2008.12.04 v2.4.1 新增noshow原因代码 -->
+         <property name="noshowCode" />  
+         <!-- add by chenjiajie@2008.12.26 v2.4.2 新增中台订单转房控疑难的时间 -->         
+         <property name="difficultyTime"/>
+         <!-- 增加渠道方订单编号v2.5 -->
+         <property name="orderCdForChannel"/>  
+         <!-- TMC是否积分 add by haibo.li -->
+         <property name="tmcOrderPoints"/> 
+         <!-- 虚假订单 add by haibo.li 2009-9-15 -->
+         <property name="falseOrderFalg"/> 
+         <property name="rmpOrder" column="RMPORDER"/>
+         
+         <!-- 3G的订单提示信息，包含担保提示或预付提示 
+         <property name="orderHint"/>
+         -->
+         <property name="genAudit" column="islock"/>
+         <!-- 日审优化,增加日审备注,和日审状态 by juesu.chen 2009-10-21-->
+         <property name="auditRemark" column="AUDITREMARK"/>
+         <property name="payToHotelOk" column="PAYTOHOTELOK"/>
+		 
+		 <property name="b2bOperaterId" column="B2BOPERATERID"/>
+		 
+		 <property name="payCharge" column="PAYCHARGE"/>
+		 
+		 <property name="supplierID" column="SUPPLIER_ID"/>
+		 <property name="supplierAlias" column="SUPPLIERALIAS"/>
+		 
+         <!-- 和OrOrderExtInfo关联 -->
+    	<bag name="OrOrderExtInfoList" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrOrderExtInfo" />
+		</bag>
+        <!-- 和OrOrderItem关联 -->
+    	<bag name="orderItems" cascade="all-delete-orphan"
+			inverse="true" lazy="true" order-by="dayIndex,roomIndex">
+			<key column="orderId"></key>
+			<one-to-many class="OrOrderItem" />
+		</bag>
+		
+		<!-- 和OrPayment关联 -->
+    	<bag name="paymentList" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrPayment" />
+		</bag>
+		
+		<!-- 和OrRefund关联 -->
+    	<bag name="refundList" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrRefund" />
+		</bag>		
+		
+		<!-- 和OrCreditCard关联 -->
+    	<bag name="creditCardList" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="OrCreditCard" />
+		</bag>		
+		
+		<!-- 和OrHandleLog关联 -->
+    	<bag name="logList" cascade="all-delete-orphan" order-by="logId" 
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrHandleLog" />
+		</bag>		
+		
+		<!-- 和OrFellowInfo关联 -->
+    	<bag name="fellowList" cascade="all-delete-orphan" order-by="guestId" 
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrFellowInfo" />
+		</bag>			
+		
+		<!-- 和OrOrderFax关联 -->
+    	<bag name="faxList" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrOrderFax" />
+		</bag>		
+		
+		<!-- 和OrMemberConfirm关联 -->
+    	<bag name="memberConfirmList" cascade="all-delete-orphan" order-by="ID" 
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrMemberConfirm" />
+		</bag>		
+		
+		<!-- 和OrCreditCardTemp关联 -->
+    	<bag name="cardTempList" cascade="all-delete-orphan" 
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrCreditCardTemp" />
+		</bag>					
+					
+		<!-- 和OrChannelNo关联 -->
+    	<bag name="channelList" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrChannelNo" />
+		</bag>		
+		
+		<!-- 和OrPriceDetail关联 -->
+    	<bag name="priceList" cascade="all-delete-orphan" 
+			inverse="true"  order-by="dayIndex">
+			<key column="orderId"></key>
+			<one-to-many class="OrPriceDetail" />
+		</bag>					
+		
+        <!-- 和OrPreSale关联 -->
+    	<bag name="preSales" cascade="all-delete-orphan"
+			inverse="true" order-by="type">
+			<key column="orderId"></key>
+			<one-to-many class="OrPreSale" />
+		</bag>
+		
+        <!-- 和OrTaxCharge关联 -->
+    	<bag name="taxCharges" cascade="all-delete-orphan"
+			inverse="true" >
+			<key column="orderId"></key>
+			<one-to-many class="OrTaxCharge" />
+		</bag>
+					
+		<!-- 和OrOrderMoney关联 -->
+    	<bag name="moneyList" cascade="all-delete-orphan" 
+			inverse="true" lazy="false" order-by="createTime">
+			<key column="orderId"></key>
+			<one-to-many class="OrOrderMoney" />
+		</bag>					
+		
+		<!-- 和OrFulfillment关联 -->
+		<many-to-one name="fulfill"
+			class="OrFulfillment"
+			column="fulfillId" 
+			cascade="all"
+			unique="true"/>       
+			
+		<!-- 和OrRemark关联 -->
+		<many-to-one name="remark"
+			class="OrRemark"
+			column="remarkId" 
+			cascade="all"
+			unique="true"/>   		
+			
+		<!-- 和OrReservation关联 -->
+		<many-to-one name="reservation"
+			class="com.mangocity.hotel.base.persistence.OrReservation"
+			column="reservationID" 
+			cascade="all"
+			unique="true"/> 					         
+    	
+    	<!-- 和OrCouponRecords关联 -->
+    	<bag name="couponRecords" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrCouponRecords" />
+		</bag>
+		
+		<!-- 和orPointRecords关联 -->
+		<bag name="pointRecordsList" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="OrPointRecords" />
+		</bag>
+		<one-to-one name="orOrderRMP" property-ref="order" cascade="all" class="OrOrderRMP" />
+   </class>
+
+	<!-- 查询可供日审的订单 -->   
+	<query name="hQueryOrderForAudit">
+		<![CDATA[ 
+		from OrOrder a 
+		where 
+			a.checkinDate <= ? 
+			and a.checkoutDate > ? 
+			and a.payMethod = 'pay' 
+			and a.orderState = 'order_success' 
+			and a.auditState = 'checkin' 
+		order by
+			a.hotelId 
+		]]>
+	</query>
+	
+	<!-- 查询给定memberid和checkindate的订单 -->   
+	<query name="hQuerySimilar_Order">
+		<![CDATA[ 
+		from OrOrder a 
+		where 
+			a.memberId = ?
+			and a.checkinDate = ? 
+			and a.orderState != 'cancel' 
+		order by
+			a.hotelId 
+		]]>
+	</query>	
+
+	
+	<!-- 查询日审酒店 -->   
+	<query name="hQueryAudit_Order">
+		<![CDATA[ 
+		from OrOrder a 
+		where 
+			a.checkinDate <= ? 
+			and a.checkoutDate >= ?
+			and a.orderState != 5 and a.orderState != 13 and a.orderState != 14 
+		order by
+			a.hotelId 
+		]]>
+	</query>	
+
+	
+	<!-- 获取下一个订单到我的工作档案 -->
+	<query name="hGetNextToMyList_Order">
+		<![CDATA[ 
+		from OrOrder a 
+		where 
+			a.orderState = ? 
+			and a.assignTo is null 
+			and a.emergencyLevel>0 
+			and a.inNextTeam = 0 	
+			and a.isStayInMid = 1 		
+			and a.illusive=0 
+			and rownum = 1 			
+		order by
+			a.emergencyLevel 
+		]]>
+	</query>
+	
+	<sql-query name="sPutNextToMyList_Order">
+		<return alias="a" class="OrOrder"/>
+		<![CDATA[ 
+		select a.* from or_order a 
+		where 
+			a.orderState = ? 
+			and a.assignTo is null 
+			and rownum = 1 
+		order by
+			a.emergencyLevel 
+		]]>	
+	</sql-query>
+	
+	<query name="queryForSynchronous">
+		<![CDATA[		
+		from OrOrder o 
+		where o.createDate > ? 
+			and o.source = 'NET'
+			and o.channel = 8
+			and o.hasPrepayed = 0
+			and o.orderState = 1
+		]]>	
+	</query>
+		
+   
+</hibernate-mapping>

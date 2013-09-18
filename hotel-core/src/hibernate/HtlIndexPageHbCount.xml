@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlIndexPageHbCount" table="HTL_INDEXPAGE_HBCOUNT" dynamic-insert="true" dynamic-update="true" lazy="false">
+		<id name="id" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_INDEXPAGE_HBCOUNT</param>
+			</generator>
+		</id>
+		<property name="dateTime" column="dateTime" />
+		<property name="countNum" column="countNum" />
+	</class>
+	
+	<query name="queryNetOrderStatistik">
+		<![CDATA[ 
+		  select sum(eb.countNum) from HtlIndexPageHbCount eb
+		]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="Gen114CityMember" table="gen_114_city_member" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID">
+			<generator class="sequence">
+				<param name="sequence">seq_gen_114_city_member</param>
+			</generator>
+	</id>          
+
+         <property name="memberCD" />
+         <property name="name" />
+   </class>      
+   
+</hibernate-mapping>

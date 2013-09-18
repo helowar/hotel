@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!-- 酒店网站改版v2.10 spring bean配置文件 -->
+ <beans default-autowire="byName" default-lazy-init="true">
+ 	<bean id="hotelQueryAjaxDao" class="com.mangocity.hotel.dreamweb.search.dao.impl.HotelQureyAjaxDaoImpl">
+ 	</bean>
+ 	<bean id="hotelBookDao" class="com.mangocity.hotel.dreamweb.search.dao.impl.HotelBookDaoImpl"></bean>
+ 	<bean id="hotelBookService" class="com.mangocity.hotel.dreamweb.search.serivce.impl.HotelBookServiceImpl"></bean>
+ 	<!-- 酒店品牌 -->
+ 	<bean id="hotelBrandSearchDao" class="com.mangocity.hotel.dreamweb.search.dao.impl.HotelBrandSearchDaoImpl"></bean>
+ 	<bean id="hotelBrandSearchService" class="com.mangocity.hotel.dreamweb.search.serivce.impl.HotelBrandSearchServiceImpl">
+ 	<property name="hotelPictureInfoDao" ref="hotelPictureInfoDao"></property>
+ 	</bean>
+
+	
+ 	
+ 	<!-- 订单网站取消申请 -->	
+ 	<bean id="orderCancelDao" class="com.mangocity.hotel.dreamweb.ordercancel.dao.impl.OrderCancelDaoImpl"></bean>
+ 	<bean id="tempOrderDao" class="com.mangocity.hotel.dreamweb.ordercancel.dao.impl.TempOrderDAOImpl"></bean>
+ 	<bean id="orderCancelService" class="com.mangocity.hotel.dreamweb.ordercancel.service.impl.OrderCancelServiceImpl">
+ 		<property name="orderCancelDao" ref="orderCancelDao"></property>
+ 	</bean>
+ 	
+ 	<!-- 同步酒店最低价 	 	 -->
+ 	 <bean id="hotelLowestPriceDao" class="com.mangocity.hotel.pricelowest.dao.impl.HotelLowestPriceDaoImpl"></bean>
+ 	 <bean id="hotelSearchEJB" class="com.mangocity.hotel.ejb.search.impl.HotelSearchEJBImpl">
+ 	     <lookup-method name="createManyHotelSearchDelegate" bean="webManyHotelSearchDelegate" />
+ 	     <property name="baseSearchDelegate" ref="baseSearchDelegate"></property> 	 
+ 	 </bean>
+ 	 <bean id="hotelLowestPriceService" class="com.mangocity.hotel.pricelowest.service.impl.HotelLowestPriceServiceImpl">
+ 	     <property name="hotelLowestPriceDao" ref="hotelLowestPriceDao"></property>
+ 	     <property name="hotelSearchEJB" ref="hotelSearchEJB"></property>
+ 	 </bean>
+ 	 
+ 	 <!-- 同步酒店最高返现 	 	 -->
+ 	 <bean id="hotelHighestReturnDao" class="com.mangocity.hotel.pricelowest.dao.impl.HotelHighestReturnDaoImpl"></bean>
+ 	 <bean id="hotelHighestReturnService" class="com.mangocity.hotel.pricelowest.service.impl.HotelHighestReturnServiceImpl">
+ 	     <property name="hotelHighestReturnDao" ref="hotelHighestReturnDao"></property>
+ 	     <property name="hotelSearchEJB" ref="hotelSearchEJB"></property>
+ 	 </bean>
+ 	 
+	<!-- 点评统计信息 -->
+ 	<bean id="commentStatisticsDao" class="com.mangocity.hotel.dreamweb.comment.dao.impl.CommentStatisticsDaoImpl"/>
+ 	<bean id="impressionStatisticsDao" class="com.mangocity.hotel.dreamweb.comment.dao.impl.ImpressionStatisticsDaoImpl"/>
+ 	<bean id="daoDaoCommentDao" class="com.mangocity.hotel.dreamweb.comment.dao.impl.DaoDaoCommentDaoImpl"/>
+ 	
+ 	<bean id="commentStatisticsService" class="com.mangocity.hotel.dreamweb.comment.service.impl.CommentStatisticsServiceImpl">
+ 		<property name="commentStatisticsDao" ref="commentStatisticsDao"/>
+ 	</bean>
+ 	<bean id="impressionStatisticsService" class="com.mangocity.hotel.dreamweb.comment.service.impl.ImpressionStatisticsServiceImpl">
+ 		<property name="impressionStatisticsDao" ref="impressionStatisticsDao"/>
+ 	</bean>
+ 	<bean id="daoDaoCommentService" class="com.mangocity.hotel.dreamweb.comment.service.impl.DaoDaoCommentServiceImpl">
+ 	    <property name="daoDaoCommentDao" ref="daoDaoCommentDao"></property>
+ 	</bean>
+ 	
+ 	<bean id="hotelRereshPrice" class="com.mangocity.hotel.dreamweb.priceUtil.HotelRereshPrice"/>
+ 
+ 
+ 	<!-- 校验预订数据service bean add by ting.li -->
+ 	<bean id="bookingDataCheckService" class="com.mangocity.hotel.dreamweb.datacheck.service.impl.BookingDataCheckServiceImpl">
+ 		<property name="hotelRoomService" ref="hotelRoomService"></property>
+ 		<property name="hotelRoomTypeService" ref="hotelRoomTypeService"></property>
+ 		<property name="hotelQuotaNewService" ref="hotelQuotaNewService"></property>
+ 		<property name="hotelReservationInfoService" ref="hotelReservationInfoService"></property>
+ 	</bean>
+ 
+ <!-- 增加预订流程日志记录 -->
+ <!-- 订单填写页 订单信息和用户信息报表 -->	
+ 	<bean id="orderRecordDao" class="com.mangocity.hotel.orderrecord.dao.impl.OrderRecordDaoImpl"></bean>
+ 	<bean id="orderRecordService" class="com.mangocity.hotel.orderrecord.service.impl.OrderRecordServiceImpl">
+ 	<property name="orderRecordDao" ref="orderRecordDao"></property>
+ 	</bean>
+ 
+  <bean id="bookOrderRecordService" class="com.mangocity.hotel.dreamweb.orderrecord.service.impl.BookOrderRecordServiceImpl">
+ 		<property name="orderRecordService" ref="orderRecordService"></property>
+ 		<property name="hotelRereshPrice" ref="hotelRereshPrice"></property>
+ </bean>
+  
+   <bean id="queryOrderRecordService" class="com.mangocity.hotel.dreamweb.orderrecord.service.impl.QueryOrderRecordServiceImpl">
+ 		<property name="orderRecordService" ref="orderRecordService"></property>
+ </bean>
+ 
+
+ 
+ </beans>

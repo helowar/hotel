@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlAssureCardItem" table="htl_assure_card_item" dynamic-insert="true" dynamic-update="true" lazy="false">
+
+		<id name="assureCardItemID" unsaved-value="0" column="ASSURE_CARD_ITEM_ID">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_Assure_Card_Item</param>
+			</generator>
+			
+		</id>
+		<property name="cardAheadDay" column="CARD_AHEAD_DAY"></property>
+		<property name="cardOperateType" column="CARD_OPERATE_TYPE"></property>
+		<property name="cardDeductType" column="CARD_DEDUCT_TYPE"></property>
+		<property name="cardAmount" column="CARD_AMOUNT"></property>
+		<property name="cardAheadTime" column="CARD_AHEAD_TIME"></property>
+		
+		
+		<property name="create_by" column="create_by" update="false"></property>
+		<property name="create_by_id" column="create_by_id" update="false"></property>
+		<property name="modify_by" column="modify_by"></property>
+		<property name="modify_by_id" column="modify_by_id"></property>
+		<property name="create_time" column="create_time" update="false"></property>
+		<property name="modify_time" column="modify_time"></property>
+		<property name="cardCancelAheadTime" column="CARD_CANCEL_AHEAD_TIME"></property>
+		
+		<many-to-one name="htlCreditAssure" class="com.mangocity.hotel.base.persistence.HtlCreditAssure" column="CREDIT_ID" />
+	</class>
+</hibernate-mapping>

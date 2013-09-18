@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlLimitFavourable" table="HTL_LIMIT_FAVOURABLE" dynamic-insert="true" dynamic-update="true" lazy="false">
+
+		<id name="favId" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_LIMIT_FAVOURABLE</param>
+			</generator>
+		</id>
+		<property name="favName" column="favName" />
+		<property name="createName" column="createName" />
+		<property name="createTime" column="createTime" type="java.util.Date" />
+		<property name="modifyName" column="modifyName" />
+		<property name="modifyTime" column="modifyTime" type="java.util.Date" />
+		<property name="beginDate" column="beginDate" type="java.util.Date" />
+		<property name="endDate" column="endDate" type="java.util.Date" />
+		<property name="beginTime" column="beginTime" />
+		<property name="endTime" column="endTime"  />
+		<property name="actualBeginDate" column="actualBeginDate" type="java.util.Date" />
+		<property name="actualEndDate" column="actualEndDate" type="java.util.Date" />
+		<property name="checkIn" column="checkIn" type="java.util.Date" />
+		<property name="checkOut" column="checkOut" type="java.util.Date" />
+		<property name="rule" column="rule" />
+		<property name="topLimit" column="topLimit" />
+		<property name="favIsStart" column="favIsStart"/>
+		<property name="flag" column="FLAG" />
+		<property name="favType" column="FAVTYPE" />
+	</class>
+</hibernate-mapping>

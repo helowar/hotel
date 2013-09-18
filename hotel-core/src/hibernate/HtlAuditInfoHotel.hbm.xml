@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+	<class name="HtlAuditInfoHotel" table="HTL_AUDIT_INFO_HOTEL"
+		dynamic-insert="true" dynamic-update="true">
+		
+		<id name="ID" unsaved-value="0" column="ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_AUDIT_INFO_HOTEL</param>
+			</generator>
+		</id>
+		<property name="auditInfoId" />
+		<property name="hotelId" />
+		
+		<property name="create_by" column="create_by" update="false"></property>
+		<property name="create_by_id" column="create_by_id" update="false"></property>
+		<property name="create_time" column="create_time" update="false"></property>	
+		
+	</class>
+
+
+</hibernate-mapping>

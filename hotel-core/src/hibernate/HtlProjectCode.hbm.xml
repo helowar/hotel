@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlProjectCode" table="htl_projectcode" dynamic-insert="true" dynamic-update="true" lazy="false">
+		<id name="id" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_PROJECTCODE</param>
+			</generator>
+		</id>
+		<property name="orderCD" column="orderCD" />
+		<property name="projectCode" column="projectCode" />
+		<property name="exProjectCode1" column="exProjectCode1" />
+		<property name="exProjectCode2" column="exProjectCode2" />
+		<property name="reserve1" column="reserve1" /> 
+		<property name="reserve2" column="reserve2" />
+		<property name="zjCode" column="zjcode" />  
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	<bean  id="htlQuery" class="com.mangocity.htoc.service.imp.HotelQueryImpl" scope="prototype">
+	</bean> 
+	 <bean id="hotelSearchRmiFactory" class="com.mangocity.hotel.ejb.search.ejbRmiFactory.DBServiceClientRmiFactory">
+	       <constructor-arg type="java.lang.String"
+			value="ejbClientConfig/hotelSearchClient.ejb.xml" />
+    </bean>
+    <bean id="hotelSearchRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="hotelSearchRmiFactory"/>
+        <property name="targetMethod" value="getService"/>
+        <property name="arguments">
+            <list>
+                <value>com.mangocity.hotel.info.search.service.api.HotelSearchRemote</value>
+            </list>
+        </property>
+    </bean> 
+    
+    <bean id="sortAndFilterRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="hotelSearchRmiFactory"/>
+        <property name="targetMethod" value="getService"/>
+        <property name="arguments">
+            <list>
+                <value>com.mangocity.hotel.info.search.service.api.HotelSortAndFilterRemote</value>
+            </list>
+        </property>
+    </bean>   
+    
+    <bean id="quotationQueryRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="hotelSearchRmiFactory"/>
+        <property name="targetMethod" value="getService"/>
+        <property name="arguments">
+            <list>
+                <value>com.mangocity.hotel.info.search.service.api.QuotationQueryRemote</value>
+            </list>
+        </property>
+    </bean>   
+    
+    <bean id="hotelCommonQueryRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="hotelSearchRmiFactory"/>
+        <property name="targetMethod" value="getService"/>
+        <property name="arguments">
+            <list>
+                <value>com.mangocity.hotel.info.search.service.api.HotelCommonQueryRemote</value>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- 地标景点数据  调用EJB加载 配置-->
+     <bean id="geoSearchRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="hotelSearchRmiFactory"/>
+        <property name="targetMethod" value="getService"/>
+        <property name="arguments">
+            <list>
+                <value>com.mangocity.hotel.info.search.service.api.GeoSearchRemote</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="rateSearchRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="hotelSearchRmiFactory"/>
+        <property name="targetMethod" value="getService"/>
+        <property name="arguments">
+            <list>
+                <value>com.mangocity.hotel.info.search.service.api.RateSearchRemote</value>
+            </list>
+        </property>
+    </bean> 
+     <bean id="constructHotelHandler" class="com.mangocity.hotel.search.comm.ConstructHotel" scope="prototype">
+    </bean> 
+    <bean id="webConstructHotelHandler" class="com.mangocity.hotel.ejb.search.construct.WebConstructHotel" scope="prototype">
+    </bean> 
+    <bean id="manyHotelSearchDelegate" class="com.mangocity.hotel.search.delegate.ManyHotelSearchDelegate" scope="prototype">
+    </bean> 
+    
+     <bean id="baseSearchDelegate" class="com.mangocity.hotel.search.delegate.BaseSearchDelegate">
+    </bean> 
+    
+    <bean id="webManyHotelSearchDelegate" class="com.mangocity.hotel.ejb.search.delegate.WebManyHotelSearchDelegate" scope="prototype">
+         <property name="constructHotelHandler" ref="webConstructHotelHandler"/>
+    </bean> 
+ 
+</beans>

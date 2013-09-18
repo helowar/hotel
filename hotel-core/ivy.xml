@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+    <info organisation="Mangocity"  module="hotel-core"/>
+	<configurations>
+	   <conf name="env-spi" visibility="public" description=" environment need jar" />
+	   <conf name="compile" visibility="public" description="compilation only need jar" />
+	   <conf name="compile-all" visibility="public" extends="compile,env-spi" description=" compilation need jar include environment jars" />
+	   <conf name="runtime" visibility="public" extends="compile" description="for runtime need jar" />
+	   <conf name="test" visibility="private" extends="runtime" description="for test" />            
+	</configurations>
+	<publications>
+		<artifact name="hotel-core" type="jar" conf="compile" ext="jar"/> 
+	</publications>
+    <dependencies>    	
+		<dependency org="apache" name="axis" rev="1.2"/>
+		<dependency org="apache" name="commons-fileupload" rev="1.2"/>
+		<dependency org="apache" name="commons-io" rev="1.3.1"/>
+		<dependency org="ibm" name="wsdl4j" rev="1.1"/>
+		<dependency org="apache" name="commons-logging" rev="1.1.1"/>
+		<dependency org="apache" name="cxf" rev="2.1.4"/>
+		<dependency org="sun" name="FastInfoset" rev="1.2.2"/>
+		<dependency org="apache" name="geronimo-activation_1.1_spec" rev="1.0.2"/>
+		<dependency org="apache" name="geronimo-annotation_1.0_spec" rev="1.1.1"/>
+		<dependency org="apache" name="geronimo-javamail_1.4_spec" rev="1.3"/>
+		<dependency org="apache" name="geronimo-jaxws_2.1_spec" rev="1.0"/>
+		<dependency org="apache" name="geronimo-stax-api_1.0_spec" rev="1.0.1"/>
+		<dependency org="apache" name="geronimo-ws-metadata_2.0_spec" rev="1.1.2"/>
+		<dependency org="sun" name="jaxb-api" rev="2.1"/>
+		<dependency org="sun" name="jaxb-impl" rev="2.1.6"/>
+		<dependency org="sun" name="jaxb-xjc" rev="2.1.6"/>
+		<dependency org="apache" name="neethi" rev="2.0.4"/>
+		<dependency org="sun" name="saaj-api" rev="1.3"/>
+		<dependency org="sun" name="saaj-impl" rev="1.3"/>
+		<dependency org="stax" name="stax-utils-20060502" rev="1.0"/>
+		<dependency org="ibm" name="wsdl4j" rev="1.6.1"/>
+		<dependency org="woodstox" name="wstx-asl" rev="3.2.4"/>
+		<dependency org="apache" name="xmlbeans" rev="2.3.0"/>
+		<dependency org="apache" name="xml-resolver" rev="1.2"/>
+		<dependency org="apache" name="XmlSchema" rev="1.4.2"/>
+		<dependency name="ecside" rev="1.3.0"/>
+		<dependency org="json" name="ezmorph" rev="1.0.4"/>
+		<dependency org="json" name="json-lib" rev="2.2.2"/>
+		<dependency org="json" name="morph" rev="1.1.1"/>
+		<dependency name="tmccommon" rev="1.0"/>
+		<dependency name="xmlrpc-intisoft" rev="1.0"/>
+		<dependency name="alipay"  rev="1.0"/>
+		<dependency name="bocommapi"  rev="1.0"/>
+		<dependency name="commpay" rev="1.0"/>
+		<dependency name="cryptix-jce-provider" rev="1.0"/>
+		<dependency name="tenpay" rev="1.0"/>
+		<dependency name="yeepay" rev="1.0"/>
+		<dependency name="getIp" rev="1.0"/>
+		<dependency name="commonUtils" rev="1.0"/>
+		<dependency name="communicateService" rev="1.0"/>
+		<dependency name="mangocity-commons" rev="1.0"/>
+		<dependency name="paramconf" rev="1.0"/>
+		<dependency name="payClient" rev="1.0"/>
+		<dependency name="casclient"  rev="1.0"/>
+		<dependency name="CenterSecurityClient"  rev="1.0"/>
+		<dependency name="CenterSecurityEJBClient"  rev="1.0"/>
+		<dependency name="deliveryClient"  rev="1.0"/>
+		<dependency name="deliveryEJBClient"  rev="1.0"/>
+		<dependency name="DsEJBClient"  rev="1.0"/>
+		<dependency org="acegi" name="acegi-security" rev="1.0.3"/>
+		<dependency org="acegi" name="acegi-security-cas" rev="1.0.3"/>
+		<dependency org="apache" name="ant" rev="1.6.5"/>
+		<dependency org="apache" name="commons-beanutils" rev="1.7.0"/>
+		<dependency org="apache" name="commons-codec" rev="1.3"/>
+		<dependency org="apache" name="commons-collections" rev="3.2"/>
+		<dependency org="apache" name="commons-dbcp" rev="1.2.1"/>
+		<dependency org="apache" name="commons-digester" rev="1.8"/>
+		<dependency org="apache" name="commons-discovery" rev="0.2"/>
+		<dependency org="apache" name="commons-el"  rev="2.0"/>
+		<dependency org="apache" name="commons-httpclient" rev="3.1"/>
+		<dependency org="apache" name="commons-lang" rev="2.2"/>
+		<dependency org="apache" name="commons-logging" rev="1.1"/>
+		<dependency org="apache" name="commons-pool" rev="1.3"/>
+		<dependency org="apache" name="jakarta-oro" rev="2.0.8"/>
+		<dependency org="apache" name="log4j" rev="1.2.14"/>
+		<dependency org="apache" name="standard" rev="1.1.2"/>
+		<dependency org="apache" name="tiles-api" rev="2.0"/>
+		<dependency org="apache" name="tiles-core" rev="2.0"/>
+		<dependency org="apache" name="tiles-jsp" rev="2.1.0"/>
+		<dependency org="hessian" name="hessian" rev="3.0.20"/>
+		<dependency org="hibernate" name="hibernate"  rev="3.0"/>
+		<dependency org="hibernate" name="hibernate-annotations"  rev="3.4.0"/>
+		<dependency org="hibernate" name="hibernate-commons-annotations"  rev="3.1"/>
+		<dependency org="hibernate" name="hibernate-core"  rev="3.3.0"/>
+		<dependency org="hibernate" name="hibernate-entitymanager"  rev="3.4.0"/>
+		<dependency org="sun" name="activation" rev="1.0.2"/>
+		<dependency org="antlr" name="antlr" rev="2.7.6"/>
+		<dependency org="aopalliance" name="aopalliance" rev="1.0"/>
+		<dependency org="france" name="asm" rev="2.2.2"/>
+		<dependency org="france" name="asm-attrs" rev="1.5.3"/>
+		<dependency org="aspectj" name="aspectjrt" rev="1.5.3"/>
+		<dependency org="aspectj" name="aspectjweaver" rev="1.5.3"/>
+		<dependency org="machinery" name="c3p0" rev="0.9.1"/>
+		<dependency org="cglib" name="cglib" rev="2.1.3"/>
+		<dependency org="cglib" name="cglib-nodep" rev="2.1_3"/>
+		<dependency org="metaStuff" name="dom4j"  rev="1.6.1"/>
+		<dependency org="ehcache" name="ehcache" rev="1.2.4"/>
+		<dependency org="visigoth" name="freemarker" rev="2.3.8"/>
+		<dependency org="ibm" name="j2ee"  rev="1.0"/>
+		<dependency org="shigeru" name="javassist" rev="3.4"/>
+		<dependency org="json" name="jsonplugin"  rev="1.0"/>
+		<dependency org="sun" name="jstl" rev="1.1.2"/>
+		<dependency org="sun" name="jta"  rev="1.1"/>
+		<dependency org="jxl" name="jxl"  rev="1.0"/>
+		<dependency org="sun" name="mysql-connector-java" rev="5.0.3"/>
+		<dependency org="ognl" name="ognl" rev="2.6.11"/>
+		<dependency org="oracle" name="ojdbc" rev="1.4.2"/>
+		<dependency org="sun" name="persistence" rev="9.0"/>
+		<dependency org="slf4j" name="slf4j-api" rev="1.4.2"/>
+		<dependency org="slf4j" name="slf4j-log4j12" rev="1.4.2"/>
+		<dependency org="struts" name="struts2-core" rev="2.0.6"/>
+		<dependency org="struts" name="struts2-spring-plugin" rev="2.0.6"/>
+		<dependency org="struts" name="struts2-tiles-plugin" rev="2.0.6"/>
+		<dependency org="struts" name="xwork" rev="2.0.1"/>
+		<dependency org="spring" name="spring" rev="2.5.6"/>
+		<dependency org="spring" name="spring-mock" rev="2.0.4"/>
+		<dependency org="beanshell" name="bsh" rev="2.0"/>
+		<dependency name="cdm" rev="1.1"/>
+		<dependency name="CmbInterface" rev="1.0"/>
+		<dependency name="CmbInterfacePreAuth" rev="1.0"/>
+		<dependency name="dwr" rev="1.0"/>
+		<dependency name="emap090819" rev="1.0"/>
+		<dependency name="ibatis" rev="1.0"/>
+		<dependency org="jdom" name="jdom" rev="1.0"/>
+		<dependency org="junit" name="junit4" rev="1.0"/>
+		<dependency name="mg_msg" rev="1.0"/>
+		<dependency name="payEJBClient" rev="1.0"/>
+		<dependency name="payQuery" rev="1.0"/>
+		<dependency org="apache" name="poi-2.5-final-20040302" rev="2.5"/>
+		<dependency org="openSymphony" name="quartz" rev="1.5.2"/>
+		<dependency name="voucher" rev="1.0"/>
+		<dependency org="apache" name="jsp-api" rev="2.0"/>
+		<dependency org="apache" name="servlet-api" rev="2.4"/>
+			
+		<dependency  name="hotelMQ" rev="1.0.1"/>
+		<dependency org="apache" name="activemq-core" rev="5.4.2"/>
+		<dependency org="apache" name="geronimo-jms_1.1_spec" rev="1.1.1"/>
+		<dependency org="apache" name="geronimo-j2ee-management_1.1_spec" rev="1.0.1"/>
+		<dependency org="apache" name="kahadb" rev="5.4.2"/>
+		
+		<dependency org="apache" name="commons-betwixt" rev="0.8"/>
+		<dependency name="corenut-commons" rev="1.0.0"/>
+		
+		<dependency name="hotel-ext-impl" rev="1.0.6.1"/>
+		<dependency name="hotel-ext-api" rev="1.0.6.1"/>
+
+		
+		<dependency name="corenut-pf-api" rev="1.0.3"/>
+		<dependency name="corenut-pf-impl" rev="1.0.0"/>
+		<dependency name="corenut-pf-jdbc" rev="1.0.0"/>
+		<dependency name="corenut-scm" rev="1.0.2"/>
+		<dependency name="mbrserviceclient" rev="3.3.6"/>
+		<dependency name="crmserviceclient" rev="3.0.2"/>
+		<dependency name="SkeletonEjbClient" rev="1.0"/>
+		
+		<dependency name="cortex-common" rev="1.0.0"/>
+		<dependency name="hotel-search-stub" rev="1.0.0"/>
+		<dependency name="hotel-search-api" rev="1.1.1"/>
+
+		<dependency name="mpmSidClient" rev="1.0"/>
+		
+		<dependency name="Hotel-RMP-API" rev="1.0.8.0"/>	
+		<dependency name="hotel-supply-api" rev="1.1.0.0" transitive="false"/>
+	 </dependencies>
+</ivy-module>

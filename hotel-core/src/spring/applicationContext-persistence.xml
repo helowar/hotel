@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+    <bean id="placeholderConfig" class="com.ctol.mango.pge.common.SpringPropertyConfigurer">
+        <property name="location">
+			<value>classpath:spring/jdbc.properties</value>
+        </property>
+    </bean>
+  
+<!-- 发布正式环境用-->
+     
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndiname}</value>
+        </property>
+    </bean> 
+    
+<!-- -->
+
+<!-- 本地开发环境用  数据源定义,使用Apache DBCP 连接池
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+-->
+
+<!--  -->
+
+	<!-- iBATIS sqlMapClient config -->
+	<bean id="sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>classpath:/ibatis/SqlMapConfig.xml</value>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+</beans>

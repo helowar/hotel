@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="default" 	extends="struts-default">
+        <interceptors>
+			<interceptor-stack name="crudStack">
+				<interceptor-ref name="params" />
+				<interceptor-ref name="static-params" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="prepare" />
+			</interceptor-stack>
+		</interceptors>			
+		<!-- Excel文件上传 -->
+		<action name="excelUpload"
+			class="com.mangocity.hotel.base.web.webwork.ExcelUploadAction">
+			<interceptor-ref name="fileUploadStack" />
+		</action>
+	</package>
+	
+	<!--网站改版 add by haibo.li  -->
+	<include file="struts-dreamweb.xml" />
+	<include file="struts-json.xml" />
+	<include file="struts-quotationdisplay.xml" />
+	<include file="struts-vrm.xml" />
+	<include file="struts-monitor.xml" />
+</struts>

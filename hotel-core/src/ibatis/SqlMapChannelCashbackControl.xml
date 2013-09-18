@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ChanneCashbackControl">
+
+	<resultMap id="queryCashBackControlResult" class="com.mangocity.hotel.base.persistence.QueryCashBackControl">
+		<result property="ID" javaType="long" jdbcType="NUMERIC" column="ID" nullValue="0"/>
+		<result property="projectname" javaType="string" jdbcType="VARCHAR" column="PROJECTNAME" nullValue=""/>
+		<result property="projectcode" javaType="string" jdbcType="VARCHAR" column="PROJECTCODE" nullValue=""/>
+		<result property="groupname" javaType="string" jdbcType="VARCHAR" column="GROUPNAME" nullValue=""/>
+		<result property="groupcode" javaType="string" jdbcType="VARCHAR" column="GROUPCODE" nullValue="" />
+		<result property="groupstatus" javaType="int" jdbcType="NUMERIC" column="GROUPSTATUS" nullValue=""/>
+		<result property="cashbackratename" javaType="string" jdbcType="VARCHAR" column="CASHBACKRATENAME" nullValue=""/>
+		<result property="cashbackratevalue" javaType="double" jdbcType="NUMERIC" column="CASHBACKRATEVALUE" nullValue=""/>
+	</resultMap>
+
+	<!-- Select with no parameters using the result map for cashbackcontrol class. -->
+	<select id="selectCannelcashControl" parameterClass="java.util.HashMap" resultMap="queryCashBackControlResult">
+		
+		select ch.id,
+			ch.projectname,
+			ch.projectcode,
+			gh.groupname,
+			gh.groupcode,
+			gh.groupstatus,
+			cr.cashbackratename,
+			cr.cashbackratevalue 
+		from t_htl_webchannel_projectcode ch,
+			t_htl_webchannel_projectgroup gh,
+			t_htl_webchannel_cashbackrate cr 
+		where ch.projectgroupid = gh.id and gh.cashbackrateid = cr.id
+		
+		<isNotEmpty prepend="AND" property="projectcode">
+			ch.projectcode = #projectcode#
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="groupstatus">
+			gh.groupstatus = #groupstatus#
+		</isNotEmpty>
+		order by ch.id desc
+	</select>
+</sqlMap>

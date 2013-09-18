@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+   <class name="HtlRoomControlWorkSchedule" table="HTL_ROOMCONTROL_WORK_SCHEDULE"   dynamic-insert="true" dynamic-update="true">
+   	<id name="workSchedualId" column="workSchedualId">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_roomcontrol_work_area</param>
+			</generator>
+	</id>           
+    
+         <property name="beginDate" />                  
+         <property name="loginName" />                           
+         <property name="userName"  />
+         <property name="remark" />
+         <property name="state" />
+         <property name="createTime" />
+         <property name="createById" />
+         <property name="createByName" />
+         <property name="modifyTime" />
+         <property name="modifyById" />
+         <property name="modifyByName" />
+         <property name="endDate" />
+         <property name="workAreas" />
+         <property name="workGroup" />
+         <property name="onDutyTime" />
+         <property name="active" />
+   </class>
+	<query name="queryRoomControlWorkSchedule">
+			<![CDATA[ 
+				from HtlRoomControlWorkSchedule ws where ws.loginName=?  order by ws.modifyTime desc
+			]]>
+	</query>
+	<query name="querySubRoomControlWorkSchedule">
+			<![CDATA[ 
+				from HtlRoomControlWorkSchedule ws where ws.loginName=?  and ws.modifyTime <=? order by ws.beginDate desc
+			]]>
+	</query>
+   
+</hibernate-mapping>

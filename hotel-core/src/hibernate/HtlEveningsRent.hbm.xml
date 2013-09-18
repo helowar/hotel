@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    author shengwei.zuo 各晚房费参数表  2009-08-25
+-->
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+    <class name="HtlEveningsRent" table="HTL_EVENINGS_RENT" dynamic-insert="true" dynamic-update="true">
+        <id name="id" unsaved-value="0" column="ID">
+            <generator class="sequence">
+            	<param name="sequence">SEQ_HTL_EVENINGS_RENT</param>
+            </generator>
+        </id>
+        <property name="night" type="java.lang.Long">
+            <column name="NIGHT">
+                <comment>第几晚</comment>
+            </column>
+        </property>
+        <property name="salePrice" type="java.lang.Double">
+            <column name="SALE_PRICE">
+                <comment>售价</comment>
+            </column>
+        </property>
+        <property name="commission" type="java.lang.Double">
+            <column name="COMMISSION">
+                <comment>佣金</comment>
+            </column>
+        </property>
+        
+         <!-- Add by Shengwei.Zuo 2009-08-25  和优惠参数表的多对一关系  -->                       
+        <many-to-one name="favouraParameterEntiy" class="HtlFavouraParameter" column="FAVOURA_PARAMETER_ID"></many-to-one>
+        
+    </class>
+</hibernate-mapping>

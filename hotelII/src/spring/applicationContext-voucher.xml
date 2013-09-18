@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+
+	<!-- 开发环境数据源，在本地使用 
+	<bean id="dataSourceVch"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@10.10.7.111:1521:hccdev" />
+		<property name="username" value="voucher" />
+		<property name="password" value="voucher" />
+	</bean>
+	 -->
+	
+	<!-- 生产环境数据源，上生产环境时更换为JNDI 	-->
+	<bean id="dataSourceVch" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/voucher"/>
+	</bean>
+
+	
+	<bean id="sessionFactoryVch"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">	
+		<property name="dataSource" ref="dataSourceVch"/>	
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.connection.useUnicode">true</prop>
+				<prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>config/hbm/PkgProduct.hbm.xml</value>
+				<value>config/hbm/VHtcHotel.hbm.xml</value>
+				<value>config/hbm/Voucher.hbm.xml</value>
+				<value>config/hbm/VoucherDefinition.hbm.xml</value>
+				<value>config/hbm/VoucherLog.hbm.xml</value>
+				<value>config/hbm/VoucherOrder.hbm.xml</value>
+				<value>config/hbm/VoucherOrderLog.hbm.xml</value>
+				<value>config/hbm/VoucherPromotion.hbm.xml</value>
+				<value>config/hbm/VoucherPromotionOrgnization.hbm.xml</value>
+				<value>config/hbm/VoucherRule.hbm.xml</value>
+				<value>config/hbm/VoucherRuleAgent.hbm.xml</value>
+				<value>config/hbm/VoucherRuleProductFilter.hbm.xml</value>				
+				<value>config/hbm/VoucherRuleUsageLevel.hbm.xml</value>
+				<value>config/hbm/VoucherRuleValidPeriod.hbm.xml</value>
+			</list>
+		</property>		
+	</bean>
+	
+	<!-- 父类dao 父类service 
+	<bean id="hibernateDao"
+		class="com.mangocity.framework.base.dao.impl.HibernateDaoImpl">
+		<property name="sessionFactory" ref="sessionFactoryVch" />
+	</bean>
+	
+	
+    <bean id="baseService" parent="baseTransactionProxyVch">
+        <property name="target">
+        	<bean class="com.mangocity.framework.base.service.impl.BaseServiceImpl">
+				<property name="hibernateDao" ref="hibernateDao" />
+			</bean>
+		</property>		
+	</bean>
+	-->
+	
+	<!-- 业务dao 业务service -->	
+	<bean id="vchDao" class="com.mangocity.vch.dao.impl.VchDaoImpl">
+		<property name="sessionFactory" ref="sessionFactoryVch" />
+	</bean>
+	<bean id="vHtcHotelDao" class="com.mangocity.vch.dao.impl.VHtcHotelDaoImpl">
+		<property name="sessionFactory" ref="sessionFactoryVch" />
+	</bean>
+	
+	<bean id="vhtcHotelService" class="com.mangocity.vch.app.service.impl.VhtcHotelServiceImpl">
+		<property name="hotelDao" ref="vHtcHotelDao" />
+	</bean> 
+	
+	<bean id="vchService" class="com.mangocity.vch.app.service.impl.VchServiceImpl">
+		<property name="vchDao" ref="vchDao"/>
+		<property name="vhtcHotelService" ref="vhtcHotelService" /> 
+	</bean>	
+</beans>

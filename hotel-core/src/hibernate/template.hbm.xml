@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="{package}">
+   <class name="{className}" table="{tableName}" lazy="false"   dynamic-insert="true" dynamic-update="true">
+    <id name="ID" column="ID">
+            <generator class="uuid.hex" />
+    </id>
+    
+    <property name="{name}" />
+    
+    
+    
+    
+    
+    
+    
+    
+   </class>
+
+   
+</hibernate-mapping>

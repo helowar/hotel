@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="HotelForWeb">
+
+	<!-- 网站查询酒店返回结果 -->
+	<resultMap class="com.mangocity.hotelweb.persistence.QueryHotelForWebResult"
+		id="queryHotelForWebResult">
+		<result property="hotelId" column="HOTEL_ID"/>
+		<result property="hotelChnName" column="CHN_NAME"/>
+		<result property="hotelEngName" column="ENG_NAME"/>
+
+		<result property="bizZone" column="BIZ_ZONE"/>
+		<result property="city" column="CITY"/>
+		<result property="hotelStar" column="HOTEL_STAR"/>
+		<result property="hotelType" column="HOTEL_TYPE"/>
+		<result property="chnAddress" column="CHN_ADDRESS"/>
+		<result property="engAddress" column="ENG_ADDRESS"/>
+		<result property="hotelIntroduce" column="CHN_HOTEL_INTRODUCE"/>
+		<result property="autoIntroduce" column="AUTO_INTRODUCE"/>
+		<result property="clueInfo" column="ALERT_MESSAGE"/>
+		<result property="commendType" column="COMMENDTYPE"/>
+
+
+	</resultMap>
+	<resultMap class="com.mangocity.hotelweb.persistence.QueryHotelForWebRoomType"
+		id="queryHotelForWebRoomType">
+		<result property="roomTypeId" column="ROOM_TYPE_ID"/>
+		<result property="childRoomTypeId" column="CHILD_ROOM_TYPE_ID"/>
+		<result property="roomTypeName" column="ROOM_NAME"/>
+		<result property="childRoomTypeName" column="PRICE_TYPE"/>
+		<result property="currency" column="CURRENCY"/>
+
+	</resultMap>
+	<resultMap class="com.mangocity.hweb.persistence.QueryHotelForWebSaleItems"
+		id="queryHotelForWebSaleItems">
+		<result property="quotaType" column="Quota_Type"/>
+		<result property="bedType" column="Bed_type"/>
+		<result property="roomEquipment" column="room_equipment"/>
+		<result property="fellowDate" column="ABLE_SALE_DATE"/>
+		<result property="salePrice" column="SALE_PRICE"/>
+		<result property="priceId" column="PRICE_ID"/>
+		<result property="roomState" column="ROOM_STATE"/>
+		<result property="salesRoomPrice" column="SALESROOM_PRICE"/>
+		<result property="breakfastNum" column="INC_BREAKFAST_NUMBER"/>
+		<result property="breakfastType" column="INC_BREAKFAST_TYPE"/>
+		<result property="breakfastPrice" column="INC_BREAKFAST_PRICE"/>
+		<result property="availQty" column="ABLE_QTY"/>
+	</resultMap>
+
+
+	<resultMap id="queryHotelInfoForWeb"
+		class="com.mangocity.hotelweb.persistence.HotelInfoForWebBean">
+		<result property="hotelId" column="hotel_id"/>
+		<result property="chnName" column="CHN_NAME"/>
+		<result property="hotelStar" column="HOTEL_STAR"/>
+		<result property="hotelIntroduce" column="chn_hotel_introduce"/>
+		<result property="chnAddress" column="chn_address"/>
+		<result property="telephone" column="telephone"/>
+		<result property="pictureName" column="picture_name"/>
+		<result property="creditCard" column="credit_card_info"/>
+		<result property="checkInTime" column="checkin_time"/>
+		<result property="checkOutTime" column="checkout_time"/>
+		<result property="commendType" column="COMMENDTYPE"/>
+	</resultMap>
+
+
+	
+	<resultMap class="com.mangocity.hotelweb.persistence.QueryHotelForWebServiceIntroduction" id="queryHotelForWebServiceIntroduction">
+	    <result property = "chnHotelIntroduce" column="CHN_HOTEL_INTRODUCE"/>
+	    <result property = "mealFixtrue" column = "MEAL_FIXTRUE"/>
+	    <result property = "roomFixtrue" column = "ROOM_FIXTRUE"/>	
+	    <result property = "freeService" column = "FREE_SERVICE"/>
+	</resultMap>
+	<resultMap class="com.mangocity.hotelweb.persistence.QueryPictureForWebServiceIntroduction" id="queryPictureForWebServiceIntroduction">
+	    <result property = "pictureType" column = "PICTURE_TYPE"/>
+	    <result property = "pictureName" column = "PICTURE_NAME"/>
+	</resultMap>	
+	
+	<resultMap class="com.mangocity.hotelweb.persistence.QueryHotelFactorageResult" id="queryHotelFactorageResult">
+	    <result property = "memberid" column = "MEMBERID"/>
+	    <result property = "telephone" column = "TELEPHONE"/>
+	    <result property = "email" column = "EMAIL"/>
+	    <result property = "fax" column = "FAX"/>
+	    <result property = "logo" column = "LOGO"/>
+	    <result property = "title" column = "TITLE"/>
+	    <result property = "bgColor" column = "BGCOLOR"/>
+	    <result property = "color" column = "COLOR"/>
+	</resultMap>	
+	
+	<select id="qryHotelIdByWeb" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		select * from (
+		   <![CDATA[
+			select  v.hotel_id, v.commendtype, v.hotel_star, MIN (v.sale_price)as sale_price from v_hotel_quota_price v
+			where v.city=#cityId# and v.quota_type='1'
+						]]>
+			  <isNotEmpty prepend="AND" property="chnAddress">
+			  	 v.chn_address like #chnAddress#
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="hotelStar">
+			  	 v.hotel_star in #hotelStar#
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="hotelChnName">
+			  	 v.chn_name like #hotelChnName#
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="hotelEngName">
+			  	 v.eng_name like #hotelEngName#
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="hotelCode">
+			  	 v.hotel_cd like #hotelCode#
+			  </isNotEmpty> 
+			  <isNotEmpty prepend="AND" property="hotelType">
+			  	 v.hotel_type like #hotelType#
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="beginDate">
+			    <![CDATA[
+			  	  v.able_sale_date >= #beginDate#
+			  	 ]]>
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="endDate">
+			    <![CDATA[
+			  	   v.able_sale_date < #endDate#
+			  	 ]]>
+			  </isNotEmpty>
+			 
+			  <isNotEmpty prepend="AND" property="minPrice">
+			     <![CDATA[
+			        v.sale_price >=#minPrice#
+			     ]]>
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="maxPrice">
+			     <![CDATA[
+			        v.sale_price <=#maxPrice#
+			     ]]>
+			  </isNotEmpty>
+			  GROUP BY V.HOTEL_ID, V.COMMENDTYPE, V.HOTEL_STAR
+			  <isNotEmpty property="commendtype">
+			  ORDER BY V.COMMENDTYPE, V.HOTEL_STAR,SALE_PRICE
+			  </isNotEmpty>
+			  <isNotEmpty property="hotelstar">
+			  ORDER BY  V.HOTEL_STAR,V.COMMENDTYPE,SALE_PRICE
+			  </isNotEmpty>
+			   <isNotEmpty property="price">
+			  ORDER BY  SALE_PRICE,V.COMMENDTYPE,V.HOTEL_STAR
+			  </isNotEmpty>
+			  )
+	</select>
+	<select id="qryWebResult" resultMap="queryHotelForWebResult" parameterClass="java.util.HashMap">
+		SELECT h.hotel_id, h.chn_name, h.eng_name, h.biz_zone, h.city, h.hotel_star, h.hotel_type,
+		h.chn_address, h.eng_address, h.chn_hotel_introduce, h.auto_introduce, h.alert_message,
+		(select c.COMMENDTYPE from htl_comm_list c where c.hotel_id = h.HOTEL_ID <![CDATA[
+       		 and rownum < 2 and c.BEGIN_DATE <= #beginDate# 
+       		 ]]> and c.END_DATE>= #beginDate# ) as COMMENDTYPE FROM htl_hotel h WHERE h.hotel_id =
+		#hotelId# and h.HOTEL_SYSTEM_SIGN = '01' </select>
+	<select id="qryWebRoomType" resultMap="queryHotelForWebRoomType"
+		parameterClass="java.util.HashMap"> SELECT DISTINCT p.CHILD_ROOM_TYPE_ID , p.ROOM_TYPE_ID
+		, t.PRICE_TYPE,r.ROOM_NAME,p.CURRENCY FROM HTL_HOTEL h , HTL_PRICE p ,
+		HTL_ROOMTYPE r ,HTL_PRICE_TYPE t WHERE h.hotel_id = p.hotel_id and h.hotel_id = r.hotel_id
+		and r.room_type_id = p.room_type_id 
+		and h.HOTEL_SYSTEM_SIGN = '01'
+		and p.child_room_type_id = t.price_type_id and p.quota_type = '1'<isNotEmpty
+			prepend="AND" property="beginDate">
+			<![CDATA[
+			  	   p.able_sale_date >= #beginDate#
+			  	 ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="endDate">
+			<![CDATA[
+			  	   p.able_sale_date < #endDate#
+			  	 ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelId">
+			<![CDATA[
+			  		h.hotel_id = #hotelId#
+			   ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="minPrice">
+			<![CDATA[
+			        p.sale_price >=#minPrice#
+			     ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="maxPrice">
+			<![CDATA[
+			        p.sale_price <=#maxPrice#
+			     ]]>
+		</isNotEmpty>
+	</select>
+	<select id="qryWebSaleItems" resultMap="queryHotelForWebSaleItems"
+		parameterClass="java.util.HashMap"> SELECT distinct 
+		h.hotel_id,p.ABLE_SALE_DATE,p.SALE_PRICE,p.PRICE_ID,p.quota_type,p.room_type_id,p.SALESROOM_PRICE,
+		p.child_room_type_id,p.room_id,r.bed_type,m.ROOM_STATE, p.inc_breakfast_number,
+                p.inc_breakfast_type,q.able_qty,
+                p.inc_breakfast_price ,
+                
+                (case when exists
+		        	(select room_type_id 
+		        	from htl_internet 		        	
+		        	where room_type_id=r.room_type_id  
+		        		and p.able_sale_date between begin_date and end_date 
+		        		and contract_id is not null)
+		        	then '1' 
+		        	else 
+		        		(case when exists 
+		        		(select room_type_id 
+		        		from htl_roomtype 
+		       			where room_type_id=r.room_type_id
+		       				and room_equipment like '%21%') 
+		       			then '2' 
+		       			else '3' 
+		       			end)
+		        	end) 
+		        	as room_equipment
+                
+                FROM HTL_HOTEL h , 
+		HTL_PRICE p ,HTL_ROOMTYPE r ,HTL_PRICE_TYPE t,HTL_ROOM m,HTL_QUOTA q WHERE h.hotel_id = p.hotel_id and h.hotel_id =
+		r.hotel_id and r.room_type_id = p.room_type_id and p.child_room_type_id = t.price_type_id and  m.hotel_id=h.hotel_id 
+		and p.room_id = m.room_id  and p.room_id = q.room_id and q.quota_type = p.quota_type 
+		<isNotEmpty prepend="AND" property="quotaType">
+			<![CDATA[
+			  	   p.quota_type = #quotaType#
+			  	 ]]>
+		</isNotEmpty>
+		and h.HOTEL_SYSTEM_SIGN = '01'
+		<isNotEmpty prepend="AND" property="beginDate">
+			<![CDATA[
+			  	   p.able_sale_date >= to_date(#beginDate#,'yyyy-MM-dd')
+			  	 ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="endDate">
+			<![CDATA[
+			  	   p.able_sale_date < to_date(#endDate#,'yyyy-MM-dd')
+			  	 ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelId">
+			<![CDATA[
+			  		h.hotel_id = #hotelId#
+			   ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="minPrice">
+			<![CDATA[
+			        p.sale_price >=#minPrice#
+			     ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="maxPrice">
+			<![CDATA[
+			        p.sale_price <=#maxPrice#
+			     ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="childRoomTypeId">
+			<![CDATA[
+			        p.CHILD_ROOM_TYPE_ID =#childRoomTypeId#
+			     ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="payMethod">
+			<![CDATA[
+			        p.PAY_METHOD =#payMethod#
+			     ]]>
+		</isNotEmpty> order by p.ABLE_SALE_DATE </select>
+	<select id="qryHtlSalesPromo" resultMap="queryHotelForWebSaleItems"
+		parameterClass="java.util.HashMap"> select s.sale_promo_cont from HTL_SALES_PROMO s where
+		s.hotel_id = #hotelId# <isNotEmpty prepend="AND" property="qrydate">
+			<![CDATA[
+		 	s.begin_date >= #qrydate#
+		 ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="qrydate">
+			<![CDATA[
+			s.end_date < #qrydate#
+		 ]]>
+		</isNotEmpty>
+	</select>
+
+    <select id="qryQuotaCount" resultClass="int" parameterClass="java.util.HashMap">
+	    <![CDATA[
+           select count(*) into v_count from htl_quota q,htl_price p where q.avail_qty <= 0 and q.quota_type='2' 
+		 ]]>
+		<isNotEmpty prepend="AND" property="beginDate">
+			<![CDATA[
+			q.able_sale_date >= to_date(nvl(#beginDate#,'1900-01-01'),'yyyy-MM-dd')
+		 ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="endDate">
+			<![CDATA[
+			q.able_sale_date < to_date(nvl(#endDate#,'2999-01-01') ,'yyyy-MM-dd') 
+           and (  ( p.pay_method ='pay' and (q.share_type='1' or q.share_type='3') ) or ( p.pay_method ='pre_pay' and (q.share_type='2' or q.share_type='3') ) ) 
+           and q.quota_type = p.quota_type 
+           and q.room_id=p.room_id 
+           and p.Close_flag='K'
+		 ]]>
+		</isNotEmpty>
+        <isNotEmpty prepend="AND" property="hotelId">
+           p.hotel_id = #hotelId# 
+        </isNotEmpty>
+    </select>             
+                    
+	<select id="qryHotelInfoForWeb" resultMap="queryHotelInfoForWeb"
+		parameterClass="java.util.HashMap"> 
+		<![CDATA[
+			SELECT h.hotel_id, h.chn_name, h.chn_address, h.hotel_star, h.chn_hotel_introduce,
+			h.telephone, h.credit_card_info, h.checkin_time, h.checkout_time,
+			(SELECT p.picture_name
+			FROM htl_picture p
+			WHERE p.hotel_id = h.hotel_id
+			AND p.picture_type = '0') AS picture_name,(select c.COMMENDTYPE from htl_comm_list c where c.hotel_id = h.HOTEL_ID and 		
+			  (sysdate between c.begin_date and c.end_date and rownum<2)		
+			) as COMMENDTYPE
+			FROM htl_hotel h
+			WHERE h.hotel_id = #hotelId#
+		 ]]>
+	</select>
+
+
+	<select id="qryWebServiceIntroduction" resultMap="queryHotelForWebServiceIntroduction" 
+		parameterClass="java.lang.Long">
+		SELECT h.MEAL_FIXTRUE , h.CHN_HOTEL_INTRODUCE , h.ROOM_FIXTRUE ,h.FREE_SERVICE
+		FROM HTL_HOTEL h
+		WHERE h.HOTEL_ID = #hotelId#
+		and h.HOTEL_SYSTEM_SIGN = '01'
+	</select>
+	<select id="qryPictureWebServiceIntroduction" resultMap="queryPictureForWebServiceIntroduction"
+	    parameterClass="java.util.HashMap">
+	    SELECT p.PICTURE_TYPE , p.PICTURE_NAME
+	    FROM HTL_PICTURE p
+	    WHERE p.HOTEL_ID = #hotelId#
+	</select>
+	<select id="qrySanDPicture" resultClass="int"
+	    parameterClass="java.lang.Long">
+	    SELECT count(*)
+	    FROM HTL_HOTEL_PICINFO p
+	    WHERE p.HOTELID = #hotelId#
+	</select>
+	
+	<select id="qryHotelFactorageResult" resultMap="queryHotelFactorageResult" 
+		parameterClass="java.util.HashMap">
+		select t.memberid,t.telephone,t.email,t.fax,t.logo,t.title,t.bgcolor,t.color 
+		from htl_hotel_factorage t
+		WHERE t.memberid = #memberId#
+	</select>
+	
+</sqlMap>
+

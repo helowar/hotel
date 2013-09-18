@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    hotel 2.9.2 提示信息表  add by shengwei.zuo  2009-08-06 
+-->
+<hibernate-mapping package="com.mangocity.hagtb2b.persistence" default-lazy="false">
+    <class name="HtlB2bTempComminfo" table="HTL_B2B_TEMP_COMMINFO" dynamic-insert="true" dynamic-update="true">
+        <id name="id" unsaved-value="0" column="ID">
+        	<generator class="sequence">
+				<param name="sequence">SEQ_HTL_B2B_TEMP_COMMINFO</param>
+			</generator>
+        </id>
+        <property name="commisionTempName">
+            <column name="COMMISION_TEMP_NAME">
+                <comment>佣金模板名称</comment>
+            </column>
+        </property>
+        <property name="remark" >
+            <column name="REMARK">
+                <comment>备注</comment>
+            </column>
+        </property>
+        <property name="active" >
+            <column name="ACTIVE">
+                <comment>是否有效</comment>
+            </column>
+        </property>
+        <property name="createId" >
+            <column name="CREATE_ID">
+                <comment>创建人id</comment>
+            </column>
+        </property>
+        <property name="createName" >
+            <column name="CREATE_NAME">
+                <comment>创建人名称</comment>
+            </column>
+        </property>
+        <property name="createTime" >
+            <column name="CREATE_TIME">
+                <comment>创建时间</comment>
+            </column>
+        </property>
+        <property name="modifyId" >
+            <column name="MODIFY_ID" >
+                <comment>修改人id</comment>
+            </column>
+        </property>
+        <property name="modifyName" >
+            <column name="MODIFY_NAME">
+                <comment>修改人名称</comment>
+            </column>
+        </property>
+        <property name="modifyTime" >
+            <column name="MODIFY_TIME">
+                <comment>修改时间</comment>
+            </column>
+        </property>
+    </class>
+    
+</hibernate-mapping>

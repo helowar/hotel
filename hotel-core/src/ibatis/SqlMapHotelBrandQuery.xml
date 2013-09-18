@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="brand">
+
+	<resultMap id="querybrandsResult" class="com.mangocity.hotel.base.persistence.HotelBrandinfo">
+		<result property="brandname" javaType="string" jdbcType="VARCHAR" column="BRANDNAME" nullValue=""/>
+		<result property="brandcode" javaType="string" jdbcType="VARCHAR" column="BRANDCODE" nullValue=""/>
+		<result property="createdate" javaType="Date" jdbcType="TIMESTAMP" column="CREATEDATE" nullValue=""/>
+		<result property="creator" javaType="string" jdbcType="VARCHAR" column="CREATOR" nullValue="" />
+		<result property="remark" javaType="string" jdbcType="VARCHAR" column="remark" nullValue=""/>
+	</resultMap>
+
+	<!-- Select with no parameters using the result map for brand class. -->
+	<select id="selectHotelBrandfoAll" parameterClass="java.util.HashMap" resultMap="querybrandsResult">
+		
+		select tb.brandname,
+			tb.brandcode,
+			tb.createdate,
+			tb.creator,
+			tb.remark
+		from t_htl_hotel_brand tb
+
+		order by tb.id desc
+	</select>
+	
+	<select id="selectHotelBrandByName" parameterClass="java.util.HashMap" resultMap="querybrandsResult">
+		select tb.brandname,
+			tb.brandcode,
+			tb.createdate,
+			tb.creator,
+			tb.remark
+		from t_htl_hotel_brand tb
+		
+		where 1=1
+			<isNotEmpty prepend="and" property="brandname">
+				tb.brandname like '%$brandname$%'
+			</isNotEmpty>
+		order by tb.id desc
+	</select>
+</sqlMap>

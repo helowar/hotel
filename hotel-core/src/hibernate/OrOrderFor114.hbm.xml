@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="OrOrderFor114" table="OR_ORDER_FOR_114" lazy="true" dynamic-insert="true" dynamic-update="true">        
+		<id name="ID" column="orderId" />
+         <property name="orderCD" />
+         <property name="hotelName" />
+         <property name="roomQuantity" />
+         <property name="checkinDate" />
+         <property name="checkoutDate" />
+         <property name="createDate" />                                       
+         <property name="sumRmb" />                                                              
+         <property name="linkMan" />                                                                              
+         <property name="mobile" />                                                                      
+         <property name="fellowNames" />                                                                                                       
+         <property name="memberState" />
+         <property name="hotelStar" />
+         <property name="city" />         
+         <property name="validTime"/>					         
+         <property name="flag"/>   
+         <property name="sendTime"/>	         
+         <property name="errorCode"/>   
+         <property name="errorDesc"/>        
+   </class>		
+   
+</hibernate-mapping>

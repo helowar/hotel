@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<!-- 发布正式环境用 -->
+	<!-- 只读库配置  -->
+    <bean id="dataSourceHtlRead" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>jdbc/htlRead</value>
+        </property>
+    </bean>     
+   
+
+	<!-- 在线库库配置 仅在只读库故障的时候切换使用 
+    <bean id="dataSourceHtlRead" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndiname}</value>
+        </property>
+    </bean>     
+	-->	
+	<!-- 本地开发环境用  数据源定义,使用Apache DBCP 连接池 url选一个-->
+	<!--   
+	<bean id="dataSourceHtlRead"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />		 
+		 <property name="url" value="jdbc:oracle:thin:@10.10.4.107:1901:HKCTS01" />  
+		<property name="username" value="htl_ii" />
+		<property name="password" value="htl_ii" /> 
+	</bean> 
+ -->
+	<bean id="sessionFactoryRead"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceHtlRead" />
+		<property name="hibernateProperties" ref="hibernateProperties" />
+		<property name="mappingResources">
+			<list>
+				<value>hibernate/HtlPresale.hbm.xml</value>
+				<value>hibernate/HtlPresaleHotel.hbm.xml</value>
+				<value>hibernate/HtlRoomtype.hbm.xml</value>
+				<value>hibernate/HtlMainCommend.hbm.xml</value>
+				<value>hibernate/HtlSalesPromo.hbm.xml</value>
+				<value>hibernate/HtlBreakfast.hbm.xml</value>
+				<value>hibernate/HtlPriceType.hbm.xml</value>
+				<value>hibernate/HtlInternet.hbm.xml</value>
+				<value>hibernate/HtlArea.hbm.xml</value>
+				<value>hibernate/HtlBatchMtnPrice.hbm.xml</value>
+				<!-- add by kun.chen end -->
+				<value>hibernate/HtlHotel.hbm.xml</value>
+				<value>hibernate/HtlBatchSalePrice.hbm.xml</value>
+				<value>hibernate/HtlCtct.hbm.xml</value>
+				<value>hibernate/SellSeason.hbm.xml</value>
+				<value>hibernate/HtlContract.hbm.xml</value>
+				<value>hibernate/HtlBatchCutoffDay.hbm.xml</value>
+				<value>hibernate/HtlQuotabatch.hbm.xml</value>
+				<value>hibernate/HtlCreditAssure.hbm.xml</value>
+				<value>hibernate/HtlAssureItem.hbm.xml</value>
+				<value>hibernate/HtlWelcomePrice.hbm.xml</value>
+				<value>hibernate/HtlAddBedPrice.hbm.xml</value>		
+				<value>hibernate/HtlChargeBreakfast.hbm.xml</value>	
+				<value>hibernate/HtlChildWelcomePrice.hbm.xml</value>	
+				<value>hibernate/HtlChangePriceWarning.hbm.xml</value>	
+												
+				<!-- add by XiaowuMi 2007-06-04 -->
+				<value>hibernate/HtlNameplate.hbm.xml</value>
+				<value>hibernate/HtlHotelGroup.hbm.xml</value>				
+				<value>hibernate/HtlContactInfo.hbm.xml</value>
+				<value>hibernate/HtlChangePrice.hbm.xml</value>
+				<value>hibernate/HtlChangePriceLog.hbm.xml</value>
+				<value>hibernate/HtlTempQuota.hbm.xml</value>
+				<value>hibernate/HtlRoomStatusProcess.hbm.xml</value>
+				<!-- add end by Xiaowumi  -->
+				
+				<value>hibernate/HtlUsesComment.hbm.xml</value>
+				<value>hibernate/HtlExhibit.hbm.xml</value>
+				<value>hibernate/HtlRoom.hbm.xml</value>
+				<value>hibernate/HtlPrice.hbm.xml</value>
+				<value>hibernate/HtlQuota.hbm.xml</value>
+				<value>hibernate/QuotaForCC.hbm.xml</value>
+				<value>hibernate/HtlCutoffDayQuota.hbm.xml</value>
+				<value>hibernate/HtlBatchAssign.hbm.xml</value>
+				<value>hibernate/HtlFreeOperate.hbm.xml</value>
+				<value>hibernate/HtlAddscope.hbm.xml</value>
+			    <value>hibernate/HtlAddscopeHdr.hbm.xml</value>
+				<value>hibernate/HtlAssigncustom.hbm.xml</value>
+				
+				<value>hibernate/HtlRewardinfo.hbm.xml</value>
+				<value>hibernate/HtlTrafficInfo.hbm.xml</value>
+				<value>hibernate/HtlBookSetup.hbm.xml</value>
+                <value>hibernate/HtlHotelScore.hbm.xml</value>
+                <value>hibernate/HtlTaxCharge.hbm.xml</value>
+                <value>hibernate/HtlPicture.hbm.xml</value>																												
+								
+				<value>hibernate/HtlAssureCardItem.hbm.xml</value>
+				<value>hibernate/HtlCreditAssureDate.hbm.xml</value>
+				<value>hibernate/HtlOpenCloseRoom.hbm.xml</value>
+				<value>hibernate/HtlSetPriority.hbm.xml</value>
+				<value>hibernate/HtlExchange.hbm.xml</value>
+				<value>hibernate/HtlRoomstateCcBed.hbm.xml</value>
+				<value>hibernate/HtlRoomstateCc.hbm.xml</value>	
+				<value>hibernate/HtlPriceLOG.hbm.xml</value>				
+				
+				<value>hibernate/HtlHotelExt.hbm.xml</value>	
+				<value>hibernate/HwHotelIndex.hbm.xml</value>
+ 				<value>hibernate/HwClickAmount.hbm.xml</value>
+				<value>hibernate/ExMapping.hbm.xml</value>	
+				<value>hibernate/HtlHdlAddscope.hbm.xml</value>
+				
+				<!-- Begin Add by Shengwei.Zuo 2009-02-04 -->
+				<value>hibernate/HtlPreconcertItemTemplet.hbm.xml</value>
+				<!-- End Add -->
+				
+				<!-- Add by Shengwei.Zuo 2009-02-05 -->
+				<value>hibernate/HtlAssure.hbm.xml</value>
+				<value>hibernate/HtlAssureBatch.hbm.xml</value>
+				<value>hibernate/HtlAssureItemEveryday.hbm.xml</value>
+				<value>hibernate/HtlAssureItemEverydayBatch.hbm.xml</value>
+				<value>hibernate/HtlAssureItemTemplate.hbm.xml</value>	
+				<value>hibernate/HtlAssureTemplate.hbm.xml</value>
+				<value>hibernate/HtlPreconcertItem.hbm.xml</value>
+				<value>hibernate/HtlPreconcertItemBatch.hbm.xml</value>
+				<value>hibernate/HtlPrepayEveryday.hbm.xml</value>	
+				<value>hibernate/HtlPrepayEverydayBatch.hbm.xml</value>
+				<value>hibernate/HtlPrepayItemEveryday.hbm.xml</value>
+				<value>hibernate/HtlPrepayItemEverydayBatch.hbm.xml</value>
+				<value>hibernate/HtlPrepayItemTemplate.hbm.xml</value>
+				<value>hibernate/HtlPrepayTemplate.hbm.xml</value>
+				<value>hibernate/HtlReservation.hbm.xml</value>	
+				<value>hibernate/HtlReservationBatch.hbm.xml</value>
+				<value>hibernate/HtlReservationTemplate.hbm.xml</value>
+				<value>hibernate/HtlReservCont.hbm.xml</value>
+				<value>hibernate/HtlReservContBatch.hbm.xml</value>	
+				<value>hibernate/HtlReservContTemplate.hbm.xml</value>		
+				
+				<!-- v2.6 新增预定条款计算规则 add by shengwei.zuo 2009-02-12 -->
+				<value>hibernate/HtlBookCaulClause.hbm.xml</value>	
+				<!-- 酒店V2.6操作日志明细 add by haibo.li 2009-5-2 -->
+				<value>hibernate/HtlModifRecord.hbm.xml</value>				
+					
+				<value>hibernate/HtlCtlDsply.hbm.xml</value>
+				<!-- ebooking酒店设置 add by haibo.li -->
+				<value>hibernate/HtlEbooking.hbm.xml</value>	
+					
+				<value>hibernate/HtlIncreasePrice.hbm.xml</value>																						
+																
+				<!-- 电子地图 2009-04-13 BEGIN-->																					
+				<value>hibernate/GisBaseInfo.hbm.xml</value>	
+				<value>hibernate/HotelsTemp.hbm.xml</value>	
+				<!-- 电子地图 END-->
+			        <!--地理位置/名胜-->
+				<value>hibernate/HtlGeographicalposition.hbm.xml</value>	
+				
+				<!-- Ebooking实体映射 add by shengwei.zuo hotel2.9  2009-07-03 BEGIN-->													
+				<value>hibernate/HtlEbookingOperationlog.hbm.xml</value>
+				<value>hibernate/HtlEbookingPriceRedressal.hbm.xml</value>	
+				<value>hibernate/HtlEbookingFunctionMaster.hbm.xml</value>		
+				<!-- Ebooking实体映射 add by shengwei.zuo hotel2.9  2009-07-03 END-->		
+				<!-- ebooking留言板实体 add by chenjuesu -->
+				<value>hibernate/LeavewordAnnalBean.hbm.xml</value>
+				<value>hibernate/HtlEbookingPersonFunction.hbm.xml</value>
+				<value>hibernate/HtlEbookingPersonnelInfo.hbm.xml</value>
+				<!-- 权限管理 add by juesu.chen hotel2.9  2009-07-03 BEGIN-->
+				<value>hibernate/RightManageBean.hbm.xml</value>						
+				<!-- 权限管理 add by juesu.chen hotel2.9  2009-07-03 end-->
+				
+				<!-- v2.9.2 新增预定条款计算规则修改字段定义字段 add by chenjiajie 2009-08-06 begin -->
+				<value>hibernate/HtlBookModifyField.hbm.xml</value>
+				<!-- v2.9.2 新增预定条款计算规则修改字段定义字段 add by chenjiajie 2009-08-06 end -->
+				
+				<!-- v2.9.2 提示信息-->
+				<value>hibernate/HtlAlerttypeInfo.hbm.xml</value>
+				<value>hibernate/HtlAlerttypeInfoLog.hbm.xml</value>	
+				
+				<!-- v2.9.3 配额改造-->
+				<value>hibernate/HtlQuotaCutoffDayNew.hbm.xml</value>																					
+				<value>hibernate/HtlQuotaJudge.hbm.xml</value>
+				<value>hibernate/HtlQuotaJudgeException.hbm.xml</value>
+				<value>hibernate/HtlQuotaLog.hbm.xml</value>
+				<value>hibernate/HtlQuotaNew.hbm.xml</value>
+				
+				<!-- v2.9.3 连住优惠-->
+				<value>hibernate/HtlEveningsRent.hbm.xml</value>
+				<value>hibernate/HtlFavourableclause.hbm.xml</value>
+				<value>hibernate/HtlFavouraParameter.hbm.xml</value>
+				<value>hibernate/HtlPublicOperationlog.hbm.xml</value>										
+
+				<!-- v2.9.3 优惠立减 add by chenjiajie 2009-10-16 -->
+				<value>hibernate/HtlFavourableDecrease.hbm.xml</value>
+				<value>hibernate/HtlPopedomControl.hbm.xml</value>				
+					
+				<value>hibernate/HtlEbookingRoomstate.hbm.xml</value>
+				<!-- v2.9.3 新房控 add by chenjiajie 2009-10-16 -->	
+				<value>hibernate/HtlRoomControlWorkSchedule.hbm.xml</value>
+				<value>hibernate/HtlRoomcontrolHotelSchedule.hbm.xml</value>	
+				<value>hibernate/HtlRoomcontrolOperationLogs.hbm.xml</value>
+				<value>hibernate/HtlRoomcontrolWorkstation.hbm.xml</value>
+				<value>hibernate/HtlRoomcontrolSorting.hbm.xml</value>
+				<value>hibernate/HtlRoomcontrolOptsublogs.hbm.xml</value>					
+				 
+				<!-- v2.9.3 现金返还 add by xiaojun.xiong 2010-9-13 -->
+				<value>hibernate/HtlFavourableReturn.hbm.xml</value> 
+				<value>hibernate/FITOrderCash.hbm.xml</value>
+				<value>hibernate/FITCashItem.hbm.xml</value>
+				<value>hibernate/HtlFITAlias.hbm.xml</value> 
+				<value>hibernate/HtlGeoDistance.hbm.xml</value> 	
+			</list>		
+		</property>
+	</bean>
+	
+	<!-- 酒店新图片库 -->
+	<bean id="hotelPictureInfoDao" class="com.mangocity.hotel.search.dao.impl.HotelPictureInfoDaoImpl"/>
+	
+   <!-- 新增BDB配置 --> 	
+     <bean id ="clusterConfigDAO" class="com.mangocity.hotel.search.dao.impl.ClusterConfigDAOImpl" > 
+     	<property name="sessionFactory" ref="sessionFactory"></property>
+     </bean> 
+       
+        <bean id="luceneTopicListener" class="com.mangocity.hotel.search.mq.LuceneTopicListener"></bean>
+     
+     <bean id="indexFactory" class="com.mangocity.hotel.search.searchengine.service.impl.DefaultIndexFactory">
+     </bean>  
+       
+    
+     <bean id ="indexWriterService" class="com.mangocity.hotel.search.searchengine.service.impl.IndexWriterServiceImpl" >
+    </bean> 
+    
+	<bean id ="indexSearcherService" class="com.mangocity.hotel.search.searchengine.service.impl.IndexSearcherServiceImpl" >
+    </bean>
+    
+	<bean id ="hotelSearcher" class="com.mangocity.hotel.search.service.impl.HotelSearcherImpl">
+		<property name="indexSearcherService" ref="indexSearcherService"></property>
+    </bean>
+	
+    <bean id ="hotelInfoIndexer" class="com.mangocity.hotel.search.index.impl.HotelInfoIndexerImpl">
+		<property name="hotelInfoDAO" ref="hotelInfoDAO"></property>
+		<property name="geograpPositionDAO" ref="geograpPositionDAO"></property>
+		<property name="indexWriterService" ref="indexWriterService"></property>
+    </bean>
+       <!--  
+     <bean id ="repEnvInfoFactory" class="com.mangocity.hotel.search.searchengine.service.impl.DefaultRepEnvInfoFactory" >
+		<property name="clusterConfigDAO" ref="clusterConfigDAO"></property>
+    </bean>
+    
+     <bean id ="indexWriterService" class="com.mangocity.hotel.search.searchengine.service.impl.IndexWriterServiceImpl" >
+		<property name="repEnvInfoFactory" ref="repEnvInfoFactory"></property>
+		<property name="observer" ref="indexSearcherService"></property>
+    </bean> 
+    
+	<bean id ="indexSearcherService" class="com.mangocity.hotel.search.searchengine.service.impl.IndexSearcherServiceImpl" >
+		<property name="repEnvInfoFactory" ref="repEnvInfoFactory"></property>
+    </bean>
+    
+     <bean id="indexBuilderService" class="com.mangocity.hotel.search.searchengine.service.impl.IndexBuilderServiceImpl" >
+		<property name="indexWriterService" ref="indexWriterService"></property>
+	</bean>  
+	
+	<bean id="indexBuilderServiceForUpdate"  class="com.mangocity.hotel.search.searchengine.service.impl.IndexBuilderServiceImpl" >
+		<property name="indexWriterService" ref="indexWriterService"></property>
+	</bean>
+
+	<bean id ="hotelSearcher" class="com.mangocity.hotel.search.service.impl.HotelSearcherImpl">
+		<property name="indexSearcherService" ref="indexSearcherService"></property>
+    </bean>
+    -->
+
+	<bean id ="hotelInfoDAO" class="com.mangocity.hotel.search.dao.impl.HotelInfoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+	
+	<!--  
+    <bean id ="hotelInfoIndexer" class="com.mangocity.hotel.search.index.impl.HotelInfoIndexerImpl">
+		<property name="hotelInfoDAO" ref="hotelInfoDAO"></property>
+		<property name="indexBuilderService" ref="indexBuilderService"></property>
+		<property name="geograpPositionDAO" ref="geograpPositionDAO"></property>
+    </bean>
+    
+    <bean id ="hotelInfoIndexerForUpdate" class="com.mangocity.hotel.search.index.impl.HotelInfoIndexerImpl">
+		<property name="hotelInfoDAO" ref="hotelInfoDAO"></property>
+		<property name="indexBuilderService" ref="indexBuilderServiceForUpdate"></property>
+    </bean>    
+     -->
+	    <!--  end -->
+	<bean id ="geoDistanceDao" class="com.mangocity.hotel.base.dao.impl.GeoDistanceDaoImpl">		
+    </bean>
+   
+     <bean id ="geoDistanceService" class="com.mangocity.hotel.base.service.impl.GeoDistanceServiceImpl">
+     	<property name="geoDistanceDao" ref="geoDistanceDao"></property>
+		<property name="hotelManage" ref="hotelManage"></property>
+    </bean>
+    
+    <bean id ="geographicalPositionService" class="com.mangocity.hotel.base.service.impl.GeographicalPositionServiceImpl">
+    	<property name="geograpPositionDAO" ref="geograpPositionDAO"></property>
+    </bean>
+    <!-- 商品查询配置 -->
+    <bean id="generalHotelQueryDao" class="com.mangocity.hotel.search.dao.impl.HotelQueryDaoImpl" init-method="init">
+		<property name="sessionFactory" ref="sessionFactoryRead"></property>		
+    </bean>
+    <bean id="queryConditionService" class="com.mangocity.hotel.search.service.impl.QueryConditionServiceImpl">
+    </bean>
+    
+    <bean id="commodityInfoService" class="com.mangocity.hotel.search.service.impl.CommodityInfoServiceImpl">
+		<property name="hotelQueryDao" ref="generalHotelQueryDao"></property>
+		<property name="channelCashBackService" ref="channelCashBackService"></property>
+    </bean>
+    
+    <bean id="combinationService" class="com.mangocity.hotel.search.service.impl.HotelInfoCombinationServiceImpl">
+		<property name="commodityInfoService" ref="commodityInfoService"></property>		
+    </bean>
+    
+    <bean id="hotelSortService" class="com.mangocity.hotel.search.service.impl.HotelSortServiceImpl">
+		<property name="hotelQueryDao" ref="generalHotelQueryDao"></property>
+    </bean>
+    
+     <bean id="basicInfoService" class="com.mangocity.hotel.search.service.impl.HotelBasicInfoSearchServiceImpl">
+		<property name="hotelQueryDao" ref="generalHotelQueryDao"></property>
+    </bean>
+    
+    <bean id="hotelSearchService" class="com.mangocity.hotel.search.service.impl.HotelSearchServiceImpl">
+    	<property name="hotelSearcher" ref="hotelSearcher"></property>
+		<property name="queryConditionService" ref="queryConditionService"></property>
+		<property name="commodityInfoService" ref="commodityInfoService"></property>
+		<property name="combinationService" ref="combinationService"></property>
+		<property name="hotelSortService" ref="hotelSortService"></property>
+		<property name="basicInfoService" ref="basicInfoService"></property>
+		<property name="hotelSearchByPayMethodService" ref="hotelSearchByPayMethodService"></property>
+    </bean>
+    
+    <bean id="htlQueryspeedLogDao" class="com.mangocity.hotel.search.dao.impl.HtlQueryspeedLogDaoImpl"></bean>
+    
+    <bean id="hotelMgisSearchService" class="com.mangocity.hotel.search.service.impl.HotelMgisSearchServiceImpl">
+		<property name="hotelSearcher" ref="hotelSearcher"></property>
+		<property name="geographicalPositionService" ref="geographicalPositionService"></property>
+    </bean>
+    
+	
+	<!-- jms配置 add by chenkeming -->
+	<!-- --> 
+	<import resource="classpath:spring/applicationContext-mq.xml"/>
+	 
+    
+    <!-- lucene基本信息修改监听器 add by chenkeming
+    <bean id="luceneTopicListener" class="com.mangocity.hotel.search.mq.LuceneTopicListener"></bean> -->
+    
+    
+    <bean id="hotelInfoService" class="com.mangocity.hotel.dreamweb.search.serivce.impl.HotelInfoServiceImpl">
+		<property name="hotelSearcher" ref="hotelSearcher"></property>
+		<property name="hotelManage" ref="hotelManage"></property>
+		<property name="hotelManageWeb" ref="hotelManageWeb"></property>
+		<property name="commentStatisticsDao" ref="commentStatisticsDao"></property>
+		<property name="hotelQueryDao" ref="generalHotelQueryDao"></property>
+		<property name="hotelPictureInfoDao" ref="hotelPictureInfoDao"></property>
+    </bean>
+    
+    <bean id="hotelSearchByPayMethodService" class="com.mangocity.hotel.search.service.impl.HotelSearchByPayMethodServiceImpl">		
+		<property name="hotelQueryDao" ref="generalHotelQueryDao"></property>
+    </bean>
+   
+     <bean id="hotelQuotionQueryService" class="com.mangocity.hotel.search.album.service.impl.HotelQuotionQueryServiceImpl">		
+		<property name="hotelInfoDao" ref="hotelInfoDAO"></property>
+		<property name="hotelSearchEJB" ref="hotelSearchEJB"></property>
+		<property name="channelCashBackService" ref="channelCashBackService"></property>
+    </bean>
+    
+
+	<!-- 根据渠道编码查询酒店返现渠道 add by hushunqiang-->
+	<bean id="channelCashBackService" class="com.mangocity.hotel.base.service.impl.ChannelCashBackManagerServiceImpl">
+		<property name="queryDao" ref="queryDao" />
+	</bean>
+	
+	<!-- 查询酒店品牌，配置展示于首页 add by hushunqiang-->
+	<bean id="hotelBrandQueryService" class="com.mangocity.hotel.base.service.impl.HotelBrandQueryServiceImpl">
+		<property name="queryDao" ref="queryDao" />
+	</bean>
+	
+</beans>

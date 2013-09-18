@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="contract">
+
+	<resultMap class="com.mangocity.hotel.base.persistence.HtlRoom"
+		id="roomResult">
+		<result property = "ID" column ="ROOM_ID" />
+		<result property = "roomTypeId" column ="ROOM_TYPE_ID" />
+		<result property = "hotelId" column ="HOTEL_ID" />
+		<result property = "ableSaleDate" column ="ABLE_SALE_DATE" />
+		<result property = "roomState" column ="ROOM_STATE" />
+		<result property = "status" column ="STATUS" />
+	</resultMap>
+
+	<resultMap class="com.mangocity.hotel.base.persistence.HtlQuota"
+		id="quotaResult">
+		<result property = "ID" column="QUOTA_ID" />
+		<result property = "quotaBatchId" column="quota_Batch_Id" />
+		<result property = "quotaType" column="QUOTA_TYPE" />
+		<result property = "ableSaleDate" column="ABLE_SALE_DATE" />
+		<result property = "totalQty" column="total_qty" />
+		<result property = "availQty" column="avail_qty" />
+		<result property = "ableQty" column="ABLE_QTY" />
+		<result property = "freeQty" column="FREE_QTY" />
+		<result property = "usedQty" column="USED_QTY" />
+		<result property = "shareQty" column="SHARE_QTY" />
+		<result property = "privateQty" column="PRIVATE_QTY" />
+	</resultMap>
+
+	<resultMap class="com.mangocity.hotel.base.persistence.HtlCutoffDayQuota" id="cutDayQuotaResult">
+		<result property = "ID" column = "CUTOFF_DAY_ID"/>
+		<result property = "quotaId" column="QUOTA_ID"/>
+		<result property = "cutoffDay" column="CUTOFF_DAY"/>
+		<result property = "cutoffTime" column ="cutoff_time"/>
+		<result property = "quotaQty" column="QUOTA_QTY"/>
+		<result property = "cutoffUsedQty" column="CUTOFF_USED_QTY"/>
+	</resultMap>
+	
+	<resultMap class="com.mangocity.hotel.base.service.assistant.RoomType" id="roomType">
+		<result property = "roomTypeId" column = "ROOM_TYPE_ID"/>
+		<result property = "childRoomTypeId" column="CHILD_ROOM_TYPE_ID"/>
+		<result property = "roomTypeName" column="room_name"/>
+		<result property = "childRoomTypeName" column ="PRICE_TYPE"/>
+		
+		<result property = "recommend" column="comm_level"/>
+				
+	</resultMap>
+	<resultMap class="com.mangocity.hotel.base.service.assistant.SaleItem" id="saleItem">
+		<result property = "quotaType" column = "quota_type"/>
+		<result property = "payMethod" column="pay_method"/>
+	</resultMap>
+	
+	<resultMap class="com.mangocity.hotel.base.service.assistant.RoomInfo" id="roomInfo">
+		<result property = "fellowDate" column = "ABLE_SALE_DATE"/>
+		<result property = "salePrice" column="sale_price"/>
+		<result property = "currency" column="currency"/>
+		<result property = "quotaAmount" column ="avail_qty"/>
+		<result property = "breakfast" column="INC_BREAKFAST_TYPE"/>
+		<result property = "breakNum" column="INC_BREAKFAST_NUMBER"/>
+		<result property = "roomStatus" column="room_state"/>
+		<result property ="salesRoomPrice" column="SALESROOM_PRICE"/>
+		<result property = "quotaBatchId" column ="quota_batch_id"/>
+		<result property = "quotaPattern" column="Quota_pattern"/>
+
+		<result property = "closeFlag" column="close_flag"/>
+		<result property = "reason" column="reason"/>
+
+		<result property = "lastAssureTime" column="LAST_ASSURE_TIME"/>		
+
+	</resultMap>
+	
+	<!-- 返回查询酒店的结果 -->
+	<resultMap class="com.mangocity.hotel.base.service.assistant.HotelInfo" id="queryHotelResult">
+		<result property = "hotelId" column="hotel_id"/>
+		<result property = "hotelChnName" column="chn_name"/>
+		<result property = "hotelEngName" column="eng_name"/>
+		<result property = "hotelStar" column="hotel_star"/>
+		<result property = "hotelType" column="hotel_type"/>
+		<result property = "chnAddress" column="chn_address"/>
+		<result property = "hotelIntroduce" column="chn_hotel_introduce"/>
+		<result property ="clueInfo" column="alert_Message"/>
+		<result property ="bizZone" column="biz_Zone"/>		
+	</resultMap>
+
+	<!-- CC查询酒店返回结果 -->
+	<resultMap class="com.mangocity.hotel.base.service.assistant.HotelInfoWithQuotaPrice" id="queryHotelByCCResult">
+		<result property = "hotelId" column="hotel_id"/>
+		<result property = "hotelCd" column="hotel_cd"/>
+		<result property = "hotelStatus" column="hotel_status"/>		
+		<result property = "hotelChnName" column="chn_name"/>
+		<result property = "hotelEngName" column="eng_name"/>
+		<result property = "zone" column="zone"/>
+		<result property = "bizZone" column="biz_Zone"/>
+		<result property = "city" column="city"/>
+		<result property = "hotelStar" column="hotel_star"/>
+		<result property = "hotelType" column="hotel_type"/>
+		<result property = "chnAddress" column="chn_address"/>
+		<result property = "engAddress" column="eng_address"/>
+		<result property = "hotelIntroduce" column="chn_hotel_introduce"/>
+		<result property = "autoIntroduce" column="auto_introduce"/>
+		<result property ="clueInfo" column="alert_Message"/>
+		<result property ="saleChannel" column="sale_channel"/>
+		
+		<result property ="roomId" column="room_id"/>
+		<result property ="roomTypeId" column="room_type_id"/>
+		<result property ="incBreakfast" column="inc_breakfast"/>
+		<result property ="roomState" column="room_state"/>
+		<result property ="breakfastType" column="breakfast_type" />
+		
+		<result property ="priceId" column="price_id"/>
+		<result property ="salePrice" column="sale_price"/>
+		<result property ="payMethod" column="pay_method"/>
+		<result property ="currency" column="currency"/>
+		
+		<result property ="quotaId" column="quota_Id"/>
+		<result property ="quotaType" column="quota_type"/>
+		<result property ="availQty" column="avail_qty"/>
+		<result property ="ableQty" column="able_qty"/>
+		<result property ="freeQty" column="free_qty"/>
+		<result property ="quotaPattern" column="Quota_pattern"/>
+		<result property ="sharetype" column="share_type"/>
+		
+		<result property ="pricetype" column="price_type"/>
+		<result property ="commlevel" column="comm_level"/>
+		<result property ="roomName" column="room_name"/>
+		<result property ="childRoomTypeId" column="CHILD_ROOM_TYPE_ID"/>
+		<result property = "ableSaleDate" column="ABLE_SALE_DATE" />
+	</resultMap>
+	<!-- 扣呼出配额时的bean -->
+	<resultMap class="com.mangocity.hotel.base.service.assistant.RoomOutSideQuotaPo" id="roomOutSideQuotaPo">
+		<result property = "outSideQuota" column = "OUTSIDE_QTY"/>
+		<result property = "cancelOutSideQuota" column = "CANCEL_OUTSIDE_QTY"/>
+		<result property = "ableQuota" column = "ABLE_QTY"/>
+		
+	</resultMap>
+	<select id="queryRoomTypes"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		select ROOM_TYPE_ID name, ROOM_NAME descr from htl_roomtype 
+		where 1=1  
+		<isEmpty prepend="AND" property="roomTypeId">
+			hotel_id = #hotelID# 
+		</isEmpty>
+		<isNotEmpty prepend="AND" property="roomTypeId">
+			ROOM_TYPE_ID = #roomTypeId#
+		</isNotEmpty>      
+    </select>
+    
+    <!-- add by shizhongwen 2009-04-22 -->
+    <select id="queryRoomTypesReoveHK"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select ROOM_TYPE_ID name, ROOM_NAME descr from htl_roomtype  where (ishkroomtype='0' or ishkroomtype is null)
+        ]]>
+		<isEmpty prepend="AND" property="roomTypeId">
+			hotel_id = #hotelID# 
+		</isEmpty>
+		<isNotEmpty prepend="AND" property="roomTypeId">
+			ROOM_TYPE_ID = #roomTypeId#
+		</isNotEmpty>
+    </select>
+    
+    <select id="queryChildRoomTypes"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		select price_type_id name, price_type descr from htl_price_type
+		where ROOM_TYPE_ID = #roomTypeId#
+    </select>
+    
+	<select id="queryContract"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.hotel_id,a.state, a.city,a.hotel_star,a.chn_name,b.payment_method,a.SELL_STATUS,
+				b.begin_date,b.end_date ,b.contract_id,b.contract_name,a.commendtype,a.cooperate_channel,a.WHETHEREBOOKING
+			from v_htl_hotel a,htl_contract b
+			where a.hotel_id=b.hotel_id(+)
+			and a.HOTEL_SYSTEM_SIGN = '01'
+		
+		]]>
+
+		<isNotEmpty prepend="AND" property="chnName">
+			upper(a.chn_name) like upper('%$chnName$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="engName">
+			upper(a.eng_name) like upper('%$engName$%')
+		</isNotEmpty >
+		
+	   <isNotEmpty prepend="AND" property="hoteltype">
+			a.hotel_type like '$hoteltype$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="star">
+			a.hotel_star in ($star$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="state">
+			a.state = #state#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="city">
+			a.city = #city#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="zone">
+			a.zone = #zone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			a.biz_zone = #hotelbizzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="enddate">
+			<![CDATA[
+			   b.end_date <= to_date(#enddate#, 'YYYY-MM-DD')
+			 ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="contractName">
+			b.contract_name like '%$contractName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcd">
+			a.hotel_cd like '%$hotelcd$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="mainCommend">
+				a.commendtype = #mainCommend#
+		</isNotEmpty>
+		 <!--根据用户所在区域过滤酒店 add by kun.chen 2009-9-28  -->
+	        <isNotEmpty prepend="AND" property="area">
+				a.CITY in ( select c.citycode from htl_area c where c.areacode=#area#)
+			</isNotEmpty>
+			<!-- add end -->
+		<!--根据售卖状态过滤酒店 add by shengwei.zuo 2009-08-05  -->
+	        <isNotEmpty prepend="AND" property="firstSellStatus">
+	        	a.SELL_STATUS = #firstSellStatus#
+			</isNotEmpty>			
+			<!-- add end -->
+
+			<!-- hotel2.9.2 增加直联合作方查询条件 add by chenjiajie 2009-08-19 -->
+			<isNotEmpty prepend="AND" property="hotelCooperator">
+				a.cooperate_channel = #hotelCooperator#
+			</isNotEmpty>	
+			
+			<isNotEmpty prepend="AND" property="userName">
+				a.MODIFY_BY_ID =  #userName#		
+				order by a.MODIFY_TIME desc
+			</isNotEmpty> 
+	</select>
+	
+	<!-- 释放配额页面的酒店查询 -->
+	<select id="queryHotelContract"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.hotel_id,a.state, a.city,a.hotel_star,a.chn_name,b.payment_method,
+				b.begin_date,b.end_date ,b.contract_id,b.contract_name,a.commendtype
+			from v_htl_hotel a,htl_contract b
+			where a.hotel_id=b.hotel_id
+			and a.HOTEL_SYSTEM_SIGN = '01'
+		]]>
+
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(a.chn_name) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(a.eng_name) like upper('%$englishname$%')
+		</isNotEmpty >
+		
+	   <isNotEmpty prepend="AND" property="hoteltype">
+			a.hotel_type like '$hoteltype$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstar">
+			a.hotel_star in ($hotelstar$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstate">
+			a.state = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			a.city = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			a.zone = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="enddate">
+			<![CDATA[
+			   b.end_date <= to_date(#enddate#, 'YYYY-MM-DD')
+			 ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="contractName">
+			b.contract_name like '%$contractName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="mainCommend">
+				a.commendtype = #mainCommend#
+		</isNotEmpty>
+	</select>
+
+	<select id="findRoomByBizKey" resultMap="roomResult"
+		parameterClass="map">
+		select * from htl_room where room_Type_Id= #roomTypeId# and
+		hotel_Id = #hotelId# and able_Sale_Date =
+		to_date(#ableSaleDate#,'YYYY-MM-DD')
+	</select>
+
+
+	<select id="findQuotaByBizKeyIbatis" resultMap="quotaResult"
+		parameterClass="map">
+		select * from htl_quota where htl_quota.able_sale_date =
+		to_date(#ableSaleDate#,'YYYY-MM-DD') and htl_quota.quota_type =
+		#quotaType# and htl_quota.hotel_id = #hotelId# and
+		htl_quota.contract_id = #contractId# and htl_quota.share_type =#shareType#
+		<![CDATA[
+		     	and rownum <=1
+		     ]]>
+	</select>
+
+	
+	<select id="findAllCutoffDayQuotaByQuotaId" resultMap="cutDayQuotaResult" parameterClass="java.lang.Long">
+		select * from htl_cutoff_day_quota where quota_id = #quotaId#
+	</select>
+	
+	
+	<select id="queryHotelByCCWithPrice" resultMap="queryHotelByCCResult" 
+		parameterClass="com.mangocity.util.collections.FormatMap">
+		select h.hotel_id,h.hotel_cd,h.hotel_status,h.chn_name,h.eng_name,h.city,
+		     h.biz_zone,h.zone,h.hotel_star,h.hotel_type,h.chn_address,h.eng_address,
+		     h.auto_introduce,h.chn_hotel_introduce,h.alert_message,h.sale_channel,
+		     r.room_id,r.room_type_id,r.inc_breakfast,r.breakfast_type,r.room_state,
+		     p.price_id,p.sale_price,p.pay_method,p.currency,
+		     q.quota_id,q.quota_type,q.avail_qty,q.able_qty,q.free_qty,q.Quota_pattern,q.share_type,
+		     t.price_type,y.comm_level,y.room_name
+		from htl_room  r ,htl_price p,htl_quota q,
+		    htl_Hotel h,htl_price_type t,
+		    htl_roomtype y
+		where 
+		   
+		    r.able_sale_date >= #beginDate#
+			
+			  <isNotEmpty prepend="AND" property="endDate">
+			    <![CDATA[
+			  	   p.able_sale_date < #endDate#
+			  	 ]]>
+			  </isNotEmpty>
+		   and r.room_id=p.room_id 
+		   and r.room_id= q.room_id
+		   and q.quota_type=p.quota_type 
+		   and ((p.pay_method ='pay' and (q.share_type='1' or q.share_type='3')) or (p.pay_method ='pre_pay' and (q.share_type='2' or q.share_type='3')))   
+		   and h.hotel_id= r.hotel_id
+		   and p.child_room_type_id=t.price_type_id and p.room_type_id=t.room_type_id
+		   and r.room_type_id=y.room_type_id
+		   and r.hotel_id = #hotelId# 
+			<dynamic >
+				<isNotEmpty prepend="AND" property="room_name">
+			  		y.room_name like #roomType#
+			  	</isNotEmpty>
+			</dynamic>	
+	</select>
+	<!-- cc酒店查询，查询子房型集合 -->
+	<select id="queryHotelByCCRoomChild" resultMap="roomType" 
+		parameterClass="java.util.HashMap">
+		select distinct p.CHILD_ROOM_TYPE_ID,  
+		    r.comm_level,p.ROOM_TYPE_ID,
+			r.room_name,t.PRICE_TYPE 
+		  	
+		from htl_price p,
+		    htl_price_type t,
+		    htl_roomtype r
+		where 
+		  
+		    p.able_sale_date >= #beginDate#
+			
+			  <isNotEmpty prepend="AND" property="endDate">
+			    <![CDATA[
+			  	   p.able_sale_date < #endDate#
+			  	 ]]>
+			  </isNotEmpty>
+		   and p.child_room_type_id=t.price_type_id 
+		   and p.ROOM_TYPE_ID = r.room_type_id
+		   and p.hotel_id = #hotelId# 
+			<dynamic >
+				<isNotEmpty prepend="AND" property="roomType">
+			  		r.room_name like '%$roomType$%' 
+			  	</isNotEmpty>
+			</dynamic>
+			order by r.room_name desc
+	</select>
+	
+	<!-- cc酒店查询，查询saleitem集合 -->
+	<select id="queryHotelByCCSaleItem" resultMap="saleItem" 
+		parameterClass="java.util.HashMap">
+		select distinct p.quota_type,p.PAY_METHOD
+		  
+		from htl_price p
+		   
+		where 
+		   
+		    p.able_sale_date >= #beginDate#
+			
+			  <isNotEmpty prepend="AND" property="endDate">
+			    <![CDATA[
+			  	   p.able_sale_date < #endDate#
+			  	 ]]>
+			  </isNotEmpty>
+		   and p.CHILD_ROOM_TYPE_ID=#childRoomTypeId#
+		   and p.hotel_id = #hotelId# 
+	</select>
+	
+	<!-- cc酒店查询，查询roomInfo集合 -->
+	<select id="queryHotelByCCRoomInfo" resultMap="roomInfo" 
+		parameterClass="java.util.HashMap">
+		select sum(q.avail_qty) as avail_qty,p.ABLE_SALE_DATE,p.SALE_PRICE,p.CURRENCY,p.INC_BREAKFAST_TYPE,p.INC_BREAKFAST_NUMBER,
+
+		r.ROOM_STATE,p.quota_batch_id,q.Quota_pattern,p.SALESROOM_PRICE,p.close_flag,p.reason,r.LAST_ASSURE_TIME 
+
+ 		
+ 		FROM htl_room r,
+                htl_price p,
+                htl_quota q
+		where  
+			   p.able_sale_date >= #beginDate#
+			
+			  <isNotEmpty prepend="AND" property="endDate">
+			    <![CDATA[
+			  	   p.able_sale_date < #endDate#
+			  	 ]]>
+			  </isNotEmpty>
+ 		   and r.room_id=p.room_id 
+		   and r.room_id= q.room_id
+		   and q.quota_type=p.quota_type
+		   and p.HOTEL_ID=#hotelId#
+		   and p.CHILD_ROOM_TYPE_ID=#childRoomTypeId#
+		   
+		   and  q.quota_type = #quotaType#
+		   <isNotEmpty prepend="AND" property="payMethodPay">
+		   		(p.pay_method =#payMethodPay# and (q.share_type='1' or q.share_type='3')) 
+		   </isNotEmpty>
+		   <isNotEmpty prepend="AND" property="payMethodPre">
+		   		(p.pay_method =#payMethodPre# and (q.share_type='2' or q.share_type='3'))
+		   </isNotEmpty>
+		   GROUP BY p.able_sale_date, p.sale_price, p.currency,
+       p.inc_breakfast_type, p.inc_breakfast_number, r.room_state,
+
+       p.quota_batch_id, q.quota_pattern,p.SALESROOM_PRICE,p.close_flag,p.reason,r.LAST_ASSURE_TIME     
+
+       order by p.able_sale_date
+	</select>
+	<!-- and v.sale_channel like #saleChannel#-->
+	<select id="qryHotelIdByCC"		
+	    parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		select * from (
+		   <![CDATA[
+			select  v.hotel_id, v.commendtype, v.hotel_star, MIN (v.sale_price)as sale_price from v_hotel_quota_price v
+			where v.city=#cityId# 
+						]]>
+			  <isNotEmpty prepend="AND" property="chnAddress">
+			  	 v.chn_address like '%$chnAddress$%'
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="hotelStar">
+			  	 v.hotel_star in ($hotelStar$)
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="hotelChnName">
+			  	 v.chn_name like '%$hotelChnName$%'
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="hotelEngName">
+			  	 v.eng_name like '%$hotelEngName$%'
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="hotelCode">
+			  	 v.hotel_cd like '%$hotelCode$%'
+			  </isNotEmpty> 
+			  <isNotEmpty prepend="AND" property="hotelType">
+			  	 v.hotel_type like '%$hotelType$%'
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="beginDate">
+			    <![CDATA[
+			  	  v.able_sale_date >= #beginDate#
+			  	 ]]>
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="endDate">
+			    <![CDATA[
+			  	   v.able_sale_date < #endDate#
+			  	 ]]>
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="roomType">
+			  	   v.room_name like '%$roomType$%' 
+			  </isNotEmpty>	
+			  
+			  <isNotEmpty prepend="AND" property="saleChannel">
+			  	   v.sale_Channel like '%$saleChannel$%' 
+			  </isNotEmpty>			  
+			  <isNotEmpty prepend="AND" property="hasfree">
+			  	   v.has_free =#hasfree# 
+			  </isNotEmpty>	
+			  
+			  	  
+			 
+			  <isNotEmpty prepend="AND" property="minPrice">
+			     <![CDATA[
+			        v.sale_price >=#minPrice#
+			     ]]>
+			  </isNotEmpty>
+			  <isNotEmpty prepend="AND" property="maxPrice">
+			     <![CDATA[
+			        v.sale_price <=#maxPrice#
+			     ]]>
+			  </isNotEmpty>
+			  GROUP BY V.HOTEL_ID, V.COMMENDTYPE, V.HOTEL_STAR
+			  <isNotEmpty property="commendtype">
+			  ORDER BY V.COMMENDTYPE, V.HOTEL_STAR,SALE_PRICE
+			  </isNotEmpty>
+			  <isNotEmpty property="hotelstar">
+			  ORDER BY  V.HOTEL_STAR,V.COMMENDTYPE,SALE_PRICE
+			  </isNotEmpty>
+			   <isNotEmpty property="price">
+			  ORDER BY  SALE_PRICE,V.COMMENDTYPE,V.HOTEL_STAR
+			  </isNotEmpty>
+			  )
+	</select>
+	
+	<select id="queryHotelByCCWithoutPrice" resultMap="queryHotelResult" 
+		parameterClass="com.mangocity.util.collections.FormatMap">
+		  select  a.hotel_id,a.chn_name,a.eng_name,a.hotel_star,a.hotel_type,
+			  a.chn_address,a.eng_address,a.chn_hotel_introduce
+ 		  from htl_hotel a 
+			<dynamic prepend="WHERE">
+				<isNotEmpty prepend="AND" property="cityId">
+			  		a.city = #cityId#
+			  	</isNotEmpty>
+			  	<isNotEmpty prepend="AND" property="bizZone">
+			  		a.biz_zone = #bizZone#
+			  	</isNotEmpty>
+			  	<isNotEmpty prepend="AND" property="chnAddress">
+			  		a.chn_address like #chnAddress#
+			  	</isNotEmpty>
+			  	<isNotEmpty prepend="AND" property="hotelChnName">
+			  		a.chn_name like #hotelChnName#
+			  	</isNotEmpty>					
+				<isNotEmpty prepend="AND" property="hotelEngName">
+			  		a.eng_name like #hotelEngName#
+			  	</isNotEmpty>
+			  	<isNotEmpty prepend="AND" property="hotelCode">
+			  		a.hotel_cd = #hotelCode#
+			  	</isNotEmpty>
+			</dynamic>
+	</select>	
+	
+
+	<select id="queryBenefitQuotaBatch"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select d.contract_id,b.contract_code,d.hotel_id,d.quota_batch_id,d.quota_type,d.begin_date,d.end_date,
+		  b.contract_name,d.room_type,d.share_type
+		  from htl_quotabatch d ,htl_contract b
+		where d.hotel_id = #hotelId#
+		
+		  and d.contract_id=b.contract_id 
+	</select>
+	<!-- pengfeng add begin 扣退呼出配额时用 -->
+	<select id="qryRoomOutSideQuotaPo" resultMap="roomOutSideQuotaPo" 
+		parameterClass="java.util.HashMap">
+		SELECT r.room_id, r.outside_qty, r.cancel_outside_qty, SUM (q.able_qty) as able_qty
+  		FROM htl_room r, htl_quota q
+ 		WHERE r.room_id = q.room_id 
+ 		<isNotEmpty prepend="AND" property="roomId">
+ 		r.ROOM_ID=#roomId#
+ 		</isNotEmpty>
+ 		group by r.room_id, r.outside_qty, r.cancel_outside_qty
+	</select>
+	<select id="qryOutSideQuota" resultClass="int" 
+		parameterClass="java.util.HashMap">
+		SELECT count(r.outside_qty)
+  		FROM htl_room r
+ 		WHERE 
+ 		 
+ 			r.ROOM_TYPE_ID = #roomTypeId#
+ 			and r.ABLE_SALE_DATE = #date#
+ 		
+	</select>
+	<update id="updateHtlRoomForCC" parameterClass="java.util.HashMap">
+		update htl_room r
+		set r.outside_qty = #quotaNum#
+		where r.ROOM_TYPE_ID = #roomTypeId# 
+		and
+ 			  r.ABLE_SALE_DATE = #date#
+	</update>
+	<select id="qryCancleOutSideQuota" resultClass="int" 
+		parameterClass="java.util.HashMap">
+		SELECT count(r.cancel_outside_qty)
+  		FROM htl_room r
+ 		WHERE 
+ 		 
+ 			r.ROOM_TYPE_ID = #roomTypeId#
+ 		and
+ 			r.ABLE_SALE_DATE = #date#
+ 		
+	</select>
+	<update id="upCancleQTHtlRoomForCC" parameterClass="java.util.HashMap">
+		update htl_room r
+		set r.cancel_outside_qty = #quotaNum#
+		where r.ROOM_TYPE_ID = #roomTypeId#
+		and
+ 			  r.ABLE_SALE_DATE = #date#
+	</update>
+	<!-- pengfeng add end 扣退呼出配额时用 -->
+
+	<parameterMap class="map" id="htlroomMap">
+		<parameter property="pRoom_type_id" jdbcType="Long"
+			javaType="java.lang.Long" mode="IN" />
+		<parameter property="pHotel_id" jdbcType="Long"
+			javaType="java.lang.Long" mode="IN" />
+		<parameter property="pAble_date" jdbcType="Date"
+			javaType="java.util.Date" mode="IN" />
+		<parameter property="pRoom_state" jdbcType="VARCHAR"
+			javaType="java.lang.String" mode="IN" />
+		<parameter property="pStatus" jdbcType="VARCHAR"
+			javaType="java.lang.String" mode="IN" />
+	</parameterMap>
+
+	<procedure id="saveorupdateRoom" parameterMap="htlroomMap">
+		{call saveorupdateRoom(?,?,?,?,?)}
+	</procedure>
+   <!-- 新增配额批次存储过程调用 add by kun.chen 2007-9-20 -->
+    <parameterMap id="getSomeParams" class="java.util.Map" > 
+	<parameter property="result"       jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/> 
+	<parameter property="piPurchaseBatchId"    jdbcType="INTEGER" javaType="java.lang.Long" mode="IN"/> 
+	
+	</parameterMap>
+	
+	<procedure id="sp_hotel_GenerateEveryDayRoom" parameterMap="getSomeParams"> 
+	{?= call sp_hotel_GenerateEveryDayRoom(?)} 
+	</procedure>
+</sqlMap>

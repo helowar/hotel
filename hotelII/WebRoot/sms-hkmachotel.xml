@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sms sendByProduct="hotel">	
+	<beginDate>2012-08-01</beginDate>	
+	<endDate>2012-09-30</endDate>	
+	<status>1</status>
+	<content>恭喜您获得门票换购券,编码XXXXXXXXXXX,凭此编码可致电4006640066换取XXX门票一张,兑换截止9月30日。</content>	
+	<funtionCode>20035</funtionCode>
+	<funtionRemark>港澳夏日盛会</funtionRemark>
+</sms>

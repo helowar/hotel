@@ -1,0 +1,24 @@
+
+#  "*"代表允许所有的蜘蛛访问网站
+User-agent: *
+
+#  禁止蜘蛛抓取所有的js,css文件
+Disallow: /*.js$
+Disallow: /*.css$
+
+#  禁止蜘蛛访问的页面
+Disallow:/hotel-booking.shtml*
+Disallow:/hotel-check.shtml*
+Disallow:/hotel-complete.shtml
+Disallow:/hotel-onlineComplete.shtml*
+Disallow:/hotel-payonline.shtml*
+Disallow:/hotel-payonlineStatus.shtml*
+Disallow:/mpmFromPay.shtml*
+
+#  禁止蜘蛛异步调用的页面
+Disallow:/hotel-information!computerCount.shtml*
+Disallow:/hotel-orderCancel.shtml*
+Disallow:/hotel-orderDupCheck!checkOrderDuplication.shtml*
+Disallow:/hotel-information!updateBookingLog.shtml*
+Disallow:/hotel-member.shtml*
+

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+   <class name="Payment" table="or_payment"  dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="payId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_payment</param>
+			</generator>
+	</id>     
+
+         <property name="fund" />
+         <property name="fundMoney" />
+         <property name="dealingNo" />
+         <property name="fundType" />
+         <property name="creditcard" />
+         <property name="funderId" />
+         <property name="funderName" />
+         <property name="fundDate" />
+         <property name="refundment" />
+
+		<!-- 和Order关联 -->
+		<many-to-one name="order"
+			class="Order"
+			column="orderId" 
+			cascade="save-update"
+			unique="true"/> 
+   
+   </class>
+
+   
+</hibernate-mapping>

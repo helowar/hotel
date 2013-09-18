@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="Order" table="or_order" lazy="false"   dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="orderId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_order</param>
+			</generator>
+	</id>          
+ 
+         <property name="orderCD" />
+         <property name="originCD" />
+         <property name="hotelId" />
+         <property name="hotelName" />
+         <property name="memberId" />
+         <property name="memberChName" />
+         <property name="memberEnName" />
+         <property name="type" />
+         <property name="source" />
+         <property name="channel" />
+         <property name="orderState" />
+         <property name="suretyState" />
+         <property name="payState" />
+         <property name="auditState" />
+         <property name="roomTypeId" />
+         <property name="roomTypeName" />
+         <property name="roomQuantity" />
+         <property name="factRoomNum" />
+         <property name="checkinDate" />
+         <property name="checkoutDate" />
+         <property name="factCheckout" />
+         <property name="emergencyLevel" />
+         <property name="amount" />
+         <property name="payAmount" />
+         <property name="suretyPrice" />
+         <property name="penalty" />
+         <property name="refund" />
+         <property name="fulfillmentCD" />
+         <property name="prepayType" />
+         <property name="paymentCurrency" />
+         <property name="payMethod" />
+         <property name="prepayLimitDate" />
+         <property name="cancelReason" />
+         <property name="suretyCurrency" />
+         <property name="createDate" />
+         <property name="creator" />
+         <property name="creatorName" />
+         <property name="modifier" />
+         <property name="modifierName" />
+         <property name="modifierRole" />
+         <property name="owner" />
+         <property name="ownerName" />
+         <property name="modifiedTime" />
+         <property name="hotelConfirm" />
+         <property name="customerConfirm" />
+         <property name="hotelConfirmId" />
+         <property name="confirmType" />
+         
+         
+        <!-- 和RoomDetail关联 -->
+    	<bag name="roomItems" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="RoomDetail" />
+		</bag>
+		
+        <!-- 和QuotaDetail关联 -->
+    	<bag name="quotaList" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="QuotaDetail" />
+		</bag>
+		
+		<!-- 和Payment关联 -->
+    	<bag name="paymentList" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="Payment" />
+		</bag>	
+		
+		<!-- 和CreditCard关联 -->
+    	<bag name="creditCardList" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="CreditCard" />
+		</bag>		
+		
+		<!-- 和Audit关联 -->
+    	<bag name="auditList" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="Audit" />
+		</bag>		
+		
+		<!-- 和HandleLog关联 -->
+    	<bag name="logList" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="HandleLog" />
+		</bag>		
+		
+		<!-- 和FellowInfo关联 -->
+    	<bag name="fellowList" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="FellowInfo" />
+		</bag>
+		
+		<!-- 和HtlB2bOrderIncrease关联 -->
+    	<bag name="htlB2bOrderIncrease" cascade="all-delete-orphan"
+			inverse="true" lazy="false">
+			<key column="orderId"></key>
+			<one-to-many class="com.mangocity.hagtb2b.persistence.HtlB2bOrderIncrease" />
+		</bag>					
+		
+		<!-- 和Fulfillment关联 -->
+		<many-to-one name="fulfill"
+			class="Fulfillment"
+			column="fulfillId" 
+			cascade="save-update"
+			unique="true"/>       
+			
+		<!-- 和Remark关联 -->
+		<many-to-one name="remark"
+			class="Remark"
+			column="remarkId" 
+			cascade="save-update"
+			unique="true"/>   		
+			
+		<!-- 和Reservation关联 -->
+		<many-to-one name="reservation"
+			class="Reservation"
+			column="reservationID" 
+			cascade="save-update"
+			unique="true"/>   		
+			
+		<!-- 和Linkman关联 -->
+		<many-to-one name="linkman"
+			class="Linkman"
+			column="linkId" 
+			cascade="save-update"
+			unique="true"/>   					         
+    
+    
+   </class>
+
+	<!-- 查询可供日审的订单 -->   
+	<query name="hQueryOrderForAudit">
+		<![CDATA[ 
+		from Order a 
+		where 
+			a.checkinDate <= ? 
+			and a.checkoutDate > ? 
+			and a.payMethod = 'pay' 
+			and a.orderState = 'order_success' 
+			and a.auditState = 'checkin' 
+		order by
+			a.hotelId
+		]]>
+	</query>
+	
+	<!-- 查询给定memberid和checkindate的订单 -->   
+	<query name="hQuerySimilar_Order">
+		<![CDATA[ 
+		from Order a 
+		where 
+			a.memberId = ?
+			and a.checkinDate = ? 
+			and a.orderState != 'cancel' 
+		order by
+			a.hotelId 
+		]]>
+	</query>	
+   
+</hibernate-mapping>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- 酒店网站v2.2 ibatis SqlMap配置文件 -->
+
+<sqlMap namespace="HotelForWeb">
+
+	<!-- 网站查询酒店返回结果 -->
+
+	<resultMap id="queryHWebHotelInfoForWeb"
+		class="com.mangocity.hweb.persistence.HotelInfoForWebBean">
+		<result property="hotelId" column="hotel_id" />
+		<result property="chnName" column="CHN_NAME" />
+		<result property="hotelStar" column="HOTEL_STAR" />
+		<result property="hotelIntroduce" column="chn_hotel_introduce" />
+		<result property="chnAddress" column="chn_address" />
+		<result property="telephone" column="telephone" />
+		<result property="pictureName" column="picture_name" />
+		<result property="creditCard" column="credit_card_info" />
+		<result property="checkInTime" column="checkin_time" />
+		<result property="checkOutTime" column="checkout_time" />
+		<result property="commendType" column="COMMENDTYPE" />
+		<result property="state" column="state" />
+		<result property="city" column="city" />
+		<result property="zone" column="zone" />
+		<result property="bizZone" column="biz_zone" />
+		<result property="layerCount" column="layer_count" />
+		<result property="freeService" column="FREE_SERVICE" />
+		<result property="roomFixtrue" column="ROOM_FIXTRUE" />
+		<result property="handicappedFixtrue" column="HANDICAPPED_FIXTRUE" />
+		<result property="mealFixtrue" column="MEAL_FIXTRUE" />
+		<result property="longitude" column="LONGITUDE" />
+		<result property="latitude" column="LATITUDE" />
+		<result property="freeServiceRemark" column="FREESERVICEREMARK" />
+		<result property="roomFixtrueRemark" column="ROOMFIXTRUEREMARK" />
+		
+		<!--  酒店网址 TMC-v2.0 add by shengwei.zuo  2010-3-11  -->
+		<result property="website" column="website" />
+		<!--  酒店英文名称 TMC-v2.0 add by shengwei.zuo  2010-3-11  -->
+		<result property="engName" column="ENG_NAME" />
+		
+		<!--  酒店开业日期 TMC-v2.0 add by shengwei.zuo  2010-3-11  -->
+		<result property="praciceDate" column="PRACICE_DATE" />
+		<!--  酒店装修日期 TMC-v2.0 add by shengwei.zuo  2010-3-11  -->
+        <result property="fitmentDate"  column="FITMENT_DATE"/>
+        <!--  酒店装修程度 TMC-v2.0 add by shengwei.zuo  2010-3-11  -->
+        <result property="fitmentDegree" column="FITMENT_DEGREE"/>
+		
+	</resultMap>
+	<resultMap id="queryHWebPictureForWebServiceIntroduction"
+		class="com.mangocity.hweb.persistence.QueryPictureForWebServiceIntroduction">
+		<result property="pictureType" column="PICTURE_TYPE" />
+		<result property="pictureName" column="PICTURE_NAME" />
+	</resultMap>
+	<resultMap id="queryHWebHotelForWebServiceIntroduction"
+		class="com.mangocity.hweb.persistence.QueryHotelForWebServiceIntroduction">
+		<result property="chnHotelIntroduce"
+			column="CHN_HOTEL_INTRODUCE" />
+		<result property="mealFixtrue" column="MEAL_FIXTRUE" />
+		<result property="roomFixtrue" column="ROOM_FIXTRUE" />
+		<result property="freeService" column="FREE_SERVICE" />
+	</resultMap>
+	<resultMap id="queryHWebOftenDeliveryAddress"
+		class="com.mangocity.hweb.persistence.OftenDeliveryAddress">
+		<result property="deliveryAddress" column="deliveryaddress" />
+	</resultMap>
+
+	<select id="qryHWebHotelInfoForWeb"
+		resultMap="queryHWebHotelInfoForWeb"
+		parameterClass="java.util.HashMap">
+		<![CDATA[
+			SELECT h.hotel_id, h.chn_name, h.chn_address, h.hotel_star, h.chn_hotel_introduce,
+			h.telephone, h.credit_card_info, h.checkin_time, h.checkout_time,
+			h.website,
+			h.ENG_NAME,
+			h.PRACICE_DATE,
+			h.FITMENT_DATE,
+			h.FITMENT_DEGREE,
+	        h.state,
+	        h.city,
+	        h.zone,
+	        h.biz_zone,
+	        h.layer_count,
+	        h.MEAL_FIXTRUE, 
+	        h.ROOM_FIXTRUE,
+	        h.HANDICAPPED_FIXTRUE,
+	        h.FREE_SERVICE,
+	        h.longitude,
+	        h.latitude,
+	        (SELECT p.picture_name
+			FROM htl_picture p
+			WHERE p.hotel_id = h.hotel_id
+			AND p.picture_type = '3') AS picture_name,(select c.COMMENDTYPE from htl_comm_list c where c.hotel_id = h.HOTEL_ID and 		
+			  (sysdate between c.begin_date and c.end_date and rownum<2)		
+			) as COMMENDTYPE,
+			(SELECT free_service_remark from htl_hotel_ext where hotel_id=h.hotel_id) as FREESERVICEREMARK,
+			(SELECT room_fixtrue_remark from htl_hotel_ext where hotel_id=h.hotel_id) as ROOMFIXTRUEREMARK
+			FROM htl_hotel h
+			WHERE h.hotel_id = #hotelId#
+		 ]]>
+	</select>
+	<select id="qryHWebPictureWebServiceIntroduction"
+		resultMap="queryHWebPictureForWebServiceIntroduction"
+		parameterClass="java.util.HashMap">
+		SELECT p.PICTURE_TYPE , p.PICTURE_NAME FROM HTL_PICTURE p WHERE
+		p.HOTEL_ID = #hotelId#
+	</select>
+	<select id="qryHWebWebServiceIntroduction"
+		resultMap="queryHWebHotelForWebServiceIntroduction"
+		parameterClass="java.lang.Long">
+		SELECT h.MEAL_FIXTRUE , h.CHN_HOTEL_INTRODUCE , h.ROOM_FIXTRUE,h.HANDICAPPED_FIXTRUE,
+		,h.FREE_SERVICE FROM HTL_HOTEL h WHERE h.HOTEL_ID = #hotelId#
+		and h.HOTEL_SYSTEM_SIGN = '01'
+	</select>
+	<select id="queryOftenDeliveryAddress"
+		resultMap="queryHWebOftenDeliveryAddress"
+		parameterClass="java.lang.Long">
+			select distinct f.deliveryaddress
+  			  from or_fulfillment f
+			  where f.fulfilltasktype=3 and f.fulfillid in (select distinct od.fulfillid
+                         from or_order od
+                        where od.memberid = #memberID#)
+	</select>
+
+</sqlMap>
+

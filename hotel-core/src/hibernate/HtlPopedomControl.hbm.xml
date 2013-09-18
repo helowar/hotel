@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlPopedomControl" table="htl_popedom_control" dynamic-insert="true" dynamic-update="true" lazy="false">
+		
+		<id name="ID" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_POPEDOM_CONTROL</param>
+			</generator>
+		</id>
+		<property name="logName" column="LOG_NAME" />
+		<property name="chnName" column="CHN_NAME" />
+		<property name="createTime" column="CREATE_TIME" />
+		<property name="modifyTime" column="MODIFY_TIME" />
+		<property name="controlType" column="CONTROL_TYPE" />
+		
+	</class>
+
+
+</hibernate-mapping>

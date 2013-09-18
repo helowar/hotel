@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+   <class name="QuotaDetail" table="or_quota_detail"   dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="quotaDetailId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_quota_detail</param>
+			</generator>
+	</id>        
+
+         <property name="productId" />
+         <property name="quotaId" />
+         <property name="quotaType" />
+         <property name="quantity" />
+         <property name="batchId" />
+         <property name="cutoff" />
+
+    
+		<!-- 和Order关联 -->
+		<many-to-one name="order"
+			class="Order"
+			column="orderId" 
+			cascade="save-update"
+			unique="true"/>    
+  
+   </class>
+   
+</hibernate-mapping>

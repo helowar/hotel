@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="HOrder" table="h_order" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="hisID" column="hisID">
+			<generator class="sequence">
+				<param name="sequence">seq_h_order</param>
+			</generator>
+	</id>          
+		<!-- HOrder新建 -->
+         <property name="hisCreator" />
+         <property name="hisCreateDate" />
+         <property name="hisNo" />
+         <property name="resumeNo" />
+         <property name="hisValid" />
+         <property name="hisHotelConfirm" />
+         <property name="hisCanResume" />                  
+                            
+		<!-- OrOrder原有 -->			
+         <property name="orderId" />		
+         <property name="orderCD" />
+         <property name="orderCDHotel" />         
+         <property name="originCD" />
+         <property name="hotelId" />
+         <property name="hotelName" />
+         <property name="memberId" />
+         <property name="memberName" />
+         <property name="type" />
+         <property name="source" />
+         <property name="channel" />
+         <property name="orderState" />
+         <property name="suretyState" />
+         <property name="auditState" />
+         <property name="roomTypeId" />
+         <property name="roomTypeName" />
+         <property name="roomQuantity" />
+         <property name="checkinDate" />
+         <property name="checkoutDate" />
+         <property name="emergencyLevel" />
+         <property name="suretyPrice" />
+         <property name="refund" />
+         <property name="fulfillmentCD" />
+         <property name="paymentCurrency" />
+         <property name="payMethod" />
+         <property name="prepayLimitDate" />
+         <property name="createDate" />
+         <property name="creator" />
+         <property name="creatorName" />
+         <property name="modifier" />
+         <property name="modifierName" />
+         <property name="assignTo" />
+         <property name="assignToName" />
+         <property name="modifiedTime" />
+         <property name="hotelConfirm" />
+         <property name="customerConfirm" />
+         <property name="confirmType" />
+         <property name="childRoomTypeId" />
+         <property name="sum" />         
+         <property name="illusive" />                  
+         <property name="taskId" />         
+         <property name="cancelReason" />  
+         <property name="cancelMessage" />
+         <property name="guestCancelMessage" />         
+         <property name="vipLevel" />
+         <property name="agentCode" />              
+         <property name="isManualOrder" />                       
+         <property name="hraOrderType" />                                
+         <property name="rateId" />                                         
+         <property name="sumRmb" />                                                  
+         <property name="linkMan" />                                                                    
+         <property name="title" />                                                                             
+         <property name="mobile" />                                                                                      
+         <property name="telephone" />                                                                                               
+         <property name="customerFax" />                                                                                                        
+         <property name="email" />                                                                                                                 
+         <property name="arrivalTraffic" />                                                                                                                                   
+         <property name="flight" />                                         
+         <property name="arrivalTime" />                                                           
+         <property name="latestArrivalTime" />                                                                    
+         <property name="fellowNames" />                                                                             
+         <property name="sendedHotelFax" />                                                                                      
+         <property name="quotaOk" />                                                                                               
+         <property name="memberState" />                                                                                                        
+         <property name="sequence114" />                                                                                                                 
+         <property name="frontCancel" />                                                   
+         <property name="isCreditAssured" />                                                                                               
+         <property name="creditCardIdsSelect" />                                                                                                        
+         <property name="payToPrepay" />                                                                                               
+         <property name="prepayTotalRmb" />                                                                                                        
+         <property name="needRefund" />                                                                                                                 
+         <property name="refundMessage" />                                                   
+         <property name="hasRefund" />                                                                                               
+         <property name="refundLimitTime" />                                                                                                        
+         <property name="payToHotel" />                                                            
+         <property name="hasPrepayed" />    
+         <property name="hotelConfirmTel" />              
+         <property name="hotelConfirmFax" />
+         <property name="hotelConfirmFaxReturn" />
+         <property name="sendedMemberFax" />
+         <property name="specialRequest" />
+         <property name="inNextTeam" />
+         <property name="memberCd" />
+         <property name="noshowReason" />
+         <property name="specialNote" />
+         <property name="isStayInMid" />         
+         <property name="bedType" />           
+         <property name="childRoomTypeName" />                 
+         <property name="hotelStar" />                     
+         <property name="city" />
+         <property name="toMidTime" />
+         <property name="showBasePrice" />      
+         <property name="quotaCanReturn" />  
+         <property name="quotaTypeOld" />          
+         <property name="modifiedFrontTime" />  
+         <property name="modifiedMidTime" />
+         <property name="guestPrepayLimitDate" />
+         <property name="refundNote"/>
+         <property name="agentid"/>
+         <property name="appendMobile"/>                                       
+         <property name="instantConfirm"/>                         
+         <property name="validTime"/>
+         <property name="completeTime"/>       
+         <!-- add by chenkeming@2008.12.04 v2.4.1 新增noshow原因代码 -->
+         <property name="noshowCode" />  
+         <!-- add by chenjiajie@2008.12.26 v2.4.2 新增中台订单转房控疑难的时间 -->         
+         <property name="difficultyTime"/>
+		<property name="orderCdForChannel"/>
+		
+        <!-- 和HOrderItem关联 -->
+    	<bag name="orderItemsH" cascade="all-delete-orphan"
+			inverse="true" lazy="true" order-by="hisID">
+			<key column="hOrderId"></key>
+			<one-to-many class="HOrderItem" />
+		</bag>
+		
+		<!-- 和HPayment关联 -->
+    	<bag name="paymentListH" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HPayment" />
+		</bag>
+		
+		<!-- 和HRefund关联 -->
+    	<bag name="refundListH" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HRefund" />
+		</bag>		
+		
+		<!-- 和HCreditCard关联 -->
+		<!--
+    	<bag name="creditCardListH" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HCreditCard" />
+		</bag>		
+		-->
+		
+		<!-- 和HHandleLog关联 -->
+		<!-- 
+    	<bag name="logListH" cascade="all-delete-orphan" order-by="hisID" 
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HHandleLog" />
+		</bag>		
+		 -->
+		
+		<!-- 和HFellowInfo关联 -->
+    	<bag name="fellowListH" cascade="all-delete-orphan" order-by="hisID" 
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HFellowInfo" />
+		</bag>			
+		
+		<!-- 和HOrderFax关联 -->
+		<!-- 
+    	<bag name="faxListH" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HOrderFax" />
+		</bag>		
+		 -->
+		
+		<!-- 和HMemberConfirm关联 -->
+		<!-- 
+    	<bag name="memberConfirmListH" cascade="all-delete-orphan" order-by="hisID" 
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HMemberConfirm" />
+		</bag>		
+		 -->
+		
+		<!-- 和HCreditCardTemp关联 -->
+    	<bag name="cardTempListH" cascade="all-delete-orphan" 
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HCreditCardTemp" />
+		</bag>					
+		
+		<!-- 和HPriceDetail关联 -->
+    	<bag name="priceListH" cascade="all-delete-orphan" 
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HPriceDetail" />
+		</bag>							
+		
+        <!-- 和HPreSale关联 -->
+    	<bag name="preSalesH" cascade="all-delete-orphan"
+			inverse="true" lazy="true" order-by="type">
+			<key column="hOrderId"></key>
+			<one-to-many class="HPreSale" />
+		</bag>
+		
+        <!-- 和HTaxCharge关联 -->
+    	<bag name="taxChargesH" cascade="all-delete-orphan"
+			inverse="true" lazy="true">
+			<key column="hOrderId"></key>
+			<one-to-many class="HTaxCharge" />
+		</bag>			
+					
+		
+		<!-- 和HFulfillment关联 -->
+		<many-to-one name="fulfillH"
+			class="HFulfillment"
+			column="hFulfillId" 
+			cascade="all"
+			unique="true"/>       
+			
+		<!-- 和HRemark关联 -->
+		<many-to-one name="remarkH"
+			class="HRemark"
+			column="hRemarkId" 
+			cascade="all"
+			unique="true"/>	
+			
+		<!-- 和HReservation关联 -->
+		<many-to-one name="reservationH"
+			class="HReservation"
+			column="hReservationId" 
+			cascade="all"
+			unique="true"/>								         
+    
+    
+   </class>		
+   
+</hibernate-mapping>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<bean id="queryDao" class="com.mangocity.util.dao.DAOIbatisImpl">
+	</bean>
+
+	
+	<bean id="queryAnyDao" class="com.mangocity.hotel.base.dao.impl.QueryAnyDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />		
+	</bean>
+	
+	<bean id="entityManager"
+		class="com.mangocity.util.dao.DAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 替换iBatis的sqlExecutor begin -->
+	<!-- -->
+    <bean id="sqlExecutor" class="com.mangocity.util.dao.paging.IBatisSqlExecutor">
+    </bean>
+	
+	<bean id="ibatisDao" class="com.mangocity.util.dao.DAOIbatisImpl" init-method="initialize">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+		<property name="sqlExecutor" ref="sqlExecutor" />
+	</bean>
+	 
+	<!-- 替换iBatis的sqlExecutor end -->		
+
+	<bean id="hotelPictureDao" class="com.mangocity.hotel.base.dao.impl.HotelPictureDAOImp">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+<!-- 
+	<bean id="ibatisDao" class="com.mangocity.util.dao.DAOIbatisImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>	-->
+	
+		
+	<bean id="contractDao" class="com.mangocity.hotel.base.dao.impl.ContractDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- Begin Add by Shengwei.Zuo 2009-02-01 -->
+	<bean id="clauseDao" class="com.mangocity.hotel.base.dao.impl.ClauseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- End Add  -->
+	
+	
+	<bean id="saleDao" class="com.mangocity.hotel.base.dao.impl.SaleDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="changePriceDao" class="com.mangocity.hotel.base.dao.impl.ChangePriceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="priceDao" class="com.mangocity.hotel.base.dao.impl.PriceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	
+	<!-- 地理位置/名胜DAO v2.9.1  by shengwei.zuo  2009-07-31 begin-->
+	<bean id="geograpPositionDAO" class="com.mangocity.hotel.base.dao.impl.GeograpPositionDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	
+	<bean id="contractFileDao" class="com.mangocity.hotel.base.dao.impl.ContractFileDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- refactor : remove this dao from applicationContext-dao-cc.xml and change its package name -->
+	<bean id="orLockedRecordDao" class="com.mangocity.hotel.base.dao.impl.OrLockedRecordDao">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>	
+	
+	<!-- 新房控DAO addby juesuchen 2009-12-29-->
+	<bean id="newRoomControlDao" class="com.mangocity.hotel.newroomcontrol.dao.impl.NewRoomControlDao"/>
+	
+	<!-- 订单暂缓时间 2012-01-06-->
+	<bean id="orderDerferTimeDAO" class="com.mangocity.hotel.order.dao.impl.OrderDerferTimeImpl"/>
+	
+	<!-- 催单 2012-01-11-->
+	<bean id="hurryOrderDAO" class="com.mangocity.hotel.order.dao.impl.HurryOrderImpl"/>
+	<bean id="orChannelNoDAO" class="com.mangocity.hotel.order.dao.impl.OrChannelNoImpl"/>
+	<bean id="htlOrderStsLogDAO" class="com.mangocity.hotel.order.dao.impl.HtlOrderStsLogImpl"/>
+	
+	<!-- 酒店查询Dao封装 -->
+	<bean id="hotelQueryDao" class="com.mangocity.hotel.base.dao.impl.HotelQueryDaoImpl"/>
+	
+	<!-- 批量开关房Dao -->
+	<bean id="batchRoomControlDao" class="com.mangocity.hotel.base.dao.impl.BatchRoomControlDaoImpl"/>
+	
+	<!-- 预定条款单条款操作（代码重构新加dao） add by zhijie.gu 2010-11-2 -->
+	<bean name="onlyClauserDao" class="com.mangocity.hotel.base.dao.impl.OnlyClauserDaoImpl">	
+	</bean>
+	
+	<!-- 查询配额Dao -->
+	<bean id="qryQuotaDao" class="com.mangocity.hotel.base.dao.impl.QueryQuotaDaoImpl"/>
+	
+	<!-- 房型Dao -->
+	<bean id="roomtypeDao" class="com.mangocity.hotel.base.dao.impl.HtlRoomtypeDaoImpl"/>
+	
+	<!-- 酒店Dao -->
+	<bean id="hotelDao" class="com.mangocity.hotel.base.dao.impl.HtlHotelDaoImpl"/>
+	
+	<!-- 系统数据Dao 如地区代码，汇率，系统参数等等-->
+	<bean id="systemDataDAO" class="com.mangocity.hotel.base.dao.impl.SystemDataDAOImpl"/>
+	
+	<!-- 酒店地图Dao-->
+	<bean id="hotelEmapDao" class="com.mangocity.hotel.base.dao.impl.HotelEmapDaoImpl"/>
+	
+	<!-- B2B佣金Dao-->
+	<bean id="commissionDAO" class="com.mangocity.hotel.base.dao.impl.CommissionDAOImpl"/>
+	
+	<!-- 房态Dao-->
+	<bean id="hotelRoomDAO" class="com.mangocity.hotel.base.dao.impl.HotelRoomDAOImpl"/>
+	
+	<!-- 酒店房型Dao -->
+	<bean id="htlRoomDao" class="com.mangocity.hotel.base.dao.impl.HtlRoomDaoImpl"/>
+	
+	<!-- 订单增幅  by xiaowei.wang  2010.12.1 -->
+	<bean id="b2bOrderIncDao" class="com.mangocity.hagtb2b.dao.impl.B2bOrderIncDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	<!-- B2B加幅Dao -->
+	<bean id="b2BIncreaseDao" class="com.mangocity.hotel.base.dao.impl.B2BIncreaseDaoImpl"/>
+	
+	<!-- 返现Dao -->
+	<bean id="htlFavourableReturnDao" class="com.mangocity.hotel.base.dao.impl.HtlFavourableReturnDaoImpl"/>
+	
+	<!-- 限量返现活动Dao -->
+	<bean id="htlLimitFavourableDao" class="com.mangocity.hotel.base.dao.impl.HtlLimitFavourableDaoImpl"/>
+	
+	<bean id="htlFavourableHotelDao" class="com.mangocity.hotel.base.dao.impl.HtlFavourableHotelDaoImpl"/>
+	
+	<!-- 醒狮活动 -->
+	<bean id="htlFavourableDao" class="com.mangocity.hotel.base.dao.impl.HtlFavourableDaoImpl"/>
+	
+	<!-- 保存cookie的值 -->
+	<bean id="htlProjectCodeDao" class="com.mangocity.hotel.base.dao.impl.HtlProjectCodeDaoImpl"/>
+	
+	<bean id="operateLogDao" class="com.mangocity.hotel.order.dao.impl.OperateLogDaoImpl"/>
+	
+	<!-- 酒店映射表DAO add by huanglingfeng 2012-5-3 -->
+	<bean id="exMappingDao" class="com.mangocity.hotel.base.dao.impl.ExMappingDaoImpl"/>
+	<!-- 艺龙担保条款DAO add by huanglingfeng 2012-5-3 -->
+	<bean id="htlElAssureRuleDao" class="com.mangocity.hotel.base.dao.impl.HtlElAssureRuleDaoImpl"/>
+	<bean id="orderRecordDao" class="com.mangocity.hotel.orderrecord.dao.impl.OrderRecordDaoImpl"/>
+	
+	<!-- 酒店配额，add byting.li -->
+	<bean id="hotelQuotaNewDao" class="com.mangocity.hotel.base.dao.impl.HotelQuotaNewDaoImpl"></bean>
+	
+	<!-- 酒店活动标签 -->
+	<bean id="limitFavKeyWordDao" class="com.mangocity.hotel.base.dao.impl.LimitFavKeyWordDaoImpl"/>
+	
+	<bean id="tempOrderDao" class="com.mangocity.hotel.order.dao.impl.TempOrderDaoImpl" />
+	<bean id="epOrderDAO" class="com.mangocity.hotel.base.dao.impl.EpOrderDAOImpl"/>
+	<bean id="epOrderManagerDAO" class="com.mangocity.ep.dao.Impl.EpOrderManagerDAOImpl"/>
+	<bean id="epDailyAuditDAO" class="com.mangocity.ep.dao.Impl.EpDailyAuditDAOImpl"/>
+	<bean id="htlOrderChannelDao" class="com.mangocity.hotel.order.dao.impl.HtlOrderChannelDaoImpl"/>
+	
+	<!-- 上下架 -->
+	<bean id="oldOnSaleDao" class="com.mangocity.hotel.base.dao.impl.OldOnSaleDaoImpl"/>
+</beans>

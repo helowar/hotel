@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="AuditHotel" table="or_audit_hotel" lazy="false" dynamic-insert="true" dynamic-update="true">
+	<id name="ID" column="auditHotelId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_audithotel</param>
+			</generator>
+	</id>      
+    
+         <property name="hotelId" />
+         <property name="hotelName" />
+         <property name="state" />
+         <property name="auditDate" />
+         <property name="auditorId" />
+         <property name="auditorName" />                  
+         <property name="createDate" />
+         <property name="type" />         
+    
+    
+    
+		<!-- 和Audit关联 -->
+    	<bag name="auditList" cascade="all-delete-orphan"
+			inverse="true" >
+			<key column="orderId"></key>
+			<one-to-many class="Audit" />
+		</bag>		    
+    
+    
+    
+    
+   </class>
+   
+	<!-- 根据日期,酒店id查询HotelAudit对象 -->   
+	<query name="hQueryByDateAndHotel_AuditHotel">
+		<![CDATA[ 
+		from AuditHotel a 
+		where 
+			a.auditDate = ? 
+			and a.hotelId = ? 
+		]]>
+	</query>   
+
+   
+</hibernate-mapping>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="limitfav">
+	<!-- 限量返现活动  目前先放在 该文件中 -->
+	<select id="selectLimitFavourable" parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (
+		  	select hlf.favid,
+				   hlf.favname,
+			       hlf.begindate,
+			       hlf.enddate,
+			       hlf.begintime,
+			       hlf.endtime,
+			       hlf.rule,
+			       hlf.favisstart,
+			       hlf.toplimit,
+			       count(hfh.hotelid) as HTLCOUNT
+	  		from Htl_limit_favourable hlf, Htl_favourable_hotel hfh
+			  where hlf.favid = hfh.favid(+)
+           and hlf.flag = 1
+	     ]]>
+	   	<isNotEmpty prepend="AND" property="favName">
+			<![CDATA[
+				(hlf.favName like '%$favName$%')
+			 ]]>
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="beginDate">	
+			<isNotEmpty property="endDate">
+				<![CDATA[
+				    ((hlf.beginDate >= to_date(#beginDate#, 'YYYY-MM-DD') and hlf.beginDate <= to_date(#endDate#, 'YYYY-MM-DD'))
+				]]> 
+			</isNotEmpty>
+			<isEmpty property="endDate">
+				<![CDATA[		
+					(hlf.beginDate >= to_date(#beginDate#, 'YYYY-MM-DD'))
+				 ]]>
+			 </isEmpty>
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="OR" property="endDate">
+			<isNotEmpty property="beginDate">
+				<![CDATA[
+	  		        (to_date(#endDate#, 'YYYY-MM-DD') >= hlf.endDate and to_date(#beginDate#, 'YYYY-MM-DD') <=hlf.endDate)) 
+	  		     ]]>
+	  		</isNotEmpty>
+	  		
+	  		<isEmpty property="endDate">
+				<![CDATA[		
+					(hlf.beginDate >= to_date(#beginDate#, 'YYYY-MM-DD'))
+				 ]]>
+			 </isEmpty>
+			 
+		</isNotEmpty>
+		<![CDATA[
+			group by 
+				   (hlf.favid,
+				   hlf.favname,
+			       hlf.begindate,
+			       hlf.enddate,
+			       hlf.begintime,
+			       hlf.endtime,
+			       hlf.rule,
+			       hlf.favisstart,
+			       hlf.toplimit)
+			order by hlf.begindate
+		 ]]>
+		)
+	</select>
+	
+	
+	<select id="queryLimitFavourableHotel"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select 
+		htl.HOTEL_ID    HOTELID,
+		htl.STATE       STATE,
+       htl.CITY        CITY,
+       htl.ZONE        ZONE,
+       htl.CHN_NAME    CHN_NAME,
+       htl.HOTEL_STAR  HOTEL_STAR,
+       htl.COMMENDTYPE COMMENDTYPE
+  from v_htl_hotel htl
+ where htl.HOTEL_SYSTEM_SIGN = '01'
+   and htl.HOTEL_ID in
+       (select hfh.hotelid
+          from htl_limit_favourable hlf, htl_favourable_hotel hfh
+        
+         where hlf.favid = hfh.favid
+           and hlf.flag = 1
+           and hfh.htlflag = 1
+           and hfh.favid = #favId#
+           )
+	</select>
+	
+	<!-- 增加限量返现活动酒店信息按条件查询 -->
+    <select id="queryHotelCondition"
+            parameterClass="com.mangocity.util.collections.FormatMap"
+            resultClass="java.util.HashMap">
+            select 
+       htl.HOTEL_ID    HOTELID,
+       htl.STATE       STATE,
+       htl.CITY        CITY,
+       htl.ZONE        ZONE,
+       htl.CHN_NAME    CHN_NAME,
+       htl.HOTEL_STAR  HOTEL_STAR,
+       htl.COMMENDTYPE COMMENDTYPE
+  from v_htl_hotel htl
+ where htl.HOTEL_SYSTEM_SIGN = '01'
+   and htl.HOTEL_ID in
+       (select hfh.hotelid
+          from htl_limit_favourable hlf, htl_favourable_hotel hfh
+        
+         where hlf.favid = hfh.favid
+           and hlf.flag = 1
+           and hfh.htlflag = 1
+           and hfh.favid = #favId#
+           )
+		    <isNotEmpty prepend="AND" property="chinesename">
+				upper(htl.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				htl.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				htl.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				htl.ZONE like #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mainCommend">
+				htl.COMMENDTYPE = #mainCommend#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstar">
+				htl.HOTEL_STAR in ($hotelstar$)
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelCooperator">
+				htl.cooperate_channel = #hotelCooperator#
+			</isNotEmpty>
+			
+    </select>
+</sqlMap>

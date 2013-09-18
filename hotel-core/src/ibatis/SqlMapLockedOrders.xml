@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LockedOrders">
+
+    <typeAlias alias="lockedOrders" type="com.mangocity.hotel.order.persistence.OrLockedOrders"/>
+	
+	<select id="getLockedOrders"  parameterClass="lockedOrders" resultClass="lockedOrders">
+		<![CDATA[ 
+		     SELECT orderId, orderCD, type, locker, lockTime, frontLock FROM or_locked_orders WHERE orderId = #orderId#
+		]]>
+	</select>
+
+	<update id="updateLockedOrders" parameterClass="lockedOrders">
+		<![CDATA[ 
+		      UPDATE or_locked_orders SET locker=#locker# WHERE orderId = #orderId#
+		]]>
+	</update>
+	
+	<insert id="insertLockedOrders"	parameterClass="lockedOrders">
+	   <![CDATA[
+    	  	INSERT INTO or_locked_orders(orderId, orderCD, type, locker, lockTime, frontLock) VALUES (#orderId#, #orderCD#, #type#, #locker#, #lockTime#, #frontLock# )
+		]]>
+	</insert>
+	
+	<delete id="deleteLockedOrder" parameterClass="lockedOrders">
+ 		<![CDATA[
+		    DELETE FROM or_locked_orders WHERE orderId = #orderId#
+		]]>
+	</delete>
+
+	<delete id="deleteLockedOrders" parameterClass="String">
+ 		<![CDATA[
+		    DELETE FROM or_locked_orders WHERE orderId in ($setIDs$)
+		]]>
+	</delete>	
+</sqlMap>

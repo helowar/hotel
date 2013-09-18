@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mangocity.hotel.dreamweb.comment.model" default-lazy="false">
+<class name="HotelScore" table="htl_score" 
+		dynamic-insert="true" dynamic-update="true">
+
+		<id name="hotelScoreId" unsaved-value="0" column="score_id">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_score</param>
+			</generator>
+		</id>
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="scoreItemId" column="score_item_id"></property>
+		<property name="scoreItemName" column="score_item_name"></property>
+		<property name="scoreValue" column="score_value"></property>
+		<property name="updateDate" column="updatedate"></property>
+
+</class>
+</hibernate-mapping>

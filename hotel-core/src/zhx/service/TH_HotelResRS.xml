@@ -1,0 +1,95 @@
+﻿<OTResponse>
+	<HotelResRS>
+		<HotelReservations>
+			<HotelReservation CreateDateTime="2010-09-15"
+				ResStatus="TST" ResOrderID="A000XRP">
+				<RoomStays>
+					<RoomStay RoomStayStatus="TST"
+						ResOrderID="A000XRP">
+						<BasicProperty HotelCode="SOHOTO00001"
+							HotelName="蕊郭郭爱测试大酒店" CityCode="PEK"
+							HotelEnglishName="GG Love Test Hotel" CityName="北京"
+							CountryCode="CN">
+							<Position />
+							<Address>新街口上地六铺炕北街</Address>
+							<EnAddress>新街口上地六铺炕北街</EnAddress>
+							<Tel>888288821</Tel>
+							<Fax>0101234321</Fax>
+							<RoomQuantity>1</RoomQuantity>
+						</BasicProperty>
+						<RoomRates>
+							<RoomRate RatePlanCode="GG001"
+								VendorCode="GGJ" HotelCode="SOHOTO00001" RoomTypeCode="INCE001"
+								StartDate="2010-09-18" EndDate="2010-09-19" RoomTypeName="厨房"
+								RoomTypeEnName="厨房" RatePlanName="航旅通-现付">
+								<Rates>
+									<Rate AmountPrice="19990.0"
+										StartDate="2010-09-18" EndDate="2010-09-18"
+										RatePlanCode="GG001" VendorCode="GGJ" HotelCode="SOHOTO00001"
+										RoomTypeCode="INCE001" FeePercent="0.0" FeeFix="0.0" Fee="0.0"
+										DisplayPrice="0.0">
+										<FreeMeal>10</FreeMeal>
+									</Rate>
+								</Rates>
+								<Quantity>1</Quantity>
+								<Commissions />
+								<Fees />
+								<RoomNight>1</RoomNight>
+								<GuaranteePolicies />
+								<CancelPolicies />
+								<BookingPolicies />
+								<FavPolicies />
+							</RoomRate>
+						</RoomRates>
+						<ArriveEarlyTime>1200</ArriveEarlyTime>
+						<ArriveLateTime>1800</ArriveLateTime>
+						<TimeSpan StartDate="2010-09-18"
+							EndDate="2010-09-19" />
+						<TotalAmount>19990.0</TotalAmount>
+						<TotalCommission>0.0</TotalCommission>
+						<TotalFee>0.0</TotalFee>
+						<Currency>CNY</Currency>
+					</RoomStay>
+				</RoomStays>
+				<ResGuests>
+					<ResGuest>
+						<GuestProfile>
+							<PersonName>芒果测试</PersonName>
+							<Mobile>13800138000</Mobile>
+							<Telephone>11111111</Telephone>
+						</GuestProfile>
+						<GuestIndex>0</GuestIndex>
+						<Type>GUE</Type>
+						<RoomNumber>1</RoomNumber>
+					</ResGuest>
+				</ResGuests>
+				<ResGlobalInfo>
+					<GuestCount>1</GuestCount>
+					<TimeSpan StartDate="2010-09-18"
+						EndDate="2010-09-19" />
+					<ArriveEarlyTime>1200</ArriveEarlyTime>
+					<ArriveLateTime>1800</ArriveLateTime>
+					<Payment>T</Payment>
+				</ResGlobalInfo>
+				<ContactorInfo>
+					<Profile>
+						<PersonName>芒果测试</PersonName>
+						<Mobile>13800138000</Mobile>
+						<Telephone>11111111</Telephone>
+					</Profile>
+				</ContactorInfo>
+				<TotalAmount>19990.0</TotalAmount>
+			</HotelReservation>
+		</HotelReservations>
+	</HotelResRS>
+	<TransactionName>TH_HotelResRS</TransactionName>
+	<Header>
+		<Application>hotelbe</Application>
+		<Language>CN</Language>
+	</Header>
+	<IdentityInfo>
+		<OfficeID>NATEST</OfficeID>
+		<UserID>NATEST00C</UserID>
+		<Password>12345678</Password>
+	</IdentityInfo>
+</OTResponse>

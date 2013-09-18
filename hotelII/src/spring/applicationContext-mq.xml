@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<!-- JMS Provider -->
+	<bean id="jmsJndiProperties" class="java.util.Hashtable">
+		<constructor-arg>
+			<map>
+				<entry key="java.naming.factory.initial">
+					<value>org.apache.activemq.jndi.ActiveMQInitialContextFactory</value>
+				</entry>
+				<entry key="java.naming.provider.url">
+					<value>${hotel.mq.lucene.url}</value> 
+				</entry>
+				<entry key="queue.jms/HOTEL_LUCENE">
+					<value>HOTEL_LUCENE</value>
+				</entry>
+				<entry key="queue.jms/DEFAULT">
+					<value>TOOL.DEFAULT</value>
+				</entry>				
+				<entry key="topic.jms/Toic.HOTEL_LUCENE">
+					<!-- <value>ActiveMQ.Advisory.Consumer.Queue.HOTEL_LUCENE</value> -->
+					<value>TOPIC_HOTEL_LUCENE</value>					
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="jmsProvider" class="com.mangocity.mq.hotel.JmsProvider" init-method="init">
+		<!-- 是否设置为本地开发使用, 本地开发设置为true, 上was请必须设置为false -->
+		<property name="local" value="true" />
+		<!-- JNDI配置 -->
+		<property name="jndiProperties" ref="jmsJndiProperties" />
+		<property name="user" value="${hotel.mq.lucene.user}" />
+		<property name="password" value="${hotel.mq.lucene.password}" />
+		 
+	</bean>
+
+</beans>

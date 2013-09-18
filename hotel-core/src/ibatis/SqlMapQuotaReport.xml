@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="queryQuotaReport">
+	<select id="queryQuotaRealTimeReport"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			SELECT  
+				QU.HTL_QUOTA_NEW_ID,
+				QU.HOTEL_ID,
+				QU.ROOMTYPE_ID,
+				QU.BED_ID,
+				QU.QUOTA_HOLDER,
+				QU.QUOTA_SHARE_TYPE,
+				NVL(QU.BUY_QUOTA_SUM,0) BUY_QUOTA_SUM,
+				NVL(QU.BUY_QUOTA_ABLE_NUM,0) BUY_QUOTA_ABLE_NUM,
+				NVL(QU.BUY_QUOTA_USED_NUM,0) BUY_QUOTA_USED_NUM,
+				NVL(QU.BUY_QUOTA_OUTOFDATE_NUM,0) BUY_QUOTA_OUTOFDATE_NUM,
+				NVL(QU.COMMON_QUOTA_SUM,0) COMMON_QUOTA_SUM,
+				NVL(QU.COMMON_QUOTA_ABLE_NUM,0) COMMON_QUOTA_ABLE_NUM,
+				NVL(QU.COMMON_QUOTA_USED_NUM,0) COMMON_QUOTA_USED_NUM,
+				NVL(QU.COMMON_QUOTA_OUTOFDATE_NUM,0) COMMON_QUOTA_OUTOFDATE_NUM,
+				NVL(QU.OUTSIDE_QUOTA_SUM,0) OUTSIDE_QUOTA_SUM,
+				NVL(QU.CASUAL_QUOTA_SUM,0) CASUAL_QUOTA_SUM,
+				NVL(QU.CASUAL_QUOTA_ABLE_NUM,0) CASUAL_QUOTA_ABLE_NUM,
+				NVL(QU.CASUAL_QUOTA_USED_NUM,0) CASUAL_QUOTA_USED_NUM,
+				NVL(QU.CASUAL_QUOTA_OUTOFDATE_NUM,0) CASUAL_QUOTA_OUTOFDATE_NUM,
+				NVL(QU.FOREWARN_QUOTA_NUM,0) FOREWARN_QUOTA_NUM,
+				QU.FOREWARN_FLAG,
+				QU.ABLE_SALE_DATE,
+				to_char(QU.ABLE_SALE_DATE,'D') WEEK_DAY,
+				ROOM.QUOTA_BED_SHARE,
+				ROOM.ROOM_NAME
+ 			FROM HTL_QUOTA_NEW  QU 
+ 			LEFT JOIN
+ 			HTL_ROOMTYPE ROOM
+ 			ON ROOM.ROOM_TYPE_ID=QU.ROOMTYPE_ID
+ 			WHERE QU.HOTEL_ID=#hotelId#
+		]]>
+
+		<isNotEmpty prepend="AND" property="quotaHolder">
+			QU.QUOTA_HOLDER = #quotaHolder#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="roomTypeId">
+			QU.ROOMTYPE_ID = #roomTypeId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="bedType">
+			QU.BED_ID = #bedType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="shareTypeId">
+			QU.QUOTA_SHARE_TYPE in ($shareTypeId$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="beginDate">
+			QU.ABLE_SALE_DATE >= to_date(#beginDate#, 'YYYY-MM-DD')
+		</isNotEmpty >
+		
+		<isNotEmpty prepend="AND" property="endDate">
+		<![CDATA[
+			QU.ABLE_SALE_DATE <= to_date(#endDate#, 'YYYY-MM-DD')
+		]]>
+		</isNotEmpty >
+		
+		<isNotEmpty prepend="AND" property="weekDay">
+		<![CDATA[
+			(to_char(QU.ABLE_SALE_DATE,'D')) in ($weekDay$)
+		]]>
+		</isNotEmpty >
+				
+		<isNotEmpty prepend="AND" property="forewarnFlag">
+			QU.FOREWARN_FLAG = #forewarnFlag#
+		</isNotEmpty >
+		order by QU.ABLE_SALE_DATE ,QU.ROOMTYPE_ID,QU.QUOTA_SHARE_TYPE
+	</select>
+	
+	<select id="queryQuotaLogReport"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+				SELECT 
+					QU.HTL_QUOTA_LOG_ID,
+					QU.HTL_QUOTA_ID,
+					QU.HTL_QUOTA_DETAIL_ID,
+					QU.HOTEL_ID,
+					QU.ROOMTYPE_ID,
+					QU.BED_ID,
+					QU.ABLE_DATE,
+					QU.QUOTA_TYPE,
+					QU.QUOTA_PATTERN,
+					QU.QUOTA_SHARE,
+					QU.QUOTA_HOLDER,
+					QU.CUTOFFDAY,
+					QU.CUTOFFTIME,
+					NVL(QU.QUOTA_NUM,0) QUOTA_NUM,
+					NVL(QU.QUOTA_AVAILABLE,0) QUOTA_AVAILABLE,
+					NVL(QU.QUOTA_USED,0) QUOTA_USED,
+					QU.JUDGE_TYPE,
+					QU.QUOTA_CHANGE,
+					QU.OPERATOR_ORIGIN,
+					QU.OPERATOR_DEPT,
+					QU.OPERATOR_ID,
+					QU.OPERATOR_NAME,
+					QU.OPERATOR_TIME,
+					ROOM.ROOM_NAME
+				FROM HTL_QUOTA_LOG QU
+				LEFT JOIN
+ 				HTL_ROOMTYPE ROOM
+ 				ON ROOM.ROOM_TYPE_ID=QU.ROOMTYPE_ID
+				WHERE QU.JUDGE_TYPE in('DEDUCT','RETURN')
+					  AND QU.HOTEL_ID=#hotelId#
+		]]>
+
+		<isNotEmpty prepend="AND" property="quotaType">
+			QU.QUOTA_TYPE = #quotaType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="roomTypeId">
+			QU.ROOMTYPE_ID = #roomTypeId#
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="bedType">
+			QU.BED_ID = #bedType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="shareTypeId">
+			QU.QUOTA_SHARE in ($shareTypeId$)
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="beginDate">
+			QU.ABLE_DATE >= to_date(#beginDate#, 'YYYY-MM-DD')
+		</isNotEmpty >
+		
+		<isNotEmpty prepend="AND" property="endDate">
+		<![CDATA[
+			QU.ABLE_DATE <= to_date(#endDate#, 'YYYY-MM-DD')
+		]]>
+		</isNotEmpty >
+		order by QU.ABLE_DATE ASC
+	</select>
+	
+	<select id="queryQuotaJudgeReport"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			SELECT 
+					QU.START_DATE,
+					QU.END_DATE,
+					QU.HOTEL_ID,
+					QU.ROOMTYPE_ID,
+					QU.BED_ID,
+					QU.QUOTA_TYPE,
+					QU.QUOTA_PATTERN,
+					QU.QUOTA_SHARE,
+					QU.QUOTA_HOLDER,
+					QU.CUTOFFDAY,
+					QU.CUTOFFTIME,
+					QU.JUDGE_TYPE,
+					NVL(QU.QUOTA_NUM,0) QUOTA_NUM,
+					QU.QUOTA_CHANNEL,
+					QU.OPERATOR_NAME,
+					to_char(QU.OPERATOR_TIME,'yyyy-mm-dd hh24:mi:ss') OPERATOR_TIME,
+					ROOM.ROOM_NAME
+				FROM HTL_QUOTA_JUDGE QU
+				LEFT JOIN
+ 				HTL_ROOMTYPE ROOM
+ 				ON ROOM.ROOM_TYPE_ID=QU.ROOMTYPE_ID
+ 				WHERE QU.HOTEL_ID=#hotelId#
+		]]>
+
+		<isNotEmpty prepend="AND" property="quotaType">
+			QU.QUOTA_TYPE = #quotaType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="roomTypeId">
+			QU.ROOMTYPE_ID = #roomTypeId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="bedType">
+			QU.BED_ID = #bedType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="shareTypeId">
+			QU.QUOTA_SHARE in ($shareTypeId$)
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="beginDate">
+		<![CDATA[
+			QU.START_DATE >= to_date(#beginDate#, 'YYYY-MM-DD')
+		]]>
+		</isNotEmpty >
+		
+		<isNotEmpty prepend="AND" property="endDate">
+		<![CDATA[
+			QU.END_DATE <= to_date(#endDate#, 'YYYY-MM-DD')
+		]]>
+		</isNotEmpty >
+		order by QU.START_DATE ASC
+	</select>
+	
+	<select id="queryQuotaForwarnLogReport"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			SELECT 
+					QU.START_DATE,
+					QU.END_DATE,
+					QU.HOTEL_ID,
+					QU.ROOMTYPE_ID,
+					QU.BED_ID,
+					QU.QUOTA_TYPE,
+					QU.QUOTA_PATTERN,
+					QU.QUOTA_SHARE,
+					QU.QUOTA_HOLDER,
+					QU.CUTOFFDAY,
+					QU.CUTOFFTIME,
+					QU.JUDGE_TYPE,
+					NVL(QU.QUOTA_NUM,0) QUOTA_NUM,
+					QU.QUOTA_CHANNEL,
+					QU.OPERATOR_NAME,
+					to_char(QU.OPERATOR_TIME,'yyyy-mm-dd hh24:mi:ss') OPERATOR_TIME,
+					ROOM.ROOM_NAME
+				FROM HTL_QUOTA_JUDGE QU
+				LEFT JOIN
+ 				HTL_ROOMTYPE ROOM
+ 				ON ROOM.ROOM_TYPE_ID=QU.ROOMTYPE_ID
+ 				WHERE QU.HOTEL_ID=#hotelId#
+ 				  AND QU.JUDGE_TYPE LIKE '%W-%'
+		]]>
+
+		<isNotEmpty prepend="AND" property="quotaType">
+			QU.QUOTA_TYPE = #quotaType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="roomTypeId">
+			QU.ROOMTYPE_ID = #roomTypeId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="bedType">
+			QU.BED_ID = #bedType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="shareTypeId">
+			QU.QUOTA_SHARE in ($shareTypeId$)
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="OPERATOR_TIME">
+		<![CDATA[
+			QU.START_DATE >= to_date(#beginDate#, 'YYYY-MM-DD')
+		]]>
+		</isNotEmpty >
+		
+		<isNotEmpty prepend="AND" property="OPERATOR_TIME">
+		<![CDATA[
+			QU.END_DATE <= to_date(#endDate#, 'YYYY-MM-DD')
+		]]>
+		</isNotEmpty >
+		order by QU.OPERATOR_TIME DESC
+	</select>
+	
+	<!-- 只显示当天以后的配额预警的酒店数 add by shengwei.zuo 2010-01-11 -->
+	<select id="queryQuotaForwarn"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+		 SELECT * FROM(
+			SELECT 
+				a.HOTEL_ID,
+				a.STATE, 
+				a.CITY,
+				a.HOTEL_STAR,
+				a.CHN_NAME,
+				a.SELL_STATUS,
+        		a.COMMENDTYPE,
+        		a.COOPERATE_CHANNEL,
+        		nvl((select sum( distinct forewarn_flag) from htl_ii.htl_quota_new q                                   
+                where q.ABLE_SALE_DATE >= trunc(Sysdate) and q.hotel_id = a.hotel_id and forewarn_flag >0),0) as forewarn_flag 	
+		  FROM V_HTL_HOTEL a
+		  WHERE  a.HOTEL_SYSTEM_SIGN = '01'
+		  and (a.cooperate_channel is null or a.cooperate_channel = '0')
+		  and a.SELL_STATUS = 0
+		]]>
+			<isNotEmpty prepend="AND" property="chnName">
+				upper(a.chn_name) like upper('%$chnName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="engName">
+				upper(a.eng_name) like upper('%$engName$%')
+			</isNotEmpty >
+			
+		   <isNotEmpty prepend="AND" property="hoteltype">
+				a.hotel_type like '$hoteltype$'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="star">
+				a.hotel_star in ($star$)
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="state">
+				a.state = #state#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="city">
+				a.city = #city#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="zone">
+				a.zone = #zone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelbizzone">
+				a.biz_zone = #hotelbizzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcd">
+				a.hotel_cd like '%$hotelcd$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mainCommend">
+					a.commendtype = #mainCommend#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="forewarnQuotaNum">
+			<![CDATA[exists
+ 			(select 1
+          from htl_quota_new q
+         where q.ABLE_SALE_DATE >= trunc(Sysdate)
+           and q.able_sale_date <= trunc(Sysdate) + 30
+           and q.hotel_id = a.HOTEL_ID
+           and (q.common_quota_used_num >0 or q.common_quota_outofdate_num > 0)
+           and q.forewarn_quota_num = $forewarnQuotaNum$)
+           ]]>
+			</isNotEmpty>
+			
+		) a 
+			<dynamic prepend="where">
+			<isNotEmpty prepend="AND" property="forewarnFlag">
+				<isEqual property="forewarnFlag" compareValue="0">
+			  		    a.FOREWARN_FLAG=0
+				 </isEqual>				
+				 <isEqual property="forewarnFlag" compareValue="1">
+				 		 a.FOREWARN_FLAG in (1,3)
+				 </isEqual>		
+				<isEqual property="forewarnFlag" compareValue="2">
+				 		 a.FOREWARN_FLAG in (2,3)
+				 </isEqual>
+			</isNotEmpty>
+			</dynamic>
+		order by  a.HOTEL_ID 
+	</select>
+	
+	<select id="queryBuyQuotaReport"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select ABLE_SALE_DATE,
+		       CHN_NAME,
+		       ROOM_NAME,
+		       sum(COMMON_QUOTA_SUM) COMMON_QUOTA_SUM,
+		       sum(COMMON_QUOTA_USED_NUM) COMMON_QUOTA_USED_NUM,
+		       sum(COMMON_QUOTA_OUTOFDATE_NUM) COMMON_QUOTA_OUTOFDATE_NUM,
+		       sum(BUY_QUOTA_SUM) BUY_QUOTA_SUM,
+		       sum(BUY_QUOTA_USED_NUM) BUY_QUOTA_USED_NUM,
+		       sum(BUY_QUOTA_OUTOFDATE_NUM) BUY_QUOTA_OUTOFDATE_NUM,
+		       sum(OUTSIDE_QUOTA_SUM) OUTSIDE_QUOTA_SUM,		       
+			   sum(CASUAL_QUOTA_SUM) CASUAL_QUOTA_SUM,
+		       sum(CASUAL_QUOTA_USED_NUM) CASUAL_QUOTA_USED_NUM,
+		       sum(CASUAL_QUOTA_OUTOFDATE_NUM) CASUAL_QUOTA_OUTOFDATE_NUM
+		  from (
+			SELECT 
+				H.ABLE_SALE_DATE,
+				HTL.CHN_NAME,
+				ROOM.ROOM_NAME,
+				NVL(H.COMMON_QUOTA_SUM,0) COMMON_QUOTA_SUM,
+				NVL(H.COMMON_QUOTA_USED_NUM,0) COMMON_QUOTA_USED_NUM,
+				NVL(H.COMMON_QUOTA_OUTOFDATE_NUM,0) COMMON_QUOTA_OUTOFDATE_NUM,
+				NVL(H.BUY_QUOTA_SUM,0) BUY_QUOTA_SUM,
+				NVL(H.BUY_QUOTA_USED_NUM,0) BUY_QUOTA_USED_NUM,
+				NVL(H.BUY_QUOTA_OUTOFDATE_NUM,0) BUY_QUOTA_OUTOFDATE_NUM,
+				NVL(H.OUTSIDE_QUOTA_SUM,0) OUTSIDE_QUOTA_SUM,
+				NVL(H.CASUAL_QUOTA_SUM,0) CASUAL_QUOTA_SUM,
+				NVL(H.CASUAL_QUOTA_USED_NUM,0) CASUAL_QUOTA_USED_NUM,
+				NVL(H.CASUAL_QUOTA_OUTOFDATE_NUM,0) CASUAL_QUOTA_OUTOFDATE_NUM 
+			FROM HTL_QUOTA_NEW H ,HTL_ROOMTYPE ROOM,HTL_HOTEL HTL
+			WHERE ROOM.ROOM_TYPE_ID=H.ROOMTYPE_ID AND 
+			HTL.HOTEL_ID=H.HOTEL_ID AND
+			H.QUOTA_SHARE_TYPE =2 AND
+			ROOM.ROOM_NAME like '%世博特惠%'
+		]]>
+		<isNotEmpty prepend="AND" property="beginDate">
+		<![CDATA[
+			H.ABLE_SALE_DATE >= to_date(#beginDate#, 'YYYY-MM-DD')
+		]]>
+		</isNotEmpty >
+		<isNotEmpty prepend="AND" property="endDate">
+		<![CDATA[
+			H.ABLE_SALE_DATE <= to_date(#endDate#, 'YYYY-MM-DD')
+		]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelId">
+			H.HOTEL_ID in ($hotelId$)
+		</isNotEmpty>
+		)
+		group by ABLE_SALE_DATE, CHN_NAME, ROOM_NAME
+ 		order by CHN_NAME,ABLE_SALE_DATE,ROOM_NAME
+	</select>
+		
+</sqlMap>

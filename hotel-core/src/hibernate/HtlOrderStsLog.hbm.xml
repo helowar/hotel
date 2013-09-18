@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="HtlOrderStsLog" table="HTL_ORDERSTS_LOG" lazy="false" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="logId">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_ordersts_log</param>
+			</generator>
+	</id>     
+         <property name="oldQuotaOk" >
+             <column name="old_quotaok"/>  
+         </property> 
+         
+         <property name="oldSendedhotelconfirm" >
+             <column name="old_sendedhotelconfirm"/>  
+         </property>
+          
+         <property name="oldHoteloralconfirm" >
+             <column name="old_hoteloralconfirm"/>  
+         </property> 
+         
+         <property name="oldHotelwrittenconfirm" >
+             <column name="old_hotelwrittenconfirm"/>  
+         </property> 
+         
+         <property name="oldHotelconfirmfaxreturn" >
+             <column name="old_hotelconfirmfaxreturn"/>  
+         </property> 
+         
+         <property name="oldCustomerconfirm" >
+             <column name="old_customerconfirm"/>  
+         </property> 
+         
+         <property name="newQuotaok" >
+             <column name="new_quotaok"/>  
+         </property> 
+         
+         <property name="newSendedhotelconfirm">
+             <column name="new_sendedhotelconfirm"/>  
+         </property> 
+         
+         <property name="newHoteloralconfirm" >
+             <column name="new_hoteloralconfirm"/>  
+         </property> 
+         
+         <property name="newHotelwrittenconfirm" >
+             <column name="new_hotelwrittenconfirm"/>  
+         </property> 
+         <property name="newHotelconfirmfaxreturn" >
+             <column name="new_hotelconfirmfaxreturn"/>  
+         </property> 
+         
+         <property name="newCustomerconfirm" >
+             <column name="new_customerconfirm"/>  
+         </property> 
+         
+         <property name="ordercd"  >
+             <column name="ordercd"/>  
+         </property> 
+         
+         <property name="modifyName" >
+             <column name="modify_name"/>  
+         </property> 
+         
+         <property name="modifyCode">
+             <column name="modify_code"/>  
+         </property> 
+         
+         <property name="modifyTime" type="java.util.Date"> 
+             <column name="modify_time"  />  
+         </property>    
+   </class>
+
+   
+</hibernate-mapping>

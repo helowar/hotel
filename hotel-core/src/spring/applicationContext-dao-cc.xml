@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<!-- CC专用Dao -->
+	<bean id="newOrderParamDao" class="com.mangocity.hotel.order.dao.impl.NewOrderParamDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+
+	<bean id="orCreditCardDao" class="com.mangocity.hotel.order.dao.impl.OrCreditCardDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+
+	<bean id="orDailyAuditDao" class="com.mangocity.hotel.order.dao.impl.OrDailyAuditDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+
+	<bean id="orFellowInfoDao" class="com.mangocity.hotel.order.dao.impl.OrFellowInfoDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+
+	<bean id="orFulfillmentDao" class="com.mangocity.hotel.order.dao.impl.OrFulfillmentDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+
+	<bean id="orHandleLogDao" class="com.mangocity.hotel.order.dao.impl.OrHandleLogDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>		
+
+	<bean id="orMemberConfirmDao" class="com.mangocity.hotel.order.dao.impl.OrMemberConfirmDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>		
+
+	<bean id="orOrderDao" class="com.mangocity.hotel.order.dao.impl.OrOrderDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+
+	<bean id="orLockedOrderDao" class="com.mangocity.hotel.order.dao.impl.OrLockedOrderDao">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>	
+		
+	
+		
+	<bean id="orderDao" class="com.mangocity.hotel.order.dao.impl.OrderDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>		
+	
+	<bean id="orOrderFaxDao" class="com.mangocity.hotel.order.dao.impl.OrOrderFaxDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>		
+
+	<bean id="orOrderItemDao" class="com.mangocity.hotel.order.dao.impl.OrOrderItemDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>		
+	
+	<bean id="orOrderItemTempDao" class="com.mangocity.hotel.order.dao.impl.OrOrderItemTempDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>			
+	
+	<bean id="orPaperContactDao" class="com.mangocity.hotel.order.dao.impl.OrPaperContactDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>			
+	
+	<bean id="orPaperDailyAuditDao" class="com.mangocity.hotel.order.dao.impl.OrPaperDailyAuditDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>				
+	
+	<bean id="orPaperDailyAuditItemDao" class="com.mangocity.hotel.order.dao.impl.OrPaperDailyAuditItemDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	
+	<bean id="orPaymentDao" class="com.mangocity.hotel.order.dao.impl.OrPaymentDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>						
+	
+	<bean id="orRefundDao" class="com.mangocity.hotel.order.dao.impl.OrRefundDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>							
+	
+	<bean id="orRemarkDao" class="com.mangocity.hotel.order.dao.impl.OrRemarkDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>		
+	
+	<bean id="orReservationDao" class="com.mangocity.hotel.order.dao.impl.OrReservationDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>								
+	
+	<bean id="orWorkStatesDao" class="com.mangocity.hotel.base.dao.OrWorkStatesDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>									
+	
+	<bean id="orWorkStatesByGroupDao" class="com.mangocity.hotel.order.dao.impl.OrWorkStatesByGroupDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>										
+	
+	<bean id="orWorkStatesLogDao" class="com.mangocity.hotel.order.dao.impl.OrWorkStatesLogDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="viewOrOrderDao" class="com.mangocity.hotel.order.dao.impl.ViewOrOrderDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>										
+	
+	<bean id="viewOrOrderItemDao" class="com.mangocity.hotel.order.dao.impl.ViewOrOrderItemDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	
+	<bean id="orFaxLogDao" class="com.mangocity.hotel.order.dao.impl.OrFaxLogDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>							
+
+	<bean id="orAuditFaxLogDao" class="com.mangocity.hotel.order.dao.impl.OrAuditFaxLogDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	
+	<bean id="gen114MemberDao" class="com.mangocity.hotel.order.dao.impl.Gen114MemberDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	
+	<bean id="aliasDao" class="com.mangocity.hotel.order.dao.impl.AliasDao"></bean>
+			
+	<bean id="orUserPowerDao" class="com.mangocity.hotel.order.dao.impl.OrUserPowerDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>		
+	
+	<bean id="auditDao" class="com.mangocity.hotel.order.dao.impl.AuditDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+
+</beans>

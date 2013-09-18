@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="B2BIncrease" table="b2b_increase" dynamic-insert="true" dynamic-update="true" lazy="false">
+
+		<id name="id" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">SEQ_B2BINCREASE</param>
+			</generator>
+		</id>
+
+
+		<property name="hotelId" column="HOTEL_ID" />
+		<property name="increaseRate" column="INCREASE_RATE" />
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" />
+		<property name="createName" column="CREATE_NAME" />
+		<property name="flag" column="FLAG" />
+		
+	</class>
+</hibernate-mapping>

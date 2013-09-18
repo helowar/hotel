@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+
+	shengwei.zuo hotel2.9.3 公用日志实体类 2009-08-25
+-->
+<hibernate-mapping  package="com.mangocity.hotel.base.persistence" default-lazy="false"> 
+    <class name="HtlPublicOperationlog" table="HTL_PUBLIC_OPERATIONLOG" dynamic-insert="true" dynamic-update="true">
+        <id name="operationid" unsaved-value="0" column="OPERATIONID">
+			 <generator class="sequence">
+            	<param name="sequence">SEQ_HTL_PUBLIC_OPERATIONLOG</param>
+             </generator>
+        </id>
+        <property name="operationmode" type="java.lang.Long">
+            <column name="OPERATIONMODE" >
+                <comment>操作方式</comment>
+            </column>
+        </property>
+        <property name="operationcontent" type="java.lang.String">
+            <column name="OPERATIONCONTENT" >
+                <comment>操作日志内容</comment>
+            </column>
+        </property>
+        <property name="tablename" type="java.lang.String">
+            <column name="TABLENAME" >
+                <comment>表名</comment>
+            </column>
+        </property>
+        <property name="tableid" type="java.lang.Long">
+            <column name="TABLEID" >
+                <comment>表id</comment>
+            </column>
+        </property>
+        <property name="operationer" type="java.lang.String">
+            <column name="OPERATIONER" >
+                <comment>操作人</comment>
+            </column>
+        </property>
+        <property name="operationdate" type="java.util.Date">
+            <column name="OPERATIONDATE" >
+                <comment>操作时间</comment>
+            </column>
+        </property>
+        <property name="functionalmoduleid" type="java.lang.Long">
+            <column name="FUNCTIONALMODULEID">
+                <comment>功能模块ID</comment>
+            </column>
+        </property>
+        <property name="hotelid" type="java.lang.Long">
+            <column name="HOTELID" >
+                <comment>酒店ID</comment>
+            </column>
+        </property>
+        <property name="operationerid" type="java.lang.String">
+            <column name="OPERATIONERID" >
+                <comment>操作人ID</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

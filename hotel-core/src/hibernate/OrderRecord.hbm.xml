@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mangocity.hotel.orderrecord.model" default-lazy="false">
+<class name="OrderRecord" table="L_HTL_ORDER_BOOKING_FLOW"  	dynamic-insert="true" dynamic-update="true"	>
+
+		<id name="recordId" unsaved-value="0" column="record_id" >
+			<generator class="sequence">
+				<param name="sequence">seq_or_order_record</param>
+			</generator>
+		</id>
+		<property name="actionId" column="action_id"></property>
+		<property name="source" column="source"></property>
+		<property name="projectCode" column="projectcode"></property>
+		<property name="supplierChannel" column="supplierchannel"></property>
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="roomTypeId" column="roomtype_id"></property>
+		<property name="priceTypeId" column="pricetype_id"></property>
+		<property name="oneRoomPrice" column="one_room_price"></property>
+		<property name="basePrice" column="base_price"></property>
+		<property name="currentStep" column="current_step"></property>
+		<property name="ororderCd" column="ororder_cd"></property>
+		<property name="orderPriceSumConctract" column="order_price_sum_conctract"></property>
+		<property name="orderPriceSumPay" column="order_price_sum_pay"></property>
+		<property name="realPaymoney" column="real_paymoney"></property>
+		<property name="pointMoney" column="point_money"></property>
+		<property name="ulmMoney" column="ulm_money"></property>
+		<property name="payMethod" column="pay_method"></property>
+		<property name="contractCurrency" column="contract_currency"></property>
+		<property name="payCurrency" column="pay_currency"></property>
+		<property name="returnCashMoney" column="returncash_money"></property>
+		<property name="isNeedAssue" column="is_need_assue"></property>
+		<property name="memberId" column="member_id"></property>
+		<property name="memberCd" column="member_cd"></property>
+		<property name="customerIp" column="customer_ip"></property>
+		<property name="bedType" column="bedtype"></property>
+		<property name="checkinDate" column="checkin_date"></property>
+		<property name="checkoutDate" column="checkout_date"></property>
+		<property name="roomQuantity" column="room_quantity"></property>
+		<property name="arriveTime" column="arrivetime"></property>
+		<property name="lastArriveTime" column="last_arrivetime"></property>
+		<property name="createDate" column="create_date"></property>
+		<property name="creatorName" column="creatorname"></property>
+		<property name="creatorId" column="creatorid"></property>
+        <property name="apacheSessionId" column="apache_session_id"></property>
+</class>
+</hibernate-mapping>

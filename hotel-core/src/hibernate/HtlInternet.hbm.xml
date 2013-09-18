@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlInternet" table="HTL_Internet"  dynamic-insert="true" dynamic-update="true" >
+
+		<id name="htlInternetID" unsaved-value="0" column="Internet_ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HOTEL_Internet</param>
+			</generator>
+			
+		</id>
+		<property name="internetBeginDate" column="BEGIN_DATE"></property>
+		<property name="internetEndDate" column="END_DATE"></property>
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="roomTypeId" column="room_type_id"></property>
+		<property name="createBy" column="Create_by" />		
+		<property name="modifyBy" column="modify_by" />
+		<property name="createById" column="Create_by_id" />		
+		<property name="modifyById" column="modify_by_id" />		
+		<property name="createTime" column="create_time" />
+		<property name="modifyTime" column="modify_time" />
+		<property name="active" column="active" /> 
+		<many-to-one name="htlContract" class="com.mangocity.hotel.base.persistence.HtlContract" column="CONTRACT_ID" />
+	</class>
+		
+	<!-- hotel 2.9.2 RMS2962 查询订单的入住日期在某合同免费宽带的起始日期内的免费宽带信息 add by chenjiajie 2009-07-23 -->
+    <query name="queryInternetCheckDate">
+		<![CDATA[ 
+		from HtlInternet i where htlContract.ID =? and roomTypeId = ?
+		and internetBeginDate <= trunc(?) and internetEndDate >= trunc(?)
+		]]>
+	</query>
+</hibernate-mapping>
+

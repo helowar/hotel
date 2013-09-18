@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mangocity.hotel.dreamweb.comment.model" default-lazy="false">
+<class name="ImpressionStatistics" table="htl_impression_statistics" 
+		dynamic-insert="true" dynamic-update="true">
+
+		<id name="impressionStatisticsId" unsaved-value="0" column="impression_statistics_id">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_impression_statistics</param>
+			</generator>
+		</id>
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="impressionId" column="impression_id"></property>
+		<property name="impressionName" column="impression_name"></property>
+		<property name="impressionNumber" column="impression_number"></property>
+		<property name="updateDate" column="updatedate"></property>
+
+</class>
+</hibernate-mapping>

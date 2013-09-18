@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlPresaleHotel" table="htl_presale_hotel"
+		dynamic-insert="true" dynamic-update="true">
+		
+		<id name="ID" unsaved-value="0" column="presale_hotel_id">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_presale_hotel</param>
+			</generator>
+		</id>
+		<property name="presaleId" column="presale_id" />
+		<property name="hotelId" column="hotel_id" />
+		
+		<property name="create_by" column="create_by" update="false"></property>
+		<property name="create_by_id" column="create_by_id" update="false"></property>
+		<property name="create_time" column="create_time" update="false"></property>
+	
+
+       <!--  
+		<many-to-one name="hotel" cascade="none"  insert="false" update="false"  class="com.mangocity.hotel.base.persistence.HtlHotel" column="hotel_id"/>
+		<many-to-one name="presale" cascade="none"  insert="false" update="false"  class="com.mangocity.hotel.base.persistence.HtlPresale" column="presale_id"/>
+		<many-to-one name="presale"
+			class="HtlPresale"
+			column="presale_id"
+			cascade="save-update" 
+			/>
+		-->
+		
+	</class>
+
+
+</hibernate-mapping>

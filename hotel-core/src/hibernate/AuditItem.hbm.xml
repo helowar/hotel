@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="AuditItem" table="or_audititem" lazy="false" dynamic-insert="true" dynamic-update="true">
+	<id name="ID" column="detailId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_audititem</param>
+			</generator>
+	</id>      
+
+         <property name="roomNo" />
+         <property name="fellowName" />
+         <property name="fellowDate" />
+         <property name="normalCheck" />
+         <property name="especiallyShow" />
+         <property name="roomIndex" />
+
+		<!-- 和Audit关联 -->
+		<many-to-one name="audit"
+			class="Audit"
+			column="auditId" 
+			cascade="save-update"
+			unique="true"/>         
+    
+   </class>
+
+
+	<!-- 查询audit id包含在给定auditStr的AuditItem -->   
+	<query name="hQueryAuditItemByAuditStr_AuditItem">
+		<![CDATA[ 
+		from AuditItem a 
+		where 
+			a.audit.ID = ? 
+		order by a.roomNo, a.fellowDate 
+		]]>
+	</query>   
+   
+</hibernate-mapping>

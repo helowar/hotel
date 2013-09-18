@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlChangePriceWarning" table="Htl_change_Price_warning" 
+		dynamic-insert="true" dynamic-update="true">
+		
+		
+		<meta attribute="implement-equals">true</meta>
+		<cache usage="read-write" />
+		
+		<id name="ID" unsaved-value="0" column="warning_Id">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HOTEL_CHANGE_PRICE_WARNING</param>
+			</generator>
+		</id>
+
+
+		<property name="hotelId" column="hotel_id" />
+		<property name="beginDate" column="beginDate" />
+		<property name="endDate" column="endDate" />
+		<property name="remark" column="remark" />
+        <property name="contextType" column="context_type" />
+
+	</class>
+	<query name="lstChangePriceWarnings">
+		<![CDATA[ 
+			from HtlChangePriceWarning c where c.hotelId=?
+		]]>
+	</query>
+	<query name="getCpwData">
+		<![CDATA[ 
+			from HtlChangePriceWarning c where c.hotelId=? and endDate >= ?
+		]]>
+	</query>
+	
+</hibernate-mapping>

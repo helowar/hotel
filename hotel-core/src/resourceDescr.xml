@@ -1,0 +1,2887 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+<!-- ******************** 酒店特有基础数据 远程配置开始 ******************** -->
+<!-- 信用卡种类 酒店本部使用 -->
+	<resource name="creditCardCadre" queryID="creditCardCadre" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 中台订单分组 -->	
+	<resource name="res_workStatesGroup" queryID="res_workStatesGroup" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 关房原因 -->
+	<resource name="close_room_cause" queryID="close_room_cause" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 酒店变价工单状态 -->	
+	<resource name="hotel_status" queryID="hotel_status" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 信用卡结算方法 -->
+	<resource name="res_balance_method" queryID="res_balance_method" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 信用卡担保取消条款扣款类型 -->
+	<resource name="res_deduct_type" queryID="res_deduct_type" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 预付取消条款扣款类型 -->
+	<resource name="res_prepay_deduct_type" queryID="res_prepay_deduct_type" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 酒店装修程度 -->
+	<resource name="sel_fitmentDegree" queryID="sel_fitmentDegree" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 部门中文名设置 -->
+	<resource name="select_dept" queryID="select_dept" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 床型 -->
+	<resource name="bedType" queryID="bedType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>
+	
+<!-- 内部多渠道预定 -->
+	<resource name="priceTypeMultiChannel">
+		<status name="1" descr="网站" />
+		<status name="2" descr="CC"></status>
+		<status name="4" descr="代理B2B"></status>
+		<status name="8" descr="114"></status>
+		<status name="16" descr="商旅网站"></status>
+		<status name="32" descr="商旅CC"></status>
+		<status name="64" descr="度假网站"></status>
+		<status name="128" descr="度假CC"></status>
+		<status name="256" descr="3G"></status>
+		<status name="512" descr="对外API"></status>
+		<status name="1024" descr="商旅在线"></status>
+		<status name="32768" descr="网络推广"></status>
+	</resource>	
+	
+<!-- 仅供呼叫中心床型显示和本部进行了对应绑定 -->
+	<resource name="bedTypeForCC">	
+		<status name="1" descr="大" />
+		<status name="2" descr="双" />
+		<status name="3" descr="单" />
+	</resource>		
+	
+
+	<!-- 订单来源 edit by juesuchen@2010-2-22 -->
+	<resource name="res_source">
+		<status name="" descr="请选择" />
+		<status name="PHE" descr="电话" />
+		<status name="NET" descr="网站" />
+		<status name="HKT" descr="香港组" />
+		<status name="BZY" descr="八爪鱼海外" />
+		<status name="MTL"  descr="3G手机" />
+		<status name="FTNET" descr="繁体网站" />
+		<status name="QUNAR" descr="去哪儿" />
+		<status name="COUT" descr="外呼" />
+		<status name="MYB2B" descr="魅影B2B" />
+	</resource>
+	
+	<!-- copy 上面的， 少了个请选择 -->
+	<resource name="select_hraOrderSource">
+		<status name="PHE" descr="电话" />
+		<status name="NET" descr="网站" />
+		<status name="HKT" descr="香港组" />
+		<status name="BZY" descr="八爪鱼海外" />
+		<status name="MTL"  descr="3G手机" />
+		<status name="FTNET" descr="繁体网站" />
+		<status name="QUNAR" descr="去哪儿" />
+		<status name="COUT" descr="外呼" />
+		<status name="MYB2B" descr="魅影" />
+	</resource>	
+	
+<!-- 日审状态 -->	
+	<resource name="res_auditState" queryID="res_auditState" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 订单状态 -->	
+	<resource name="res_orderState" queryID="res_orderState" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 担保条件 -->
+	<resource name="res_assureConditions">
+		<status name="" descr="请选择" />
+		<status name="01" descr="超时担保"></status>
+		<status name="02" descr="无条件担保"></status>
+	</resource>	
+	
+<!-- 担保类型 -->
+	<resource name="res_assureType" queryID="res_assureType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 交通方式 -->
+	<resource name="res_vehicleType" queryID="res_vehicleType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 付款方式(类型) -->
+	<resource name="res_prepayType" queryID="res_prepayType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 付款方式英文缩写 -->
+	<resource name="res_prepayTypeEng">
+		<status name="1" descr="Cash" />
+		<status name="2" descr="CredInt" />
+		<status name="3" descr="CredDom" />
+		<status name="4" descr="Pt" />
+		<status name="5" descr="Bank" />
+		<status name="6" descr="Voucher" />
+		<status name="7" descr="Pos" />
+	</resource>		
+
+<!-- vip级别 -->
+	<resource name="viplevel">
+		<status name="0" descr="未选择" />
+		<status name="1" descr="VIP1" />
+		<status name="2" descr="VIP2" />
+		<status name="3" descr="VIP3" />
+		<status name="4" descr="VIP4" />
+<!--		<status name="5" descr="VIP5" />-->
+	</resource>		
+	
+<!-- 客人确认方式 -->
+	<resource name="res_confirmType" queryID="res_confirmType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 附加服务 -->
+	<resource name="res_addOnService" queryID="res_addOnService" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>
+
+<!-- 特殊要求 -->
+	<resource name="res_specialReq" queryID="res_specialReq" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 餐饮休闲设施 -->
+	<resource name="hotel_liefallow" queryID="hotel_liefallow" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 残疾人设施 -->
+	<resource name="hotel_deformity" queryID="hotel_deformity" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 客房设施 -->
+	<resource name="room_equipment" queryID="room_equipment" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 早餐数量 -->
+	<resource name="breakfast_num_new">
+		<status name="0" descr="不含" />
+		<status name="1" descr="1" />
+		<status name="2" descr="2" />
+		<status name="3" descr="3" />
+		<status name="4" descr="4" />
+		<status name="5" descr="5" />
+		<status name="6" descr="6" />
+		<status name="7" descr="7" />
+		<status name="8" descr="8" />
+		<status name="9" descr="9" />
+		<status name="10" descr="10" />
+		<status name="-1" descr="人数" />
+	</resource>
+
+<!-- 早餐类型 -->
+	<resource name="breakfast_type" queryID="breakfast_type" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 仅供呼叫中心早餐类型显示和本部进行了对应绑定 -->
+	<resource name="breakfast_typeForCC">
+		<status name="1" descr="中" />
+		<status name="2" descr="西" />
+		<status name="3" descr="自" />
+	</resource>		
+	
+<!-- 调价提示类型 -->
+	<resource name="contextType" queryID="contextType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 酒店房型类别 供房型信息使用 -->
+	<resource name="hotel_classify" queryID="hotel_classify" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 房型推荐级别 -->
+	<resource name="select_RoomTypeCommendLevel" queryID="select_RoomTypeCommendLevel" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+		
+<!-- 合同奖惩完成类型 -->
+	<resource name="select_doneType" queryID="select_doneType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>			
+	
+<!-- 合同奖惩销售类型 -->
+	<resource name="select_saleType" queryID="select_saleType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 合同奖惩分期类型 -->
+	<resource name="select_dateType" queryID="select_dateType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 房态 -->
+	<resource name="select_roomStatus" queryID="select_roomStatus" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!-- 配额预警数 -->
+	<resource name="select_quotaWarnNum">
+		<status name="" descr="请选择" />	
+		<status name="01" descr="1" />
+		<status name="02" descr="2" />
+		<status name="03" descr="3" />
+	</resource>	
+	
+	<resource name="select_forewarnFlag">
+		<status name="" descr="请选择" />	
+		<status name="0" descr="正常" />
+		<status name="1" descr="预警" />
+		<status name="2" descr="强制解除" />
+	</resource>	
+	
+	<resource name="select_forewarnFlag_room">
+		<status name="" descr="请选择" />	
+		<status name="0" descr="正常" />
+		<status name="1" descr="预警" />
+	</resource>	
+	
+
+<!-- 仅供呼叫中心房态显示和本部进行了对应绑定 -->
+	<resource name="select_roomStatusForCC">
+		<status name="-1" descr="" />
+		<status name="0" descr="F" />
+		<status name="1" descr="良" />
+		<status name="2" descr="紧" />
+		<status name="3" descr="不" />
+		<status name="4" descr="满" />
+	</resource>
+	
+<!-- 会员总体评论分数 -->
+	<resource name="select_commentScore" queryID="select_commentScore" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+	
+<!--评论状态-->
+	<resource name="select_commentStatus" queryID="select_commentStatus" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>				
+	
+<!-- 酒店星级 -->
+	<resource name="select_hotelStarLevel" queryID="select_hotelStarLevel" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 促销类型 -->
+	<resource name="presale_type" queryID="presale_type" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 配额类型 -->
+	<resource name="quota_type" queryID="quota_type" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 酒店主推类型 -->
+	<resource name="select_commend" queryID="select_commend" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>
+	
+<!-- 酒店类别 (供复选框用) -->
+	<resource name="checkbox_hotelType" queryID="checkbox_hotelType" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 销售渠道-->
+	<resource name="saleChanel" queryID="saleChanel" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+	
+<!-- 采购渠道-->
+	<resource name="purchaseChanel" queryID="purchaseChanel" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+				
+<!-- 免费服务-->
+	<resource name="res_freeService" queryID="res_freeService" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>				
+<!-- ******************** 酒店特有基础数据 远程配置结束 ******************** -->	
+
+
+
+
+
+<!-- ******************** 酒店公共基础数据 远程配置开始 ******************** -->
+<!-- 常用城市 -->
+	<resource name="res_commonCity" queryID="res_commonCity" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+
+<!-- 常用港澳城区 -->
+	<resource name="res_areaHK" queryID="res_areaHK" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+		
+<!-- 性别 -->	
+	<resource name="sex" queryID="sex" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>		
+
+<!-- 信用卡种类 呼叫中心使用 -->
+	<resource name="creditCard" queryID="creditCard" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>	
+			
+<!-- 信用卡种类 网站使用 -->
+	<resource name="creditCardByWebSite">		
+		<status name="8" descr="G工商银行" />
+		<status name="30" descr="G工行（亚洲）信用卡" />			
+		<status name="11" descr="G广东发展银行" />	
+		<status name="23" descr="H华夏银行" />
+		<status name="9" descr="J建设银行" />
+		<status name="13" descr="J交通银行" />
+		<status name="20" descr="M民生银行" />
+		<status name="10" descr="N农业银行" />
+		<status name="15" descr="P浦东发展银行" />	
+		<status name="22" descr="P平安银行信用卡" />
+		<status name="6" descr="S深圳发展银行" />
+		<status name="21" descr="S上海银行" />
+		<status name="16" descr="X兴业银行" />	
+		<status name="7" descr="Z中国银行" />	
+		<status name="12" descr="Z招商银行" />
+	</resource>		  		
+
+				
+
+			
+<!-- 称谓 -->
+	<resource name="res_appellative" queryID="res_appellative" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>				
+			
+<!-- 担保状态 -->
+	<resource name="res_guaranteeState" queryID="res_guaranteeState" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>				
+			
+<!-- 币种 -->
+	<resource name="currency" queryID="currency" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>				
+			
+<!-- 订单来源 -->
+	<resource name="origin" queryID="origin" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>				
+			
+<!-- 订单紧急程度 -->
+	<resource name="emergency" queryID="emergency" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>			
+			
+<!-- 地区信息如:国家、省份、城市、城区、商业区、展馆区 -->
+	<resource name="queryBaseData" queryID="queryBaseData" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>
+<!-- ******************** 酒店公共基础数据 远程配置结束 ******************** -->
+
+
+
+
+
+<!-- ******************** 酒店特有基础数据 本地化数据库配置开始 ******************** -->
+<!-- 所属酒店集团 -->
+	<resource name="select_hotelGroup" queryID="select_hotelGroup" type="database">
+	</resource>
+	
+	<resource name="select_namePlate" queryID="select_namePlate" type="database">
+	</resource>
+	
+	<resource name="queryRoomTypes" queryID="queryRoomTypes" type="database">
+	</resource>
+	
+	<!-- add by shizhongwen 2009-04-22 -->
+	<resource name="queryRoomTypesReoveHK" queryID="queryRoomTypesReoveHK" type="database">
+	</resource>	
+
+	<resource name="queryChildRoomTypes" queryID="queryChildRoomTypes" type="database">
+	</resource>
+
+	<resource name="queryCities" queryID="queryCities" type="database">		
+	</resource>	
+	<resource name="select_supplier" queryID="select_supplier" type="database">
+	</resource>
+	<resource name="select_oldSaleChannel" queryID="select_oldSaleChannel" type="database">
+	</resource>
+<!-- ******************** 酒店特有基础数据 本地化数据库配置结束 ******************** -->
+
+
+
+
+
+<!-- ******************** 酒店特有基础数据 本地化文件配置开始 ******************** -->
+	<resource name="resource_boolean">
+		<status name="1" descr="是" />
+		<status name="0" descr="否" />
+	</resource>
+
+	<resource name="resource_boolean1">
+		<status name="Y" descr="是" />
+		<status name="N" descr="否" />
+	</resource>
+	
+	<resource name="resource_boolean2">
+		<status name="1" descr="Y" />
+		<status name="0" descr="N" />
+	</resource>	
+	
+	<resource name="resource_boolean3">
+		<status name="true" descr="Y" />
+		<status name="false" descr="N" />
+	</resource>			
+	
+	<resource name="convert_boolean">
+		<status name="true" descr="1" />
+		<status name="false" descr="0" />
+	</resource>		
+
+	<resource name="resource_type">
+		<status name="" descr="所有" />
+		<status name="url" descr="URL资源" />
+		<status name="menu" descr="菜单资源" />
+		<status name="business" descr="业务资源" />
+	</resource>
+
+	<resource name="district_type">
+		<status name="001" descr="国家" />
+		<status name="001001" descr="省" />
+		<status name="001001001" descr="市" />
+		<status name="001001001001" descr="县" />
+		<status name="001001001001001" descr="乡" />
+	</resource>
+
+	<resource name="requirement_state">
+		<status name="0" descr="提交、待评估" />
+		<status name="1" descr="评估完毕、待审批" />
+		<status name="2" descr="审批同意开发" />
+		<status name="3" descr="指派后，处于开发状态" />
+		<status name="4" descr="开发完成" />
+		<status name="8" descr="审批不同意开发-非正常结束" />
+		<status name="9" descr="正常关闭" />
+	</resource>
+
+	<resource name="requirement_type">
+		<status name="1" descr="业务" />
+		<status name="2" descr="技术" />
+		<status name="2" descr="客服" />
+	</resource>
+
+	<resource name="week">
+		<status name="1" descr="星期一" />
+		<status name="2" descr="星期二" />
+		<status name="3" descr="星期三" />
+		<status name="4" descr="星期四" />
+		<status name="5" descr="星期五" />
+		<status name="6" descr="星期六" />
+		<status name="7" descr="星期日" />
+	</resource>	
+	
+	<resource name="weekStartSun">
+		<status name="2" descr="星期一" />
+		<status name="3" descr="星期二" />
+		<status name="4" descr="星期三" />
+		<status name="5" descr="星期四" />
+		<status name="6" descr="星期五" />
+		<status name="7" descr="星期六" />
+		<status name="1" descr="星期日" />
+	</resource>	
+	
+	<resource name="skill_education">
+		<status name="6" descr="餐馆" />
+		<status name="7" descr="缝纫服装" />
+		<status name="8" descr="建筑" />
+		<status name="9" descr="家政服务" />
+		<status name="10" descr="电子电器" />
+		<status name="11" descr="计算机" />
+		<status name="12" descr="其他" />
+	</resource>
+
+<!--酒店类型-->
+	<resource name="select_hotelType">
+		<status name="" descr="--请选择酒店类型--" />
+		<status name="1" descr="商旅酒店" />
+		<status name="2" descr="旅游酒店" />
+		<status name="3" descr="酒店式公寓" />
+	</resource>
+	
+<!-- 合同类型 -->
+	<resource name="contract_type">
+		<status name="1" descr="普通合同"></status>
+		<status name="2" descr="度假合同"></status>
+		<status name="3" descr="商旅合同"></status>
+	</resource>
+
+<!-- 合同付款方式 -->
+	<resource name="contract_pay">
+		<status name="1" descr="前台面/预付"></status>
+		<status name="2" descr="前台面付"></status>
+		<status name="3" descr="预付"></status>
+		<status name="4" descr="预付/月结"></status>
+	</resource>
+	
+<!-- 合同奖惩奖励类型 -->
+	<resource name="select_forwardType">
+		<status name="" descr="--" />
+		<status name="0" descr="奖金" />
+		<status name="1" descr="赠送间夜数" />
+		<status name="2" descr="销售额百分比" />
+	</resource>	
+
+<!-- 转帐银行 -->
+	<resource name="res_bankCode">
+		<status name="" descr="---请选择转帐银行---" />
+		<status name="1" descr="深圳招行皇岗支行(0123456799154)" />
+		<status name="2" descr="深圳招行福中支行(0123456799154)" />
+		<status name="3" descr="中国银行深圳沙河支行(0123456799154)" />
+		<status name="4" descr="深圳建行住房城市建设支行(0123456799154)" />
+	</resource>		
+	
+<!-- 到店时间 -->
+	<resource name="res_arrivalTime">
+		<status name="" descr="" />
+		<status name="00:00" descr="00:00" />		
+		<status name="00:30" descr="00:30" />				
+		<status name="01:00" descr="01:00" />
+		<status name="01:30" descr="01:30" />
+		<status name="02:00" descr="02:00" />
+		<status name="02:30" descr="02:30" />
+		<status name="03:00" descr="03:00" />
+		<status name="03:30" descr="03:30" />
+		<status name="04:00" descr="04:00" />
+		<status name="04:30" descr="04:30" />
+		<status name="05:00" descr="05:00" />
+		<status name="05:30" descr="05:30" />
+		<status name="06:00" descr="06:00" />
+		<status name="06:30" descr="06:30" />
+		<status name="07:00" descr="07:00" />
+		<status name="07:30" descr="07:30" />														
+		<status name="08:00" descr="08:00" />
+		<status name="08:30" descr="08:30" />
+		<status name="09:00" descr="09:00" />
+		<status name="09:30" descr="09:30" />
+		<status name="10:00" descr="10:00" />
+		<status name="10:30" descr="10:30" />
+		<status name="11:00" descr="11:00" />
+		<status name="11:30" descr="11:30" />
+		<status name="12:00" descr="12:00" />
+		<status name="12:30" descr="12:30" />
+		<status name="13:00" descr="13:00" />
+		<status name="13:30" descr="13:30" />
+		<status name="14:00" descr="14:00" />
+		<status name="14:30" descr="14:30" />
+		<status name="15:00" descr="15:00" />
+		<status name="15:30" descr="15:30" />
+		<status name="16:00" descr="16:00" />
+		<status name="16:30" descr="16:30" />
+		<status name="17:00" descr="17:00" />
+		<status name="17:30" descr="17:30" />
+		<status name="18:00" descr="18:00" />
+		<status name="18:30" descr="18:30" />
+		<status name="19:00" descr="19:00" />
+		<status name="19:30" descr="19:30" />
+		<status name="20:00" descr="20:00" />
+		<status name="20:30" descr="20:30" />
+		<status name="21:00" descr="21:00" />
+		<status name="21:30" descr="21:30" />
+		<status name="22:00" descr="22:00" />
+		<status name="22:30" descr="22:30" />
+		<status name="23:00" descr="23:00" />
+		<status name="23:30" descr="23:30" />
+		<status name="23:59" descr="23:59" />
+	</resource>	
+	
+<!--  网站订单填写页面：到店时间 (yun.wu 2008-5-22)-->
+	<resource name="res_webArrivalTime">
+		<status name="" descr="" />		
+		<status name="11:30" descr="11:30" />
+		<status name="12:00" descr="12:00" />
+		<status name="12:30" descr="12:30" />
+		<status name="13:00" descr="13:00" />
+		<status name="13:30" descr="13:30" />
+		<status name="14:00" descr="14:00" />
+		<status name="14:30" descr="14:30" />
+		<status name="15:00" descr="15:00" />
+		<status name="15:30" descr="15:30" />
+		<status name="16:00" descr="16:00" />
+		<status name="16:30" descr="16:30" />
+		<status name="17:00" descr="17:00" />
+		<status name="17:30" descr="17:30" />
+		<status name="18:00" descr="18:00" />
+		<status name="18:30" descr="18:30" />
+		<status name="19:00" descr="19:00" />
+		<status name="19:30" descr="19:30" />
+		<status name="20:00" descr="20:00" />
+		<status name="20:30" descr="20:30" />
+		<status name="21:00" descr="21:00" />
+		<status name="21:30" descr="21:30" />
+		<status name="22:00" descr="22:00" />
+		<status name="22:30" descr="22:30" />
+		<status name="23:00" descr="23:00" />
+		<status name="23:30" descr="23:30" />
+		<status name="23:59" descr="23:59" />
+	</resource>	
+	
+	
+	
+<!-- 付款时限(小时) -->
+	<resource name="res_hoursBak">
+		<status name="00" descr="0" />
+		<status name="01" descr="1" />
+		<status name="02" descr="2" />
+		<status name="03" descr="3" />
+		<status name="04" descr="4" />
+		<status name="05" descr="5" />
+		<status name="06" descr="6" />
+		<status name="07" descr="7" />
+		<status name="08" descr="8" />
+		<status name="09" descr="9" />
+		<status name="10" descr="10" />
+		<status name="11" descr="11" />
+		<status name="12" descr="12" />
+		<status name="13" descr="13" />
+		<status name="14" descr="14" />
+		<status name="15" descr="15" />
+		<status name="16" descr="16" />
+		<status name="17" descr="17" />
+		<status name="18" descr="18" />
+		<status name="19" descr="19" />
+		<status name="20" descr="20" />
+		<status name="21" descr="21" />
+		<status name="22" descr="22" />
+		<status name="23" descr="23" />
+	</resource>
+
+<!-- 付款时限(分) -->
+	<resource name="res_minutesBak">
+		<status name="00" descr="0" />
+		<status name="15" descr="15" />
+		<status name="30" descr="30" />
+		<status name="45" descr="45" />
+	</resource>	
+	
+<!-- 入住人国籍 -->
+	<resource name="res_fellowNation">
+		<status name="1" descr="内宾" />
+		<status name="2" descr="外宾" />
+		<status name="3" descr="港澳台" />			
+	</resource>	
+	
+<!-- 订单详细(OrOrderItem)类型 -->
+	<resource name="res_orderItemType">
+		<status name="1" descr="订单" />
+		<status name="2" descr="红单" />
+		<status name="3" descr="附加单" />			
+	</resource>		
+	
+<!-- 会员确认类型 -->
+	<resource name="res_memberConfirmType">
+		<status name="1" descr="确认" />
+		<status name="3" descr="取消" />
+		<status name="4" descr="暂缓" />
+		<status name="6" descr="无法联系" />
+		<status name="7" descr="日审" />
+		<status name="8" descr="满房" />
+		<status name="9" descr="变价" />
+		<status name="10" descr="担保" />
+		<status name="11" descr="预付" />
+		<status name="5" descr="提前退房" />
+		<status name="12" descr="部分入住" />
+		<status name="13" descr="NO_SHOW" />
+		<status name="14" descr="信用卡支付失败" />
+		<status name="15" descr="当天暂缓"/>
+		<status name="16" descr="非当天暂缓" />
+	</resource>
+
+<!-- 酒店确认类型 -->
+	<resource name="res_hotelConfirmType">
+		<status name="1" descr="预定" />
+		<status name="2" descr="修改" />
+		<status name="3" descr="取消" />
+		<status name="7" descr="续住" />
+		<status name="9" descr="直联特殊要求通知单" />
+	</resource>
+	
+<!-- 退款原因 -->
+	<resource name="res_refundMessage">
+		<status name="" descr="请选择退款原因" />
+		<status name="减房" descr="减房" />
+	</resource>		
+	
+<!-- 撤单原因 status name="14" descr="No-show取消" -->
+<!--<status name="6" descr="酒店设施原因" />-->	
+<!--<status name="7" descr="酒店设施原因NR" />-->	
+<!--<status name="10" descr="满房" />-->	
+<!--<status name="11" descr="满房NR" />-->		
+<!--<status name="12" descr="酒店调价" />-->	
+<!--<status name="13" descr="酒店调价NR" />-->		
+<!--<status name="15" descr="酒店查不到合同" />-->	
+<!--<status name="9" descr="TC错误下单" />-->
+<!--<status name="5" descr="价格倒挂" />-->
+<!-- <status name="4" descr="比竞争对手贵" /> -->
+<!-- <status name="3" descr="回复慢" /> -->
+<!-- <status name="8" descr="TC重复下单" /> -->
+<!--撤单原因一级目录  -->
+	<resource name="res_stopSellReason">
+		<status name="" descr="请选择..." />
+		<status name="1" descr="停业" />
+		<status name="2" descr="停业装修" />
+		<status name="3" descr="佣金拖欠" />
+		<status name="4" descr="淡季休业" />
+		<status name="5" descr="停止合作" />
+		<status name="6" descr="酒店不予合作" />
+		<status name="7" descr="其他" />		
+	</resource>	
+	
+	<resource name="res_cancelReason">
+		<status name="" descr="请选择..." />
+		<status name="1" descr="重下新单-客人原因" />
+		<status name="2" descr="重下新单-酒店原因" />
+		<status name="3" descr="重下新单-芒果网原因" />
+		<status name="4" descr="取消订单-客人原因" />
+		<status name="5" descr="取消订单-酒店原因" />
+		<status name="6" descr="取消订单-芒果网原因" />
+		<status name="7" descr="测试单" />
+		<status name="88" descr="直联酒店失败" />			
+	</resource>	
+	
+<!-- 撤单客人原因陈述 -->
+	<resource name="res_guestCancelMessage">
+		<status name="" descr="请选择..." />
+		<status name="1" descr="行程改变" />
+		<status name="2" descr="无法提供担保" />
+		<status name="3" descr="通过其他途径预定" />
+		<status name="4" descr="酒店位置不合适" />
+		<status name="5" descr="天气原因" />
+		<status name="6" descr="客人重复/错误下单" />
+		<status name="7" descr="网站无效单" />
+		<status name="8" descr="不愿告知原因" />
+		<status name="9" descr="其他" />	
+	</resource>	
+	
+<!-- 重下新单-客人原因 -->
+	<resource name="againNewOrder_guestReason">
+		<status name="" descr="请选择..." />
+		<status name="1" descr="酒店位置不合适" />		
+		<status name="2" descr="无法提供担保" />	
+		<status name="3" descr="行程改变" />	
+		<status name="4" descr="不可抗力因素" />	
+		<status name="5" descr="客人错误预定" />			
+		<status name="6" descr="其他" />	
+	</resource>	
+
+<!-- 重下新单-酒店原因 -->
+	<resource name="againNewOrder_hotelReason">
+		<status name="" descr="请选择..." />
+		<status name="1" descr="酒店满房" />
+		<status name="2" descr="酒店调价" />		
+		<status name="3" descr="酒店设施原因" />		
+		<status name="4" descr="酒店推翻确认" />
+		<status name="5" descr="酒店查不到合同" />		
+		<status name="6" descr="其他" />	
+	</resource>	
+
+<!-- 重下新单-芒果网原因 -->
+	<resource name="againNewOrder_mangoReason">
+		<status name="" descr="请选择..." />
+		<status name="1" descr="TC错误下单" />			
+		<status name="2" descr="其他" />	
+	</resource>	
+
+<!-- 取消订单-客人原因 -->
+	<resource name="cancelOrder_guestReason">
+		<status name="" descr="请选择..." />
+		<status name="1" descr="酒店位置不合适" />
+		<status name="2" descr="无法提供担保" />
+		<status name="3" descr="超过保留时间未到店" />	
+		<status name="4" descr="通过其他途径预订" />
+		<status name="5" descr="行程改变" />
+		<status name="6" descr="不可抗力因素" />	
+		<status name="7" descr="客人重复/错误预订" />
+		<status name="8" descr="网站无效单" />
+		<status name="9" descr="多次未能联络" />	
+		<status name="10" descr="并无预订需求" />		
+		<status name="11" descr="不愿告知原因" />
+		<status name="12" descr="支付超时" />
+		<status name="13" descr="其他" />
+		<!-- 短信取消 new add 2012.1.5 -->
+		<status name="14" descr="短信取消" />			
+	</resource>	
+
+<!-- 取消订单-酒店原因 -->
+	<resource name="cancelOrder_hotelReason">
+		<status name="" descr="请选择..." />
+		<status name="1" descr="酒店满房" />
+		<status name="2" descr="酒店调价" />		
+		<status name="3" descr="酒店设施原因" />		
+		<status name="4" descr="酒店推翻确认" />
+		<status name="5" descr="酒店抢客" />
+		<status name="6" descr="价格倒挂" />
+		<status name="7" descr="比竞争对手贵" />		
+		<status name="8" descr="酒店查不到合同" />
+		<status name="9" descr="酒店回复不及时" />		
+		<status name="10" descr="其他" />	
+	</resource>	
+
+<!-- 取消订单-芒果网原因 -->
+	<resource name="cancelOrder_mangoReason">
+		<status name="" descr="请选择..." />	
+		<status name="1" descr="回复不及时" />	
+		<status name="2" descr="对服务不满意" />		
+		<status name="3" descr="TC错误/重复下单" />			
+		<status name="4" descr="其他" />	
+		<status name="5" descr="蓄水池订单转预定" />	
+		<status name="6" descr="蓄水池订单撤单" />
+	</resource>	
+	
+	
+	<resource name="cancelOrder_channelReason">
+		<status name="89" descr="合作方系统原因" />			
+		<status name="90" descr="配额不足" />	
+	</resource>	
+	
+	<!-- noshow1级目录菜单 -->
+	<resource name="guest_noshowreson">
+	<status name="" descr="请选择..." />
+	<status name="1" descr="客人主观原因" />
+	<status name="2" descr="芒果网原因" />
+	<status name="3" descr="酒店原因" />
+	<status name="4" descr="无法联系" />
+	<status name="5" descr="客人表示无法预订" />
+	<status name="6" descr="帮朋友代订不清楚" />
+	<status name="7" descr="帮朋友代订不清楚" />
+	
+	</resource>
+	
+	<!-- noshow 2级目录菜单 -->
+	<!-- 客人主观原因 -->
+	<resource name="guest_subjectiveReason">	
+		<status name="" descr="请选择..." />
+						
+		<status name="1" descr="更换酒店/日期/房型" />	
+		<status name="2" descr="没找到酒店" />		
+		<status name="3" descr="忘带证件无法入住" />	
+		<status name="4" descr="行程改变" />		
+		<status name="5" descr="走错酒店" />	
+		<status name="6" descr="客人自行联系酒店取消预订" />		
+		<status name="7" descr="在规定时间内无法到达酒店" />			
+		<status name="8" descr="不可抗力因素" />	
+		<status name="9" descr="客人重复预订" />	
+		<status name="10" descr="通过其他途径入住" />		
+	</resource>	
+
+<!-- 芒果网原因 -->
+	<resource name="mango_subjectiveReason">
+		<status name="" descr="请选择..." />	
+		<status name="1" descr="回复不及时" />	
+		<status name="2" descr="客人对客服人员服务不满意" />		
+		<status name="3" descr="漏单、下错单" />			
+		<status name="4" descr="客人未收到确认信息" />				
+	</resource>	
+
+<!-- 酒店原因 -->
+
+	<resource name="hotel_subjectiveReason">
+		<status name="" descr="请选择..." />	
+		<status name="1" descr="客人对酒店设施不满意" />	
+		<status name="2" descr="客人对酒店服务不满意" />		
+		<status name="3" descr="酒店地理位置不符合客人要求" />			
+		<status name="4" descr="酒店交通不便" />	
+		<status name="5" descr="酒店抢客" />	
+		<status name="6" descr="价格倒挂" />				
+	</resource>	
+
+
+<!-- add by chenkeming@2008.12.04 V2.4.1 begin-->
+<!-- noshow原因1级目录 -->
+	<resource name="res_noshowCode">
+		<status name="" descr="请选择" />	
+		<status name="1" descr="客人主观原因" />
+		<status name="2" descr="芒果网原因" />
+		<status name="3" descr="酒店原因" />
+		<status name="4" descr="无法联系" />
+		<status name="5" descr="客人表示并无预订" />
+		<status name="6" descr="帮朋友代订不清楚" />
+		<status name="7" descr="其它" />
+	</resource>	
+<!-- noshow原因2级目录1 -->
+	<resource name="res_noshowReason1">
+		<status name="" descr="请选择" />	
+		<status name="1" descr="更换酒店/日期/房型" />
+		<status name="2" descr="没找到酒店" />
+		<status name="3" descr="忘带证件无法入住" />
+		<status name="4" descr="行程改变" />
+		<status name="5" descr="走错酒店" />
+		<status name="6" descr="客人自行联系酒店取消预订" />
+		<status name="7" descr="在规定时间内无法到达酒店" />
+		<status name="8" descr="不可抗力因素" />
+		<status name="9" descr="客人重复预订" />
+		<status name="10" descr="通过其他途径入住" />
+	</resource>		
+<!-- noshow原因2级目录2 -->
+	<resource name="res_noshowReason2">
+		<status name="" descr="请选择" />	
+		<status name="1" descr="回复不及时" />
+		<status name="2" descr="客人对客服人员服务不满意" />
+		<status name="3" descr="漏单、下错单" />
+		<status name="4" descr="客人未收到确认信息" />
+	</resource>
+<!-- noshow原因2级目录3 -->
+	<resource name="res_noshowReason3">
+		<status name="" descr="请选择" />	
+		<status name="1" descr="客人对酒店设施不满意" />
+		<status name="2" descr="客人对酒店服务不满意" />
+		<status name="3" descr="酒店地理位置不符合客人要求" />
+		<status name="4" descr="酒店交通不便" />
+		<status name="5" descr="酒店抢客" />
+		<status name="6" descr="价格倒挂" />
+	</resource>			
+<!-- add by chenkeming@2008.12.04 V2.4.1 end-->	
+	
+<!-- 模板类型 -->
+	<resource name="res_modelType">
+	    <status name="0" descr="-请选择-"/>
+		<status name="1" descr="芒果散客" />
+		<status name="2" descr="114" />
+		<status name="3" descr="商旅" />	
+		<status name="4" descr="一卡代理" />	
+		<status name="5" descr="南航" />
+		<status name="6" descr="诺曼底" />		
+	</resource>	
+	
+<!-- 审核回访(原日审)部门 组别 v2.4.2 by chenjiajie 2008-12-26 -->
+	<resource name="res_workStatesGroupByAudit">
+		<status name="1" descr="审核组" />
+		<status name="2" descr="回访组" />		
+	</resource>
+
+<!-- 房控疑难部门 组别 v2.4.2 by chenjiajie 2008-12-26 -->	
+	<resource name="res_workStatesGroupByRSC">
+		<status name="11" descr="RSC深圳组" />
+		<status name="12" descr="RSC广州组" />	
+		<status name="10" descr="RSC港澳组" />	
+		<status name="15" descr="RSC上海组" />
+		<status name="16" descr="RSC江浙组" />	
+		<status name="17" descr="RSC北京组" />
+		<status name="18" descr="RSC北方组" />
+		<status name="99" descr="无" />
+	</resource>
+	<resource name="res_workStatesGroupByRSC2">
+		<status name="11" descr="RSC深圳组" />
+		<status name="12" descr="RSC广州组" />	
+		<status name="10" descr="RSC港澳组" />	
+		<status name="15" descr="RSC上海组" />
+		<status name="16" descr="RSC江浙组" />	
+		<status name="17" descr="RSC北京组" />
+		<status name="18" descr="RSC北方组" />
+	</resource>
+	
+<!-- TMC部门 组别 -->	
+	<resource name="res_workStatesGroupByTMC">
+		<status name="30" descr="TMC组" />
+	</resource>		
+	
+<!-- 工作部门 -->
+	<resource name="res_workType">
+		<!-- HRA的值为1现在HRA包括TMC在内-->
+		<status name="1" descr="HRA" />
+		<status name="2" descr="审核回访" />	
+		<status name="3" descr="房控疑难" />
+		<!--中台订单流转优化TMC与HRA为同一部门  shaojun.yang 2010-3-17 
+		<status name="4" descr="TMC" />
+		 -->
+	</resource>	
+	
+<!-- 中台订单类型 -->
+	<resource name="res_hraOrderType">
+		<status name="1" descr="芒果网(预付)" />
+		<status name="2" descr="芒果网(担保)" />
+		<status name="3" descr="芒果网(其他)" />
+		<status name="4" descr="114(预付)" />
+		<status name="5" descr="114(担保)" />
+		<status name="6" descr="114(其他)" />
+		<status name="7" descr="港澳(预付)" />
+		<status name="8" descr="港澳(担保)" />
+		<status name="9" descr="港澳(其他)" />
+		<status name="90" descr="中旅" />
+		<status name="93" descr="代理组" />
+		
+		<!-- 
+		<status name="90" descr="澳门(预付)" />
+		<status name="91" descr="澳门(担保)" />
+		<status name="92" descr="澳门(其他)" />	 -->
+		<status name="0" descr="专家组" />		
+	</resource>
+	<!-- 中台组别选项 -->
+	<resource name="res_hraOrderGroup">
+		<status name="1" descr="跟单组"/>
+		<status name="2" descr="确认组"/>
+		<status name="3" descr="催单组"/>
+		<status name="4" descr="外呼组"/>
+		<status name="5" descr="营销组"/>
+		<status name="6" descr="专家组"/>
+		<status name="7" descr="财务组"/>
+	</resource>
+	
+	<resource name="res_hraOrderGroup_All">
+		<status name="1" descr="跟单组"/>
+		<status name="2" descr="确认组"/>
+		<status name="3" descr="催单组"/>
+		<status name="4" descr="外呼组"/>
+		<status name="5" descr="营销组"/>
+		<status name="6" descr="专家组"/>
+		<status name="7" descr="财务组"/>
+		<status name="8" descr="房控组"/>
+	</resource>
+	
+	<!-- 中台交接组别 -->
+	<resource name="res_hraOrderGroup_Connet">
+		<status name="0" descr="请选择"/>
+		<status name="3" descr="催单组"/>
+		<status name="4" descr="外呼组"/>
+		<status name="5" descr="营销组"/>
+		<status name="6" descr="专家组"/>
+		<status name="7" descr="财务组"/>
+		<status name="8" descr="房控组"/>
+		<status name="9" descr="交接班"/>
+		<status name="99" descr="释放"/>
+	</resource>
+	<!-- 订单交接原因（催单） -->
+	<resource name="res_hraOrderConnect_3">
+		<status name="1" descr="已口头确认待回传"/>
+		<status name="2" descr="拒绝口头确认待回传"/>
+		<status name="3" descr="取消担保待回传"/>
+	</resource>
+	
+		<!-- 订单交接原因（外呼） -->
+	<resource name="res_hraOrderConnect_4">
+		<status name="1" descr="价格下调"/>
+		<status name="2" descr="担保或支付失败"/>
+		<status name="3" descr="酒店临时要求担保或预付"/>
+		<status name="4" descr="需核实订单要素"/>
+		<status name="5" descr="不确认务必的特殊要求"/>
+		<status name="6" descr="酒店主动通知其他特殊事宜"/>
+		<status name="7" descr="无法联系酒店"/>
+	</resource>
+	
+	<!-- 订单交接原因（营销） -->
+	<resource name="res_hraOrderConnect_5">
+		<status name="1" descr="大额订单"/>
+		<status name="2" descr="配额外拒单"/>
+		<status name="3" descr="房控争取无果单"/>
+	</resource>
+		<!-- 订单交接原因（专家） -->
+	<resource name="res_hraOrderConnect_6">
+		<status name="1" descr="到店无单"/>
+		<status name="2" descr="各类投诉"/>
+		<status name="3" descr="非房控上班时段疑难单"/>
+	</resource>
+	
+		<!-- 订单交接原因（财务） -->
+	<resource name="res_hraOrderConnect_7">
+		<status name="1" descr="积分调整"/>
+		<status name="2" descr="给酒店汇款"/>
+		<status name="3" descr="担保/支付转移"/>
+		<status name="4" descr="信用卡解冻退款"/>
+		<status name="5" descr="中旅失败订单"/>
+		<status name="6" descr="发票事宜"/>
+	</resource>
+	
+		<!-- 订单交接原因（房控） -->
+	<resource name="res_hraOrderConnect_8">
+		<status name="1" descr="到店无房"/>
+		<status name="2" descr="推翻确认"/>
+		<status name="3" descr="配额内拒单"/>
+		<status name="4" descr="价格上调"/>
+		<status name="5" descr="价格倒挂"/>
+		<status name="6" descr="日审抢客"/>
+		<status name="7" descr="酒店信息不符"/>
+		<status name="8" descr="取消担保单需扣款"/>
+	</resource>
+			<!-- 订单交接原因（交接班） -->
+	<resource name="res_hraOrderConnect_9">
+		<status name="1" descr="暂缓确认单"/>
+	</resource>
+	
+		<!-- 订单交接原因（释放） -->
+	<resource name="res_hraOrderConnect_99">
+		<status name="1" descr="电话占线"/>
+		<status name="2" descr="电话无人接听"/>
+		<status name="3" descr="酒店忙，暂无法处理"/>
+		<status name="4" descr="客人忙，需延后处理"/>
+	</resource>
+	
+	<!-- 中台技能选项订单类型 -->
+	<resource name="res_hraSkillOrderType">
+		<status name="1" descr="面付"/>
+		<status name="2" descr="预付"/>
+		<status name="3" descr="担保"/>
+	</resource>
+	
+<!-- 酒店类型-->
+	<resource name="res_hotelType">
+		<status name="1" descr="商旅酒店" />
+		<status name="2" descr="旅游酒店" />
+		<status name="3" descr="酒店式公寓" />
+	</resource>							
+	
+<!-- 星级转化成数字 -->
+	<resource name="res_hotelStarToNum">
+		<status descr="5" name="19" />
+		<status descr="4.5" name="29" />
+		<status descr="4" name="39" />
+		<status descr="3.5" name="49" />
+		<status descr="3" name="59" />
+		<status descr="2" name="69" />
+		<!-- add by zeng -->
+		<status descr="1.5" name="79" />
+		<status descr="2.5" name="64" />
+		<status descr="2" name="66" />
+	</resource>		
+	
+<!-- 有效证件类型 -->
+	<resource name="certificate_type">
+		<status name="1" descr="身份证" />
+		<status name="2" descr="护照" />
+		<status name="3" descr="香港身份证" />
+		<status name="4" descr="军人证" />		
+		<status name="5" descr="驾驶证" />
+		<status name="6" descr="回乡证" />
+		<status name="7" descr="台胞证" />
+		<status name="8" descr="港澳通行证" />				
+		<status name="9" descr="国际海员证" />		
+		<status name="10" descr="外国人永久居留证" />
+		<status name="11" descr="澳门身份证" />
+		<status name="12" descr="其它" />
+	</resource>		
+	
+<!-- 信用卡年份 -->
+	<resource name="credit_year">		
+		<status name="06" descr="2006" />					
+		<status name="07" descr="2007" />					
+		<status name="08" descr="2008" />					
+		<status name="09" descr="2009" />					
+		<status name="10" descr="2010" />					
+		<status name="11" descr="2011" />					
+		<status name="12" descr="2012" />					
+		<status name="13" descr="2013" />					
+		<status name="14" descr="2014" />					
+		<status name="15" descr="2015" />					
+		<status name="16" descr="2016" />					
+		<status name="17" descr="2017" />					
+		<status name="18" descr="2018" />					
+		<status name="19" descr="2019" />					
+		<status name="20" descr="2020" />					
+		<status name="21" descr="2021" />					
+		<status name="22" descr="2022" />					
+		<status name="23" descr="2023" />				
+		<status name="24" descr="2024" />					
+		<status name="25" descr="2025" />				
+	</resource>		
+	
+<!-- 信用卡月份 -->
+	<resource name="credit_month">										
+		<status name="01" descr="1" />
+		<status name="02" descr="2" />
+		<status name="03" descr="3" />
+		<status name="04" descr="4" />
+		<status name="05" descr="5" />
+		<status name="06" descr="6" />
+		<status name="07" descr="7" />
+		<status name="08" descr="8" />
+		<status name="09" descr="9" />
+		<status name="10" descr="10" />
+		<status name="11" descr="11" />
+		<status name="12" descr="12" />				
+	</resource>		
+	
+<!-- 订单分配模式 -->
+	<resource name="res_assignMode">
+		<status name="AUTO" descr="自动" />
+		<status name="MANUAL" descr="手工" />
+		<status name="WORKING" descr="正自动分配" />
+	</resource>		
+
+<!-- 配送方式 -->
+	<resource name="res_fulfillType">
+		<!-- <status name="NOD" descr="不需配送" /> -->
+		<status name="EMS" descr="快递" />
+		<status name="FRP" descr="免费挂号邮寄" />
+		<status name="SDD" descr="营业部自取" />
+		<!-- <status name="APD" descr="机场自取" /> -->
+		<status name="DEV" descr="上门配送" />
+	</resource>		
+	
+<!-- 配送任务类型 -->
+	<resource name="res_fulfillTaskType">
+		<status name="1" descr="配送加同一地收款" />
+		<!-- <status name="2" descr="配送加异地收款" /> -->
+		<status name="3" descr="配送" />
+		<!-- <status name="4" descr="收款(产品提供地与收款地不一致)" /> -->
+		<status name="5" descr="收款(产品提供地与收款地一致)" />
+	</resource>			
+
+<!-- 配送收费方式 -->
+	<resource name="res_fulfillPayMethod">
+		<status name="" descr="请选择" />
+		<status name="1" descr="现金" />
+		<status name="2" descr="信用卡授权支付-国际" />
+		<status name="3" descr="信用卡授权支付-国内" />
+		<status name="4" descr="支票" />
+		<status name="5" descr="银行转帐" />
+		<status name="6" descr="现金券" />
+		<status name="7" descr="POS机刷卡" />
+		<status name="28" descr="月结"/>
+	</resource>
+	
+<!-- 配送发票项目类型 -->
+	<resource name="res_invoiceType">
+		<status name="1" descr="代预定酒店" />
+	</resource>		
+
+<!-- CC用配额类型 -->
+	<resource name="quota_type_cc">
+		<status name="1" descr="普通配额"></status>
+		<status name="2" descr="包房配额"></status>
+		<status name="3" descr="临时配额"></status>		
+		<status name="4" descr="呼出配额"></status>				
+	</resource>	
+	
+<!-- 酒店管理集团国际性(供radio用) -->
+     <resource name="radio_hotelManage">
+        <status name="0" descr="国内大型"/>
+        <status name="1" descr="国际"/>
+        <status name="2" descr="国内经济"/>
+        <status name="3" descr="小型"/>
+    </resource>
+    
+<!-- 担保时间 -->
+	<resource name="res_assureTypeTime">
+		<status name="" descr="--请选择最晚担保时间--" />
+		<status name="0001" descr="12:00" />	
+		<status name="0002" descr="13:00" />
+		<status name="001" descr="14:00" />
+		<status name="002" descr="15:00" />
+		<status name="003" descr="16:00" />
+		<status name="004" descr="17:00" />			
+		<status name="01" descr="18:00" />
+		<status name="02" descr="18:30" />
+		<status name="03" descr="19:00" />
+		<status name="04" descr="19:30" />
+		<status name="05" descr="20:00" />
+		<status name="06" descr="21:00" />		
+		<status name="07" descr="22:00" />	
+		<status name="08" descr="23:00" />		
+	</resource>
+	
+<!-- 信用卡修订取消/修改类型 -->
+	<resource name="res_operate_type">
+		<status name="" descr="--请选择--" />
+		<status name="01" descr="取消" />
+		<status name="02" descr="修改" />
+		<status name="03" descr="取消或修改" />
+	</resource>
+	
+<!-- 预定传真联系方式 -->
+	<resource name="ctct_type">
+		<status name="01" descr="电邮" />
+		<status name="02" descr="传真" />		
+	</resource>
+	
+	<resource name="quota_pattern">
+		<status name="C-I" descr="进店" ></status>
+		<status name="S-I" descr="在店" ></status>
+	</resource>
+	
+	<resource name="hotel_language">
+		<status name="1" descr="英语"></status>
+		<status name="2" descr="日语"></status>
+	</resource>	
+	
+<!-- 入住人类别 -->
+	<resource name="manType">
+		<status name="1" descr="成人"></status>
+		<status name="2" descr="儿童"></status>
+		<status name="3" descr="婴儿"></status>
+	</resource>
+	
+<!-- 单双程 -->
+	<resource name="welcome_type">
+	    <status name="" descr="--请选择--"></status>
+		<status name="1" descr="单程"></status>
+		<status name="2" descr="双程"></status>		
+	</resource>
+	
+<!-- 系统内外酒店 -->
+	<resource name="hotel_system_type">
+		<status name="" descr="--请选择--"></status>
+		<status name="01" descr="系统内"></status>
+		<status name="02" descr="系统外"></status>		
+	</resource>
+	
+	<resource name="hotel_partner">
+	    <status name="" descr="--请选择--"></status>
+	    <status name="01" descr="锦江德尔"></status>
+	    <status name="02" descr="其它"></status>
+	</resource>	
+	
+	<resource name="priority">
+		<status name="" descr="--请选择--"></status>
+		<status name="1" descr="1级"></status>
+		<status name="2" descr="2级"></status>
+		<status name="3" descr="3级"></status>
+		<status name="4" descr="4级"></status>
+		<status name="5" descr="5级"></status>
+		<status name="6" descr="6级"></status>
+		<status name="7" descr="房控不显示"></status>	
+	</resource>	
+	
+	<resource name="priorityCC">
+		<status name="" descr="--请选择--"></status>
+		<status name="1" descr="1级"></status>
+		<status name="2" descr="2级"></status>
+		<status name="3" descr="3级"></status>
+		<status name="4" descr="4级"></status>
+		<status name="5" descr="5级"></status>
+		<status name="6" descr="6级"></status>
+	</resource>	
+	
+	<resource name="firstpageRecommendPriority">
+		<status name="" descr="--请选择--"></status>
+		<status name="01" descr="1级"></status>
+		<status name="02" descr="2级"></status>
+		<status name="03" descr="3级"></status>
+		<status name="04" descr="4级"></status>
+		<status name="05" descr="5级"></status>
+		<status name="06" descr="6级"></status>
+		<status name="07" descr="7级"></status>
+		<status name="08" descr="8级"></status>
+		<status name="09" descr="9级"></status>
+		<status name="10" descr="10级"></status>
+	</resource>
+	
+<!-- 计算公式的名称 -->
+	<resource name="priceFormulaType">
+		 <status name="0" descr="简单公式" />
+	     <status name="priceA" descr="剔除服务费和含早价(先剔除服务费)" />
+	     <status name="priceB" descr="剔除服务费和含早价(先剔除早餐)" />
+	     <status name="priceC" descr="佣金不需剔除服务费和早餐" />
+	     <status name="priceD" descr="佣金需剔除服务费但不剔除早餐" />
+	     <status name="priceE" descr="佣金不需剔除服务费但需剔除早餐" />
+	     
+	     <status name="priceF" descr="净价-简单公式" />
+	     <status name="priceG" descr="净价-剔除服务费和含早价(先剔除服务费)" />
+	     <status name="priceH" descr="净价-剔除服务费和含早价(先剔除早餐)" />
+	     <status name="priceI" descr="净价-佣金不需剔除服务费和早餐" />
+	     <status name="priceJ" descr="净价-佣金需剔除服务费但不剔除早餐" />
+	     <status name="priceK" descr="净价-佣金不需剔除服务费但需剔除早餐" />
+	     <status name="priceL" descr="莫泰佣金计算公式"/>
+	</resource>	
+	
+<!-- 计算公式的内容 -->
+	<resource name="priceFormulaDescr">
+		<status name="0" descr="佣金 = 芒果售价 - 底价"></status>
+		<status name="priceA" descr="佣金 = [芒果售价 / (1+服务费)-早餐单价*含早数量]* 佣金率"/>
+		<status name="priceB" descr="佣金 = [(芒果售价-早餐单价*含早数量)/ (1+服务费)]* 佣金率"/>
+		<status name="priceC" descr="佣金 = 芒果售价* 佣金率"/>
+		<status name="priceD" descr="佣金 = 芒果售价 / (1+服务费)* 佣金率"/>
+		<status name="priceE" descr="佣金 = (芒果售价-早餐单价*含早数量)* 佣金率"/>
+		
+		<status name="priceF" descr="佣金 = 净价*(1+服务费) - 底价" />
+	    <status name="priceG" descr="佣金 = [净价-早餐单价*含早数量]* 佣金率" />
+	    <status name="priceH" descr="佣金 = [(净价*(1+服务费)-早餐单价*含早数量)/ (1+服务费)]* 佣金率" />
+	    <status name="priceI" descr="佣金 = 净价*(1+服务费)* 佣金率" />
+	    <status name="priceJ" descr="佣金 = 净价* 佣金率" />
+	    <status name="priceK" descr="佣金 = (净价*(1+服务费)-早餐单价*含早数量)* 佣金率" />
+	</resource>	
+	
+	<resource name = "quotaMemberObj">
+		<status name = "1" descr = "CC"></status>
+		<status name = "2" descr = "TMC"></status>
+		<status name = "3" descr = "B2B"></status>
+		<status name = "4" descr = "TP"></status>
+	</resource>	
+	
+<!-- 酒店特有支付方式 -->	
+	<resource name="payMethod">
+	     <status name="pay" descr="面付" />
+	     <status name="pre_pay" descr="预付" />
+	</resource>	
+	
+	<resource name="payMethodTwo">
+	     <status name="pay" descr="面付" />
+	     <status name="pre_pay" descr="预付" />
+	     <status name="" descr="面预付" />
+	</resource>
+	
+	<resource name="menu">
+		<status name="access" descr="允许访问" />
+	</resource>
+
+	<resource name="res_gender">
+		<status name="0" descr="男" />
+		<status name="1" descr="女" />
+	</resource>
+	
+	<resource name="res_gender1">
+		<status name="M" descr="男" />
+		<status name="F" descr="女" />
+	</resource>
+	
+<!-- 展会类型 -->
+	<resource name="select_exhibitType">
+	   <status name="" descr="--请选择--"></status>
+		<status name="1" descr="黄金周" />
+		<status name="2" descr="展会" />
+	</resource>
+	
+<!-- 展馆 -->
+	<resource name="select_saloon">
+	   <status name="" descr="--请选择--"></status>
+		<status name="1" descr="1号馆" />
+		<status name="2" descr="2号馆" />
+	</resource>
+	
+<!-- 房态优先级 -->
+	<resource name="select_queryRoomLevel">
+	   <status name="" descr="--请选择--"></status>
+		<status name="1" descr="1级" />
+		<status name="2" descr="2级" />
+		<status name="3" descr="3级" />
+		<status name="4" descr="4级" />
+		<status name="5" descr="5级" />
+		<status name="6" descr="6级" />
+	</resource>	
+
+<!-- 酒店状态 -->
+	<resource name="hotelStatus">	
+		<status name="0" descr="正常" />
+		<status name="1" descr="变价"></status>
+		<status name="2" descr="装修"></status>
+		<status name="3" descr="订单/投诉"></status>
+		<status name="4" descr="停业"></status>
+		<status name="5" descr="策略性关房CC可订"></status>
+		<status name="6" descr="策略性关房CC不可订"></status>
+	</resource>
+	
+    <resource name="select_addBedPriceType">
+		<status name="1" descr="金额" />
+		<status name="2" descr="百分比" />
+	</resource>
+
+	<resource name="url">
+		<status name="access" descr="允许访问" />
+	</resource>
+
+<!-- 配额共享方式 -->
+	<resource name="share_type">
+		<status name="1" descr="面付独占" />
+		<status name="2" descr="预付独占" />
+		<status name="3" descr="面付/预付共享" />
+		<!-- <status name="4" descr="面付/预付分别独占" />  -->
+	</resource>
+	
+	<resource name="share_type_smail">
+		<status name="1" descr="面付" />
+		<status name="2" descr="预付" />
+		<status name="3" descr="面预" />
+	</resource>
+
+	<resource name="cutoffTime">
+	    <status name="12:00" descr="12:00"></status>
+		<status name="14:00" descr="14:00"></status>
+		<status name="16:00" descr="16:00"></status>
+		<status name="18:00" descr="18:00"></status>
+		<status name="20:00" descr="20:00"></status>
+		<status name="23:00" descr="23:00"></status>
+	</resource>	
+	
+<!-- 常用城市HK MACAU -->
+	<resource name="res_commonCityHK">		
+		<status name="70012" descr="香港" />		
+		<status name="70139" descr="澳门" />		
+	</resource>	
+	
+<!-- 担保预授权工单操作状态 -->
+	<resource name="res_preAuthSucceedFlag">		
+		<status name="undo" descr="未做" />		
+		<status name="succeed" descr="成功" />		
+		<status name="failed" descr="失败" />
+		<status name="refund" descr="退款" />	
+		<status name="exception" descr="异常" />	
+		<status name="notfound" descr="未找到" />
+		<status name="cancel" descr="取消" />		
+	</resource>		
+	
+<!-- 房态处理状态 -->
+	<resource name="select_queryRoomProcessStatus">		
+		<status name="" descr="-请选择-" />		
+		<status name="2" descr="已处理" />		
+		<status name="0" descr="待处理" />		
+	</resource>		
+	
+<!-- 2.2网站已评级星级显示 -->		
+	<resource name="res_formalWebHotelStar">
+		<status name="19" descr="5星" />
+		<status name="39" descr="4星" />
+		<status name="59" descr="3星" />
+		<status name="69" descr="2星" />
+	</resource>
+	
+<!-- 2.2网站未评级星级显示 -->	
+	<resource name="res_informalWebHotelStar">
+		<status name="29" descr="豪华型" />
+		<status name="49" descr="高档型" />
+		<status name="64" descr="舒适型" />
+		<status name="66" descr="经济型" />
+	</resource>
+	
+	<!-- 根据最新政策，网站香港酒店不分星级，国内酒店没有"准星"的概念 add by wuyun 2009-05-18 -->
+	<resource name="res_newHotelStar">
+        <status name="5" descr="豪华型" />
+        <status name="4" descr="高档型" />
+        <status name="3" descr="舒适型" />
+        <status name="2" descr="经济型" />
+    </resource>			
+	
+	<resource name="res_webHotelStar">
+		<status name="19" descr="5星" />
+		<status name="39" descr="4星" />
+		<status name="59" descr="3星" />
+		<status name="69" descr="2星" />
+		<status name="79" descr="2星以下" />
+		<status name="66" descr="经济型" />
+	</resource>			
+		
+<!-- 网站订单状态显示 -->
+	<resource name="res_hotelWebOrderState">
+		<status name="1" descr="未提交" />
+		<status name="2" descr="已提交，待处理" />
+		<status name="3" descr="处理中" />
+		<status name="4" descr="预订成功" />
+		<status name="5" descr="交易成功" />
+		<status name="6" descr="交易取消" />
+		<status name="7" descr="预订取消" />
+	</resource>
+
+<!-- 税费设定中房费单位 -->
+    <resource name="res_roomTaxUnit">
+		<status name="0" descr="请选择" />
+		<status name="1" descr="元/晚/人" />
+		<status name="2" descr="元/晚/床" />
+		<status name="3" descr="元/晚/房" />		
+		<status name="4" descr="元/人/次" />	
+	</resource>
+	
+<!-- 网站订单填写页面：入住人入住所持证件类型 (yun.wu 2008-5-22)-->
+	<resource name="res_fellowNationality">
+		<status name="1" descr="大陆身份证(内宾)" />
+		<status name="2" descr="外国护照或中国居留许可证(外宾)" />
+		<status name="3" descr="回乡证或台胞证(港澳台宾)" />				
+	</resource>
+
+<!-- 网站：星期的显示 (yun.wu 2008-5-28)-->
+	<resource name="res_weekDay">
+		<status name="1" descr="周一" />
+		<status name="2" descr="周二" />
+		<status name="3" descr="周三" />
+		<status name="4" descr="周四" />
+		<status name="5" descr="周五" />
+		<status name="6" descr="周六" />
+		<status name="7" descr="周日" />		
+	</resource>
+
+<!-- 网站：预定房间数 -->
+	<resource name="res_roomBookNumber">
+		<status name="1" descr="1" />
+		<status name="2" descr="2" />
+		<status name="3" descr="3" />
+		<status name="4" descr="4" />
+		<status name="5" descr="5" />		
+	</resource>
+	
+<!-- 网站：付款时间 -->
+<resource name="res_webPayTime">
+		<status name="" descr="" />
+	    <status name="09:00" descr="09:00" />
+		<status name="09:30" descr="09:30" />
+		<status name="10:00" descr="10:00" />
+		<status name="10:30" descr="10:30" />
+		<status name="11:00" descr="11:00" />
+		<status name="11:30" descr="11:30" />
+		<status name="12:00" descr="12:00" />
+		<status name="12:30" descr="12:30" />
+		<status name="13:00" descr="13:00" />
+		<status name="13:30" descr="13:30" />
+		<status name="14:00" descr="14:00" />
+		<status name="14:30" descr="14:30" />
+		<status name="15:00" descr="15:00" />
+		<status name="15:30" descr="15:30" />
+		<status name="16:00" descr="16:00" />
+		<status name="16:30" descr="16:30" />
+		<status name="17:00" descr="17:00" />
+		<status name="17:30" descr="17:30" />
+		<status name="18:00" descr="18:00" />
+</resource>
+
+<!-- 网站：营业部门详细地址 -->
+<resource name="res_saleDepartmentAddress">
+		<status name="1" descr="北京市朝阳区朝外雅宝路12号华声国际大厦18层"/>
+		<status name="2" descr="上海市徐家汇路550号宝鼎大厦15楼"/>
+		<status name="3" descr="广州市越秀区东风东路753号天誉商务大厦东塔24楼2407室"/>
+		<status name="4" descr="深圳市福田区4001号时代金融中心6楼"/>
+</resource>
+
+<!-- 网站：营业部门地址城市 -->
+<resource name="res_saleDepartmentCity">
+		<status name="PEK" descr="北京"/>
+		<status name="SHA" descr="上海"/>
+		<status name="CAN" descr="广州"/>
+		<status name="SZX" descr="深圳"/>
+</resource>
+
+<!-- 网站：订单成功预定时间段提示 -->
+<resource name="res_orderAccomplishTime">
+		<status name="1" descr="您的订单已提交,我们将在今天上午为您确认预订。"/>
+		<status name="2" descr="您的订单已提交,我们将尽快为您确认预订。"/>
+		<status name="3" descr="您的订单已提交,我们将在次日上午为您确认预订。"/>
+		<status name="4" descr="您的订单已提交,请您如期前往营业部付款,我们将在确认付款后为您确认预订。"/>
+		<status name="5" descr="您的预订已成功。"/>
+		<status name="6" descr="您的订单已提交,请您如期前往海尔驻场付款,我们将在确认付款后为您确认预订。"/>
+</resource>
+
+<!-- 网站：订单成功预定时间段提示 -->
+<resource name="res_accomplishHintHK">
+		<status name="1" descr="您的支付未完成，请您尽快致电 4006640066 联系客服人员处理。"/>
+		<status name="2" descr="您的预订已成功。"/>
+		<status name="3" descr="由于您的支付超时，我们需要再次与酒店确认房间，稍后将由客服人员与您联系确认。"/>
+</resource>
+
+<!-- 网站：显示是否宽带 -->
+<resource name="res_webInternet">
+		<status name="1" descr="免费宽带" />
+		<status name="2" descr="收费宽带" />
+		<status name="3" descr="无宽带" />
+</resource>
+
+<!-- 酒店主题 -->
+	<resource name="res_hotelTheme"> 
+		<status name="01" descr="品牌酒店" />
+		<status name="02" descr="海滨酒店" />
+		<status name="03" descr="温泉酒店" />
+		<status name="04" descr="高尔夫酒店" />
+		<status name="05" descr="景点酒店" />
+		<status name="06" descr="夜店酒店" />
+		<status name="07" descr="校园酒店" />
+		<status name="08" descr="情侣酒店" />
+		<status name="09" descr="驴友客栈" />
+		<status name="10" descr="雪景酒店" />
+		<status name="11" descr="民族特色酒店" />
+		<status name="12" descr="山顶酒店" />
+		<status name="13" descr="四合院酒店" />
+		<status name="14" descr="江景酒店" />
+		<status name="15" descr="乐园酒店" />	
+		<status name="16" descr="家庭公寓" />	
+		<status name="17" descr="古镇酒店" />	
+		<status name="18" descr="避暑酒店" />	
+		<status name="19" descr="时尚酒店" />
+		<status name="20" descr="今日特价" />				
+	</resource>	
+	
+<!-- ******************** 酒店特有基础数据 本地化文件配置结束 ******************** -->	
+
+<!-- 内部备注/给客人的备注/给酒店的备注 -->
+	<resource name="select_privateremark" queryID="select_privateremark" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>
+	<resource name="select_memberremark" queryID="select_memberremark" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>
+	<resource name="select_hotelremark" queryID="select_hotelremark" type="remote"
+		class="com.mangocity.hotel.base.resource.impl.BaseDataResourceDescriptor">
+	</resource>
+
+
+
+<!-- ******************** 酒店特有 价格计算器 本地化文件配置开始 ******************** -->	
+<!-- 剔除服务费和含早价(先剔除服务费) -->
+	<resource name="price_calculator">
+		<status name="0">
+			<![CDATA[
+				double salePrice = price.getSalePrice();				
+				double basePrice = price.getBasePrice();				
+				double calculatedCommission = price.getCalculatedCommission();				
+				if(salePrice==0){
+				    salePrice = basePrice + calculatedCommission ;
+				    price.setSalePrice(salePrice) ;
+				}else if(basePrice==0){
+				    basePrice = salePrice - calculatedCommission ; 
+				    price.setBasePrice(basePrice);
+				}else{
+				    calculatedCommission = salePrice - basePrice ;
+				    price.setCalculatedCommission(calculatedCommission) ;
+				}
+			]]>
+		</status>
+	    <status name="priceA">
+	       <![CDATA[
+	            double salePrice = price.getSalePrice();	            
+	            double serviceCharge = price.getServiceCharge();	            
+	            double breakfastNum = price.getIBreakfastNum();	            
+	            double breakFastPrice = price.getBreakfastPrice();	            
+	            double commissionRate = price.getCommissionRate();	            
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	            
+	            calculatedCommission = (salePrice / (1+ serviceCharge ) - breakFastPrice * breakfastNum) * commissionRate;	            	            
+	            basePrice = salePrice - calculatedCommission;             
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice);     	               
+	       ]]> 
+	    
+	    </status>
+	    
+	    <!-- 剔除服务费和含早价(先剔除早餐) -->
+	    <status name="priceB">
+		    <![CDATA[
+	            double salePrice = price.getSalePrice();	            
+	            double serviceCharge = price.getServiceCharge();	            
+	            double breakfastNum = price.getIBreakfastNum();	            
+	            double breakFastPrice = price.getBreakfastPrice();	            
+	            double commissionRate = price.getCommissionRate();	            
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	            
+	            calculatedCommission = ((salePrice- breakFastPrice * breakfastNum) / (1+ serviceCharge)) * commissionRate;	            
+	            basePrice = salePrice - calculatedCommission;	                        	             
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice); 
+		     ]]>    
+	    </status>
+	    
+	    <!-- 佣金不需剔除服务费和早餐 -->
+	    <status name="priceC">
+		    <![CDATA[
+	            double salePrice = price.getSalePrice();	            
+	            double serviceCharge = price.getServiceCharge();	            
+	            double breakFastPrice = price.getBreakfastPrice();	            
+	            double commissionRate = price.getCommissionRate();
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	            
+	            calculatedCommission = salePrice * commissionRate;	            
+	            basePrice = salePrice - calculatedCommission;	             
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice); 
+		     ]]>    
+	    </status>
+	    
+	    <!-- 佣金需剔除服务费但不剔除早餐 -->
+	    <status name="priceD">
+		    <![CDATA[
+	            double salePrice = price.getSalePrice();	            
+	            double serviceCharge = price.getServiceCharge();	            
+	            double breakFastPrice = price.getBreakfastPrice();	            
+	            double commissionRate = price.getCommissionRate();	            
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	            
+	            calculatedCommission = (salePrice /(1 + serviceCharge)) * commissionRate;	            
+	            basePrice = salePrice - calculatedCommission;		             
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice); 
+		     ]]>    
+	    </status>
+	    
+	    <!-- 佣金不需剔除服务费但需剔除早餐 -->
+	    <status name="priceE">
+		    <![CDATA[
+	            double salePrice = price.getSalePrice();	            
+	            double serviceCharge = price.getServiceCharge();
+	            double breakfastNum = price.getIBreakfastNum();	            
+	            double breakFastPrice = price.getBreakfastPrice();	            
+	            double commissionRate = price.getCommissionRate();	            
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	            
+	            calculatedCommission = (salePrice - breakFastPrice * breakfastNum) * commissionRate;	            
+	            basePrice = salePrice - calculatedCommission;	  	             
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice); 
+		     ]]>    
+	    </status>
+	    <!-- 净价-简单公式 "佣金 = 净价*(1+服务费) - 底价" -->
+	    <status name="priceF">
+			<![CDATA[
+				double advicePrice = price.getAdvicePrice();				
+				double basePrice = price.getBasePrice();				
+				double calculatedCommission = price.getCalculatedCommission();	
+				double serviceCharge = price.getServiceCharge();			
+				if(advicePrice==0){
+				    advicePrice = (basePrice + calculatedCommission) / (1 + serviceCharge) ;
+				    price.setAdvicePrice(advicePrice) ;				   
+				}else if(basePrice==0){
+				    basePrice = advicePrice*(1 + serviceCharge) - calculatedCommission ; 
+				    price.setBasePrice(basePrice);				    
+				}else{
+				    calculatedCommission = advicePrice*(1 + serviceCharge) - basePrice ;
+				    price.setCalculatedCommission(calculatedCommission) ;
+				}
+				price.setSalePrice(advicePrice*(1+serviceCharge));
+			]]>
+		</status>
+		
+		<!--净价-剔除服务费和含早价(先剔除服务费)，佣金 = [净价-早餐单价*含早数量]* 佣金率" -->
+	    <status name="priceG">
+	       <![CDATA[
+	            double advicePrice = price.getAdvicePrice();	            
+	            double serviceCharge = price.getServiceCharge();	            
+	            double breakfastNum = price.getIBreakfastNum();	            
+	            double breakFastPrice = price.getBreakfastPrice();	            
+	            double commissionRate = price.getCommissionRate();	            
+	            double calculatedCommission = 0.0;      
+	            calculatedCommission = (advicePrice - breakFastPrice * breakfastNum) * commissionRate;
+	            double salePrice = advicePrice*(1+serviceCharge);	            	            
+	            basePrice = salePrice - calculatedCommission;  
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice);   
+	            price.setSalePrice(salePrice);  	               
+	       ]]> 
+	    
+	    </status>
+	    
+	    <!-- 净价-剔除服务费和含早价(先剔除早餐) ，佣金 = [(净价*(1+服务费)-早餐单价*含早数量)/ (1+服务费)]* 佣金率-->
+	    <status name="priceH">
+		    <![CDATA[	            	            
+		    	double advicePrice = price.getAdvicePrice();
+	            double serviceCharge = price.getServiceCharge();	            
+	            double breakfastNum = price.getIBreakfastNum();	            
+	            double breakFastPrice = price.getBreakfastPrice();	            
+	            double commissionRate = price.getCommissionRate();	            
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	  
+	            double salePrice = 0.0;          
+	            calculatedCommission = ((advicePrice*(1+serviceCharge)- breakFastPrice * breakfastNum) / (1+ serviceCharge)) * commissionRate;	            
+	            salePrice = advicePrice*(1+serviceCharge);
+	            basePrice = salePrice - calculatedCommission;	                        	             
+	            price.setCalculatedCommission(calculatedCommission);	
+	            price.setSalePrice(salePrice);            
+	            price.setBasePrice(basePrice); 
+		     ]]>    
+	    </status>
+	    
+	    <!-- 净价-佣金不需剔除服务费和早餐 ,佣金 = 净价*(1+服务费)* 佣金率-->
+	    <status name="priceI">
+		    <![CDATA[
+	            double salePrice = 0.0;	      
+	            double advicePrice = price.getAdvicePrice();      
+	            double serviceCharge = price.getServiceCharge();            
+	            double commissionRate = price.getCommissionRate();
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	            
+	            calculatedCommission = advicePrice*(1+serviceCharge) * commissionRate;	
+	            salePrice = advicePrice*(1+serviceCharge);            
+	            basePrice = salePrice - calculatedCommission;	             
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice); 
+	            price.setSalePrice(salePrice);
+		     ]]>    
+	    </status>
+	    
+	    <!-- 净价-佣金需剔除服务费但不剔除早餐 ,佣金 = 净价 * 佣金率 -->
+	    <status name="priceJ">
+		    <![CDATA[
+	            double salePrice = 0.0;	
+	            double advicePrice = price.getAdvicePrice();            
+	            double serviceCharge = price.getServiceCharge();   
+	            double commissionRate = price.getCommissionRate();	            
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	            
+	            calculatedCommission = advicePrice * commissionRate;
+	            salePrice = advicePrice*(1+serviceCharge);              
+	            basePrice = salePrice - calculatedCommission;		             
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice); 
+	            price.setSalePrice(salePrice);
+		     ]]>    
+	    </status>
+	    
+	    <!-- 净价-佣金不需剔除服务费但需剔除早餐, 佣金 = (净价*(1+服务费)-早餐单价*含早数量)* 佣金率 -->
+	    <status name="priceK">
+		    <![CDATA[
+	            double salePrice = 0.0;
+	            double advicePrice = price.getAdvicePrice();  	            
+	            double serviceCharge = price.getServiceCharge();
+	            double breakfastNum = price.getIBreakfastNum();	            
+	            double breakFastPrice = price.getBreakfastPrice();	            
+	            double commissionRate = price.getCommissionRate();	            
+	            double calculatedCommission = 0.0;	            
+	            double basePrice = 0.0;	 
+	            salePrice = advicePrice*(1+serviceCharge);           
+	            calculatedCommission = (salePrice - breakFastPrice * breakfastNum) * commissionRate;	            
+	            basePrice = salePrice - calculatedCommission;	  	             
+	            price.setCalculatedCommission(calculatedCommission);	            
+	            price.setBasePrice(basePrice); 
+	            price.setSalePrice(salePrice);
+		     ]]>    
+	    </status>	    
+
+		    <!-- 莫泰佣金计算公式 -->
+	    <status name="priceL">
+		    <![CDATA[
+		int rangeMin=100; 
+		int rangeMax=400;
+		int minCommission=20;
+		int base=0;
+		double midMin=25.0;
+		double midMax=40.0; 
+		double rate1=0.15; 
+		double rate2=0.12; 
+		 
+        double commissionRate=0.00;
+        double calculatedCommission = 0.0;
+        double basePrice=0.0;
+        double salePrice = price.getSalePrice();
+        
+        if(salePrice>=rangeMin&&salePrice<rangeMax){
+            commissionRate=rate1;
+            calculatedCommission = salePrice * commissionRate;
+            if(calculatedCommission>=midMax){
+            calculatedCommission=midMax;
+            }
+            if(calculatedCommission<=midMin){
+            calculatedCommission=midMin;
+            } 
+                              			   
+		}else if(salePrice>=rangeMax){
+		    commissionRate=rate2;
+		    calculatedCommission = salePrice * commissionRate;				    
+		}else if(salePrice==base){
+		    calculatedCommission = 0;
+		    commissionRate=0;
+		    
+		}else{
+			calculatedCommission = minCommission;
+		    commissionRate=minCommission/salePrice;
+		    java.text.DecimalFormat  df=new java.text.DecimalFormat("#.##");
+		    commissionRate=Double.parseDouble(df.format(commissionRate)); 
+		}
+		price.setBasePrice(salePrice-calculatedCommission);
+        price.setCalculatedCommission(calculatedCommission);
+        price.setCommissionRate(commissionRate);
+		     ]]>    
+	    </status>	    
+	</resource>	
+<!-- ******************** 酒店特有 价格计算器 本地化文件配置结束 ******************** -->	
+
+
+<!-- 枷锁类型 -->
+	<resource name="select_queryLockType">
+	   <status name="" descr="--请选择--"></status>
+		<status name="1" descr="酒店锁" />
+		<status name="2" descr="房态锁" />
+		<status name="3" descr="合同锁" />
+		<status name="4" descr="配额锁" />
+	</resource>	
+
+	<resource name="stropfront">	   
+		<status name="0" descr="有效" />
+		<status name="1" descr="无效" />
+	</resource>	
+	
+	<!-- v2.7.1 发送短信给客人，短信的发送状态 add by chenjiajie 2009-02-17 -->
+	<resource name="res_memberConfirmSmsStatus">
+	    <status name="1" descr="等待" />
+		<status name="2" descr="成功" />
+		<status name="3" descr="失败" />
+		<status name="4" descr="已确认" />
+		<status name="5" descr="失败已确认" />
+		<status name="6" descr="其它" />
+	</resource>	
+	
+	<!-- v2.7.1 通过会员的联名商家CODE查询中文名 add by chenjiajie 2009-02-19 -->
+	<resource name="select_t_memberaliascard" queryID="select_t_memberaliascard" type="database">
+	</resource>
+		
+	<!-- 价格类型名称确认状态 酒店V2.5 -->
+	<resource name="select_priceConfirmedState">
+	   <status name="" descr="请选择"/>
+		<status name="1" descr="已确认" />
+		<status name="0" descr="未确认" />
+	</resource>
+	
+	<!-- 合作方名称 酒店V2.5 -->
+	<resource name="select_cooperator">
+	   <status name="0" descr="传统渠道"/>
+	   <status name="2" descr="畅联" />
+	   <status name="5" descr="格林豪泰" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	   <status name="8" descr="中旅" /> 
+	   <status name="9" descr="艺龙" />  
+	</resource>	
+	
+	
+	<resource name="select_hra_cooperator">
+	   <status name="0" descr="传统渠道"/>
+	   <status name="2" descr="畅联" />
+	   <status name="5" descr="格林豪泰" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	   <status name="8" descr="中旅" />   
+	   <status name="9" descr="洲际" />
+	   <!-- 暂时没上线的先屏蔽
+	   <status name="1" descr="德比"/>
+	   <status name="3" descr="德尔" />
+	   <status name="4" descr="希尔顿" />
+	   <status name="10" descr="中航信" /> -->
+	   </resource>	
+	
+	<resource name="select_cooperator_All">
+	   <status name="" descr="请选择"/>	
+	   <status name="0" descr="传统渠道"/>
+	   <status name="2" descr="畅联" />
+	   <status name="5" descr="格林豪泰" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	   <status name="8" descr="中旅" />
+	   <status name="9" descr="艺龙" />    
+	   <!--<status name="9" descr="洲际" />-->
+	   <!-- 暂时没上线的先屏蔽
+	   <status name="1" descr="德比"/>
+	   <status name="3" descr="德尔" />
+	   <status name="4" descr="希尔顿" />
+	   <status name="10" descr="中航信" /> -->
+	</resource>	
+	
+	<!-- 映射时无需添加中旅 -->
+	<resource name="select_cooperator_mapping">
+	   <status name="" descr="请选择"/>	
+	   <status name="0" descr="传统渠道"/>
+	   <status name="2" descr="畅联" />
+	   <status name="5" descr="格林豪泰" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	   <status name="9" descr="艺龙" /> 
+	</resource>	
+	
+	<!-- 合作方名称 酒店V2.8 add by wuyun 2009-04-21-->
+	<resource name="select_cooperator_nohk">
+	   <status name="2" descr="畅联" />
+	   <status name="5" descr="格林豪泰" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	</resource>	
+	
+	<!-- 合作方名称 不包括传统渠道选项,HK选项 酒店V2.5 by chenjiajie 2009-02-05 -->
+	<resource name="select_cooperator_noTradition">
+	   <status name="2" descr="畅联" />
+	   <status name="5" descr="格林豪泰" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	   <status name="8" descr="中旅" />	   
+	</resource>	
+	
+	<!-- 合作方名称 不包括传统渠道选项和中旅选项 酒店V2.8 by shizhongwen 2009-05-08 -->
+	<resource name="select_cooperator_noHKandTradition">
+	   <status name="2" descr="畅联" />
+	   <status name="5" descr="格林豪泰" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	   <status name="9" descr="艺龙" />   
+	</resource>	
+	
+	<resource name="select_cooperator_noHKandTradition_All">
+	   <status name="" descr="请选择"/>
+	   <status name="2" descr="畅联" />
+	   <status name="5" descr="格林豪泰" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	</resource>	
+	
+	<resource name="select_cooperatorEx">
+	   <status name="2" descr="畅联" />
+	   <status name="6" descr="锦江" />
+	   <status name="7" descr="中航信" />
+	   <status name="8" descr="中旅" />
+	   <status name="9" descr="艺龙" /><!--艺龙订单查看 add by huanglingfeng 2012-1-10 -->
+	   <status name="51" descr="德比传统渠道"/>
+	   <status name="52" descr="畅联传统渠道" />
+	   <status name="53" descr="德尔传统渠道" />
+	   <status name="54" descr="希尔顿传统渠道" />	   
+	   <status name="58" descr="中旅传统渠道" />	   
+	</resource>
+	<!-- 中台订单流转优化技能（客户类型） add by shaojun.yang 2010-3-19 -->
+	<resource name="select_clientType">
+	   <status name="1" descr="芒果散客"/>
+	   <status name="2" descr="114" />
+	   <status name="3" descr="商旅" />
+	   <status name="4" descr="一卡代理" />
+	   <status name="5" descr="南航" />
+	   <status name="6" descr="诺曼底" />
+	   <!--<status name="all" descr="全选" />
+	--></resource>
+	
+	<resource name="select_clientType_All">
+	   <status name="" descr="请选择"/>
+	   <status name="1" descr="芒果散客"/>
+	   <status name="2" descr="114" />
+	   <status name="3" descr="商旅" />
+	   <status name="4" descr="一卡代理" />
+	   <status name="5" descr="南航" />
+	   <status name="6" descr="诺曼底" />
+	</resource>
+	
+	<!-- 中台订单流转优化技能（客户类型） add by shaojun.yang 2010-3-19 -->
+	<resource name="select_harOrderType">
+	   <status name="1" descr="面付"/>
+	   <status name="2" descr="预付" />
+	   <status name="3" descr="担保" />
+	   <!--<status name="all" descr="全选" />
+	--></resource>
+	<resource name="select_harOrderType_All">
+	   <status name="" descr="请选择"/>
+	   <status name="1" descr="面付"/>
+	   <status name="2" descr="预付" />
+	   <status name="3" descr="担保" />
+	</resource>
+	
+	<resource name="select_harSkillCount">
+	   <status name="9999" descr="不限"/>
+	   <status name="1" descr="1"/>
+	   <status name="2" descr="2" />
+	   <status name="3" descr="3" />
+	   <status name="4" descr="4" />
+	   <status name="5" descr="5" />
+	</resource>
+	
+	<!-- v2.7.1 发送短信给客人，短信的发送状态 add by chenjiajie 2009-02-17 -->
+	<resource name="res_memberConfirmSmsStatus">
+	    <status name="1" descr="等待" />
+		<status name="2" descr="成功" />
+		<status name="3" descr="失败" />
+		<status name="4" descr="已确认" />
+		<status name="5" descr="失败已确认" />
+		<status name="6" descr="其它" />
+	</resource>	
+	
+	<!-- 预定条款计算规则-修改字段定义 add by shengwei.zuo  2009-02-12 -->
+   <resource name="select_clauserules">
+	   <status name="01" descr="入住日期"/>
+	   <status name="02" descr="退房日期" />
+	   <status name="03" descr="入住人姓名" />
+	   <status name="04" descr="房型" />
+	   <status name="05" descr="床型" />
+	   <status name="06" descr="房间数量" />
+	<!--     <status name="7" descr="特殊要求" /> -->
+	   <status name="08" descr="BB床" />
+	   <status name="09" descr="接送" />
+	   <status name="10" descr="无烟层" />
+	   <status name="11" descr="高层" />
+	   <status name="12" descr="宽带" />
+	   <status name="13" descr="加床" />
+	   <status name="14" descr="加早" />
+	   <status name="15" descr="赠送欢迎水果" />
+	</resource>	
+	
+  <!-- 担保取消和条款-扣除金额的类型 add by shengwei.zuo  2009-02-23 -->
+   <resource name="select_assureAmountType">
+   	   <status name="" descr="请选择"/>
+	   <status name="1" descr="首日金额"/>
+	   <status name="2" descr="全额金额" />
+	   <status name="4" descr="首日金额百分比" />
+	   <status name="6" descr="全额金额百分比" />
+	</resource>	
+	
+	  <!-- 担保取消和条款-扣除金额的类型 add by shengwei.zuo  2009-02-23 -->
+   <resource name="select_assureAmountTypeOne">
+   	   <status name="" descr="请选择"/>
+	   <status name="1" descr="首日金额"/>
+	   <status name="4" descr="首日金额百分比" />
+	</resource>	
+	
+	  <!-- 担保取消和条款-扣除金额的类型 add by shengwei.zuo  2009-02-23 -->
+   <resource name="select_assureAmountTypeTwo">
+   	   <status name="" descr="请选择"/>
+	   <status name="2" descr="全额金额" />
+	   <status name="6" descr="全额金额百分比" />
+	</resource>	
+	
+	
+ <!-- 预付取消和条款-扣除金额的类型 add by shengwei.zuo  2009-02-23 -->
+   <resource name="select_prepayAmountType">
+   	   <status name="" descr="请选择"/>
+	   <status name="1" descr="首日金额"/>
+	   <status name="2" descr="全额金额" />
+	   <status name="4" descr="首日金额百分比" />
+	   <status name="6" descr="全额金额百分比" />
+	</resource>	
+
+<!-- 预定条款取消和修改 -->	
+	<resource name="select_operate_type">
+		<status name="" descr="--请选择--" />
+		<status name="1" descr="取消" />
+		<status name="2" descr="修改" />
+		<status name="3" descr="取消或修改" />
+	</resource>
+	
+ <!-- 预付取消和条款-之前或之后 add by shengwei.zuo  2009-02-23 -->
+   <resource name="select_clauseBeforeAfter">
+       <status name="" descr="--请选择--" />
+	   <status name="2" descr="之后"/>
+	</resource>	
+<!--担保条款-担保类型： add by shengwei.zuo  2009-02-24-->	
+	<resource name="select_assureTypes">
+   	   <status name="" descr="--请选择--" />
+   	   <status name="2" descr="首日担保"/>
+	   <status name="4" descr="全额担保"/>
+	</resource>	
+
+<!--担保条款-担保类型： add by shengwei.zuo  2009-02-24-->	
+	<resource name="select_assureOptions">
+   	   <status name="" descr="--请选择--" />
+   	   <status name="1" descr="无条件担保"/>
+	   <status name="2" descr="超时担保"/>
+	   <status name="3" descr="超房数担保"/>
+	</resource>	
+	
+<!--预付条款-结算方法 ： add by shengwei.zuo  2009-02-24-->	
+	<resource name="select_clearingMethod">
+   	   <status name="" descr="--请选择--" />
+   	   <status name="02" descr="COA客人到之前"/>
+	   <status name="04" descr="SEND BILL 月结房费"/>
+	   
+	</resource>		
+
+<!--预付条款-支付类型  ： add by shengwei.zuo  2009-02-24-->	
+	<resource name="select_paymentType">
+   	   <status name="" descr="--请选择--" />
+   	   <status name="1" descr="底价支付酒店"/>
+	   <status name="2" descr="售价支付酒店"/>
+	</resource>	
+	
+	<!--预定条款绑定-面转预标识  ： add by shengwei.zuo  2009-06-05-->	
+	<resource name="select_mustPayToPrepay">
+   	   <status name="3" descr="不许"/>
+	   <status name="2" descr="允许"/>
+	   <status name="1" descr="必须"/>
+	</resource>	
+		
+<!--订单金额列表金额类型  ： add by chenkeming  2009-03-06-->	
+	<resource name="res_orderMoneyType">
+   	   <status name="1" descr="担保"/>
+	   <status name="2" descr="预付"/>
+   	   <status name="3" descr="修改"/>
+	   <status name="4" descr="取消"/>	   
+	</resource>	
+	
+<!--订单金额列表  ： add by chenkeming  2009-03-06-->	
+	<resource name="res_orderMoneyTarget">
+   	   <status name="0" descr="会员"/>
+	   <status name="1" descr="酒店"/>	   
+	</resource>		
+	
+<!--订单金额列表  ： add by chenkeming  2009-03-06-->	
+	<resource name="res_orderMoneyDir">
+   	   <status name="0" descr="应收"/>
+	   <status name="1" descr="应付"/>	   
+	</resource>		
+	
+<!--订单金额列表  ： add by chenkeming  2009-03-06-->	
+	<resource name="res_orderMoneyPayType">
+   	   <status name="1" descr="现金支付"/>
+	   <status name="2" descr="信用卡支付(国际)"/>
+   	   <status name="3" descr="信用卡支付(国内)"/>
+	   <status name="4" descr="积分支付"/>		   
+   	   <status name="5" descr="银行转账"/>
+	   <status name="6" descr="现金券"/>
+   	   <status name="7" descr="POS支付"/>
+   	   <status name="28" descr="月结"/>
+	</resource>
+
+<!-- CC设置权限 added by zhuangzhineng@2009.03.09 -->
+	<resource name="checkbox_memberPower">
+		<status name="1" descr="无视预订条款下单权限"></status>
+	</resource>
+<!-- 日志操作模块 -->	
+	<resource name="logDoModel">
+		<status name="1" descr="单条款"></status>
+		<status name="2" descr="多条款"></status>
+		<status name="3" descr="按日期调整预定条款"></status>
+		<status name="4" descr="预定条款模板"></status>
+	</resource>
+
+<!-- 条款绑定和解除绑定 -->	
+	<resource name="clauseBind">
+		<status name="1" descr="绑定"></status>
+		<status name="0" descr="解除绑定"></status>
+	</resource>
+	
+	<!-- v2.8 中旅订单状态 add by chenkeming@2009-3-27 -->
+	<resource name="res_ctsOrder_status">
+	   <status name="0" descr="未定"/>
+	   <status name="1" descr="可提交"/>
+	   <status name="2" descr="已提交" />
+	   <status name="3" descr="已撤消" />
+	</resource>	
+	<!--  v2.8 控制平台显示 支付状态 add by shizhongwen 2009-04-02 -->
+	<resource name="res_ctl_dsply_status">
+	   <status name="1" descr="面付"/>
+	   <status name="2" descr="预付"/>
+	   <status name="3" descr="面、预付" />	   
+	</resource>	
+<!-- 房控疑难组转合约组疑难单原因(单选) v2.8.1 by juesuchen 2009-05-25 begin-->
+	<resource name="res_difficultOrderReason">
+		<status name="201" descr="酒店配额内拒单" />
+		<status name="302" descr="酒店配额外拒单" />
+		<status name="103" descr="价格未出" />
+		<status name="204" descr="酒店称价格已传我部未变" />
+		<status name="205" descr="录入有误" />
+		<status name="206" descr="价格倒挂" />
+		<status name="207" descr="延住变价" />
+		<status name="208" descr="酒店变价未传" />
+		<status name="409" descr="CC操作失误" />
+		<status name="110" descr="酒店操作失误" />
+		<status name="211" descr="房型信息(包含床型、房型、所属楼层等)" />
+		<status name="212" descr="促销信息" />
+		<status name="213" descr="停水、停电" />
+		<status name="214" descr="国籍" />
+		<status name="215" descr="电话" />
+		<status name="216" descr="担保" />
+		<status name="217" descr="传真" />
+		<status name="218" descr="地址" />
+		<status name="219" descr="设施设备" />
+		<status name="220" descr="宽带" />
+		<status name="221" descr="早餐" />
+		<status name="222" descr="停止合作(包含停业、装修)" />
+		<status name="223" descr="保留时限" />
+		<status name="224" descr="加床" />
+		<status name="225" descr="预订条款" />
+		<status name="226" descr="酒店抢客" />
+		<status name="227" descr="酒店推翻确认" />
+		<status name="528" descr="未签约(含已过期)酒店预订" />
+		<status name="529" descr="已满房争取" />
+		<status name="530" descr="询价" />
+		<status name="531" descr="客人特殊需求" />
+		<status name="632" descr="系统故障" />
+		<status name="433" descr="CC传递错误" />
+		<status name="334" descr="房控操作失误" />
+		<status name="735" descr="暂缓" />
+	</resource>
+
+<!-- 房控疑难组转合约组疑难单类别 -->
+	<resource name="res_difficultOrderType">
+		<status name="1" descr="满房" />
+		<status name="2" descr="价格" />
+		<status name="3" descr="操作失误" />
+		<status name="4" descr="合同信息" />
+		<status name="5" descr="酒店抢客" />
+		<status name="6" descr="酒店推翻确认" />
+		<status name="7" descr="预定需求" />
+		<status name="8" descr="系统" />
+		<status name="9" descr="其它" />
+	</resource>
+
+	<!-- 房控疑难组转合约组疑难单原因１ 责任部门+序列号 -->
+	<resource name="res_difficultOrderReason_1">
+		<status name="201" descr="酒店配额内拒单" />
+		<status name="302" descr="酒店配额外拒单" />
+	</resource>
+	
+	<!-- 房控疑难组转合约组疑难单原因2 -->
+	<resource name="res_difficultOrderReason_2">
+		<status name="103" descr="价格未出" />
+		<status name="204" descr="酒店称价格已传我部未变" />
+		<status name="205" descr="录入有误" />
+		<status name="206" descr="价格倒挂" />
+		<status name="207" descr="延住变价" />
+		<status name="208" descr="酒店变价未传" />
+	</resource>
+	
+	<!-- 房控疑难组转合约组疑难单原因3 -->
+	<resource name="res_difficultOrderReason_3">
+		<status name="409" descr="CC操作失误" />
+		<status name="110" descr="酒店操作失误" />
+		<status name="433" descr="CC传递错误" />
+		<status name="334" descr="房控操作失误" />
+	</resource>
+	
+	<!-- 房控疑难组转合约组疑难单原因4 -->
+	<resource name="res_difficultOrderReason_4">
+		<status name="211" descr="房型信息(包含床型、房型、所属楼层等)" />
+		<status name="212" descr="促销信息" />
+		<status name="213" descr="停水、停电" />
+		<status name="214" descr="国籍" />
+		<status name="215" descr="电话" />
+		<status name="216" descr="担保" />
+		<status name="217" descr="传真" />
+		<status name="218" descr="地址" />
+		<status name="219" descr="设施设备" />
+		<status name="220" descr="宽带" />
+		<status name="221" descr="早餐" />
+		<status name="222" descr="停止合作(包含停业、装修)" />
+		<status name="223" descr="保留时限" />
+		<status name="224" descr="加床" />
+		<status name="225" descr="预订条款" />
+	</resource>
+	
+	<!-- 房控疑难组转合约组疑难单原因5 -->
+	<resource name="res_difficultOrderReason_5">
+		<status name="226" descr="酒店抢客" />
+	</resource>
+
+	<!-- 房控疑难组转合约组疑难单原因６ -->
+	<resource name="res_difficultOrderReason_6">
+		<status name="227" descr="酒店推翻确认" />
+	</resource>
+
+	<!-- 房控疑难组转合约组疑难单原因7 -->
+	<resource name="res_difficultOrderReason_7">
+		<status name="528" descr="未签约(含已过期)酒店预订" />
+		<status name="529" descr="已满房争取" />
+		<status name="530" descr="询价" />
+		<status name="531" descr="客人特殊需求" />
+	</resource>
+
+	<!-- 房控疑难组转合约组疑难单原因8 -->
+	<resource name="res_difficultOrderReason_8">
+		<status name="632" descr="系统故障" />
+	</resource>
+	<!-- 房控疑难组转合约组疑难单原因9 -->
+	<resource name="res_difficultOrderReason_9">
+		<status name="735" descr="暂缓" />
+	</resource>
+
+<!-- 房控疑难组转合约组疑难单责任部门(可多选) -->
+	<resource name="res_difficultOrderDept">
+		<status name="1" descr="酒店" />
+		<status name="2" descr="合约" />
+		<status name="3" descr="房控" />
+		<status name="4" descr="CC" />
+		<status name="5" descr="客人" />
+		<status name="6" descr="系统" />
+		<status name="7" descr="无" />
+	</resource>
+	
+<!-- 房控疑难组转合约组疑难单原因(单选) v2.8.1 by juesuchen 2009-05-25 end -->
+	
+	<!-- hotel2.9.2 早餐类型（英文）add by chenjiajie 2009-07-24 -->
+	<resource name="res_breakfast_en">
+		<status name="buffetDinner" descr="自助早" />
+		<status name="chineseFood" descr="中早" />
+		<status name="westernFood" descr="西早" />
+	</resource>	
+	
+	<!-- hotel2.9.2 酒店接送类型add by chenjiajie 2009-07-24 -->
+	<resource name="res_welcomeType">
+		<status name="1" descr="单程" />
+		<status name="2" descr="双程" />
+	</resource>
+	<!--  hotel v2.9 功能模块  add by shengwei.zuo   2009-07-03 -->
+	<resource name="select_function_module">
+	   <status name="" descr="请选择功能模块"/>
+	   <status name="80" descr="价格调整"/>
+	   <status name="81" descr="房态调整"/>
+	   <status name="82" descr="留言板" />	  
+	   <status name="83" descr="权限设置"/>
+	   <status name="85" descr="加床调整" />	
+	   <status name="86" descr="宽带调整"/>
+	   <status name="87" descr="早餐调整"/>
+	   <status name="88" descr="设置EBooking酒店" />	
+	   <status name="89" descr="价格审核记录"/>
+	   <status name="90" descr="区域权限设定"/>
+	   <status name="91" descr="优惠条款"/>
+	</resource>	
+	
+		<!--  hotel v2.9 功能模块  add by shengwei.zuo   2009-07-03 -->
+	<resource name="select_operation_module">
+	   <status name="" descr="请选择操作方式"/>	
+	   <status name="1" descr="增加"/>
+	   <status name="2" descr="删除"/>
+	   <status name="3" descr="修改"/>	  
+	</resource>	
+	
+	<!--  hotel v2.9 变价紧急程度  add by chenjiajie   2009-07-07 -->
+	<resource name="select_ebooking_exigencegrade">
+	   <status name="" descr="请选择"/>	
+	   <status name="1" descr="一般"/>
+	   <status name="2" descr="紧急"/>	  
+	</resource>	
+	
+	<!--  hotel v2.9 变价审核状态  add by chenjiajie   2009-07-07 -->
+	<resource name="select_ebooking_requisitionState">
+	   <status name="" descr="请选择"/>	
+	   <status name="0" descr="待审核"/>	  
+	   <status name="1" descr="审核中"/>	   
+	   <status name="2" descr="审核通过"/>
+	   <status name="3" descr="审核未通过"/>
+	</resource>	
+	
+	<!--  hotel v2.9 变价审核状态(查询界面使用)  add by chenjiajie   2009-07-07 -->
+	<resource name="select_ebooking_requisitionState_forquery">
+	   <status name="" descr="全部"/>	
+	   <status name="0" descr="待审核"/>
+	   <status name="1" descr="审核中"/>	 
+	   <status name="2" descr="已审核"/>  
+	</resource>	
+			
+	<!--  hotel v2.9酒店权限区域 add by juesu.chen   2009-07-13 -->
+	<resource name="select_hotel_area">
+	   <status name="HDQ" descr="华东区"/>
+	   <status name="HBQ" descr="华北区"/>
+	   <status name="GZQ" descr="广州区"/>	  
+	   <status name="BBQ" descr="华南区"/>	  
+	   <status name="ALL" descr="全国区"/>	  
+	</resource>		
+	
+	<!--  hotel v2.9酒店区域 查询页面用 add by jiajie.chen   2009-07-21 -->
+	<resource name="select_area">	  
+	   <status name="" descr="请选择"/>	
+	   <status name="HDQ" descr="华东区"/>
+	   <status name="HBQ" descr="华北区"/>
+	   <status name="GZQ" descr="广州区"/>	  
+	   <status name="BBQ" descr="华南区"/>  
+	</resource>
+	
+	
+	<!--  hotel v2.9.3 中台订单流转技能设置区域  add by shaojun.yang 2010-4-6 -->
+	<resource name="select_hra_area">	
+	   <status name="" descr="请选择"/>  
+	   <status name="HDQ" descr="华东区"/>
+	   <status name="HBQ" descr="华北区"/>
+	   <status name="GZQ" descr="广州区"/>	  
+	   <status name="BBQ" descr="华南区"/>  
+	   <status name="GAQ" descr="港澳区"/>
+	</resource>
+	
+	<resource name="select_hra_skillArea">	  
+	   <status name="HDQ" descr="华东区"/>
+	   <status name="HBQ" descr="华北区"/>
+	   <status name="GZQ" descr="广州区"/>	  
+	   <status name="BBQ" descr="华南区"/>  
+	   <status name="GAQ" descr="港澳区"/>
+	   <!--<status name="all" descr="全选"/>
+	--></resource>
+	
+	
+	<!-- 电子地图二期酒店星级开始 -->
+	<resource name="res_hotelstarNum">
+		<status name="1" descr="一星级" />
+		<status name="2" descr="二星级" />
+		<status name="3" descr="三星级" />
+		<status name="4" descr="四星级" />
+		<status name="5" descr="五星级" />
+	</resource>
+
+<!-- 电子地图二期酒店星级结束 -->	
+<!-- 酒店2.9.1电子地图二期 地理位置/名胜的类型 add by shengwei.zuo 2009-07-29 begin-->
+	<resource name="res_geographicalPositionType">
+		<status name="" descr="--请选择--" />
+		<status name="21" descr="交通枢纽" />
+		<status name="22" descr="热门商区" />
+		<status name="23" descr="景点地标" />
+		<status name="24" descr="地铁站" />
+		<status name="25" descr="行政区" />
+		<status name="26" descr="大学" />
+		<status name="27" descr="医院" />
+		<status name="28" descr="主题" />
+		<status name="29" descr="交通" />
+		<status name="30" descr="商企" />
+		<status name="31" descr="生活服务" />
+		<status name="32" descr="购物" />
+		<status name="33" descr="餐馆" />
+	</resource>
+<!-- 酒店2.9.1电子地图二期 地理位置/名胜的类型 add by shengwei.zuo 2009-07-29 end -->	
+
+	<!-- hotel2.9.2 提示信息可见位置 add by shengwei.zuo  2009-07-24 -->
+	<resource name="res_localtionSee">
+		<status name="1" descr="CC" />
+		<status name="2" descr="网站" />
+	</resource>
+
+	<!-- hotel2.9.3 连住优惠  优惠类型 add by shengwei.zuo 2009-08-26 -->
+	<resource name="res_favourableType">
+		<status name="" descr="--请选择--" />
+		<status name="1" descr="连住N晚送M晚" />
+		<status name="2" descr="原价打折" />
+		<status name="3" descr="连住包价" />
+	</resource>
+	
+	<!-- hotel2.9.3 连住优惠  原价打折 售价小数点的选择  add by shengwei.zuo 2009-08-26 -->
+	<resource name="res_decimalPointType">
+		<status name="" descr="--请选择--" />
+		<status name="1" descr="逢一进十" />
+		<status name="2" descr="四舍五入保留一位小数" />
+		<status name="3" descr="直接取整" />
+		<status name="4" descr="四舍五入取整" />
+	</resource>
+	
+	<!-- hotel2.9.3 审核方式 -->
+	<resource name="res_auditType">
+		<status name="" descr="请选择" />
+		<status name="1" descr="传真" />
+		<status name="2" descr="邮件" />
+		<status name="3" descr="电话" />
+		<status name="4" descr="EBOOKING" />
+		<status name="5" descr="直连" />						
+	</resource>
+
+	<!-- hotel2.9.3 配额所有者 add by shaojun.yang 2009-8-27 -->
+	<resource name="res_quotaHolder">
+		<status name="" descr="--请选择--" />
+		<status name="CC" descr="CC" />
+		<status name="TMC" descr="TMC" />
+		<status name="TP" descr="TP" />
+	</resource>
+	
+	<!-- hotel2.9.3 配额的调整方式 add by shengwei.zuo  2009-9-11 -->
+	<resource name="res_judgeType">
+		<status name="ADD" descr="增加" />
+		<status name="DEC" descr="减少" />
+	</resource>
+	
+	<!-- hotel2.9.3 配额类型 add by shaojun.yang 2009-8-27 -->
+	<resource name="res_quotaTypeNew">
+		<status name="" descr="--请选择--" />
+		<status name="2" descr="包房配额" />
+		<status name="1" descr="普通配额" />
+		<status name="3" descr="临时配额" />
+		<status name="4" descr="呼出配额" />
+	</resource>
+	
+	<!-- hotel2.9.3 配额的调整方式 add by shaojun.yang  2009-10-14 -->
+	<resource name="judge_Type">
+		<status name="ADD" descr="增加" />
+		<status name="DEC" descr="减少" />
+		<status name="UPT" descr="修改" />
+		<status name="DEDUCT" descr="扣配额" />
+		<status name="RETURN" descr="退配额" />
+		<status name="W-FROBID" descr="批量禁止预警" />
+		<status name="W-JUDGE" descr="批量调整预警" />
+	</resource>
+	
+	<!-- hotel2.9.3 配额模式 add by shaojun.yang  2009-10-14 -->
+	<resource name="quota_pattern">
+		<status name="S-I" descr="在店" />
+		<status name="C-I" descr="进店" />
+	</resource>
+	
+	<!-- hotel2.9.3 配额改造 cutoffTime  add shengwei.zuo 2009-10-23  -->
+	<resource name="cutoffTimeNew">
+		<status name="12:00" descr="12:00" />
+		<status name="13:00" descr="13:00" />
+		<status name="14:00" descr="14:00" />
+		<status name="15:00" descr="15:00" />
+		<status name="16:00" descr="16:00" />
+		<status name="17:00" descr="17:00" />
+		<status name="18:00" descr="18:00" />
+		<status name="19:00" descr="19:00" />
+		<status name="20:00" descr="20:00" />
+		<status name="21:00" descr="21:00" />
+		<status name="22:00" descr="22:00" />
+		<status name="23:00" descr="23:00" />
+	</resource>
+	
+	<!-- hotel2.9.3.1 币种符号翻译 add by chenjiajie 2009-10-20 -->
+	<resource name="currency_sign">
+		<status name="RMB" descr="RMB" />
+		<status name="HKD" descr="HK$" />
+		<status name="USD" descr="USD$" />
+		<status name="EUR" descr="EUR€" />
+		<status name="MOP" descr="MOP" />
+		<status name="" descr="RMB￥" />
+	</resource>
+	
+	<!-- 按日历调整用配额类型 add by shaojun.yang 2009-11-4 -->
+	<resource name="quota_type_calendar">
+		<status name="" descr="--请选择--" />
+		<status name="1" descr="普通配额"></status>
+		<status name="2" descr="包房配额"></status>
+		<status name="3" descr="临时配额"></status>		
+	</resource>
+	<!-- 网站改版 付款方式 add by chenjiajie 2009-11-18 -->
+	<resource name="res_order_pay_type">
+		<status name="1" descr="酒店前台面付" />
+		<status name="2" descr="信用卡支付" />
+		<status name="3" descr="营业部付款" />
+		<status name="4" descr="网上银行支付" />
+		<status name="5" descr="借记卡支付" />
+		<status name="6" descr="PPS 缴费灵网上支付"/>
+		<status name="7" descr="香港信用卡支付"/>
+	</resource>
+	
+	<!--  网站改版 网站订单填写页面：到店时间 add by shengwei.zuo  2009-11-24 -->
+	<resource name="res_arrivalTime_web">
+		
+		<status name="06:00-09:00" descr="06:00-09:00" />
+		<status name="07:00-10:00" descr="07:00-10:00" />
+		<status name="08:00-11:00" descr="08:00-11:00" />
+		<status name="09:00-12:00" descr="09:00-12:00" />
+		<status name="10:00-13:00" descr="10:00-13:00" />
+		<status name="11:00-14:00" descr="11:00-14:00" />
+		<status name="12:00-15:00" descr="12:00-15:00" />
+		<status name="13:00-16:00" descr="13:00-16:00" />
+		<status name="14:00-17:00" descr="14:00-17:00" />
+		<status name="15:00-18:00" descr="15:00-18:00" />
+		<status name="16:00-19:00" descr="16:00-19:00" />
+		<status name="17:00-20:00" descr="17:00-20:00" />
+		<status name="18:00-21:00" descr="18:00-21:00" />
+		<status name="19:00-22:00" descr="19:00-22:00" />
+		<status name="20:00-23:00" descr="20:00-23:00" />
+		<status name="21:00-23:59" descr="21:00-23:59" />		
+	</resource>	
+	
+	
+	<!-- hotel2.9.3 房控改造 hotelPriTime  add shaojun.yang 2009-12-29  -->
+	<resource name="hotel_pri_time">
+		<status name="" descr="--请选择--" />
+		<status name="8" descr="08:00" />
+		<status name="9" descr="09:00" />
+		<status name="10" descr="10:00" />
+		<status name="11" descr="11:00" />
+		<status name="12" descr="12:00" />
+		<status name="13" descr="13:00" />
+		<status name="14" descr="14:00" />
+		<status name="15" descr="15:00" />
+		<status name="16" descr="16:00" />
+		<status name="17" descr="17:00" />
+		<status name="18" descr="18:00" />
+		<status name="19" descr="19:00" />
+		<status name="20" descr="20:00" />
+		<status name="21" descr="21:00" />
+		<status name="22" descr="22:00" />
+	</resource>
+	
+	
+	<!-- b2b 代理 订单状态 add by shizhongwen 2010-1-5 -->
+	<resource name="res_b2border_status">
+		<status name="1" descr="订单处理中" />
+		<status name="2" descr="延住" />
+		<status name="3" descr="已入住" />
+		<status name="4" descr="正常退房" />
+		<status name="5" descr="提前退房" />
+		<status name="6" descr="NoShow" />		
+		<status name="7" descr="撤单" />
+		<status name="8" descr="已付款" />
+		<status name="9" descr="预订成功" />
+		<status name="10" descr="部分noshow" />
+	</resource>
+	
+	<!-- 诺曼底商旅系统 订单状态 add by haibo.li -->
+	<resource name="res_Tmcorder_status">
+		<status name="1" descr="订单待处理" />
+		<status name="2" descr="订单预订成功" />
+		<status name="3" descr="订单未入住" />
+		<status name="4" descr="订单已撤单" />
+	</resource>
+	<!-- 房控改版 动态排序 字段翻译 -->
+	<resource name="res_roomControl_sorting">
+		<status name="state" descr="工作任务状态(完成/未完成)"/>
+		<status name="checkpoint" descr="询房时间点"/>
+		<status name="quotawarninghotel" descr="配额预警"/>
+		<status name="epricefullroomaudit" descr="E-Price设置满房需要审核"/>
+		<status name="fullroomrejectratehotel" descr="昨日满房拒单率"/>
+		<status name="exhibitionhotel" descr="会展酒店"/>
+		<status name="commendtypehotel" descr="酒店主推类型"/>
+		<status name="nightcounthalfyearhotel" descr="半年间夜量"/>
+		<status name="ccsetroomfullorclose" descr="CC设置满房"/>
+		<status name="activecallhotel" descr="主动报房态"/>
+		<status name="epriceaudithotel" descr="E-Price审核/非审核酒店"/>
+		<status name="cooperatechannel" descr="直联酒店"/>
+	</resource>
+	<!-- 代理修改字段定义 add by haibo.li -->
+	<resource name="res_b2border_info">
+		<status name="0" descr="中台已经处理完修改" />
+		<status name="1" descr="中台未处理修改" />
+		<status name="2" descr="中台未处理取消" />
+		<status name="3" descr="中台已经处理完取消" />
+	</resource>
+	<!-- 借记卡（银联手机支付）卡种类 cc显示历史信用卡使用 -->
+	<resource name="debitCardUseBycc">		
+		<status name="CMB" descr="招商银行" />
+		<status name="ABC" descr="农业银行卡" />			
+		<status name="CIB" descr="兴业银行" />	
+		<status name="SDB" descr="深圳发展银行" />
+		<status name="CITIC" descr="中信银行" />
+		<status name="SPDB" descr="上海浦东发展银行" />
+	</resource>	
+	<!-- 房态处理来源 -->
+	<resource name="dealWithRoomStateSource">		
+		<status name="1" descr="呼出" />
+		<status name="2" descr="呼入" />			
+		<status name="3" descr="MSN" />	
+		<status name="4" descr="QQ" />
+		<status name="5" descr="邮件" />
+		<status name="6" descr="传真" />
+	</resource>	
+	<resource name="order_confirmed">		
+		<status name="1" descr="已确认" />
+		<status name="" descr="未确认" />
+	</resource>	
+	
+		<resource name="cutoffTimeNewForRoomControl">
+		<status name="12:00" descr="12:00" />
+		<status name="12:30" descr="12:30" />
+		<status name="13:00" descr="13:00" />
+		<status name="13:30" descr="13:30" />
+		<status name="14:00" descr="14:00" />
+		<status name="14:30" descr="14:30" />
+		<status name="15:00" descr="15:00" />
+		<status name="15:30" descr="15:30" />
+		<status name="16:00" descr="16:00" />
+		<status name="16:30" descr="16:30" />
+		<status name="17:00" descr="17:00" />
+		<status name="17:30" descr="17:30" />
+		<status name="18:00" descr="18:00" />
+		<status name="18:30" descr="18:30" />
+		<status name="19:00" descr="19:00" />
+		<status name="19:30" descr="19:30" />
+		<status name="20:00" descr="20:00" />
+		<status name="20:30" descr="20:30" />
+		<status name="21:00" descr="21:00" />
+		<status name="21:30" descr="21:30" />
+		<status name="22:00" descr="22:00" />
+		<status name="22:30" descr="22:30" />
+		<status name="23:00" descr="23:00" />
+		<status name="23:30" descr="23:30" />
+	</resource>
+	<!-- 活动ID ,名称 -->
+	<resource name="select_limitfavourable" queryID="select_limitfavourable" type="database">
+	</resource>
+	<!-- 活动标签 -->
+	<resource name="select_keyword">
+	    <status name="" descr="请选择" />		
+		<status name="fav_a" descr="1.半价疯抢" />
+		<status name="fav_b" descr="2.七折特惠" />
+		<status name="fav_c" descr="3.零利献礼" />
+	</resource>	
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<description>用于酒店基础数据转换的标签</description>
+	<tlib-version>1.1</tlib-version>
+	<short-name>h</short-name>
+	<uri>http://www.mangocity.com/resource/convert-taglib</uri>
+	<tag>
+		<description>Show a single named form parameter</description>
+		<name>convert</name>
+		<tag-class>com.mangocity.hotel.base.web.ResourceTag</tag-class>
+		<body-content>JSP</body-content>
+		<!-- 资源ID -->
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+        
+        <!-- 不是必须的要的 -->
+		<attribute>
+			<name>param</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+	</tag>
+
+    <!-- 参数标签 -->
+	<tag>
+		<name>param</name>
+		<tag-class>
+			com.mangocity.hotel.base.web.ParamTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+</taglib>

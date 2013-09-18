@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- 酒店网站显示数据的临时数据表  -->
+<hibernate-mapping package="com.mangocity.hweb.persistence">
+   <class name="HwHotelIndex" table="HW_HOTELINDEX" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID">
+			<generator class="sequence">
+				<param name="sequence">seq_HW_HOTELINDEX</param>
+			</generator>
+	</id>          
+
+         <property name="hotelId" />
+         <property name="state" />
+         <property name="city" />
+         <property name="chnName" column="HOTEL_CHN_NAME"></property>
+         <property name="hotelStar" column="HOTEL_STAR"></property>
+         <property name="commendType" />
+         <property name="currency" />
+         <property name="lowestPrice" column="LOWEST_PRICE"></property>
+         <property name="createDate" column="Create_date"></property>
+         <property name="clickNum" column="CLICK_NUM"></property>
+         <property name="orderNum" column="ORDER_NUM"></property>
+         <property name="forDif" column="FOR_DIF"></property>
+         <property name="lowestFavPrice" column="LOWEST_FAVPRICE"></property>
+   </class> 
+   
+   <query name="queryLowastPriceItems">
+		<![CDATA[ 
+		from HwHotelIndex item where item.forDif = ? order by item.city , item.hotelStar desc
+		]]>
+   </query>
+  
+   <query name="queryHotelCommendItems">
+		<![CDATA[ 
+		from HwHotelIndex item where item.forDif = ? order by item.city , cast(item.commendType as int)
+		]]>
+   </query>
+  
+   <query name="queryOrderNumItems">
+		<![CDATA[ 
+		from HwHotelIndex item where item.forDif = ? order by item.city , item.orderNum desc
+		]]>
+   </query> 
+  
+   <query name="queryClickNumItems">
+		<![CDATA[ 
+		from HwHotelIndex item where item.forDif = ? order by item.city , item.clickNum desc
+		]]>
+   </query>     
+   
+</hibernate-mapping>

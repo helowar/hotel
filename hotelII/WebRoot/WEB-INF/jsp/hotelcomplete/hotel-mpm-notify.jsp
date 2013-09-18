@@ -1,0 +1,1 @@
+<%String callBackResult = (String)request.getAttribute("callBackResult");out.print(callBackResult);%>

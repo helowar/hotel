@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="HandleLog" table="or_handlelog" lazy="false" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="logId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_handlelog</param>
+			</generator>
+	</id>     
+
+         <property name="modifier" />
+         <property name="modifierName" />
+         <property name="modifierRole" />
+         <property name="modifiedTime" />
+         <property name="content" />
+         <property name="beforeState" />
+         <property name="afterState" />
+         <property name="timeConsume" />
+
+		<!-- 和Order关联 -->
+		<many-to-one name="order"
+			class="Order"
+			column="orderId" 
+			cascade="save-update"
+			unique="true"/>      
+ 
+    
+   </class>
+
+   
+</hibernate-mapping>

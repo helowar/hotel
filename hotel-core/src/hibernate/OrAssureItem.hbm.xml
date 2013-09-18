@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+	<class name="OrAssureItem" table="or_assure_item" lazy="true" dynamic-insert="true" dynamic-update="true">
+
+		<id name="ID" column="ASSURE_ITEM_ID">
+			<generator class="sequence">
+				<param name="sequence">seq_order_Assure_Item</param>
+			</generator>			
+		</id>
+		<property name="aheadDay" column="AHEAD_DAY"></property>
+		<property name="operateType" column="OPERATE_TYPE"></property>
+		<property name="deductType" column="DEDUCT_TYPE"></property>
+		<property name="amount" column="AMOUNT"></property>
+		<property name="aheadTime" column="AHEAD_TIME"></property>
+		
+		<!-- 和OrReservation关联 -->
+		<many-to-one name="reserv"
+			class="com.mangocity.hotel.base.persistence.OrReservation"
+			column="reservationID" 
+			cascade="save-update"
+			unique="true"/> 		
+		
+	</class>
+</hibernate-mapping>

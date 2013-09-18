@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.dreamweb.ordercancel.persistence">
+   <class name="TempOrder" table="TEMP_ORDER" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="ORDERID">
+			<generator class="assigned" />
+	</id>          
+
+         <property name="assignTime" />
+         <property name="groupType" />         
+         <property name="assignState" />
+         <property name="relaxTime" />
+         <property name="clientType" />       
+         <property name="bakA" />  
+         <property name="bakB" />  
+         <property name="bakC" />  
+         <property name="bakD" />  
+         <property name="deferTime" />
+         <property name="modifyTime" />    
+   </class>
+</hibernate-mapping>

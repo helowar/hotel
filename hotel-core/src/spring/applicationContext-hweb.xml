@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!-- 酒店网站v2.2 spring bean配置文件 -->
+
+ <beans default-autowire="byName" default-lazy-init="true">
+    <!-- 芒果网五周年331限量返现活动促销 add by xiaojun.xiong 2011-3-4 -->
+	<bean id="htlLimitFavourableDao" class="com.mangocity.hotel.base.dao.impl.HtlLimitFavourableDaoImpl"/>
+	<!-- 芒果网五周年331限量返现活动促销service add by xiaojun.xiong 2011-3-4 -->
+	<bean id="limitFavourableManage" class="com.mangocity.hotel.base.manage.impl.HtlLimitFavourableManageImpl">
+		<property name="htlLimitFavourableDao"  ref="htlLimitFavourableDao"></property>
+	</bean>
+	<!-- web酒店查询类 -->
+	<bean id="hotelManageWeb" class="com.mangocity.hweb.manage.impl.HotelManageWebImpl">		
+	</bean>
+
+	<!-- 114酒店查询类 -->
+	<bean id="hotel114ManageWeb" class="com.mangocity.hotel114.manage.impl.Hotel114ManageWebImpl">
+	</bean>
+
+ 	<bean id="configParaBean" class="com.mangocity.util.ConfigParaBean">
+		<property name="webRecEmail" value="${WEB_REC_EMAIL}"></property>
+		<!-- <property name="webRecEmail" value="cstrain@mangocity.com"></property> -->
+		<property name="hwebMemberLoginURL" value="${HWEB_MEMBER_LOGIN_URL}"></property>
+		<property name="hwebMemberLoginReturnURL" value="${HWEB_MEMBER_LOGIN_RETURN_URL}"></property>
+		<property name="hwebIPSPayURL" value="${HWEB_IPS_PAY_URL}"></property>
+		<property name="hwebIPSPayReturnURL" value="${HWEB_IPS_PAY_RETURN_URL}"></property>
+		<property name="hwebCMBPayURL" value="${HWEB_CMB_PAY_URL}"></property>
+		<property name="hwebCMBPayReturnURL" value="${HWEB_CMB_PAY_RETURN_URL}"></property>
+	</bean>
+	<bean id="hotelQuotaSer" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${HWEB_HOTEL_RMIADDRESS_QUOTASER}</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.mangocity.hotel.base.service.IQuotaControlService</value>
+		</property>
+		<property name = "lookupStubOnStartup">
+			<value>false</value>
+		</property>
+		<property name="refreshStubOnConnectFailure">
+			<value>true</value>
+		</property>	
+	</bean>	
+		<!-- 支付查询接口 --> 
+ 	<bean id="queryPayManager" class="mango.it.payQuery.common.QueryPayManager">		   	 
+ 	</bean>
+	
+	<!-- 支付接口类 add by wuyun 2009-03-17 -->
+	<bean id="paymentService" class="com.mangocity.hk.service.impl.PaymentOnlineServiceImpl">
+		<property name="commBgreturl">
+			<value>${HWEB_COMMPAY_BG_RETURN_URL}</value>
+		</property>
+		<property name="commPagereturl">
+			<value>${HWEB_COMMPAY_PAGE_RETURN_URL}</value>
+		</property>
+		<property name="aliPayreturl">
+			<value>${HWEB_ALIPAY_RETURN_URL}</value>
+		</property>
+		<property name="aliPaynotifyurl">
+			<value>${HWEB_ALIPAY_NOTIFY_URL}</value>
+		</property>
+		<property name="yeePayreturl">
+			<value>${HWEB_YEEPAY_RETURN_URL}</value>
+		</property>
+		<property name="ipsAddressurl">
+			<value>${HWEB_IPSPAY_ADDRESS_URL}</value>
+		</property>
+		<property name="ipsBgreturl">
+			<value>${HWEB_IPSPAY_BG_RETURN_URL}</value>
+		</property>
+		
+		<!-- 新的支付接口的请求url add by shengwei.zuo -->
+		<property name="mpmOnlinerequrl">
+			<value>${HWEB_mpmonline_req_url}</value>
+		</property>
+		
+	</bean>
+	
+	<bean id="hwebHotelDao" class="com.mangocity.hweb.dao.impl.HWebHotelDAOImpl">		
+	</bean>
+	
+		<!-- hotel同步接口 -->
+	<bean id="hotelSynManage" class="com.mangocity.hweb.manage.impl.HotelSynManageImp">		
+	</bean>
+	
+	<bean id="hotelSynDao" class="com.mangocity.hotel.base.dao.impl.HotelSynDaoImp">		
+	</bean>
+	
+	
+ </beans>

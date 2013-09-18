@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="B2BIncrease">
+
+	<!-- B2B加幅查询-->
+	<select id="selectB2BIncrease" parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (
+		   select  distinct(a.HOTEL_ID),a.STATE,a.CITY,a.ZONE,a.CHN_NAME,a.group_name,
+		   a.COMMENDTYPE,a.HOTEL_STAR,a.SELL_STATUS,a.PRODUCT_MANAGER,a.COOPERATE_CHANNEL,
+		   a.WHETHEREBOOKING,
+		   case
+         	when b2b.increase_rate > 1 then
+          		round(b2b.increase_rate, 1)
+         	when b2b.increase_rate < 1 then
+          		round(b2b.increase_rate, 3)
+       		end as INCREASE_RATE
+		   from V_HTL_HOTEL a,htl_contract hc,B2B_INCREASE b2b
+		   where  a.hotel_id=hc.hotel_id and  a.active='1' and a.HOTEL_SYSTEM_SIGN ='01' 
+		   and b2b.HOTEL_ID(+) = a.hotel_id 
+	     ]]>
+	    <isNotEmpty prepend="AND" property="chinesename">
+			upper(a.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(a.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCountry">
+			a.country = #hotelCountry#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstate">
+			a.STATE = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			a.CITY = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			a.ZONE = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			a.BIZ_ZONE = #hotelbizzone#
+		</isNotEmpty>
+		<!-- 主推类型 
+		<isNotEmpty prepend="AND" property="mainCommend">
+			a.commendtype = #mainCommend#
+		</isNotEmpty>-->
+		
+		<isNotEmpty prepend="AND" property="goldType">
+			a.COMMENDTYPE = #goldType#
+		</isNotEmpty>	
+		
+		<!-- 所属酒店集团 -->
+		<isNotEmpty prepend="AND" property="parentHotelGroup">
+			a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+		</isNotEmpty>
+		<!-- 所属品牌 -->
+		<isNotEmpty prepend="AND" property="plateName">
+			a.NAMEPLATE_NAME = #plateName#
+		</isNotEmpty>
+		<!-- 产品经理人 -->
+		<isNotEmpty prepend="AND" property="productManager">
+			upper(a.PRODUCT_MANAGER) like upper('%$productManager$%')
+		</isNotEmpty>
+		<!-- 直联合作方 -->
+		<isNotEmpty prepend="AND" property="hotelCooperator">
+				a.cooperate_channel = #hotelCooperator#
+		</isNotEmpty>
+		<!-- 是否E-Price酒店 -->
+		<isNotEmpty prepend="AND" property="eprice">
+			<isEqual property="eprice" compareValue="1">
+				a.WHETHEREBOOKING=1
+			</isEqual>
+			<isEqual property="eprice" compareValue="0">
+				(a.WHETHEREBOOKING=0 or a.WHETHEREBOOKING is null)
+			</isEqual>
+	    </isNotEmpty>
+		
+		<!-- 是否合同范围内 -->
+		<isNotEmpty prepend="AND" property="contract">
+			<isEqual property="contract" compareValue="1">
+				sysdate between hc.begin_date and hc.end_date
+			</isEqual>
+			<isEqual property="contract" compareValue="0">
+				sysdate not between hc.begin_date and hc.end_date
+			</isEqual>
+	    </isNotEmpty>
+	    
+	    <!-- 是否加幅 -->
+		<isNotEmpty prepend="AND" property="increase">
+			<isEqual property="increase" compareValue="2">
+				(b2b.flag =1 or b2b.flag is null)
+			</isEqual>
+			<isEqual property="increase" compareValue="1">
+				b2b.flag =1
+			</isEqual>
+			<isEqual property="increase" compareValue="0">
+				b2b.flag is null
+			</isEqual>
+	    </isNotEmpty>
+		)
+	</select>
+	 
+
+	<!-- 根据酒店id查询B2B加幅日志 -->
+	<select id="selectB2BIncreaseLog" parameterClass="com.mangocity.util.collections.FormatMap" resultClass="java.util.HashMap">		
+		select b2b.id,b2b.hotel_id,b2b.increase_rate,b2b.create_name,to_char(b2b.create_time,'yyyy-mm-dd hh24:mi:ss') as CREATE_TIME,b2b.flag
+		from b2b_increase b2b
+		where b2b.hotel_id = $hotelId$ order by b2b.create_time desc
+	</select> 
+	
+</sqlMap>

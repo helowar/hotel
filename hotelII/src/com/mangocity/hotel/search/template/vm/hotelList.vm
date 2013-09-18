@@ -1,0 +1,36 @@
+<div id="hotelId$hotelVO.hotelId" class="queryBox">
+   			<div class="img360"><a href="jiudian-${hotelVO.hotelId}.html" target="_blank" class="imgWrap"><img width="75px" height="75px" src="$hotelVO.outPictureName" alt="" /></a>
+			  <a htlid="${hotelVO.hotelId}" htlname="${hotelVO.chnName}" href="javascript:void(0);" onclick="comparehotel(this);" class="tocompare">加入对比</a>
+			</div>
+            <div class="txtWrap">	           
+                <h2 class="hotelName $hotelVO.commendType">
+
+		<div id="prepayHint${hotelVO.hotelId}" class="ht_yfrx" style="display:none">会员预付可专享更多优惠！请拨打<font class="orange">4006640011</font>预订</div>
+		
+		<a href="jiudian-${hotelVO.hotelId}.html" target="_blank">$hotelVO.chnName</a>        
+                   #if (${hotelVO.hotelStar}=="star5" || ${hotelVO.hotelStar}=="star4" || ${hotelVO.hotelStar}=="star3" || ${hotelVO.hotelStar}=="star2")
+                    <em class="hotelstar $hotelVO.hotelStar"></em>
+                #else 
+                    &nbsp;&nbsp;<em class="hotelstarName">$hotelVO.hotelStar</em>
+                 #end   
+                </h2>
+                <p class="hoteladdressview">酒店地址：$hotelVO.chnAddress</p>            
+                <ul class="hotelInfo">
+                    <li class="map"><a name="eMap" href="http://hotel.mangocity.com/hotelEmap/jiudian-${hotelVO.hotelId}.html">电子地图</a></li>
+                    <li class="businessarea"><span>商业区：</span><a name="bizZone" href="list-${hotelVO.cityCodeLower}-${hotelVO.bizZoneLower}.html">$hotelVO.bizZoneValue</a></li>
+                    <li class="spacstructure"><span>特色设施：</span><em class="spc_icon spc_01_$hotelVO.flagFreePlane" title="$hotelVO.haveFreePlane接机服务"></em>
+                    <em class="spc_icon spc_03_$hotelVO.flagFreeGym" title="$hotelVO.haveFreeGym免费健身设施"></em>
+                    <em class="spc_icon spc_04_$hotelVO.flagFreeStop" title="$hotelVO.haveFreeStop免费停车场"></em><em class="spc_icon spc_05_$hotelVO.flagFreePool" title="$hotelVO.haveFreePool免费游泳池"></em></li>
+                </ul>
+                <ul class='hotelEvaluation'>
+                     $hotelVO.geoDistance
+                </ul>
+                <ul class="hotelEvaluation">
+                    <li>酒店口碑：<em>$hotelVO.commentSummaryVO.commendUp人推荐/$hotelVO.commentSummaryVO.commendDown人不推荐</em></li>
+                    <li>得分：<em>$hotelVO.commentSummaryVO.averAgepoint分</em></li>
+                    <li><a  name="commends" href="http://www.mangocity.com/HotelCommentWeb/hotel-comment-details.shtml?hotelId=$hotelVO.hotelId" target="_blank">查看$hotelVO.commentSummaryVO.commentNum位住客点评&gt;&gt;</a></li>
+                </ul>
+            </div>
+            <div class="hoteldata roomtypeload" id="date_$hotelVO.hotelId">
+            </div>
+</div>

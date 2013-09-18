@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+   <class name="Reservation" table="or_reservation"   dynamic-insert="true" dynamic-update="true">
+	<id name="ID" column="reservationID">
+			<generator class="sequence">
+				<param name="sequence">seq_order_reservation</param>
+			</generator>
+	</id>    
+    
+         <property name="allowCancelTime" />
+         <property name="advancePayTime" />
+         <property name="allowModifyTime" />
+         <property name="allowModify" />
+         <property name="hotelPresale" />
+         <property name="balanceMode" />
+         <property name="marketPresale" />
+         <property name="lateSuretyTime" />
+
+    
+    
+    
+    
+    
+    
+    
+    
+   </class>
+
+   
+</hibernate-mapping>

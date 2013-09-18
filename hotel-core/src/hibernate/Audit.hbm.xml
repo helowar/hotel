@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="Audit" table="or_audit"  dynamic-insert="true" dynamic-update="true" lazy="false">
+	<id name="ID" column="auditId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_audit</param>
+			</generator>
+	</id>       
+
+         <property name="auditDate" />
+         <property name="auditState" />
+         <property name="checkinDate" />
+         <property name="auditingWait" />
+         <property name="auditorId" />
+         <property name="auditorName" />
+         <property name="checkerId" />
+         <property name="checkerName" />
+         <property name="checkTime" />
+         <property name="type" />         
+
+		<!-- 和Order关联 -->
+		<many-to-one name="order"
+			class="Order"
+			column="orderId" 
+			cascade="save-update"
+			unique="true"/>     
+			
+		<!-- 和AuditHotel关联 -->
+		<many-to-one name="auditHotel"
+			class="AuditHotel"
+			column="auditHotelId" 
+			cascade="save-update"
+			unique="true"/>  			
+			
+		<!-- 和AuditItem关联 -->
+    	<bag name="auditItems" cascade="all-delete-orphan"
+			inverse="true" >
+			<key column="auditId"></key>
+			<one-to-many class="AuditItem" />
+		</bag>				
+    
+   </class>
+   
+	<!-- 查询给定日期的日审单 -->   
+	<query name="hQueryAuditByDate_Audit">
+		<![CDATA[ 
+		from Audit a 
+		where 
+			a.checkinDate = ? 
+		order by
+			a.auditHotel 
+		]]>
+	</query>   
+
+	<!-- 查询给定AuditHotel的ID的日审单 -->   
+	<query name="hQueryAuditByHotel_Audit">
+		<![CDATA[ 
+		from Audit a 
+		where 
+			a.auditHotel.ID = ? 
+		]]>
+	</query>   
+	
+	<!-- 查询给定Order的ID的日审单 -->   
+	<query name="hQueryAuditByOrder_Audit">
+		<![CDATA[ 
+		from Audit a 
+		where 
+			a.order.ID = ? 
+		order by a.checkinDate 
+		]]>
+	</query>   	
+   
+</hibernate-mapping>

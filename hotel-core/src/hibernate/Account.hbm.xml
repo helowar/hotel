@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.demo.persistence">
+	<class name="Account" table="t_account" dynamic-insert="true" dynamic-update="true" lazy="false">
+		
+		<!-- 
+		<meta attribute="implement-equals">true</meta>
+		<cache usage="read-write" />
+		 -->
+		<!--<id name="ID" column="ID">
+			<generator class="uuid.hex" />
+			</id>	
+			
+		-->
+
+		<id name="ID" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">seq_account</param>
+			</generator>
+		</id>
+
+
+		<property name="firstName" column="ACC_FIRST_NAME" />
+		<property name="lastName" column="ACC_LAST_NAME" />
+		<property name="emailAddress" column="ACC_EMAIL" />
+
+
+		<property name="birthday" column="birthday" />
+
+		<many-to-one name="person"
+			class="Person"
+			column="person_id" 
+			cascade="save-update"
+			unique="true"/>  
+
+		<!--
+		<many-to-one name="person" column="person_id" class="Person"
+			not-null="true" />-->
+
+
+
+
+	</class>
+
+<!--
+	<query name="queryAccounts">
+		<![CDATA[ 
+		from Account account where account.birthday = ? 
+		]]>
+	</query>
+
+	<query name="queryAccountByName">
+		<![CDATA[ 
+		from Account account where account.firstName = ? 
+		]]>
+	</query>
+-->
+
+
+
+</hibernate-mapping>

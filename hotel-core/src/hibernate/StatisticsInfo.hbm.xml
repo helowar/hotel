@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hagtb2b.persistence">
+	<class name="StatisticsInfo" table="T_STATISTICS_AGENT_ORDER" dynamic-insert="true" dynamic-update="true" lazy="false">
+	
+		<id name="ID" column="STATIID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_STATI_AGENT_ORDER</param>
+			</generator>
+		</id>
+		<property name="statYear" column="STATIS_YEAR" type="java.lang.String"/>
+		<property name="statMonth" column="STATIS_MONTH" type="java.lang.Integer"/>
+		<property name="agentCode" column="AGENT_CODE" type="java.lang.String"/>
+		<property name="agentName" column="AGENT_NAME" type="java.lang.String"/>
+		<property name="orgId" column="ORG_ID" type="java.lang.String"/>
+		<property name="operId" column="OPER_ID" type="java.lang.String"/>
+		<property name="commsion" column="COMMISION" type="java.lang.Double"/>
+		<property name="confirmed" column="CONFIRMED" type="java.lang.Integer"/>
+		<property name="orderNum" column="ORDER_NUM" type="java.lang.Integer"/>
+		<property name="nightsNum" column="NIGHTS_NUM" type="java.lang.Integer"/>
+		<property name="sumAcount" column="SUM_ACOUNT" type="java.lang.Double"/>
+		<property name="actNightsNum" column="ACT_NIGHTS_NUM" type="java.lang.Integer"/>
+		<property name="actSumAcount" column="ACT_SUM_ACOUNT" type="java.lang.Double"/>		
+		<property name="backCommission" column="BACK_COMM" type="java.lang.Double"/>
+		
+		<property name="factcomm" column="FACTCOMM" type="java.lang.Double"/>
+		<property name="commrate" column="COMMRATE" type="java.lang.Double"/>
+		<bag name="orderItems" cascade="all-delete-orphan"
+			inverse="true" lazy="false" order-by="ID">
+			<key column="STATIID"></key>
+			<one-to-many class="AgentOrder" />
+		</bag>
+		
+		
+	</class>
+
+<!--
+	<query name="queryAccounts">
+		<![CDATA[ 
+		from Account account where account.birthday = ? 
+		]]>
+	</query>
+
+	<query name="queryAccountByName">
+		<![CDATA[ 
+		from Account account where account.firstName = ? 
+		]]>
+	</query>
+-->
+
+
+
+</hibernate-mapping>

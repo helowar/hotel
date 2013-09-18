@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+
+	<display-name>hotelII</display-name>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:spring/applicationContext.xml
+		</param-value>
+	</context-param>
+    <context-param>
+	        <param-name>authCode</param-name>
+	        <param-value>mangocity</param-value>
+	</context-param>
+	<context-param>
+		<param-name>ecsidePreferencesLocation</param-name>
+		<param-value>/WEB-INF/classes/ecside.properties</param-value>
+	</context-param>
+    <context-param>
+        <param-name>mangoFITPropertiesLocation</param-name>
+        <param-value>/WEB-INF/hotels.properties</param-value>
+    </context-param>
+
+    <filter>
+    	<filter-name>urlParamFilter</filter-name>
+    	<filter-class>
+    		com.mangocity.hotel.filter.URLParamFilter
+    	</filter-class>
+    	<init-param>
+    		<param-name>encoding</param-name>
+    		<param-value>UTF-8</param-value>
+    	</init-param>
+    </filter>
+    <filter-mapping>
+    	<filter-name>urlParamFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+		<filter-name>eXtremeExport</filter-name>
+		<filter-class>org.ecside.filter.ECSideFilter</filter-class>
+		<init-param>
+			<param-name>responseHeadersSetBeforeDoFilter</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>useEasyDataAccess</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ecsidePreferencesLocation</param-name>
+			<param-value>
+				/WEB-INF/classes/ecside.properties
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>useEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>eXtremeExport</filter-name>
+		<url-pattern>/paginate.action</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>struts</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.FilterDispatcher
+		</filter-class>
+	</filter>
+	
+	<filter>
+		<filter-name>struts-cleanup</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.ActionContextCleanUp
+		</filter-class>
+	</filter>
+
+	<!-- 著名 Character Encoding filter -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<!--Hibernate Open Session in View Filter-->
+	<!-- 延迟加载 --> 
+	<filter>
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+		<init-param>    
+            <param-name>singleSession</param-name>    
+            <param-value>true</param-value>  
+        </init-param> 
+	</filter>
+	<!-- JSTLFilter，主要将变量值从ValueStack中取出来，放在request中，然后再使用JSTL标记语言来直接调用 -->
+	<filter>
+		<filter-name>jstlwrapper</filter-name>
+		<filter-class>
+			com.mangocity.hotel.base.web.webwork.JSTLFilter
+		</filter-class>
+	</filter>
+	
+	<filter>
+		<filter-name>hessianRemoteIpControler</filter-name>
+		<filter-class>
+			com.mangocity.webnew.filter.HessianRemoteIpControlerFilter
+		</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>hessianRemoteIpControler</filter-name>
+		<url-pattern>/hessianRemote/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.shtml</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>*.shtml</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher> 
+		<dispatcher>FORWARD</dispatcher>		
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts-cleanup</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>jstlwrapper</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+
+	<!--Spring ApplicationContext 载入 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<!-- Spring 刷新Introspector防止内存泄露 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.util.IntrospectorCleanupListener
+		</listener-class>
+	</listener>
+
+	<!-- 支持session scope的Spring bean -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+	
+	<!--删除电子地图的临时文件
+	<listener>
+	  <listener-class>com.mangocity.webnew.service.impl.TaskManager</listener-class>
+	 </listener> 
+	  -->
+	  
+	<servlet>
+		<servlet-name>initServlet</servlet-name>
+		<servlet-class>com.mangocity.hotel.base.web.InitServletImpl</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+    <servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<!-- 
+		<servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>		
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>	
+		 -->
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>		
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+		   <param-name>crossDomainSessionSecurity</param-name>
+		   <param-value>false</param-value>
+		</init-param>
+		<init-param>
+		   <param-name>config-dwr</param-name>
+		   <param-value>/WEB-INF/config/dwr.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	
+	  <!-- gwt servlet -->
+  <servlet>
+    <servlet-name>hotelShow</servlet-name>
+    <servlet-class>com.mangocity.hotel.gwt.server.HotelListSearchServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>monitorGWT</servlet-name>
+    <servlet-class>com.mangocity.hotel.gwt.server.MonitorGWTPageServiceImpl</servlet-class>
+  </servlet>
+  
+
+  <servlet>
+
+    <servlet-name>hotelQuotationQuery</servlet-name>
+    <servlet-class>com.mangocity.hotel.dreamweb.search.servlet.HotelQuotionQueryServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>hotelShow</servlet-name>
+    <url-pattern>/hotelGWT/hotelList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>hotelShow</servlet-name>
+    <url-pattern>/hotelInfoGWT/hotelList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>monitorGWT</servlet-name>
+    <url-pattern>/hotelGWT/hotelPage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>hotelQuotationQuery</servlet-name>
+    <url-pattern>/hotelQuotationQuery</url-pattern>
+  </servlet-mapping>
+
+	<!-- session超时定义,单位为分钟 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<!-- 默认首页定义 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<jsp-config>
+		<taglib>
+			<taglib-uri>core</taglib-uri>
+			<taglib-location>/WEB-INF/config/c-rt.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+			<taglib-uri>fmt</taglib-uri>
+			<taglib-location>/WEB-INF/config/fmt-rt.tld</taglib-location>
+		</taglib>
+		
+		<taglib>
+			<taglib-uri>fn</taglib-uri>
+			<taglib-location>/WEB-INF/config/fn.tld</taglib-location>
+		</taglib>
+		
+		<taglib>
+			<taglib-uri>convert</taglib-uri>
+			<taglib-location>/WEB-INF/config/resource.tld</taglib-location>
+		</taglib>
+		
+		<taglib>
+			<taglib-uri>functions</taglib-uri>
+			<taglib-location>/WEB-INF/config/functions.tld</taglib-location>
+		</taglib>
+		
+		<taglib>
+			<taglib-uri>/struts-tags</taglib-uri>
+			<taglib-location>/WEB-INF/config/struts-tags.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
+</web-app>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+				
+<sqlMap namespace="B2bCommissionTemp">
+	
+	<select id="queryCommisionTemp"
+		parameterClass="java.util.Map"
+		resultClass="java.util.HashMap">
+         select id,
+         		commision_temp_name,
+         		create_time,
+         		create_name 
+         from   htl_b2b_temp_comminfo 
+         where active = 1
+         <isNotEmpty prepend="and" property="commisionTempName">
+         	COMMISION_TEMP_NAME like '%$commisionTempName$%'
+		 </isNotEmpty>
+         order by create_time desc
+	</select>
+</sqlMap>

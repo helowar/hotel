@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="BaseForCC">
+	<update id="updateCutoffDayForCC" parameterClass="java.util.HashMap">
+		update HTL_CUTOFF_DAY_QUOTA
+		set	cutoff_used_qty = #cutoffUsedQty#
+		where cutoff_day_id = #cutoffDayId#
+	</update>
+	<update id="updateAssignCustomForCC" parameterClass="java.util.HashMap">
+		update HTL_ASSIGNCUSTOM
+		set
+			<isNotEmpty property="privateQuota">
+				private_quota = #privateQuota# ,
+			</isNotEmpty>
+			saled_quota = #saledQuota#
+		where assign_custom_id = #assignCustomId#
+	</update>
+	<update id="updateQuotaForCC" parameterClass="java.util.HashMap">
+		update HTL_QUOTA
+		set
+			used_qty = #usedQty#,
+			avail_qty = #availQty#
+			<isNotEmpty property="shareQty">
+				,share_qty = #shareQty# 
+			</isNotEmpty>
+			<isNotEmpty property="privateQty">
+				,private_qty = #privateQty# 
+			</isNotEmpty>
+		where quota_id = #quotaId#
+	</update>
+	<update id="updateHtlRoomTempQuota" parameterClass="java.util.HashMap">
+		update HTL_ROOM
+		set	USE_TEMP_QTY = #useTempQty#,
+			CC_TEMP_QTY = #ccTempQty#,
+			TP_TEMP_QTY = #tpTempQty#,
+			BB_TEMP_QTY = #bbTempQty#,
+			TMC_TEMP_QTY = #tmcTempQty#
+		where room_id = #roomId#
+	</update>
+	<update id="updateHtlRoomOutsideQuota" parameterClass="java.util.HashMap">
+		update HTL_ROOM
+		set	OUTSIDE_QTY = #outsideQty#,
+			CC_OUTSIDE_QTY = #ccOutsideQty#,
+			BB_OUTSIDE_QTY = #bbOutsideQty#,
+			TMC_OUTSIDE_QTY = #tmcOutsideQty#,
+			TP_OUTSIDE_QTY = #tpOutsideQty#
+		where room_id = #roomId#
+	</update>
+	<update id="updateHtlRoomQuota" parameterClass="java.util.HashMap">
+		update HTL_ROOM
+		set
+			<isNotEmpty property="outsideQty">
+			OUTSIDE_QTY = #outsideQty#,
+			</isNotEmpty>
+			<isNotEmpty property="ccOutsideQty">
+			CC_OUTSIDE_QTY = #ccOutsideQty#,
+			</isNotEmpty>
+			<isNotEmpty property="bbOutsideQty">
+			BB_OUTSIDE_QTY = #bbOutsideQty#,
+			</isNotEmpty>
+			<isNotEmpty property="tmcOutsideQty">
+			TMC_OUTSIDE_QTY = #tmcOutsideQty#,
+			</isNotEmpty>
+			<isNotEmpty property="tpOutsideQty">
+			TP_OUTSIDE_QTY = #tpOutsideQty#,
+			</isNotEmpty>
+			<isNotEmpty property="useTempQty">
+			USE_TEMP_QTY = #useTempQty#,
+			</isNotEmpty>
+			<isNotEmpty property="ccTempQty">
+			CC_TEMP_QTY = #ccTempQty#,
+			</isNotEmpty>
+			<isNotEmpty property="tpTempQty">
+			TP_TEMP_QTY = #tpTempQty#,
+			</isNotEmpty>
+			<isNotEmpty property="bbTempQty">
+			BB_TEMP_QTY = #bbTempQty#,
+			</isNotEmpty>
+			<isNotEmpty property="tmcTempQty">
+			TMC_TEMP_QTY = #tmcTempQty#,
+			</isNotEmpty>
+			<isNotEmpty property="notCancelQty">
+			NOT_CANCEL_QTY = #notCancelQty#,
+			</isNotEmpty>
+			<isNotEmpty property="cancelOutsideQty">
+			CANCEL_OUTSIDE_QTY = #cancelOutsideQty#
+			</isNotEmpty>
+		where room_id = #roomId#
+	</update>
+	
+</sqlMap>

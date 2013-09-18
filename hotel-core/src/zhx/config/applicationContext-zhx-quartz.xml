@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="updatePriceFromZhx"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 每天批量更新价格 
+	<bean id="updatePriceFromZhx" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	    <property name="jobDetail" ref="updatePriceZhx" />
+    <property name="startDelay" value="100000" />
+    <property name="repeatInterval" value="500000" />
+	</bean>	-->
+	
+	<!-- 每天凌晨1点批量更新价格 -->
+	<bean id="updatePriceFromZhx" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="updatePriceZhx" />	
+	    <property name="cronExpression" value="0 0 1 * * ?" />
+	</bean>
+
+	<bean name="updatePriceZhx" class="org.springframework.scheduling.quartz.JobDetailBean">
+	  <property name="jobClass" value="zhx.job.UpdateJob" />
+	     <property name="jobDataAsMap">
+	      <map>	       
+	      	<entry key="zhxMappingService">
+	        	<ref bean="zhxMappingService"/>	       
+	       	</entry>	
+	      	<entry key="zhxService">
+	        	<ref bean="zhxService"/>	       
+	       	</entry>	 
+	      	<entry key="zhxManage">
+	        	<ref bean="zhxManage"/>	       
+	       	</entry>	 
+	      	<entry key="zhxScheduleService">
+	        	<ref bean="zhxScheduleService"/>	       
+	       	</entry>
+	      </map>
+	     </property>		  
+	</bean>	
+	
+</beans>

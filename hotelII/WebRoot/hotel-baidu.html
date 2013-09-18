@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>芒果网酒店预订</title>
+
+<link rel="stylesheet" href="http://wres.mangocity.com/css/w/module/cityselecter.css" type="text/css" /> 
+<link rel="stylesheet" href="http://wres.mangocity.com/css/w/module/datepicker.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="http://hres.mangocity.com/css/h/2011/hotel2011.css" />
+<link rel="stylesheet" type="text/css" href="css/hotelsearch/jquery.autocomplete.css" />
+<style type="text/css">
+.hotelald_center{ width:540px; margin:0 auto;}
+.hotelald{ width:540px; height:auto; overflow:hidden; position: absolute;} 
+.top{ background:url(image/top.jpg) no-repeat; width:540px; height:83px;}
+.top a{ position:relative; top:30px; left:25px; width:245px; height:40px; display:block;}
+.footer{ background:url(image/footer.jpg) no-repeat; width:540px; height:60px;}
+.footer a{position:relative; top:10px; left:25px; width:128px; height:20px; display:block;}
+.center{ background:url(image/main_bg.jpg) repeat-y; width:540px; overflow:hidden;}
+.center .mg_jd{ float:right; margin-right:5px; display:inline;}
+.center .mg_jdss{ margin-left:30px; margin-top:18px;}
+.center .mg_jdss li{ line-height:36px; height:36px; font-size:14px; font-family:"微软雅黑", "宋体", Arial; margin-top:3px; overflow:hidden;}
+.center .mg_jdss li.mart10{ margin-top:10px;}
+.center .mg_jdss li label{ width:65px; float:left;}
+.center .mg_jdss li input{width:194px; height:26px; padding-left:6px; line-height:26px; vertical-align:middle; font-size:14px;}
+.center .mg_jdss li a.btn112x36{ background:url(image/btn112x36.jpg) no-repeat; width:77px; height:36px; line-height:36px; border:none; font-weight:bold; color:#fff; padding-left:35px; float:left; font-size:14px;}
+.center .mg_jdss li span{ position:relative; width:16px; height:16px; display:block; cursor:pointer;}
+.center .mg_jdss li span.mg_icon_city{ background:url(image/icon_city.jpg) no-repeat; width:16px; height:16px; top:-25px; *top:-23px; left:245px; *left:182px;}
+.center .mg_jdss li span.mg_icon_date{ background:url(image/icon_date.jpg) no-repeat; width:16px; height:16px; top:-25px; *top:-23px; left:245px; *left:182px;}
+.hotelald .mg_h_wz{ position:absolute; top:257px; left:94px; _left:98px; width:323px; border:solid 1px #ffcc00; padding:0 10px 5px 10px; background-color:#fff; z-index:999;}
+.hotelald .mg_h_wz h2{ font-size:12px; color:#ff6600; line-height:30px; border-bottom:solid 1px #eaeaea;}
+.hotelald .mg_h_wz h2 a{ float:right; margin-top:7px;}
+.hotelald .mg_h_wz .mg_h_wz_name a{ font-size:12px; color:#333; line-height:24px; float:left; margin-right:15px; display:inline; white-space:nowrap;}
+</style>
+<script type="text/javascript" src="http://wres.mangocity.com/js/home/cloud/js/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="js/hotelsearchJS/jquery.autocomplete.js"></script>
+</head>
+
+
+<body>
+<div class="hotelald_center">
+<div class="hotelald">
+   <div class="top"><a href="http://www.mangocity.com/jump/y/0020025/http://hotel.mangocity.com" target="_blank">&nbsp;</a></div>
+   <div class="center">
+     <div class="mg_jd"><img src="image/mg_pic.jpg"  alt=""/></div>
+     <div class="mg_jdss">
+       <form id="queryForm" method="post" action="hotel-query.shtml" name="queryForm">
+           <ul>
+           	 <input type="hidden" id="projectCode" name="projectCode" value="0020025" />
+             <li><label>入住城市</label><input id="mg_start_city" name="cityName" type="text" value="中文/拼音" /><input type="hidden" value="" id="cityCode" name="cityCode"><span id="icon_city" class="mg_icon_city"></span></li>
+             <li><label>入住日期</label><input id="mg_start_date" name="inDate" type="text"/><span id="icon_startdate" class="mg_icon_date"></span></li>
+             <li><label>退房日期</label><input id="mg_end_date" name="outDate" type="text"/><span id="icon_enddate" class="mg_icon_date"></span></li>
+             <li><label>酒店位置</label><input name="geoName" id="geoName" type="text" style="color:#777777" class="w272 greytxt" value="您可以输入酒店地址查询" onblur="showMes(this.id);" onclick="hiddenMes(this.id);"/></li>
+             <li>
+             <label>酒店名称</label>
+             	<input name="hotelName" id ="hotelName" type="text" value="您可以输入酒店名称查询" style="color:#777777" class="w199 greytxt"  onblur="showMes(this.id);" onclick="hiddenMes(this.id);" />
+             </li>
+             <li class="mart10"><label>&nbsp;</label><a id="id_query" href="javascript:void(0);" class="btn112x36">查询酒店</a></li>
+           </ul>
+       </form>
+     </div>
+     <div class="mg_h_wz" style="display:none">
+             <h2><a href="#"><img src="image/icon_gb.jpg" /></a>交通枢纽</h2>
+             <div class="mg_h_wz_name">
+               <a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a><a href="#">首都国际机场</a>
+             </div>
+           </div>
+   </div>
+   <div class="footer"><a href="http://www.mangocity.com/jump/y/0020025/http://www.mangocity.com" target="_blank">&nbsp;</a></div>
+</div>
+</div>
+</body>
+<script src="http://wres.mangocity.com/js/home/cloud/js/city.mango.js" type="text/javascript"></script>
+<script src="http://wres.mangocity.com/js/w/build/mgtool.js" type="text/javascript"></script>
+<script src="http://wres.mangocity.com/js/w/module/cityselecter.js" type="text/javascript"></script>
+<script src="http://wres.mangocity.com/js/w/module/datepicker.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jQuery/jquery.alert.js"></script>
+<script type="text/javascript">
+(function(){
+
+//城市下拉
+var mg_query = new MGTOOL.citySelecter({
+	target : MGTOOL.$id('mg_start_city'),
+	hideInput : MGTOOL.$id('cityCode'),
+	datatype : 'hotel',
+	hotDatas : commoncitysHotel,
+	cityDatas : citysForHotel,
+	group : [], 
+	wrapid : 'mangocityBox'
+});
+
+mg_query.onFocus.addFns('toblur', function(e){
+	    //输入框 ==> e.target 隐藏表单域==> e.hideinput
+		function getThreeWordBytCity(cityName){
+			var citys = citysForHotel;
+			var threeWord = "";
+			for(var i = 0,len = citys.length;i<len;i++)
+			{
+				if(cityName == citys[i][1])
+				{
+					threeWord = citys[i][0];
+					break;
+				}
+			}
+			return threeWord;
+		}
+		var v = e.target.value;
+		var result = getThreeWordBytCity(v);
+		if(!!result.length || result !==""){
+		    e.hideinput.value = result;
+			//console.log(e.hideinput.value);
+		}else{
+		    e.hideinput.value = "";
+			//console.log(e.hideinput.value);
+		}
+		
+		
+	});
+mg_query.onFocus.addFns('onFirst', function(e){
+    mg_query.addHotCommon(e.parentBox, e.hotlist, e.datalist); 
+});
+
+mg_query.onClick.addFns('hotCommonClick', function(e){
+   mg_query.setCommonValue(e);
+   e.target.style.color = '#333';
+});
+
+mg_query.onKey.addFns('inputChange', function(e){
+   mg_query.commenInputChange(e);
+
+});
+
+mg_query.onKey.addFns('keyClick', function(e){
+   mg_query.setKeyClick(e);
+   e.target.style.color = '#333';
+});
+
+mg_query.onKey.addFns('keyEnter', function(e){
+   mg_query.keyEnter(e);
+   e.target.style.color = '#333';
+});
+
+//日历
+var mg_d = {
+    t_start : MGTOOL.$id('mg_start_date'),
+	t_end : MGTOOL.$id('mg_end_date'),
+	dpcallback : function(o, t){
+	    o.value = t.title;
+	},
+	addDay : function(num,date){
+		var now = date ? new Date(date.getFullYear(), date.getMonth(), date.getDate()) : new Date();
+		var olddate = now.getDate();
+		now.setDate(now.getDate()+num);
+		return now.getFullYear() + '-' + ((now.getMonth()+1)<10 ? "0"+(now.getMonth()+1): (now.getMonth()+1))+'-'+ (now.getDate()<10 ? "0"+now.getDate() :now.getDate());
+	}
+
+};
+mg_d.t_start.value = mg_d.addDay(1);
+mg_d.t_end.value = mg_d.addDay(2);
+mg_d.arr = mg_d.t_start.value.split('-');
+mg_d.today = new Date(mg_d.arr[0], mg_d.arr[1]-1, mg_d.arr[2]);				
+mg_d.firststart = mg_d.addDay(1, mg_d.today).split('-'); 
+mg_d.days = Math.ceil((mg_d.today-new Date())/86400000);
+mg_d.firstend = mg_d.addDay(60, new Date()).split('-');		
+mg_d.getdate = function(o, t){ // o 输入框 t 日历面板中的日期
+	o.value = t.title;
+	var arr = t.title.split('-');
+	var nd = new Date(arr[0], arr[1], arr[2]);
+	var sdd = new Date(o.value.split('-')[0], o.value.split('-')[1]-1, o.value.split('-')[2]);
+	mg_d.t_end.value = mg_d.addDay(1, sdd);
+	days = Math.ceil((sdd-new Date())/86400000);
+	nd.setFullYear(nd.getFullYear(), nd.getMonth()-1, nd.getDate()+1);
+	mg_d.t_end.value = nd.getFullYear()+'-'+((nd.getMonth()+1)<10 ? "0"+(nd.getMonth()+1): (nd.getMonth()+1))+'-'+(nd.getDate()<10 ? "0"+nd.getDate() :nd.getDate());
+	
+	var setend = mg_d.addDay(60, new Date()).split('-');
+
+	var _f_ = mg_d.addDay(1, sdd).split('-');
+	
+	mg_d.endfire = new Datepicker(mg_d.t_end, {eachW:206,ttMonth:2, startDate:[_f_[0], (_f_[1]-1), _f_[2]], addDays:parseInt(28+days), endDate:setend, callback:mg_d.dpcallback});
+	setTimeout(function(){
+		mg_d.t_end.focus();
+	}, 1);
+}
+mg_d.startfire = new Datepicker(mg_d.t_start, {eachW:206,ttMonth:2, addDays:60, callback:mg_d.getdate});
+mg_d.endfire = new Datepicker(mg_d.t_end, {eachW:206,ttMonth:2, startDate:[mg_d.firststart[0], (mg_d.firststart[1]-1), mg_d.firststart[2]], addDays:parseInt(28+mg_d.days), endDate:mg_d.firstend, callback:mg_d.dpcallback});
+
+
+
+
+
+
+})();
+
+$(document).ready(function(){
+	$('#icon_city').live('click',function(){
+		$('#mg_start_city').focus();
+	}); 
+	$('#icon_startdate').live('click',function(){
+		$('#mg_start_date').focus();
+	}); 
+	$('#icon_enddate').live('click',function(){
+		$('#mg_end_date').focus();
+	});  
+});
+
+
+</script>
+<script src="http://app.baidu.com/static/appstore/monitor.st"></script>
+<script type="text/javascript" src="js/baidu/baiduapp.js"></script>
+</html>

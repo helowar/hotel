@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	<!-- 生产环境-->
+	<bean id="commentRmiFactory" class="com.mangocity.hotel.dreamweb.comment.ejb.ExtServiceClientRmiFactory">
+		<constructor-arg type="java.lang.String"
+			value="ejbClientConfig/CommentServiceClientConfig.xml" />
+	</bean>
+	
+	 <!-- 本地开发环境 
+	<bean id="commentRmiFactory" class="org.mangocube.corenut.scm.stub.ServiceClientRmiFactory">
+		<constructor-arg type="java.lang.String"
+			value="ejbClientConfig/CommentServiceClientConfig.xml" />
+	</bean>
+-->
+	<bean id="commentModifyRemote"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="commentRmiFactory" />
+		<property name="targetMethod" value="getService" />
+		<property name="arguments">
+			<list>
+				<value>
+					com.mangocity.hotel.comment.api.CommentModifyRemote
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="commentSeqInfoRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="commentRmiFactory" />
+		<property name="targetMethod" value="getService" />
+		<property name="arguments">
+			<list>
+				<value>
+					com.mangocity.hotel.comment.api.CommentSeqInfoRemote
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="commentDetailQueryRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="commentRmiFactory" />
+		<property name="targetMethod" value="getService" />
+		<property name="arguments">
+			<list>
+				<value>
+					com.mangocity.hotel.comment.api.CommentDetailQueryRemote
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="hotelInfoQueryRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="commentRmiFactory" />
+		<property name="targetMethod" value="getService" />
+		<property name="arguments">
+			<list>
+				<value>
+					com.mangocity.hotel.comment.api.HotelInfoQueryRemote
+				</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<bean id="commentSummaryRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="commentRmiFactory" />
+		<property name="targetMethod" value="getService" />
+		<property name="arguments">
+			<list>
+				<value>
+					com.mangocity.hotel.comment.api.CommentSummaryRemote
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="commentManageRemote" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="commentRmiFactory" />
+		<property name="targetMethod" value="getService" />
+		<property name="arguments">
+			<list>
+				<value>
+					com.mangocity.hotel.comment.api.CommentManageRemote
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="accessCommentDetail" class="com.mangocity.hotel.dreamweb.comment.AccessCommentDetail">
+		<property name="commentModifyRemote" ref="commentModifyRemote" />
+		<property name="commentSeqInfoRemote" ref="commentSeqInfoRemote" />
+		<property name="commentDetailQueryRemote" ref="commentDetailQueryRemote" />
+		<property name="hotelInfoQueryRemote" ref="hotelInfoQueryRemote" />
+		<property name="commentSummaryRemote" ref="commentSummaryRemote" />
+	</bean>
+
+</beans>

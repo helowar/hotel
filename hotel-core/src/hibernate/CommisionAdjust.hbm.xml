@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="CommisionAdjust" table="HTL_B2B_ADJUST_BY_HOTEL" dynamic-insert="true" dynamic-update="true" lazy="false">
+		
+		<id name="adjustID" unsaved-value="0"  type="java.lang.Long">
+			<column name="ADJUSTID" precision="10" scale="0"/>
+			<generator class="sequence">
+				<param name="sequence">SEQ_COMMADJUST</param>
+			</generator>
+		</id>
+		<property name="b2BCd" type="java.lang.String">
+            <column name="B2BCD" length="32" />
+        </property>
+        <property name="payType" type="java.lang.String">
+            <column name="PAYTYPE" length="32" />
+        </property>
+		<property name="childRoomId" type="java.lang.Long">
+            <column name="CHILD_ROOM_TYPE_ID" precision="10" scale="0" />
+        </property>                
+		<property name="roomTypeId" type="java.lang.Long">
+            <column name="ROOM_TYPE_ID" precision="10" scale="0" />
+        </property> 
+		<property name="hotelId" type="java.lang.Long">
+            <column name="HOTEL_ID" precision="10" scale="0" />
+        </property> 
+        <property name="hotelStar" type="java.lang.String">
+            <column name="HOTEL_STAR" length="3" />
+        </property>
+        <property name="startDate" type="java.util.Date">
+            <column name="STARTDATE" length="7" />
+        </property>
+ 		<property name="endDate" type="java.util.Date">
+            <column name="ENDDATE" length="7" />
+        </property>
+		<property name="valueType" type="java.lang.Long">
+            <column name="VALUETYPE" precision="1" scale="0" />
+        </property>
+		<property name="comm_value" type="java.lang.Double">
+            <column name="COMM_VALUE" precision="5" scale="1" />
+        </property>        
+        <property name="createDate" type="java.util.Date">
+            <column name="CREATE_DATE" length="7" />
+        </property>
+ 		<property name="modifyDate" type="java.util.Date">
+            <column name="MODIFY_DATE" length="7" />
+        </property>
+        <property name="createBy" type="java.lang.String">
+            <column name="CREATE_BY" length="32" />
+        </property>
+        <property name="modifyBy" type="java.lang.String">
+            <column name="MODIFY_BY" length="32" />
+        </property>
+        <property name="createById" type="java.lang.String">
+            <column name="CREATE_BY_ID" length="32" />
+        </property>
+       <property name="modifyById" type="java.lang.String">
+            <column name="MODIFY_BY_ID" length="32" />
+        </property>
+
+
+	</class>
+
+   <query name="queryHtlB2bCommAdjust">
+    	<![CDATA[ 
+			from CommisionAdjust c where c.b2BCd =? and c.hotelId=? and c.roomTypeId=? and c.childRoomId=? and c.payType=? and c.hotelStar=? and c.startDate<=? and c.endDate>=?
+		]]>
+   </query>
+   
+   <!-- add by alfred.query batch commAdjust -->
+   <query name="queryHtlB2bCommAdjustList">
+    	<![CDATA[ 
+			from CommisionAdjust c where c.b2BCd =? and c.hotelId in (?) and c.startDate<=? and c.endDate>=?
+		]]>
+   </query>
+   
+   <query name="queryB2BCommAdjust">
+    	<![CDATA[ 
+			from CommisionAdjust c where c.b2BCd =? and c.hotelId =? and c.roomTypeId=? and c.childRoomId=? and c.payType=? order by c.createDate desc 
+		]]>
+   </query>
+</hibernate-mapping>

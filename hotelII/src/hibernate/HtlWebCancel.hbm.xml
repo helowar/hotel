@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mangocity.hotel.dreamweb.ordercancel.persistence" default-lazy="false">
+<class name="OrderCancel" table="HTL_WEB_ORDERCANCEL" 
+		dynamic-insert="true" dynamic-update="true">
+		<id name="Id" unsaved-value="0" column="id">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_web_ordercancel</param>
+			</generator>
+		</id>
+		<property name="orderId" column="orderid"></property>
+		<property name="orderCD" column="ordercd"></property>
+		<property name="hotelId" column="hotelid"></property>
+		<property name="hotelName" column="hotelname"></property>
+		<property name="memberId" column="memberid"></property>
+		<property name="memberCD" column="membercd"></property>
+		<property name="memberName" column="membername"></property>
+		<property name="reasonCD" column="reasoncd"></property>
+		<property name="reason" column="reason"></property>
+		<property name="createDate" column="createdate"></property>
+		<property name="modifyDate" column="modifydate"></property>
+		
+		<!-- 和OrHandleLog关联 -->
+    	<bag name="logList" cascade="all-delete-orphan" order-by="logId" 
+			inverse="true" lazy="true">
+			<key column="orderId"></key>
+			<one-to-many class="com.mangocity.hotel.order.persistence.OrHandleLog" />
+		</bag>	
+</class>
+</hibernate-mapping>

@@ -1,0 +1,2952 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Order">
+
+	<!-- 用于传真,邮件等  -->	
+	<resultMap class="com.mangocity.hotel.order.service.assistant.OrderItemGroupBy" id="orderItemGroupBy">
+		<result property = "night" column = "NIGHT"/>
+		<result property = "quantityByNight" column="QUANTITYBYNIGHT"/>
+		<result property = "basepriceByAvg" column="BASEPRICEBYAVG"/>
+		<result property = "salepriceByAvg" column ="SALEPRICEBYAVG"/>
+		<result property = "breakfast" column ="breakfast"/>
+		<result property = "breakfastNum" column ="breakfastNum"/>		
+	</resultMap>
+
+	<!-- 用于获取114用户所在省份的114会员列表 chenkeming@2008-01-29  -->
+	<resultMap class="com.mangocity.hotel.order.service.assistant.Member114QueryType" id="member114QueryType">
+		<result property = "membercd" column = "membercd"/>
+		<result property = "name" column="name"/>
+	</resultMap>
+
+	<!-- 前台订单综合查询(管理酒店订单)  
+		 V2.7.1 
+		 (1)增加别名为 mb 的临时表，该表数据是or_memberconfirm中发送短信失败的记录减去发送成功的记录，
+		 用于统计一次都没有发送成功，而且状态都是失败的记录 
+		 (2)增加"联名商家"和'VIP级别"的查询条件
+		 modify by chenjiajie 2009-02-18
+	-->
+	<select id="queryOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+ 
+		<![CDATA[
+			select a.orderID, a.orderCD, a.hotelName, a.orderState, a.roomTypename,
+				   a.roomquantity, a.CHECKINDATE, a.CHECKOUTDATE, a.hotelConfirm,a.PAYTOHOTELOK, 
+				   a.customerConfirm, to_char(a.createDate,'yyyy-mm-dd hh24:mi:ss') as newDate, a.creatorName, a.modifierName, 
+				   a.type ,pc.projectcode,a.FELLOWNAMES,a.payToHotel, a.creator, a.modifier , mb.msg , a.modifierRole,a.channel,a.ordercdforchannel
+			from or_order a ,htl_projectcode pc,
+		      (select o.orderid,'1' as msg
+		       from or_order o,or_memberconfirm m
+		      where o.orderid = m.orderid
+		      and o.illusive=0
+		      and o.type != 3 
+		      and (m.sendstatus = 3 or (m.sendstatus = 4 and (sysdate - m.sendtime)*24*60 >= 30))
+			  and m.channel = 3 
+			  and not exists (select m1.ID from or_memberconfirm m1 where m1.orderid=m.orderid and 
+			  					m.channel=3 and m.sendstatus=2) 
+			  ]]> 
+		     	<isNotEmpty prepend="AND" property="createTime">
+				<![CDATA[	
+				(o.createDate >= to_date(#createTime#||' 00:00:00','yyyy-mm-dd hh24:mi:ss'))  	
+				]]>			
+				</isNotEmpty>	
+				<isNotEmpty prepend="AND" property="createTimeEnd">
+				<![CDATA[		
+				(o.createDate <= to_date(#createTimeEnd#||' 23:59:59','yyyy-mm-dd hh24:mi:ss')) 
+				]]>			
+				</isNotEmpty>
+		<![CDATA[
+		      group by o.orderid ) mb
+			where a.illusive=0 
+			and a.orderid = mb.orderid(+)
+			and a.ordercd = pc.ordercd(+)
+			and a.type != 3
+		]]> 
+		<!-- 
+		<isNotEmpty prepend="AND" property="isMango">
+			 <isEqual property="isMango" compareValue="true">
+		  		    a.type in(1,4,6)
+			 </isEqual>				
+			 <isEqual property="isMango" compareValue="false">
+			 		a.type = 2 
+			 </isEqual>						
+		</isNotEmpty>		
+		 -->
+		<isNotEmpty prepend="AND" property="orderType">
+						 <isEqual property="orderType" compareValue="1">
+					  		     a.type in(1,4,6)
+						 </isEqual>				
+						 <isEqual property="orderType" compareValue="2">
+						 		 a.type = 2
+						 </isEqual>		
+						 <isEqual property="orderType" compareValue="3">
+						 		 a.type = 3
+						 </isEqual>
+						 <isEqual property="orderType" compareValue="4">
+					  		     a.type = 4 
+						 </isEqual>
+						 <isEqual property="orderType" compareValue="5">
+					  		     a.type = 5 
+						 </isEqual>					
+						 <isEqual property="orderType" compareValue="6">
+						 		 a.type = 6
+						 </isEqual>		
+		</isNotEmpty >
+		
+		<isNotEmpty prepend="AND" property="orderCD">
+		<![CDATA[
+			(length(#orderCD#)=13 and a.orderCD = #orderCD# or length(#orderCD#)<13 and a.orderCD like #orderCDConvert#) 
+		]]> 	
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="orderCDHotel">
+		<![CDATA[
+			(length(#orderCDHotel#)=13 and a.orderCDHotel = #orderCDHotel# or length(#orderCDHotel#)<13 and a.orderCDHotel like '%$orderCDHotel$%') 
+		]]> 			
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelConfirm">
+			a.hotelConfirm = #hotelConfirm# 
+		</isNotEmpty>					
+		<isNotEmpty prepend="AND" property="orderStatus">
+			a.orderstate = #orderStatus# 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="orderAuditState">
+			a.PAYTOHOTELOK = #orderAuditState# 
+		</isNotEmpty>		
+		<!-- 会员姓名 -->			
+		<isNotEmpty prepend="AND" property="memberName">
+			a.memberName like '%$memberName$%' 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="fellowName">
+			a.fellowNames like '%$fellowName$%' 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="checkInDate">
+		<![CDATA[		
+			(a.checkInDate >= to_date(#checkInDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>					
+		<isNotEmpty prepend="AND" property="checkInDateEnd">
+		<![CDATA[		
+			(a.checkInDate <= to_date(#checkInDateEnd#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="createTime">
+		<![CDATA[	
+		(a.createDate >= to_date(#createTime#||' 00:00:00','yyyy-mm-dd hh24:mi:ss'))  	
+		]]>			
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="createTimeEnd">
+		<![CDATA[		
+		(a.createDate <= to_date(#createTimeEnd#||' 23:59:59','yyyy-mm-dd hh24:mi:ss')) 
+		]]>			
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelName">
+			upper(a.hotelName) like upper('%$hotelName$%') 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="checkOutDate">
+		<![CDATA[		
+			(a.checkoutDate = to_date(#checkOutDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="onHotelDate">
+		<![CDATA[		
+			(a.checkinDate <= to_date(#onHotelDate#,'yyyy-mm-dd') and a.checkoutDate > to_date(#onHotelDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>				
+		<isNotEmpty prepend="AND" property="stateId">
+			 <isEqual property="isMango" compareValue="true">
+		  		    exists (select b.hotel_id from HTL_HOTEL b where a.hotelId = b.hotel_id and b.state = #stateId#) 
+			 </isEqual>				
+			 <isEqual property="isMango" compareValue="false">
+			 		a.memberState = #stateId#
+			 </isEqual>						
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="cityId">
+			exists (select b.hotel_id from HTL_HOTEL b where a.hotelId = b.hotel_id and b.city = #cityId#) 
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="operator">
+			a.modifiername like '%$operator$%' 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="operatorLogon">
+			a.modifier like '%$operatorLogon$%' 
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="creator">
+			a.creatorname like '%$creator$%' 
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="creatorLogon">
+			a.creator like '%$creatorLogon$%' 
+		</isNotEmpty>				
+		<isNotEmpty property="customerWay">
+			<isNotEmpty property="linkmanInfo">		
+			 <isEqual prepend="AND" property="customerWay" compareValue="1">
+		  		    a.linkman like '%$linkmanInfo$%' 
+			 </isEqual>				
+			 <isEqual prepend="AND" property="customerWay" compareValue="2">
+					a.telephone = #linkmanInfo# 
+			 </isEqual>	
+			 <isEqual prepend="AND" property="customerWay" compareValue="3">
+					a.mobile = #linkmanInfo# 
+			 </isEqual>	
+			 <isEqual prepend="AND" property="customerWay" compareValue="4">
+					a.email = #linkmanInfo# 
+			 </isEqual>				 			 
+			</isNotEmpty>							 
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="hotelConfirm">
+			 <isEqual property="hotelConfirm" compareValue="1">
+		  		    (a.hotelconfirmtel=1 or a.hotelconfirmfax=1) 
+			 </isEqual>				
+			 <isEqual property="hotelConfirm" compareValue="0">
+					((a.hotelconfirmtel is null or a.hotelconfirmtel=0) and (a.hotelconfirmfax is null or a.hotelconfirmfax=0)) 
+			 </isEqual>						
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="isCustomerConfirmed">			 
+			 <isEqual property="isCustomerConfirmed" compareValue="1">
+		  		    (a.customerConfirm = 1) 
+			 </isEqual>				
+			 <isEqual property="isCustomerConfirmed" compareValue="0">
+					(a.customerConfirm is null or a.customerConfirm=0) 
+			 </isEqual>						
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="orderSource">
+			a.source = #orderSource# 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="orderCdForChannel">
+		<![CDATA[
+		  	a.ordercdforchannel like '%$orderCdForChannel$%'
+		]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="isManualOrder">
+			 <isEqual property="isManualOrder" compareValue="0">
+		  		    a.isManualOrder = 0 
+			 </isEqual>				
+			 <isEqual property="isManualOrder" compareValue="1">
+			 		a.isManualOrder = 1 
+			 </isEqual>						
+		</isNotEmpty>	
+				
+		<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+		<isNotEmpty prepend="AND" property="aliasId">
+			a.modifierRole = #aliasId# 
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="vipLevel">
+			a.payState = #vipLevel# 
+		</isNotEmpty>	
+		<!-- 虚假订单 -->
+		<isNotEmpty prepend="AND" property="falseOrderFalg">
+			a.FALSEORDERFALG = #falseOrderFalg# 
+		</isNotEmpty>	
+		<!-- 立减优惠 auditOpState字段用于标志是否优惠立减订单 add by chenjiajie 2009-10-21 -->
+		<isNotEmpty prepend="AND" property="benefitFlag">
+			a.auditOpState = #benefitFlag# 
+		</isNotEmpty>	
+		<!-- RMS3008增加"合作方"查询条件 add by chenjiajie 2010-01-06 -->
+		<isNotEmpty prepend="AND" property="cooperator">
+			a.CHANNEL = #cooperator#
+		</isNotEmpty>			
+		<!-- 添加魅影订单标示 -->
+		<isNotEmpty prepend="AND" property="rmpOrder">
+			a.rmpOrder = #rmpOrder#
+		</isNotEmpty>		
+		order by a.emergencyLevel, a.orderID desc
+	</select>
+	
+	<!-- 中台查询分配订单(处理预订单)   
+		 (1)增加别名为 mb 的临时表，该表数据是or_memberconfirm中发送短信失败的记录减去发送成功的记录，
+		 用于统计一次都没有发送成功，而且状态都是失败的记录 
+		 (2)增加"联名商家"和'VIP级别"的查询条件
+		 modify by chenjiajie 2009-02-18
+		 (3)修改"如家二次确定"的判断条件
+		 modify by diandian.hou 2010-10-31
+	-->
+	<select id="queryWaitAssignOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.orderID, a.emergencyLevel, a.orderCD, a.hotelName, a.orderState, a.roomTypename,
+				   a.roomquantity, a.CHECKINDATE, a.CHECKOUTDATE, a.hotelConfirm, 
+				   to_char(a.createDate,'yyyy-mm-dd hh24:mi:ss') as newDate, a.customerConfirm, a.creatorName, a.modifierName, 
+				   a.assignToName, a.assignTo, a.payToHotel,
+					(case when (sysdate - a.toMidTime) >= 0  
+					then trunc((sysdate - a.toMidTime)*1440,0) 
+					else 0 
+					end) as toMidTime, 				    
+				   a.type  , 
+				   to_char(a.modifiedTime,'yyyy-mm-dd hh24:mi:ss') as oldDate, 
+				   (case when a.emergencyLevel >= 15 
+				   then '正常' 
+				   else (case when a.emergencyLevel >= 9 
+				   		then '紧急' 
+				   		else '非常紧急' 
+				   		end) 
+				   end) as FLAGSTR, 
+				   (case when a.emergencyLevel >= 15 
+				   then 'green' 
+				   else (case when a.emergencyLevel >= 9 
+				   		then 'yellow' 
+				   		else 'red' 
+				   		end) 
+				   end) as FLAGIMG,hwo.id as cancelcode,to_char(hwo.modifydate,'yyyy-mm-dd hh24:mi:ss') as canceldate, 		
+				   (case when (a.hotelConfirm = 0 and (trunc(a.createDate)=a.CHECKINDATE and (a.createDate + 40/(24*60)) < sysdate)) 
+				   then 1 
+				   else (case when (a.hotelConfirm = 0 and (trunc(a.createDate)!=a.CHECKINDATE and (a.createDate + 80/(24*60)) < sysdate))
+				   		then 2 
+				   		else 0 
+				   		end
+				   )
+				   end) as FLAGTIMEOUT,	
+				   ((select count(f.id)
+			          from or_faxlog f,or_orderfax c
+			         where f.type = 'HA'
+			           and f.state = 0
+			           and (Length(f.barcode) < 12 and f.barcode = c.barcode and c.orderid=a.orderid))
+			           +
+			       (select count(f.id)
+			          from or_faxlog f
+			         where f.type = 'HA'
+			           and f.state = 0
+			           and (Length(f.barcode)>12 and f.barcode=a.ordercd))
+			           ) as READFLAG, 
+			       (select count(m.ex_crsorder_item_id) from ex_crsorder_item m
+			           where m.order_id = a.orderid) as SECONDCONFIRMDONE,
+				   a.creator, a.modifier  
+				   , a.channel, mb.msg , a.modifierRole,
+				   (case when a.type!=3 then 0
+				   else (case when exists (select tmcorderid from TBTMCHOTEL_ORDER where tmcorderid=a.tmcorderid and ordertype='protocol')
+				   		then 1 
+				   		else 0 
+				   		end
+				   )
+				   end) as PROTOCOL ,temp.grouptype as groupType,a.hurryordertimes hurryordertimes
+			from or_order a ,HTL_WEB_ORDERCANCEL hwo,
+		      (select o.orderid,'1' as msg
+		       from or_order o,or_memberconfirm m
+		      where o.orderid = m.orderid
+		      and o.isStayInMid = 1 
+			  and o.illusive=0 
+		      and (m.sendstatus = 3 or (m.sendstatus = 4 and (sysdate - m.sendtime)*24*60 >= 30))
+			  and m.channel = 3 
+			  and not exists (select m1.ID from or_memberconfirm m1 where m1.orderid=m.orderid and 
+			  					m.channel=3 and m.sendstatus=2) 			  
+			  ]]> 
+		     	<isNotEmpty prepend="AND" property="createTime">
+				<![CDATA[		
+					(o.createDate >= to_date(#createTime#||' 00:00:00','yyyy-mm-dd hh24:mi:ss'))  
+				]]>			
+				</isNotEmpty> 	
+				<isNotEmpty prepend="AND" property="createTimeEnd">
+				<![CDATA[		
+					(o.createDate <= to_date(#createTimeEnd#||' 23:59:59','yyyy-mm-dd hh24:mi:ss')) 
+				]]>			
+				</isNotEmpty>
+		<![CDATA[
+		      group by o.orderid ) mb
+		      ,TEMP_ORDER temp
+			where a.isStayInMid = 1 
+				and a.illusive=0 
+			    and a.orderid = mb.orderid(+)
+			    and a.orderid = hwo.orderid(+)
+			    and a.orderid=temp.orderid
+		]]>
+		<isNotEmpty prepend="AND" property="orderState">
+			<![CDATA[			
+				a.orderState >= #orderState# 
+		]]>				
+			</isNotEmpty>
+		<isNotEmpty prepend="AND" property="orderCD">
+		<![CDATA[
+			(length(#orderCD#)=13 and a.orderCD = #orderCD# or length(#orderCD#)<13 and a.orderCD like #orderCDConvert#) 
+		]]> 			
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="orderCDHotel">
+		<![CDATA[
+			(length(#orderCDHotel#)=13 and a.orderCDHotel = #orderCDHotel# or length(#orderCDHotel#)<13 and a.orderCDHotel like '%$orderCDHotel$%') 
+		]]> 			
+		</isNotEmpty>				
+		<isNotEmpty prepend="AND" property="orderStatus">
+			a.orderstate = #orderStatus# 
+		</isNotEmpty>
+		<!-- 会员姓名 -->			
+		<isNotEmpty prepend="AND" property="memberName">
+			a.memberName like '%$memberName$%' 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="fellowName">
+			a.fellowNames like '%$fellowName$%' 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="checkInDate">
+		<![CDATA[		
+			(a.checkInDate >= to_date(#checkInDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>					
+		<isNotEmpty prepend="AND" property="checkInDateEnd">
+		<![CDATA[		
+			(a.checkInDate <= to_date(#checkInDateEnd#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="createTime">
+		<![CDATA[		
+			(a.createDate >= to_date(#createTime#||' 00:00:00','yyyy-mm-dd hh24:mi:ss'))  
+		]]>			
+		</isNotEmpty> 	
+		<isNotEmpty prepend="AND" property="createTimeEnd">
+		<![CDATA[		
+			(a.createDate <= to_date(#createTimeEnd#||' 23:59:59','yyyy-mm-dd hh24:mi:ss')) 
+		]]>			
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelName">
+			upper(a.hotelName) like upper('%$hotelName$%') 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="checkOutDate">
+		<![CDATA[		
+			(a.checkoutDate = to_date(#checkOutDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="onHotelDate">
+		<![CDATA[		
+			(a.checkinDate <= to_date(#onHotelDate#,'yyyy-mm-dd') and a.checkoutDate > to_date(#onHotelDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>					
+		<isNotEmpty prepend="AND" property="stateId">
+			exists (select b.hotel_id from HTL_HOTEL b where a.hotelId = b.hotel_id and b.state = #stateId#) 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="cityId">
+			exists (select b.hotel_id from HTL_HOTEL b where a.hotelId = b.hotel_id and b.city = #cityId#) 
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="operator">
+			a.modifiername like '%$operator$%' 
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="operatorLogon">
+			a.modifier like '%$operatorLogon$%' 
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="hotelConfirm">
+			 <isEqual property="hotelConfirm" compareValue="1">
+		  		    (a.hotelconfirmtel=1 or a.hotelconfirmfax=1) 
+			 </isEqual>				
+			 <isEqual property="hotelConfirm" compareValue="0">
+					((a.hotelconfirmtel is null or a.hotelconfirmtel=0) and (a.hotelconfirmfax is null or a.hotelconfirmfax=0)) 
+			 </isEqual>						
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="isCustomerConfirmed">			 
+			 <isEqual property="isCustomerConfirmed" compareValue="1">
+		  		    (a.customerConfirm = 1) 
+			 </isEqual>				
+			 <isEqual property="isCustomerConfirmed" compareValue="0">
+					(a.customerConfirm is null or a.customerConfirm=0) 
+			 </isEqual>						
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="orderSource">
+			a.source = #orderSource# 
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="orderType">
+			<isEqual property="orderType" compareValue="1"><!-- 面付 -->
+				(a.paymethod = 'pay' and a.iscreditassured = 0)
+			</isEqual>
+			<isEqual property="orderType" compareValue="2"><!-- 预付 -->
+				a.paymethod = 'pre_pay'
+			</isEqual>
+			<isEqual property="orderType" compareValue="3"><!-- 担保 -->
+				a.iscreditassured = 1
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="inNextTeamSelect">
+			<isEqual property="inNextTeamSelect" compareValue="1">
+				a.innextteam = 1
+			</isEqual>
+			<isEqual property="inNextTeamSelect" compareValue="0">
+				a.innextteam = 0
+			</isEqual>
+		</isNotEmpty>
+		<isEqual property="noAssignTo" compareValue="-1">
+			<![CDATA[		
+	  		    and a.assignTo is null
+	  		]]>	
+		 </isEqual>				
+		 <isNotEqual property="noAssignTo" compareValue="-1">						
+			<isNotEmpty prepend="AND" property="assignToId">
+				a.assignTo like '%$assignToId$%' 
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="assignToName">
+				a.assigntoname like '%$assignToName$%' 
+			</isNotEmpty>	
+		 </isNotEqual>		
+		<isNotEmpty prepend="AND" property="isPutToMid">
+			 <isEqual property="isPutToMid" compareValue="1">
+				a.assignTo is not null 
+			 </isEqual>				
+			 <isEqual property="isPutToMid" compareValue="0">
+				a.assignTo is null 
+			 </isEqual>								 
+		</isNotEmpty>	
+		
+		<isNotEmpty prepend="AND" property="deferOrder">
+		  <isEqual property="deferOrder" compareValue="1">
+		  <![CDATA[
+		         temp.defertime<>0 and temp.defertime is not null
+		   ]]>	
+		  </isEqual>
+		</isNotEmpty>
+		<!--  
+		<isNotEmpty prepend="AND" property="isMango">
+			 <isEqual property="isMango" compareValue="true">
+		  		    a.type in(1,4,6)
+			 </isEqual>				
+			 <isEqual property="isMango" compareValue="false">
+			 		a.type = 2 
+			 </isEqual>						
+		</isNotEmpty>	
+		-->
+		<isNotEmpty prepend="AND" property="clientType">
+						 <isEqual property="clientType" compareValue="1">
+					  		     a.type in(1,4,6)
+						 </isEqual>				
+						 <isEqual property="clientType" compareValue="2">
+						 		 a.type = 2
+						 </isEqual>		
+						 <isEqual property="clientType" compareValue="3">
+						 		 a.type = 3
+						 </isEqual>
+						 <isEqual property="clientType" compareValue="4">
+					  		     a.type = 4 
+						 </isEqual>
+						 <isEqual property="clientType" compareValue="5">
+					  		     a.type = 5 
+						 </isEqual>					
+						 <isEqual property="clientType" compareValue="6">
+						 		 a.type = 6
+						 </isEqual>		
+		</isNotEmpty >
+		
+				
+		<isNotEmpty prepend="AND" property="frontCancel">
+		  		a.frontCancel = #frontCancel# 
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="isManualOrder">
+			 <isEqual property="isManualOrder" compareValue="0">
+		  		    a.isManualOrder = 0 
+			 </isEqual>				
+			 <isEqual property="isManualOrder" compareValue="1">
+			 		a.isManualOrder = 1 
+			 </isEqual>						
+		</isNotEmpty>	
+				
+		<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+		<isNotEmpty prepend="AND" property="aliasId">
+			a.modifierRole = #aliasId# 
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="vipLevel">
+			a.payState = #vipLevel# 
+		</isNotEmpty>
+		<!-- 处理预订单增加 合约组 ，可以筛选出提交到合约组的订单 v2.8.1 chenjuesu 2009-05-27 begin -->
+		<isNotEmpty prepend="AND" property="contratorGroup">
+		  		a.fax = #contratorGroup# 
+		</isNotEmpty>
+		<!-- 虚假订单 -->
+		<isNotEmpty prepend="AND" property="falseOrderFalg">
+			a.FALSEORDERFALG = #falseOrderFalg#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="orderCooperator">
+			a.channel = #orderCooperator#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="clientType">
+			temp.clientType = #clientType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hraGroupType">
+			temp.groupType in ($hraGroupType$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hraRoomGroup">
+			temp.groupType >= #hraRoomGroup#
+		</isNotEmpty>
+		<!-- end -->
+		<!-- 立减优惠 auditOpState字段用于标志是否优惠立减订单 add by chenjiajie 2009-10-21 -->
+		<isNotEmpty prepend="AND" property="benefitFlag">
+			a.auditOpState = #benefitFlag# 
+		</isNotEmpty>
+		<!-- 添加魅影订单标示 -->
+		<isNotEmpty prepend="AND" property="rmpOrder">
+			a.rmpOrder = #rmpOrder#
+		</isNotEmpty>
+											
+			order by hurryordertimes desc,
+		<isNotEmpty property="sortWay">
+			 <isEqual property="sortWay" compareValue="1">
+		  		    a.emergencyLevel, a.toMidTime  
+			 </isEqual>				
+			 <isEqual property="sortWay" compareValue="2">
+					a.toMidTime, a.emergencyLevel 
+			 </isEqual>						
+			 <isEqual property="sortWay" compareValue="3">
+					a.assignTo  
+			 </isEqual>									 
+		</isNotEmpty>
+		<isEmpty property="sortWay">
+			a.orderId desc 
+		</isEmpty>		
+	</select>	
+	
+	<!-- 中台查询我的工作档案 
+		 (1)增加别名为 mb 的临时表，该表数据是or_memberconfirm中发送短信失败的记录减去发送成功的记录，
+		 用于统计一次都没有发送成功，而且状态都是失败的记录 
+		 (2)增加"联名商家"和'VIP级别"的查询条件
+		 modify by chenjiajie 2009-02-18
+		 (3)修改"如家二次确定"的判断条件
+		 modify by diandian.hou 2010-10-31
+	-->
+	<select id="queryMyList"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select * from (
+		<![CDATA[
+			select a.orderID, a.emergencyLevel, a.orderCD, a.hotelid, a.hotelName, a.orderState, a.roomTypename,
+				   a.roomquantity, a.CHECKINDATE, a.CHECKOUTDATE, a.hotelConfirm, a.CUSTOMERCONFIRM,  
+				   a.MODIFIER, to_char(a.MODIFIEDFRONTTIME,'yyyy-mm-dd hh24:mi:ss') as frontDate,
+				   to_char(a.MODIFIEDMIDTIME,'yyyy-mm-dd hh24:mi:ss') as midDate, 
+				   a.isManualOrder, a.MODIFIERNAME, a.payToHotel, a.createdate,
+				   round((sysdate - a.difficultytime)*24*60) as DIFFICULTYTIME,temp.grouptype as groupType,
+				   (case when a.emergencyLevel > 9 
+				   then '一般' 
+				   else '紧急' 
+				   end) as FLAGSTR, 
+				   (case when a.emergencyLevel > 9 
+				   then 'green' 
+				   else 'red' 
+				   end) as FLAGIMG, 
+				   (case when a.modifiedTime = a.modifiedFrontTime 
+				   then 1 
+				   else 0 
+				   end) as FLAGFRONT, 
+				   (case when (a.customerConfirm = 0 and (trunc(a.createDate)=a.CHECKINDATE and (a.createDate + 18/(24*60)) < sysdate)) 
+				   then 1 
+				   else (case when (a.customerConfirm = 0 and (trunc(a.createDate)!=a.CHECKINDATE and (a.createDate + 18/(24*60)) < sysdate))
+				   		then 2 
+				   		else 0
+				   		end
+				   )
+				   end) as FLAGTIMEOUT,
+				   hwo.id as cancelcode,to_char(hwo.modifydate,'yyyy-mm-dd hh24:mi:ss') as canceldate,
+			      ((select count(f.id)
+			          from or_faxlog f,or_orderfax c
+			         where f.type = 'HA'
+			           and f.state = 0
+			           and (Length(f.barcode) < 12 and f.barcode = c.barcode and c.orderid=a.orderid))
+			           +
+			       (select count(f.id)
+			          from or_faxlog f
+			         where f.type = 'HA'
+			           and f.state = 0
+			           and (Length(f.barcode)>12 and f.barcode=a.ordercd)) 
+			           ) as READFLAG, 
+			       (select count(m.ex_crsorder_item_id) from ex_crsorder_item m
+			           where m.order_id = a.orderid) as SECONDCONFIRMDONE,
+					(case when a.hotelConfirmFax = 1 
+				   	then 1 
+				   	else a.hotelConfirmTel  
+				   	end) as sort4, 
+				   	a.channel,
+					(case when (sysdate - a.toMidTime) >= 0  
+					then trunc((sysdate - a.toMidTime)*1440,0) 
+					else 0 
+					end) as toMidTime,
+					(case
+                 when (a.paymethod = 'pay' and a.iscreditassured = 0) then
+                  '面付'
+                 else
+                  (case
+                    when a.paymethod = 'pre_pay' then
+                     '预付'
+                    else
+                     '担保'
+                  end)
+               end) as payMethod,
+               a.hurryOrderTimes 				   	
+        ]]> 
+		<isNotEmpty property="sortWay">
+			 <isEqual property="sortWay" compareValue="1">
+				<isNotEmpty property="assignTo">
+					,(select min(b.emergencyLevel) from or_order b where b.assignto like #assignTo# and b.hotelid=a.hotelid) as sort1 
+					,null as sort2 
+					,null as sort3 
+				</isNotEmpty>			 		  		    
+			 </isEqual>				
+			 <isEqual property="sortWay" compareValue="2">
+			 	<isNotEmpty property="assignTo">
+			 	   	,0 as sort1 
+				   	,(select min(b.CHECKINDATE) from or_order b where b.assignto like #assignTo# and b.hotelid=a.hotelid) as sort2 
+				   	,to_date(a.arrivalTime ,'HH24:MI') as sort3 
+				</isNotEmpty>			 		  		    			   
+			 </isEqual>	
+			 <isEqual property="sortWay" compareValue="3">
+			 	<isNotEmpty property="assignTo">
+			 		,0 as sort1
+			 		,null as sort2
+			 		,null as sort3 
+				</isNotEmpty>			 		  		    			   
+			 </isEqual>				 								 
+		</isNotEmpty>      
+		<isEmpty property="sortWay">
+				<isNotEmpty property="assignTo">
+					,(select min(b.emergencyLevel) from or_order b where b.assignto like #assignTo# and b.hotelid=a.hotelid) as sort1 
+					,null as sort2
+					,null as sort3 
+				</isNotEmpty>	
+		</isEmpty>
+		<![CDATA[
+			, mb.msg , a.modifierRole	             				    
+			from or_order a ,
+			(select o.orderid,'1' as msg
+			 from or_order o,or_memberconfirm m
+				where o.orderid = m.orderid
+		]]> 				
+			<isNotEmpty prepend="AND" property="assignTo">
+				o.assignTo like #assignTo# 
+			</isNotEmpty>				
+		<![CDATA[
+				and o.isStayInMid = 1 
+				and o.illusive=0
+				and (m.sendstatus = 3 or (m.sendstatus = 4 and (sysdate - m.sendtime)*24*60 >= 30))
+				and m.channel = 3
+			    and not exists (select m1.ID from or_memberconfirm m1 where m1.orderid=m.orderid and 
+			  					m.channel=3 and m.sendstatus=2)				
+				group by o.orderid ) mb,TEMP_ORDER temp,HTL_WEB_ORDERCANCEL hwo
+			where a.isStayInMid = 1 		
+				and a.illusive=0 
+			    and a.orderid = mb.orderid(+)
+			    and a.orderid = hwo.orderid(+)
+			    and a.orderid=temp.orderid
+			    and temp.deferTime is null
+		]]>
+		<isNotEmpty prepend="AND" property="hraOrderType">
+			a.hraOrderType != #hraOrderType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="orderState">
+			<![CDATA[			
+				a.orderState >= #orderState# 
+		]]> 				
+			</isNotEmpty>		
+			<isNotEmpty prepend="AND" property="assignTo">
+				a.assignTo like #assignTo# 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="orderCD">
+		<![CDATA[
+			(length(#orderCD#)=13 and a.orderCD = #orderCD# or length(#orderCD#)<13 and a.orderCD like #orderCDConvert#) 
+		]]> 				
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="memberId">
+				a.MEMBERID like '%$memberId$%'
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="memberName">
+				upper(a.MEMBERNAME) like upper('%$memberName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelName">
+				upper(a.HOTELNAME) like upper('%$hotelName$%')
+			</isNotEmpty>
+			<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+			<isNotEmpty prepend="AND" property="aliasId">
+				a.modifierRole = #aliasId# 
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="vipLevel">
+				a.payState = #vipLevel# 
+			</isNotEmpty>				
+			) bb order by bb.hurryOrderTimes desc,bb.sort4 
+			<isNotEmpty property="sortWay">
+				 <isEqual property="sortWay" compareValue="1">
+			  		    ,bb.sort1, bb.hotelid, bb.emergencyLevel, bb.createdate
+				 </isEqual>				
+				 <isEqual property="sortWay" compareValue="2">
+						,bb.sort2, bb.hotelid, bb.CHECKINDATE, bb.sort3 
+				 </isEqual>						
+				 <isEqual property="sortWay" compareValue="3">
+						,bb.createdate, bb.emergencyLevel 
+				 </isEqual>									 
+			</isNotEmpty>	
+			<isEmpty property="sortWay">
+				,bb.sort1, bb.hotelid, bb.emergencyLevel, bb.createdate 
+			</isEmpty>						
+	</select>		
+	
+	<!-- 前台查询未提交的订单 -->
+	<select id="queryFrontNotOper"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.orderID, a.orderCD, a.hotelName, a.orderState, a.roomTypename,
+				   a.roomquantity, a.CHECKINDATE, a.CHECKOUTDATE, a.hotelConfirm, 
+				   a.CREATEDATE, a.ISMANUALORDER, a.CREATORNAME, a.MODIFIERNAME ,a.payToHotel ,a.modifierRole
+			from or_order a 
+			where a.emergencyLevel>0 and a.illusive=0 
+		]]> 
+		<isNotNull prepend="AND" property="orderState">
+			a.orderState = #orderState# 
+		</isNotNull>
+		<isNotEmpty prepend="AND" property="isMango">	
+			 <isEqual property="isMango" compareValue="false">
+			 		a.type = 2 
+			 </isEqual>						
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="stateId">
+			 <isEqual property="isMango" compareValue="false">
+			 		a.memberState = #stateId#
+			 </isEqual>						
+		</isNotEmpty>
+		
+		<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+		<isNotEmpty prepend="AND" property="aliasId">
+			a.modifierRole = #aliasId# 
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="vipLevel">
+			a.payState = #vipLevel# 
+		</isNotEmpty>						
+		order by a.emergencyLevel 
+	</select>		
+	
+	<!-- 酒店促销信息 -->
+	<select id="querySalesPromo"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		    select promo.* from htl_sales_promo promo,htl_contract contract, 
+		    htl_hotel hotel where promo.contract_ID = contract.contract_id and 
+		    hotel.hotel_id = contract.hotel_id
+		]]> 
+		<isNotEmpty prepend="AND" property="hotelID">
+		<![CDATA[	hotel.hotel_id = #hotelID# ]]>
+		</isNotEmpty>
+	</select>
+		
+	<!-- 查询待解锁订单 -->
+	<select id="queryNeedUnlockOrders"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		   select t.orderid, t.orderCD, t.type, t.locker, to_char(t.lockTime,'yyyy-mm-dd hh24:mi:ss') as newDate, t.frontLock from or_locked_orders t
+		]]> 
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="locker">
+			  <![CDATA[	t.LOCKER = #locker# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="orderCD">
+				t.orderCD like #orderCDConvert#
+			</isNotEmpty>			
+		</dynamic>
+		order by t.locker, t.orderid 
+	</select>
+	
+	<!-- 退款审批 -->
+	<select id="queryWaitRefundOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.orderID, a.orderCD, a.hotelName, a.orderState, a.roomTypename,
+				   a.roomquantity, a.CHECKINDATE, a.CHECKOUTDATE, a.hotelConfirm, 
+				   to_char(a.CREATEDATE,'yyyy-mm-dd hh24:mi:ss') as newDate, a.CREATORNAME, 
+				   a.MODIFIERNAME , a.modifierRole  
+			from or_order a 
+			where a.emergencyLevel>0 and a.illusive=0   
+		]]>
+		<isNotEmpty prepend="AND" property="orderCD">
+		<![CDATA[
+			(length(#orderCD#)=13 and a.orderCD = #orderCD# or length(#orderCD#)<13 and a.orderCD like #orderCDConvert#) 
+		]]> 			
+		</isNotEmpty>
+		<!-- 会员姓名 -->			
+		<isNotEmpty prepend="AND" property="memberName">
+			a.memberName like '%$memberName$%' 
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="orderState">
+			a.orderState = #orderState# 
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="checkinDate">
+		<![CDATA[		
+			(a.checkinDate = to_date(#checkinDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="checkoutDate">
+		<![CDATA[		
+			(a.checkoutDate = to_date(#checkoutDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="createTime">
+		<![CDATA[		
+			(a.createDate >= to_date(#createTime#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="createTimeEnd">
+		<![CDATA[		
+			(a.createDate <= to_date(#createTimeEnd#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="payMethod">
+			a.payMethod = #payMethod# 
+		</isNotEmpty>
+			
+		<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+		<isNotEmpty prepend="AND" property="aliasId">
+			a.modifierRole = #aliasId# 
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="vipLevel">
+			a.payState = #vipLevel# 
+		</isNotEmpty>						
+	</select>	
+	
+	<!-- 财务付款 -->
+	<select id="queryWaitPrepayOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.orderID, a.orderCD, a.hotelName, a.orderState, a.roomTypename,
+				   a.roomquantity, a.CHECKINDATE, a.CHECKOUTDATE, a.hotelConfirm, 
+				   to_char(a.CREATEDATE,'yyyy-mm-dd hh24:mi:ss') as newDate, a.CREATORNAME, 
+				   a.MODIFIERNAME , a.modifierRole  
+			from or_order a 
+			where a.emergencyLevel>0 and a.illusive=0 
+		]]>
+			<isNotEmpty prepend="AND" property="orderCD">
+		<![CDATA[
+			(length(#orderCD#)=13 and a.orderCD = #orderCD# or length(#orderCD#)<13 and a.orderCD like #orderCDConvert#) 
+		]]> 	
+			</isNotEmpty>		
+			<!-- 会员姓名 -->			
+			<isNotEmpty prepend="AND" property="memberName">
+				a.memberName like '%$memberName$%' 
+			</isNotEmpty>				
+			<isNotEmpty prepend="AND" property="payMethod">
+				a.payMethod = #payMethod# 
+			</isNotEmpty>		
+			<isNotEmpty prepend="AND" property="checkinDate">
+			<![CDATA[		
+				(a.checkinDate = to_date(#checkinDate#,'yyyy-mm-dd')) 
+			]]>			
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="checkoutDate">
+			<![CDATA[		
+				(a.checkoutDate = to_date(#checkoutDate#,'yyyy-mm-dd')) 
+			]]>			
+			</isNotEmpty>		
+			<isNotEmpty prepend="AND" property="createTime">
+			<![CDATA[		
+				(a.createDate >= to_date(#createTime#,'yyyy-mm-dd')) 
+			]]>			
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="createTimeEnd">
+			<![CDATA[		
+				(a.createDate <= to_date(#createTimeEnd#,'yyyy-mm-dd')) 
+			]]>			
+			</isNotEmpty>					
+			<isNotEmpty prepend="AND" property="orderState">
+		<![CDATA[						
+				a.orderState < #orderState# 
+		]]>							
+			</isNotEmpty>		
+			<isNotEmpty prepend="AND" property="orderState1">
+		<![CDATA[				
+				a.orderState >= #orderState1# 
+		]]>							
+			</isNotEmpty>		
+			<isNotEmpty prepend="AND" property="hasPrepayed">
+		<![CDATA[				
+				a.hasPrepayed != #hasPrepayed# 
+		]]>							
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="creatorName">
+				<![CDATA[				
+						a.creatorName = #creatorName# 
+				]]>							
+			</isNotEmpty>	
+			<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+			<isNotEmpty prepend="AND" property="aliasId">
+				a.modifierRole = #aliasId# 
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="vipLevel">
+				a.payState = #vipLevel# 
+			</isNotEmpty>					
+			order by a.orderID desc					
+	</select>		
+	
+	<!-- 财务退款 -->
+	<select id="queryWaitRefundingOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.orderID, a.orderCD, a.hotelName, a.orderState, a.roomTypename,
+				   a.roomquantity, a.CHECKINDATE, a.CHECKOUTDATE, a.hotelConfirm, 
+				   to_char(a.CREATEDATE,'yyyy-mm-dd hh24:mi:ss') as newDate, a.CREATORNAME, 
+				   a.MODIFIERNAME , a.modifierRole  
+			from or_order a 
+			where a.emergencyLevel>0 and a.illusive=0 
+		]]>
+		<isNotEmpty prepend="AND" property="orderCD">
+		<![CDATA[
+			(length(#orderCD#)=13 and a.orderCD = #orderCD# or length(#orderCD#)<13 and a.orderCD like #orderCDConvert#) 
+		]]> 	
+		</isNotEmpty>
+		<!-- 会员姓名 -->			
+		<isNotEmpty prepend="AND" property="memberName">
+			a.memberName like '%$memberName$%' 
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="orderState">
+			a.orderState = #orderState# 
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="checkinDate">
+		<![CDATA[		
+			(a.checkinDate = to_date(#checkinDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="checkoutDate">
+		<![CDATA[		
+			(a.checkoutDate = to_date(#checkoutDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="createTime">
+		<![CDATA[		
+			(a.createDate >= to_date(#createTime#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="createTimeEnd">
+		<![CDATA[		
+			(a.createDate <= to_date(#createTimeEnd#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="operator">
+				<![CDATA[				
+						a.creatorName = #operator# 
+				]]>							
+		</isNotEmpty>						
+		<isNotEmpty prepend="AND" property="payMethod">
+			a.payMethod = #payMethod# 
+		</isNotEmpty>
+		<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+		<isNotEmpty prepend="AND" property="aliasId">
+			a.modifierRole = #aliasId# 
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="vipLevel">
+			a.payState = #vipLevel# 
+		</isNotEmpty>		
+			order by a.orderID desc	
+	</select>		
+				
+	<!-- 交接班订单处理 -->
+	<select id="queryNextTeamOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.orderID, a.emergencyLevel, a.orderCD, a.hotelName, a.orderState, a.roomTypename,
+				   a.roomquantity, a.CHECKINDATE, a.CHECKOUTDATE, a.hotelConfirm, 
+				   to_char(a.createDate,'yyyy-mm-dd hh24:mi:ss') as newDate, a.customerConfirm, a.creatorName, a.modifierName, 
+				   a.assignToName, a.assignTo, a.islock, a.locker ,a.payToHotel , a.modifierRole
+			from or_order a 
+			where a.emergencyLevel>0 
+				and a.inNextTeam = 1 
+				and a.isStayInMid = 1 
+				and a.illusive=0 
+				and (a.type != 3 or a.hraOrderType != 30) 
+		]]> 
+			<isNotEmpty prepend="AND" property="orderCD">
+		<![CDATA[
+			(length(#orderCD#)=13 and a.orderCD = #orderCD# or length(#orderCD#)<13 and a.orderCD like #orderCDConvert#) 
+		]]> 	
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="hidHraOrderType">
+				a.hraOrderType in ($hidHraOrderType$) 
+			</isNotEmpty>
+			<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+			<isNotEmpty prepend="AND" property="aliasId">
+				a.modifierRole = #aliasId# 
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="vipLevel">
+				a.payState = #vipLevel# 
+			</isNotEmpty>											
+			order by a.orderID desc
+	</select>			
+	
+	<!-- 查询会员历史订单 -->
+	<select id="queryMemberOrderHistory"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.orderID, a.orderCD, a.hotelName, a.roomTypename,
+				   a.CHECKINDATE, a.CHECKOUTDATE, a.city, a.specialRequest, 
+				   a.hotelStar, a.hotelId, a.payToHotel, a.orderstate,
+				   a.Roomquantity, a.createdate, a.fellownames, a.hotelConfirm  , a.modifierRole
+			from or_order a 
+			where a.illusive=0 
+		]]>
+		<isNotEmpty prepend="AND" property="memberId">
+			a.memberId = #memberId# 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="historyBeginDate">
+		    <![CDATA[
+			    a.CHECKINDATE >= to_date(#historyBeginDate#,'yyyy-mm-dd')
+			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="historyEndDate">
+		    <![CDATA[
+		        a.CHECKOUTDATE <= to_date(#historyEndDate#,'yyyy-mm-dd')
+		    ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="memberCD">
+			a.memberCd = #memberCD# 
+		</isNotEmpty>
+		<!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+		<isNotEmpty prepend="AND" property="aliasId">
+			a.modifierRole = #aliasId# 
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="vipLevel">
+			a.payState = #vipLevel# 
+		</isNotEmpty>		
+		order by 
+			a.createDate desc 					
+	</select>		
+			
+	<!-- 网站查询会员历史订单 -->
+	<select id="queryMemberOrderHistoryByNet"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select distinct a.orderID, a.orderCD, a.createdate, a.type,tmcorder.triptype,
+				   a.orderstate,tmcorder.budgetNo,
+				   a.orderstate as orderstates,
+					a.orderstate as originstate,
+					a.auditeddate,
+					to_char(a.iscreditassured) as suretyCode,
+            		b.id as cancelcode,
+           			to_char(b.modifydate,'yyyy-MM-dd hh24:mi:ss') as canceldate,
+             		decode(ae.id,null,-1,ae.id) as reservationcode,
+           			a.iscreditassured as isassured,
+           			ae.type as reservationtype,
+           			ae.firstdateordays as firstdateordays,
+                    ae.firsttime as firsttime,
+                    a.arrivaltime as arrivaltime,
+				   a.paymethod, 
+			       a.hotelName,a.roomTypename, a.roomquantity, a.CHECKINDATE, 
+			       a.CHECKOUTDATE, a.sum ,a.hotelconfirm,i.orderid as HASITEM,a.hotelID,a.PAYMENTCURRENCY,a.paymentRate,a.customerconfirm
+			from or_order a , or_orderitem i,TBTMCHOTEL_ORDER tmcorder,HTL_WEB_ORDERCANCEL b,or_assure_item ai,or_assure_item_every ae,or_reservation r
+			where a.illusive=0 
+   			and a.orderid = i.orderid(+)
+   			and a.tmcorderid = tmcorder.tmcorderid(+)
+   			and a.orderid = b.orderid(+)
+         	and a.reservationid = ai.reservationid(+)
+         	and a.reservationid = r.reservationid(+)
+        	and ai.reservationid = ae.reservationid(+)
+        	and a.CHECKINDATE <= to_date(decode(#enddate#,null,to_char(trunc(sysdate),'yyyy-MM-dd'),'null',to_char(trunc(sysdate),'yyyy-MM-dd'),'',to_char(trunc(sysdate),'yyyy-MM-dd'),#enddate#), 'yyyy-MM-dd')
+        	and a.CHECKOUTDATE >=to_date(decode(#begindate#,null,to_char(trunc(sysdate),'yyyy-MM-dd'),'null',to_char(trunc(sysdate),'yyyy-MM-dd'),'',to_char(trunc(sysdate),'yyyy-MM-dd'),#begindate#), 'yyyy-MM-dd')
+        	]]>
+        	<isNotEmpty prepend="AND" property="memberCdStr">
+			a.memberCd in ($memberCdStr$)
+            </isNotEmpty> 
+            <isEmpty prepend="AND" property="memberCdStr">
+			a.memberCd = '000000'
+            </isEmpty> 
+        	order by 
+			a.createDate desc 						
+	</select>						
+				
+				
+
+	<!-- 日审酒店查询 -->
+	<select id="queryFaxOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select a.AUDITHOTELID, a.HOTELNAME, a.HOTELFAX, a.FAXNO
+			from or_hotel_fax a 
+			where 1=1  
+		]]> 
+		<isNotEmpty prepend="AND" property="hotelName">
+			upper(a.HOTELNAME) like upper('%$hotelName$%')
+		</isNotEmpty>
+	</select>
+	
+	<!-- 查询日审记录 -->
+	<select id="queryAuditInfo"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+		select * from (
+			select b.id as ID,b.hotelId as HOTELID ,b.assignTo as ASSIGNTO ,b.status as STATUS,
+			op.faxConfirm as FAXCONFIRM ,c.fax as FAX ,b.checknight as CREATEDATE,
+			c.successCount as SUCCESSCOUNT , h.chn_name as HOTELNAME,b.orderNumbers as ORDERNUMBERS,
+			(case when (sysdate - c.createDate) * 24 > 8 
+			then 1  
+			else 0
+			end) as ISEXPIRED ,
+			b.faxfile as FAXFILE,
+                        (select f.url
+                           from or_faxlog f
+                          where f.barcode = to_char(b.id)
+                            and f.type = 'HB'
+                            and rownum <= 1) as URL,
+                        (select f.id
+                           from or_faxlog f
+                          where f.barcode = to_char(b.id)
+                            and f.type = 'HB'
+                            and rownum <= 1) as FAXID				
+			from  or_dailyaudit b,or_paperdailyaudit c ,HTL_HOTEL h ,or_papercontact op,
+			(select distinct oa.hotelid
+			                  from v_or_order_foraudit oa, v_or_orderitem_forforaudit ob
+			                 where oa.hotelid = ob.hotelid
+			                   and oa.ID = ob.orderid
+			                   and oa.payMethod = 'pay'
+			                   and oa.orderState != 14
+			                   and oa.orderType = ob.auditType
+			                   and ob.show != 1
+			   ]]>                 
+			  				<isNotEmpty prepend="and" property="auditDate">
+							   (ob.night = to_date(#auditDate#,'yyyy-mm-dd')) 
+							</isNotEmpty>                 
+			  <![CDATA[              
+			                ) d			
+       			where b.id = c.auditid(+) 
+       			and h.hotel_id = b.hotelid 
+       			and b.hotelid = d.hotelid
+       			and b.hotelid = op.hotelid(+)
+		]]> 
+			<isNotEmpty prepend="AND" property="hotelName">
+				upper(h.CHN_NAME) like upper('%$hotelName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="auditDate">
+				(b.checknight = to_date(#auditDate#,'yyyy-mm-dd')) 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				h.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				h.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				h.ZONE = #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="group">
+				b.status = #group#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="assignTo">
+				 <isEqual property="assignTo" compareValue="-1">
+			  		    b.assignTo is null
+				 </isEqual>				
+				 <isNotEqual property="assignTo" compareValue="-1">
+						b.assignTo = #assignTo# 
+				 </isNotEqual>								 
+			</isNotEmpty>
+			) aa order by aa.HOTELID,aa.CREATEDATE
+	</select>			
+	
+	
+	<!-- 分配日审酒店查询 -->
+	<select id="queryAllotHotel"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+		select * from
+		    (select b.id as ID,b.hotelId as HOTELID ,b.assignTo as ASSIGNTO ,b.status as STATUS,
+			op.faxConfirm as FAXCONFIRM ,c.fax as FAX ,b.checknight as CREATEDATE,
+			c.successCount as SUCCESSCOUNT , h.chn_name as HOTELNAME,b.orderNumbers as ORDERNUMBERS,
+			(case when (sysdate - c.createDate) * 24 > 8 
+			then 1  
+			else 0
+			end) as ISEXPIRED 				
+			from  or_dailyaudit b,or_paperdailyaudit c ,HTL_HOTEL h ,or_papercontact op,
+			or_workstates ow,
+			(select distinct oa.hotelid
+			                  from v_or_order_foraudit oa, v_or_orderitem_forforaudit ob
+			                 where oa.hotelid = ob.hotelid
+			                   and oa.ID = ob.orderid
+			                   and oa.payMethod = 'pay'
+			                   and oa.orderState != 14
+			                   and oa.orderType = ob.auditType
+			                   and ob.show != 1
+			   ]]>         
+			   				<!-- 增加合作方 add by szw  2008-12-25 start-->   
+			   				<!--  
+							<isNotEmpty prepend="AND" property="cooperator">
+								oa.channel = #cooperator# 
+							</isNotEmpty>  
+							-->
+							<!-- 增加合作方 add by szw  2008-12-25 end-->          
+				  			<isNotEmpty prepend="and" property="auditDate">
+							   (ob.night = to_date(#auditDate#,'yyyy-mm-dd')) 
+							</isNotEmpty>                 
+			  <![CDATA[              
+				               ) d			
+       		where b.id = c.auditid(+) 
+            and h.hotel_id = b.hotelid 
+       		and b.hotelid = d.hotelid
+       		and b.status != 3 
+            and b.hotelid = op.hotelid(+)
+            and b.assignto = ow.logonid(+)
+		]]> 
+			<isNotEmpty prepend="AND" property="hotelName">
+				upper(h.CHN_NAME) like upper('%$hotelName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="auditDate">
+				(b.checknight = to_date(#auditDate#,'yyyy-mm-dd')) 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				h.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				h.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				h.ZONE = #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="group">
+				b.status = #group#
+			</isNotEmpty>
+			<isEqual property="noAssignTo" compareValue="-1">
+			<![CDATA[		
+	  		    and b.assignTo is null
+	  		]]>	
+			</isEqual>				
+			<isNotEqual property="noAssignTo" compareValue="-1">						
+				<isNotEmpty prepend="AND" property="assignToId">
+					b.assignTo like '%$assignToId$%' 
+				</isNotEmpty>	
+				<isNotEmpty prepend="AND" property="assignToName">
+					ow.name like '%$assignToName$%' 
+				</isNotEmpty>	
+			</isNotEqual>			
+	  <![CDATA[
+		minus            
+		  select b.id as ID,b.hotelId as HOTELID ,b.assignTo as ASSIGNTO ,b.status as STATUS,
+			op.faxConfirm as FAXCONFIRM ,c.fax as FAX ,b.checknight as CREATEDATE,
+			c.successCount as SUCCESSCOUNT , h.chn_name as HOTELNAME,b.orderNumbers as ORDERNUMBERS,
+			(case when (sysdate - c.createDate) * 24 > 8 
+			then 1  
+			else 0
+			end) as ISEXPIRED 				
+			from  or_dailyaudit b,or_paperdailyaudit c ,HTL_HOTEL h ,or_papercontact op,
+            (select * from or_workstates ows 
+            where ows.type=2 
+            and (ows.groups like '%2,1%' or
+            ows.groups like '%1,2%')
+            and ows.state = 1
+            ) ow,
+			(select distinct oa.hotelid
+			                  from v_or_order_foraudit oa, v_or_orderitem_forforaudit ob
+			                 where oa.hotelid = ob.hotelid
+			                   and oa.ID = ob.orderid
+			                   and oa.payMethod = 'pay'
+			                   and oa.orderState != 14
+			                   and oa.orderType = ob.auditType
+			                   and ob.show != 1
+			   ]]>       
+			   			<!-- 增加合作方 add by szw  2008-12-25 start-->   
+			   			<!--
+						<isNotEmpty prepend="AND" property="cooperator">
+							oa.channel = #cooperator# 
+						</isNotEmpty>  
+						-->
+						<!-- 增加合作方 add by szw  2008-12-25 end-->            
+			  			<isNotEmpty prepend="and" property="auditDate">
+				(ob.night = to_date(#auditDate#,'yyyy-mm-dd')) 
+						</isNotEmpty>                 
+			  <![CDATA[              
+							   ) d
+           where b.id = c.auditid(+)
+           and h.hotel_id = b.hotelid
+           and b.hotelid = d.hotelid
+           and b.status != 3
+           and b.hotelid = op.hotelid(+)
+           and b.assignto = ow.logonid
+           and b.status = 2 
+           and b.assignto = ow.logonid(+)
+		]]>  
+			<isNotEmpty prepend="AND" property="hotelName">
+				upper(h.CHN_NAME) like upper('%$hotelName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="auditDate">
+				(b.checknight = to_date(#auditDate#,'yyyy-mm-dd')) 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				h.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				h.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				h.ZONE = #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="group">
+				b.status = #group#
+			</isNotEmpty>
+			<isEqual property="noAssignTo" compareValue="-1">
+			<![CDATA[		
+	  		    and b.assignTo is null
+	  		]]>	
+			</isEqual>				
+			<isNotEqual property="noAssignTo" compareValue="-1">						
+				<isNotEmpty prepend="AND" property="assignToId">
+					b.assignTo like '%$assignToId$%' 
+				</isNotEmpty>	
+				<isNotEmpty prepend="AND" property="assignToName">
+					ow.name like '%$assignToName$%' 
+				</isNotEmpty>	
+			</isNotEqual>		
+			<![CDATA[   
+			) e
+            order by HOTELID,CREATEDATE
+			]]> 
+	</select>	
+	
+	
+	<!-- 添加日审酒店查询 -->
+	<select id="queryAddHotels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from HTL_HOTEL a where not Exists(select 1
+		from or_papercontact b where b.hotelid = a.hotel_id) and a.active = '1'
+		]]>
+			<isNotEmpty prepend="AND" property="hotelName">
+				upper(a.CHN_NAME) like upper('%$hotelName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				a.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				a.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				a.ZONE like #hotelzone#
+			</isNotEmpty>				
+	</select>
+	
+	<!-- 编辑日审酒店查询 -->
+	<select id="queryEditHotels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select a.id ,a.fax,a.hotelid ,h.chn_name as HOTELNAME ,a.faxConfirm as FAXCONFIRM ,h.state as STATE ,h.city as CITY,h.zone as ZONE,h.WORKING_FAX as WORKINGFAX, h.hotel_Star as HOTEL_STAR
+		from or_papercontact a ,htl_hotel h where a.hotelid = h.hotel_id
+		]]>
+			<isNotEmpty prepend="AND" property="hotelName">
+				upper(h.CHN_NAME) like upper('%$hotelName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				h.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				h.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				h.ZONE like #hotelzone#
+			</isNotEmpty>			
+		</select>		
+	
+	<!-- 发送日审酒店查询 -->
+	<select id="querySendHotels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select h.Hotel_Id as HOTELID,
+           b.Id AS AUDITID,
+           b.faxFile as FAXID,
+           h.Chn_Name as HOTELNAME,
+           a.FAX AS FAX,
+           b.sendtime AS CHECKTIME,
+           c.Successcount AS SUCCESSCOUNT,
+           c.LOSTCOUNT AS LOSTCOUNT,
+           c.CreateDate as CHECKNIGHT
+        from HTL_HOTEL h,or_dailyaudit b,or_papercontact a,or_paperdailyaudit c,
+        			(select distinct oa.hotelid
+			                  from v_or_order_foraudit oa, v_or_orderitem_forforaudit ob
+			                 where oa.hotelid = ob.hotelid
+			                   and oa.ID = ob.orderid
+			                   and oa.payMethod = 'pay'
+			                   and oa.orderState != 14
+			                   and oa.orderType = ob.auditType
+			                   and ob.show != 1
+			   ]]>        
+			   			<!-- 增加合作方 add by szw  2008-12-25 start-->   
+							<!--  
+							<isNotEmpty prepend="AND" property="cooperator">
+								oa.channel = #cooperator# 
+							</isNotEmpty>  
+							-->
+						<!-- 增加合作方 add by szw  2008-12-25 end-->           
+			  			<isNotEmpty prepend="and" property="auditDate">
+				(ob.night = to_date(#auditDate#,'yyyy-mm-dd')) 
+						</isNotEmpty>                 
+			  <![CDATA[              
+			                 ) d	
+    	where b.HOTELID=h.HOTEL_ID 
+    	      and a.Hotelid=h.HOTEL_ID 
+    	      and b.hotelid = d.hotelid
+    	      and c.Auditid(+) = b.id 
+              and h.Active<>'N'
+		]]>
+			 <isNotEmpty prepend="and" property="hotelName">
+				    (upper(h.chn_name) like upper('%$hotelName$%')) 
+			 </isNotEmpty>
+			 <isNotEmpty prepend="and" property="auditDate">
+				    (b.checknight = to_date(#auditDate#,'yyyy-mm-dd')) 
+			 </isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				h.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				h.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				h.ZONE = #hotelzone#
+			</isNotEmpty>		 
+		 <isNotEmpty prepend="and" property="sendFax">
+			<![CDATA[				
+	  		    a.FAX like '%$sendFax$%'
+		  	]]>		  		  			
+		 </isNotEmpty>
+		 <isEqual prepend="and" property="isSend" compareValue="1">
+			<![CDATA[				
+	  		    c.SUCCESSCOUNT > 0
+		  	]]>		  		  			
+		 </isEqual>
+		 <isEqual prepend="and" property="isSend" compareValue="0">
+			<![CDATA[				
+	  		    (c.SUCCESSCOUNT = 0 or c.SUCCESSCOUNT is null)
+		  	]]>		  		  			
+		 </isEqual>
+		
+		    <![CDATA[				
+	  		   order by h.hotel_id desc
+		  	]]>
+		</select>	
+	<!-- 发送日审酒店查询 -->
+	<select id="querySendFaxs"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="int">
+		<![CDATA[
+		select b.Id AS AUDITID
+        from HTL_HOTEL h,or_dailyaudit b,or_papercontact a,or_paperdailyaudit c,
+        			(select distinct oa.hotelid
+			                  from v_or_order_foraudit oa, v_or_orderitem_forforaudit ob
+			                 where oa.hotelid = ob.hotelid
+			                   and oa.ID = ob.orderid
+			                   and oa.payMethod = 'pay'
+			                   and oa.orderState != 14
+			                   and oa.orderType = ob.auditType
+			                   and ob.show != 1
+			   ]]>                 
+			  			<isNotEmpty prepend="and" property="auditDate">
+				(ob.night = to_date(#auditDate#,'yyyy-mm-dd')) 
+						</isNotEmpty>                 
+			  <![CDATA[              
+			                   ) d	
+    	where b.HOTELID=h.HOTEL_ID 
+    	      and a.Hotelid=h.HOTEL_ID 
+    	      and b.hotelid = d.hotelid
+    	      and c.Auditid(+) = b.id 
+              and h.Active<>'N'
+		]]>
+			 <isNotEmpty prepend="and" property="hotelName">
+				    (upper(h.chn_name) like upper('%$hotelName$%')) 
+			 </isNotEmpty>
+			 <isNotEmpty prepend="and" property="auditDate">
+				    (b.checknight = to_date(#auditDate#,'yyyy-mm-dd')) 
+			 </isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				h.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				h.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				h.ZONE = #hotelzone#
+			</isNotEmpty>		 
+		 <isNotEmpty prepend="and" property="sendFax">
+			<![CDATA[				
+	  		    a.FAX like '%$sendFax$%'
+		  	]]>		  		  			
+		 </isNotEmpty>
+		 <isEqual prepend="and" property="isSend" compareValue="1">
+			<![CDATA[				
+	  		    c.SUCCESSCOUNT > 0
+		  	]]>		  		  			
+		 </isEqual>
+		 <isEqual prepend="and" property="isSend" compareValue="0">
+			<![CDATA[				
+	  		    (c.SUCCESSCOUNT = 0 or c.SUCCESSCOUNT is null)
+		  	]]>		  		  			
+		 </isEqual>
+		    <![CDATA[				
+	  		   order by h.hotel_id desc
+		  	]]>
+		</select>	
+	
+	<!-- 日审审核订单查询 -->
+		<select id="queryHotelAudit"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from or_audit_Hotel where 1=1
+		]]>
+		<isNotEmpty prepend="AND" property="hotelName">
+			upper(HOTELNAME) like upper('%$hotelName$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditDate">
+			<![CDATA[AUDITDATE = to_date(#auditDate#,'yyyy-mm-dd')]]>
+		</isNotEmpty>										
+	</select>
+	
+	<select id="queryNotShow"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from or_order where 1=1
+		]]>
+		<isNotEmpty prepend="AND" property="hotelName">
+			upper(HOTELNAME) like upper('%$hotelName$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditDate">
+			<![CDATA[CHECKINDATE <= to_date(#auditDate#,'yyyy-mm-dd')]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditDate">
+			<![CDATA[CHECKOUTDATE >= to_date(#auditDate#,'yyyy-mm-dd')]]>  
+		</isNotEmpty>
+		<isEqual prepend="and" property="payMethod" compareValue="0">
+			suretyState is null   
+		</isEqual>
+		<isEqual prepend="and" property="payMethod" compareValue="1">
+			payMethod = 'pre_pay'
+		</isEqual>
+		<isEqual prepend="and" property="payMethod" compareValue="2">
+			suretyState is not null  
+		</isEqual>											
+	</select>		
+
+	<!-- 电话日审酒店查询 -->
+	<select id="auditTelList"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+    	select a.* 
+    	from or_audit_hotel a 
+    	where not exists (select b.hotelid from or_hotel_fax b 
+    						where a.hotelid=b.hotelid)    
+		<isNotEmpty prepend="and" property="hotelName">
+			(upper(a.hotelName) like upper('$hotelName$%')) 
+		</isNotEmpty>	  		    			    						
+		<isNotEmpty prepend="and" property="auditDate">
+			(a.auditDate = to_date(#auditDate#,'yyyy-mm-dd')) 
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="curUserID">
+			(a.auditorId != #curUserID# or a.auditorId is null) 
+		</isNotEmpty>		  		
+	</select>
+	
+	<!-- 传真日审酒店查询 -->
+	<select id="auditFaxList"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+    	select a.* 
+    	from or_audit_hotel a 
+    	where exists (select b.hotelid from or_hotel_fax b 
+    						where a.hotelid=b.hotelid)     						
+		<isNotEmpty prepend="and" property="hotelName">
+			(upper(a.hotelName) like upper('$hotelName$%')) 
+		</isNotEmpty>	  		    						
+		<isNotNull prepend="and" property="auditDate">
+			(a.auditDate = to_date(#auditDate#,'yyyy-mm-dd')) 
+		</isNotNull>
+		<isNotEmpty prepend="and" property="curUserID">
+			(a.auditorId != #curUserID# or a.auditorId is null) 
+		</isNotEmpty>	  		
+	</select>	
+
+	<!-- 日审工作档案查询 -->
+	<select id="auditMyList"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+
+			 
+	  select *
+  		  from (select (c.id) as id,
+                        c.hotelid as HOTELID,
+                        c.faxfile as FAXFILE,
+                        (select f.url
+                           from or_faxlog f
+                          where f.barcode = to_char(c.id)
+                            and f.type = 'HB'
+                            and rownum <= 1) as URL,
+                        (select f.id
+                           from or_faxlog f
+                          where f.barcode = to_char(c.id)
+                            and f.type = 'HB'
+                            and rownum <= 1) as FAXID,
+                        h.chn_name as HOTELNAME,
+                        c.faxConfirm as FAXCONFIRM,
+                        c.status as STATUS,
+                        c.assignto as ASSIGNTO,
+                        b.fax as FAX,
+                        b.successcount as SUCCESSCOUNT,
+                        b.createdate as CREATEDATE,
+                        c.checknight as CHECKNIGHT,
+                        c.isOverTime as ISOVERTIME,
+                        (case
+                          when (sysdate - b.createdate) * 24 > 8 then
+                           1
+                          else
+                           0
+                        end) as ISEXPIRED
+          from htl_hotel h,
+               or_paperdailyaudit b,
+               (select distinct oa.hotelid,a.id,a.faxfile,a.faxConfirm,a.status,a.assignto,a.checknight,a.isOverTime
+                  from v_or_order_foraudit oa, v_or_orderitem_forforaudit ob,or_dailyaudit a
+                  where oa.hotelid = ob.hotelid
+                   and a.hotelid = oa.hotelid
+                   and oa.ID = ob.orderid
+                   and oa.payMethod = 'pay'
+                   and oa.orderState != 14
+                   and oa.orderType = ob.auditType
+                   and ob.show != 1
+ 		]]>	 
+			<!-- 增加合作方 guojun 2008-12-12 start-->   
+			<!-- v2.5 工作档案先不查channel commented by chenkeming
+			<isNotEmpty prepend="AND" property="select_cooperator">
+				oa.channel = #select_cooperator# 
+			</isNotEmpty>  
+			 -->
+ 			<isNotEmpty prepend="AND" property="assignTo">
+				a.assignTo = #assignTo# 
+			</isNotEmpty>		
+			<isEqual prepend="and" property="auditstete" compareValue="4">
+				a.STATUS != 3   
+			</isEqual>	
+			<isEqual prepend="and" property="auditstete" compareValue="0">
+				a.STATUS = 0   
+			</isEqual>	
+			<isEqual prepend="and" property="auditstete" compareValue="1">
+				a.STATUS = 1   
+			</isEqual>
+			<isEqual prepend="and" property="auditstete" compareValue="2">
+				a.STATUS = 2   
+			</isEqual>	
+			<isEqual prepend="and" property="auditstete" compareValue="3">
+				a.STATUS = 3   
+			</isEqual>			                  
+  			<isNotEmpty prepend="and" property="auditDate">
+				(ob.night = to_date(#auditDate#,'yyyy-mm-dd')) 
+			</isNotEmpty>  
+			<isNotEmpty prepend="and" property="auditDate">
+				(a.checknight = to_date(#auditDate#,'yyyy-mm-dd')) 
+			</isNotEmpty>               
+   		<![CDATA[                
+                 )c
+         where h.hotel_id = c.hotelid
+           and b.Auditid(+) = c.id		 
+		]]>	 
+			<isNotEmpty prepend="and" property="hotelName">
+				(upper(h.chn_name) like upper('$hotelName$%')) 
+			</isNotEmpty>		
+			<isNotEmpty prepend="AND" property="hotelstate">
+				h.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				h.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				h.ZONE = #hotelzone#
+			</isNotEmpty>									
+			) aa order by aa.HOTELID ,aa.CHECKNIGHT					
+	</select>
+
+	<!-- 用于传真,邮件等 salepriceByAvg平均销售价需要加上立减优惠的金额，默认金额是0 modify by chenjiajie 2009-10-23  -->
+	<select id="hQueryOrderItemByFaxGroup" parameterClass="java.util.HashMap" resultMap="orderItemGroupBy">
+select a.night,count(*) as quantityByNight, trunc(avg(a.baseprice),2) as basepriceByAvg,trunc(avg(a.saleprice + a.FAVOURABLEAMOUNT),2) as salepriceByAvg, 
+       avg(a.breakfast) as breakfast ,avg(a.breakfastNum) as breakfastNum
+from Or_OrderItem a     
+where a.orderitemstype=1 
+   <isNotEmpty prepend="AND" property="orderid">
+		a.orderid = #orderid#
+   </isNotEmpty> 
+   group by    
+   a.night   
+   order by a.night   
+	</select>
+	
+	<!-- 获取114用户所在省份的114会员列表 chenkeming@2008-01-29  -->
+	<select id="query114MemberByUserState" parameterClass="java.util.HashMap" resultMap="member114QueryType">
+	select t.membercd,t.name from t_member t 
+	where exists (select a.memberid 
+          from ats_agentmemberrel a
+          where a.agentcode like 'TK114%' and a.membercd=t.membercd) 
+    <isNotEmpty prepend="AND" property="memberstate">
+		t.memberstate = #memberstate# 
+    </isNotEmpty>
+	</select>	
+	
+	<!-- 查询用户评论 add by kun.chen 2007-10-21  -->
+	<select id="queryUserComment"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select hotel.HOTEL_ID,
+		hotel.CITY,
+		hotel.HOTEL_STAR,
+		usescomment.COMMENT_ID,
+		usescomment.AUTHOR,
+		usescomment.CREATETIME,
+		usescomment.CONTEXT,
+		usescomment.ROOM_POINT,
+		usescomment.ENVIRONMENT_POINT,
+		usescomment.SERVICE_POINT,
+		usescomment.STAR_POINT,
+		usescomment.GENERAL_POINT,
+		usescomment.COMMENT_STATUS
+
+		from HTL_HOTEL hotel ,
+		HTL_USES_COMMENT usescomment where
+		hotel.HOTEL_ID = usescomment.HOTEL_ID and
+		usescomment.HOTEL_ID = #hotelID# and usescomment.COMMENT_STATUS in('1','2')
+		
+
+	</select>
+	
+	
+	
+	<!-- 每天更新一次订单统计表 -->
+	<insert id="insertOrderStatistics">
+	<![CDATA[	
+		insert into or_orderstatistics(id,memberid, avgstar, avgprice, totalorder, noshow, noshowrate) 
+		select seq_order_orderstatistics.nextval,b.memberid, b.avgStar, b.avgprice, b.totalorder, b.noshow, trunc((b.noshow/b.totalorder*100),2) as noshowRate 
+		from (
+			select 
+			  a.memberid as memberid, 
+			  trunc(avg(a.hotelStar),1) as avgStar, 
+			  trunc((sum(a.sum) / sum(a.roomquantity * (a.checkoutdate - a.checkindate))),2) as  avgprice,
+			  sum(1) as totalorder,
+			  sum((case when a.orderState = 13 then 1 else 0 end)) as noshow 
+			from or_order a 
+			group by 
+			  a.memberid
+			having length(memberid)>0   
+		) b 
+	]]>		
+	</insert>
+	
+	<select id="queryMemberState" parameterClass="java.util.HashMap" 
+		resultClass="int">	
+		select count(a.memberid) 
+           from ats_agentmemberrel a
+           where a.agentcode like 'TK114%' and a.membercd=#memberCd#
+	</select>	
+	
+	<select id="queryOrderCDByID" parameterClass="java.util.HashMap" 
+		resultClass="java.lang.String">	
+		select orderCD 
+           from or_order
+           where orderid = #ID#
+	</select>
+	
+	<!-- 获取酒店是否系统内酒店,币种信息 -->
+	<select id="queryHotelSysCurrency" parameterClass="java.util.HashMap" 
+		resultClass="java.util.HashMap">	
+		select a.hotelSystemSign, b.currency  
+           from HTL_HOTEL a, htl_contract b 
+           where 
+           	a.hotel_id = #hotelId# 
+           	and a.hotel_id = b.hotel_id 
+		<![CDATA[		
+			and (b.begin_date <= to_date(#curDate#,'yyyy-mm-dd')) 
+			and (b.end_date >= to_date(#curDate#,'yyyy-mm-dd')) 
+		]]>
+	</select>		
+	
+	<!-- 获取系统内酒店是否币种信息 -->
+	<select id="querySysHotelCurrency" parameterClass="java.util.HashMap" 
+		resultClass="java.lang.String">	
+		select b.currency  
+           from htl_contract b 
+           where 
+           	b.hotel_id = #hotelId# 
+		<![CDATA[		
+			and (b.begin_date <= to_date(#curDate#,'yyyy-mm-dd')) 
+			and (b.end_date >= to_date(#curDate#,'yyyy-mm-dd')) 
+		]]>
+	</select>
+	
+	<!-- 暂缓前台订单查询 -->
+	<select id="queryStopFront" parameterClass="java.util.HashMap"
+	 resultClass="java.util.HashMap">
+	select a.ORDERID, a.ORDERCD,a.hotelname,a.CREATEDATE, a.illusive ,ORDERSTATE,ROOMTYPENAME,ROOMQUANTITY
+	,CHECKINDATE,CHECKOUTDATE,HOTELCONFIRM,ISMANUALORDER,CREATORNAME,MODIFIERNAME,a.modifierRole,a.channel from or_order a
+	where  source != 'NET' 
+	and emergencyLevel > 0  
+	<isNotEmpty prepend="AND" property="ORDERCD">
+		<![CDATA[
+			(length(#ORDERCD#)=13 and a.orderCD = #ORDERCD# or length(#ORDERCD#)<13 and a.orderCD like #orderCDConvert#) 
+		]]> 	
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="hotelname">
+                upper(a.hotelname) like upper('%$hotelname$%')
+    </isNotEmpty>
+        <isNotEmpty prepend="AND" property="orderstate">
+				a.orderstate = #orderstate#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="LINKMAN">
+				a.LINKMAN = #LINKMAN#
+    </isNotEmpty>
+	<isNotEmpty prepend="AND" property="illusive">
+				a.illusive = #illusive#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="CHECKINDATE">	
+    <![CDATA[a.createDate >= to_date(#CHECKINDATE#,'yyyy-mm-dd')]]>
+    </isNotEmpty>
+	<isNotEmpty prepend="AND" property="CHECKOUTDATE">	
+    <![CDATA[a.CREATEDATE <= to_date(#CHECKOUTDATE#,'yyyy-mm-dd')]]>
+    </isNotEmpty>
+    <!-- 增加"联名商家"和'VIP级别"的查询条件 V2.7.1 chenjiajie 2009-02-19 -->		
+	<isNotEmpty prepend="AND" property="aliasId">
+		a.modifierRole = #aliasId# 
+	</isNotEmpty>			
+	<isNotEmpty prepend="AND" property="vipLevel">
+		a.payState = #vipLevel# 
+	</isNotEmpty>
+    </select>
+	
+	<!-- 人员权限查询 -->
+	<select id="queryMemberPower" parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select * from or_user_power p  
+		<isParameterPresent prepend="where" removeFirstPrepend="true">	
+			<isNotEmpty prepend="and" property="userChinaName">
+				upper(p.USERCNNAME) like upper('%$userChinaName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="userId">
+				p.USERID = #userId#
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>
+	
+	<!-- V2.7.1 通过会员的联名商家CODE查询中文名 chenjiajie 2009-02-19 -->
+	<select id="select_t_memberaliascard"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        select distinct t.code name,t.name descr
+        from t_memberaliascard t
+	    <dynamic prepend="WHERE">
+	        <isNotEmpty prepend="AND" property="aliasId">
+	         	t.code = #aliasId#
+	         </isNotEmpty >
+         </dynamic>       
+    </select>
+    
+	<select id="queryHotelAuditInfo"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select id,channelName,create_by,create_by_id,modify_by,modify_by_id, 
+		to_char(create_time,'yyyy-mm-dd hh24:mi:ss') as newDate,
+		to_char(modify_time,'yyyy-mm-dd hh24:mi:ss') as modifyDate 
+		from HTL_AUDIT_INFO 
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="channelName">
+				(channelName like '%$channelName$%')
+			</isNotEmpty>
+		</dynamic>
+      order by ID desc
+	</select>
+	
+	<!-- 酒店审核信息的酒店查询 -->
+	<select id="auditInfo.queryHotels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select a.* from V_HTL_HOTEL a  where a.active='1'
+		and a.HOTEL_SYSTEM_SIGN = '01'
+        and not Exists(select 1 from
+		HTL_AUDIT_INFO_HOTEL b where b.hotelId = a.hotel_id and
+		b.auditInfoId is not null)
+	
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(a.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(a.ENG_NAME) like upper('%$englishname$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				a.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				a.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				a.ZONE like #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="parentHotelGroup">
+				a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+			</isNotEmpty>			
+	</select>	
+	<select id="queryAuditInfoedHotel"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select auditHotel.ID,hotel.STATE STATE,hotel.CITY CITY,hotel.ZONE
+		ZONE,hotel.CHN_NAME CHN_NAME,hotel.HOTEL_STAR
+		HOTEL_STAR,hotel.COMMENDTYPE COMMENDTYPE from v_htl_hotel
+		hotel,HTL_AUDIT_INFO_HOTEL auditHotel where 
+		auditHotel.HOTELID=hotel.HOTEL_ID
+		and hotel.HOTEL_SYSTEM_SIGN = '01'
+		and	auditHotel.AUDITINFOID=#auditInfoId#
+	</select>
+    <select id="queryAuditInfoHotelSel"
+            parameterClass="com.mangocity.util.collections.FormatMap"
+            resultClass="java.util.HashMap">
+            select auditHotel.ID,hotel.STATE STATE,hotel.CITY CITY,hotel.ZONE
+		    ZONE,hotel.CHN_NAME CHN_NAME,hotel.HOTEL_STAR
+		    HOTEL_STAR,hotel.COMMENDTYPE COMMENDTYPE from v_htl_hotel
+		    hotel,HTL_AUDIT_INFO_HOTEL auditHotel where 
+		    auditHotel.HOTELID=hotel.HOTEL_ID
+		    and hotel.HOTEL_SYSTEM_SIGN = '01'
+		    and	auditHotel.AUDITINFOID=#auditInfoId#
+		    <isNotEmpty prepend="AND" property="chinesename">
+				upper(hotel.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				hotel.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				hotel.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				hotel.ZONE like #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="parentHotelGroup">
+				hotel.PARENT_HOTEL_GROUP = #parentHotelGroup#
+			</isNotEmpty>						
+    </select>
+    <!-- 回访记录查询 xinyang.huang v2.9.3 -->
+    <select id="queryReturnList"
+            parameterClass="java.util.HashMap"
+            resultClass="java.util.HashMap">
+          SELECT 
+		        AU.RETURNVISIT_ID,
+		        AU.linkmannumber,
+		        AU.linkmanname,
+		        AU.acquirename,
+		        AU.auditordate,
+		        AU.daItemaMount,
+		        AU.daItemaSubMount  
+		 FROM 
+		 (  
+            select a.RETURNVISIT_ID,a.linkmannumber,a.linkmanname,a.acquirename,a.auditordate,
+       count(b.ordercd) as daItemaMount, sum(to_number(b.roomamount)) as daItemaSubMount
+  			from DA_RETURNVISIT a, DA_DAILYAUDIT_ITEM b where a.RETURNVISIT_ID = b.returnvisitid
+		   	<isNotEmpty prepend="AND" property="mobileNo">
+				a.linkmannumber = #mobileNo#
+			</isNotEmpty>					
+			<isNotEmpty prepend="AND" property="returnvisitiDate">
+				a.returnvisitidate = to_date(#returnvisitiDate#,'yyyy-mm-dd')
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="linkmanName">
+				a.linkmanname like '%$linkmanName$%'
+			</isNotEmpty>   						
+			<isNotEmpty prepend="AND" property="returnState">
+				a.returnstate = #returnState#
+			</isNotEmpty> 
+			<isNotEmpty prepend="AND" property="acquireName">
+				a.acquirename like '%$acquireName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="acquireId">
+				a.acquireid = #acquireId#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="auditordate">
+				a.auditordate = to_date(#auditordate#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="notAssignYet">
+		   		a.AQUIRESTATE = #notAssignYet#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="orderCd">
+				b.ordercd = #orderCd#
+		    </isNotEmpty>
+		    <isNotEmpty prepend="AND" property="checkInTime">
+				b.checkInTime = to_date(#checkInTime#,'yyyy-mm-dd')
+		    </isNotEmpty>
+		    <isNotEmpty prepend="AND" property="checkOutTime">
+				b.checkOutTime = to_date(#checkOutTime#,'yyyy-mm-dd')
+		    </isNotEmpty>
+		    <isNotEmpty prepend="AND" property="hasReturnCash">
+		     <![CDATA[	
+				exists(
+					select 1
+	                  from fit_order_cash oc
+	                 where oc.ORDERCD in
+	                       (select it.ORDERCD
+	                          from DA_DAILYAUDIT_ITEM it
+	                         where it.DAILYAUDITID = b.dailyauditid)
+					)
+				]]>
+			</isNotEmpty>
+		group by a.returnvisit_id,a.linkmannumber,a.linkmanname,a.acquirename,a.auditordate
+		order by a.auditordate asc
+		) AU	
+    </select>	
+      <!-- 回访记录查询 xinyang.huang v2.9.3 -->
+    <select id="queryReturnWorkspaceList"
+            parameterClass="java.util.HashMap"
+            resultClass="java.util.HashMap">
+		 SELECT 
+		        AU.RETURNVISIT_ID,
+		        AU.linkmannumber,
+		        AU.linkmanname,
+		        AU.acquirename,
+		        AU.auditordate,
+		        AU.daItemaMount,
+		        AU.daItemaSubMount
+		 FROM 
+		 (
+            select a.RETURNVISIT_ID,a.linkmannumber,a.linkmanname,a.acquirename,a.auditordate,
+       count(b.ordercd) as daItemaMount, sum(to_number(b.roomamount)) as daItemaSubMount
+  			from DA_RETURNVISIT a, DA_DAILYAUDIT_ITEM b where a.RETURNVISIT_ID = b.returnvisitid
+		   	<isNotEmpty prepend="AND" property="mobileNo">
+				a.linkmannumber = #mobileNo#
+			</isNotEmpty>					
+			<isNotEmpty prepend="AND" property="linkmanName">
+				a.linkmanname like '%$linkmanName$%'
+			</isNotEmpty>   	
+			<isNotEmpty prepend="AND" property="loginID">
+				a.acquireid = #loginID#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="auditordate">
+				a.auditordate = to_date(#auditordate#,'yyyy-mm-dd')
+			</isNotEmpty>
+			group by a.returnvisit_id,a.linkmannumber,a.linkmanname,a.acquirename,a.auditordate
+			order by a.auditordate asc
+  		 ) AU
+    </select>
+	<!-- 日审重构:审核工作档案查询 addby juesuchen 2009-8-31-->
+	<select id="queryMy_Da_DailyAudit" parameterClass="java.util.HashMap" 
+		resultClass="java.util.HashMap">
+		select d.DAILYAUDIT_ID,d.CHANNELNAME,d.AUDITWAY,d.AUDITDATE+1 As AUDITDATE,d.ISRETURN,d.STATE,d.ORDERAMOUNT,d.ROOMAMOUNT 
+		from DA_DAILYAUDIT d where d.CHANNELID is not null 
+		<isNotEmpty prepend="AND" property="assignTo">
+			d.ACQUIREID = #assignTo#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelName">
+		exists(
+		select null from HTL_AUDIT_INFO_HOTEL au,htl_hotel h
+        where d.CHANNELID = au.AUDITINFOID and h.HOTEL_ID = au.HOTELID and 
+        (upper(h.CHN_NAME) like upper('%$hotelName$%')
+			    or upper(h.ENG_NAME) like upper('%$hotelName$%'))
+        )
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditDate"> 
+			d.AUDITDATE = to_date(#auditDate#,'yyyy-mm-dd')-1
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="channel">
+			upper(d.CHANNELNAME) like upper('$channel$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="city">
+		exists(
+		select null from HTL_AUDIT_INFO_HOTEL au,htl_hotel h 
+        where d.CHANNELID = au.AUDITINFOID and h.HOTEL_ID = au.HOTELID 
+        and h.CITY = #city#
+        )
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditWay">
+		    d.AUDITWAY = #auditWay#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditType">
+			exists(
+				select null from DA_DAILYAUDIT_ITEM it 
+				where it.DAILYAUDITID = d.DAILYAUDIT_ID
+				and it.AUDITTYPE = #auditType#
+			)
+		</isNotEmpty>
+		<![CDATA[
+			and not exists (select 1
+	          from htl_el_auditpool h
+	         where h.da_dailyauditid = d.dailyaudit_id)
+         ]]>
+		order by d.AQUIREWAY ASC,d.AUDITDATE ASC
+	</select>
+	
+	<!-- 日审重构:审核记录查询 addby juesuchen 2009-8-31-->
+	<select id="queryAll_Da_DailyAudit" parameterClass="java.util.HashMap" 
+		resultClass="java.util.HashMap">
+	select distinct DAILYAUDIT_ID,CHANNELNAME,ACQUIRENAME,AUDITWAY,ISRETURN,AUDITDATE,STATE,ORDERAMOUNT,ROOMAMOUNT,ISINSYNPOOL,AUDITEXCEPTION from (
+		select d.DAILYAUDIT_ID,d.CHANNELNAME,d.ACQUIRENAME,d.AUDITWAY,d.ISRETURN,d.AUDITDATE+1 As AUDITDATE,d.STATE,d.ORDERAMOUNT,d.ROOMAMOUNT,decode(nvl(h.id, 0), 0, 0, 1) as ISINSYNPOOL,nvl(d.auditexception, 0) as AUDITEXCEPTION
+		from DA_DAILYAUDIT d ,htl_el_auditpool h 
+		where d.CHANNELID is not null and d.dailyaudit_id = h.da_dailyauditid(+) 		
+		<isNotEmpty prepend="AND" property="auditException"> 
+			<isEqual property="auditException" compareValue="1">
+                    nvl(h.id,0)>0
+            </isEqual>
+			<isEqual property="auditException" compareValue="2">
+                    d.auditexception = 1
+            </isEqual>
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="hotelName">
+		exists(
+		select null from HTL_AUDIT_INFO_HOTEL au,htl_hotel h 
+        where d.CHANNELID = au.AUDITINFOID and h.HOTEL_ID = au.HOTELID and 
+        (upper(h.CHN_NAME) like upper('%$hotelName$%')
+			    or upper(h.ENG_NAME) like upper('%$hotelName$%'))
+        )
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditDate"> 
+			d.AUDITDATE = to_date(#auditDate#,'yyyy-mm-dd')-1
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="channel">
+			upper(d.CHANNELNAME) like upper('$channel$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="city">
+		exists(
+		select null from HTL_AUDIT_INFO_HOTEL au,htl_hotel h 
+        where d.CHANNELID = au.AUDITINFOID and h.HOTEL_ID = au.HOTELID 
+        and h.CITY = #city#
+        )
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditWay">
+		    d.AUDITWAY = #auditWay#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditState">
+		     d.STATE = #auditState#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="notAssignYet">
+		    d.AQUIRESTATE = #notAssignYet#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="acquireId">
+		    d.ACQUIREID = #acquireId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="acquireName">
+		    d.ACQUIRENAME = #acquireName#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hasReturn">
+		    d.ISRETURN = #hasReturn#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="auditType">
+			exists(
+				select 1 from DA_DAILYAUDIT_ITEM it 
+				where it.DAILYAUDITID = d.DAILYAUDIT_ID
+				and it.AUDITTYPE = #auditType#
+			)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="orderCd">
+		<![CDATA[	
+				exists(
+					select 1 from DA_DAILYAUDIT_ITEM it 
+					where it.DAILYAUDITID = d.DAILYAUDIT_ID
+					and it.ORDERCD = #orderCd#
+				)
+			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="checkInTime">
+		    <![CDATA[	
+				exists(
+					select 1 from DA_DAILYAUDIT_ITEM it 
+					where it.DAILYAUDITID = d.DAILYAUDIT_ID
+					and it.CHECKINTIME = to_date(#checkInTime#,'yyyy-mm-dd')
+				)
+			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="checkOutTime">
+		     <![CDATA[	
+				exists(
+					select 1 from DA_DAILYAUDIT_ITEM it 
+					where it.DAILYAUDITID = d.DAILYAUDIT_ID
+					and it.CHECKOUTTIME = to_date(#checkOutTime#,'yyyy-mm-dd')
+				)
+			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hasReturnCash">
+		     <![CDATA[	
+				exists(
+					select 1
+                  from fit_order_cash oc
+                 where oc.ORDERCD in
+                       (select it.ORDERCD
+                          from DA_DAILYAUDIT_ITEM it
+                         where it.DAILYAUDITID = d.DAILYAUDIT_ID)
+				)
+			]]>
+		</isNotEmpty>
+		order by d.AQUIREWAY ASC,d.AUDITDATE DESC) t_audit
+        order by t_audit.acquirename desc
+	</select>
+    
+	<!-- 发送日审传真的渠道查询 -->
+	<select id="querySendChannels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select dd.DAILYAUDIT_ID as AUDITID,
+				dd.channelid,
+		       dd.channelname,
+		       dd.sendsucceed as SUCCESSCOUNT,
+		       dd.sendfailure as LOSTCOUNT,
+		       dd.returnid as FAXID,
+		       dd.auditdate,
+		]]>			       
+		<isNotEmpty property="sendFax">
+			<![CDATA[
+		       ha.auditno			
+		  from da_dailyaudit dd, htl_audit_info_setup ha     
+		 where dd.auditway = 1
+		   and ha.audittype = 1
+		   and dd.state = 0 
+		   and ha.auditinfoid = dd.channelid
+		   and nvl(ha.auditbegindate,sysdate-1) <= trunc(sysdate)
+		   and nvl(ha.auditenddate,sysdate+1) >= trunc(sysdate)
+		   and instr(ha.weeks, to_char(trunc(sysdate-1), 'd')) > 0		
+		   and to_number(to_char(sysdate, 'HH24mi'))>=nvl(ha.AUDITBEGINTIME,0)
+		   and to_number(to_char(sysdate, 'HH24mi'))<=nvl(ha.AUDITENDTIME,2400)
+		  	]]>
+		</isNotEmpty>		       
+		<isEmpty property="sendFax">
+			<![CDATA[
+		       (select ha.auditno from htl_audit_info_setup ha 
+			   where ha.auditinfoid = dd.channelid
+			   and ha.audittype = 1
+			   and nvl(ha.auditbegindate,sysdate-1) <= trunc(sysdate)
+			   and nvl(ha.auditenddate,sysdate+1) >= trunc(sysdate)
+			   and instr(ha.weeks, to_char(trunc(sysdate-1), 'd')) > 0		
+			   and to_number(to_char(sysdate, 'HH24mi'))>=nvl(ha.AUDITBEGINTIME,0)
+			   and to_number(to_char(sysdate, 'HH24mi'))<=nvl(ha.AUDITENDTIME,2400)
+			   ) as auditno 
+		  from da_dailyaudit dd
+		 where dd.auditway = 1
+				and dd.state = 0		 
+		  	]]>
+		</isEmpty>
+		<!-- 因为生产环境上运行太慢,所以先删此段 -->    
+		<isNotEmpty prepend="and" property="auditDate">
+		<![CDATA[		
+		   dd.auditdate = to_date(#auditDate#,'yyyy-mm-dd')-1
+		]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="sendFax">
+			<![CDATA[
+	  		    ha.auditno like '%$sendFax$%'
+		  	]]>
+		</isNotEmpty>	
+		 <isEqual prepend="and" property="isSend" compareValue="1">
+			<![CDATA[				
+	  		    dd.sendsucceed > 0
+		  	]]>		  		  			
+		 </isEqual>
+		 <isEqual prepend="and" property="isSend" compareValue="0">
+			<![CDATA[				
+	  		    (dd.sendsucceed = 0 or dd.sendsucceed is null)
+		  	]]>		  		  			
+		 </isEqual>		
+		<isNotEmpty prepend="AND" property="channelName">
+			 upper(dd.channelname) like upper('%$channelName$%') 
+		</isNotEmpty>	 
+		    <![CDATA[				
+	  		   order by auditno desc
+		  	]]>
+	</select>
+	<!-- 发送日审传真的渠道查询 -->
+	<select id="querySendFaxChannels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="int">
+		<![CDATA[
+		select distinct ddi.dailyauditid as AUDITID
+  		from (
+		select distinct dd.DAILYAUDIT_ID as AUDITID
+		  from da_dailyaudit dd, htl_audit_info_setup ha 
+		 where dd.auditway = 1
+		   and ha.audittype = 1 
+		   and ha.auditinfoid = dd.channelid
+		   and dd.state = 0 
+		   and nvl(ha.auditbegindate,sysdate-1) <= trunc(sysdate)
+		   and nvl(ha.auditenddate,sysdate+1) >= trunc(sysdate)
+		   and instr(ha.weeks, to_char(trunc(sysdate-1), 'd')) > 0	
+		   and to_number(to_char(sysdate, 'HH24mi'))>=nvl(ha.AUDITBEGINTIME,0)
+		   and to_number(to_char(sysdate, 'HH24mi'))<=nvl(ha.AUDITENDTIME,2400)
+		]]>        
+		<isNotEmpty prepend="and" property="auditDate">
+		<![CDATA[		
+		   dd.auditdate = to_date(#auditDate#,'yyyy-mm-dd') - 1 
+		]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="sendFax">
+			<![CDATA[
+	  		    ha.auditno like '%$sendFax$%'
+		  	]]>
+		</isNotEmpty>	
+		 <isEqual prepend="and" property="isSend" compareValue="1">
+			<![CDATA[				
+	  		    dd.sendsucceed > 0
+		  	]]>		  		  			
+		 </isEqual>
+		 <isEqual prepend="and" property="isSend" compareValue="0">
+			<![CDATA[				
+	  		    (dd.sendsucceed = 0 or dd.sendsucceed is null)
+		  	]]>		  		  			
+		 </isEqual>
+		 
+		 <![CDATA[		
+				   ),
+		       da_dailyaudit_item ddi,
+		       htl_hotel_ext hhe
+		 where AUDITID = ddi.dailyauditid
+		   and ddi.hotelid = hhe.hotel_id
+		   and nvl(hhe.cooperate_channel, 0) <> 9
+		]]>		
+	</select>
+	
+	<!-- 查询虚假订单 -->
+	
+	<select id="queryFalseOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+	select  a.orderID, a.orderCD, a.hotelName, a.roomTypename,
+				   a.CHECKINDATE, a.CHECKOUTDATE, a.city, a.specialRequest, 
+				   a.hotelStar, a.hotelId, a.payToHotel, a.orderstate,
+				   a.Roomquantity, a.createdate, a.fellownames, a.hotelConfirm  , a.modifierRole  from or_order a where a.FALSEORDERFALG = 1
+	and a.orderState != 14
+	<isNotEmpty prepend="and" property="beginDate">
+		<![CDATA[		
+	  ((to_date(#beginDate#, 'yyyy-mm-dd') <= a.CHECKINDATE)
+    or (a.CHECKINDATE < to_date(#beginDate#, 'yyyy-mm-dd') and to_date(#beginDate#, 'yyyy-mm-dd') < a.checkoutdate))
+    and to_date(#endDate#, 'yyyy-mm-dd')> a.CHECKINDATE 
+		]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="cityId">
+		   a.CITY = #cityId#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="hotelId">
+		   a.hotelId = #hotelId#
+	</isNotEmpty>
+ 	
+	</select>
+	
+	<!-- 查询日审日志 addby jeusu.chen -->
+<select id="queryAuditLog"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select l.ACTUALCHECKINNAME,
+       l.AFFIRMNUMBER,
+       l.AUDITRESULTS,
+       l.RECIPROCAL,
+       l.MODIFIERID,
+       l.MODIFIER,
+       to_char(l.MODIFIEDTIME,'yyyy-mm-dd hh24:mi:ss') as MODIFIEDTIME,
+       l.ROOMNUMBER,
+       l.NOSHOW,
+       l.NOSHOWCODE,
+       l.NOSHOWEDIT,
+       l.ADVANCECHECKOUTTIME,
+       l.RTADVANCECHECKOUTTIME
+  from DA_DAILYAUDIT_ITEM_SUB_LOG l, DA_DAILYAUDIT_ITEM i
+ where l.DAILYAUDIT_ITEM_ID = i.DAILYAUDIT_ITEM_ID
+ and l.AUDITRESULTS is not null
+   and i.ORDERID = #orderID#
+   and i.ORDERTYPE = #orderType#
+ order by l.MODIFIEDTIME desc
+</select>	
+	
+	<!--b2b 网站会员查询未支付订单 -->
+	<select id="queryMemberUnCommitOrderByNet"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+			<![CDATA[
+			select b.orderID,b.orderCD,b.linkMan,b.createdate,b.type,b.source,b.creator,b.orderstate,b.orderstates,b.paymethod,b.hotelName,b.roomTypename,
+      			   b.roomquantity,b.CHECKINDATE,b.CHECKOUTDATE,b.SUMRMB,b.hotelconfirm,b.HASITEM,b.fellownames,b.isCancelForOutOfTimes
+   from (select distinct a.orderID,
+                         a.orderCD,
+                         a.linkMan,
+                         to_char(a.createdate, 'YYYY-MM-DD HH24:MI:SS') createdate,
+                         a.type,
+                         a.source,
+                         a.creator,
+                         a.orderstate,
+                         decode(a.orderstate, 2, 1, a.orderstate) as orderstates,
+                         a.paymethod,
+                         a.hotelName,
+                         a.roomTypename,
+                         a.roomquantity,
+                         a.CHECKINDATE,
+                         a.CHECKOUTDATE,
+                         a.SUMRMB,
+                         a.hotelconfirm,
+                         i.orderid as HASITEM,
+                         a.fellownames,
+                         inc.isCancelForOutOfTime as isCancelForOutOfTimes
+           from or_order             a,
+                or_orderitem         i,
+                Htlb2b_Orderincrease inc,
+                or_payment           pay
+          where a.illusive = 0
+            and a.orderstate in (1,3)
+            and a.type = 4
+            and (to_date('1970-01-01', 'yyyy-MM-dd') +
+                ((a.createdate - to_date('1970-01-01', 'yyyy-mm-dd')) *
+                86400000 + 15 * 60 * 1000) / 86400000) > = sysdate 
+            and a.orderid = inc.orderid(+)
+            and (inc.paytimetype = 0 or
+                (pay.paysucceed = 0 and pay.paytype >= 8 and
+                pay.paytype != 23 and pay.paytype != 17 and
+                pay.paytype != 24))
+            and a.orderid = pay.orderid(+)
+            and a.orderid = i.orderid(+)
+          
+		]]>
+		<isNotEmpty prepend="AND" property="memberId">
+			a.memberId = #memberId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="begindate">
+			<![CDATA[ a.createdate >=  to_date(nvl(#begindate# ,'1900-01-01') ,'yyyy-MM-dd')  ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="enddate">
+			<![CDATA[ a.createdate <= to_date(nvl(#enddate# ,'2999-01-01') ,'yyyy-MM-dd') ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="memberCD">
+			a.membercd = #memberCD#
+		</isNotEmpty>
+		order by createDate) b
+		union all
+		<![CDATA[
+			select c.orderID,c.orderCD,c.linkMan,c.createdate,c.type,c.source,c.creator,c.orderstate,c.orderstates,c.paymethod,c.hotelName,c.roomTypename,
+       				c.roomquantity,c.CHECKINDATE,c.CHECKOUTDATE,c.SUMRMB,c.hotelconfirm,c.HASITEM,c.fellownames,c.isCancelForOutOfTimes
+   from (select distinct a.orderID,
+                         a.orderCD,
+                         a.linkMan,
+                         to_char(a.createdate, 'YYYY-MM-DD HH24:MI:SS') createdate,
+                         a.type,
+                         a.source,
+                         a.creator,
+                         a.orderstate,
+                         decode(a.orderstate, 2, 1, a.orderstate) as orderstates,
+                         a.paymethod,
+                         a.hotelName,
+                         a.roomTypename,
+                         a.roomquantity,
+                         a.CHECKINDATE,
+                         a.CHECKOUTDATE,
+                         a.SUMRMB,
+                         a.hotelconfirm,
+                         i.orderid as HASITEM,
+                         a.fellownames,
+                         inc.isCancelForOutOfTime as isCancelForOutOfTimes
+           from or_order             a,
+                or_orderitem         i,
+                Htlb2b_Orderincrease inc,
+                or_payment           pay
+          where a.illusive = 0
+            and a.orderstate in (1,3)
+            and a.type = 4
+            and (to_date('1970-01-01', 'yyyy-MM-dd') +
+                ((a.createdate - to_date('1970-01-01', 'yyyy-mm-dd')) *
+                 86400000 + 15 * 60 * 1000) / 86400000) < sysdate 
+            and a.orderid = inc.orderid(+)
+            and (inc.paytimetype = 0 or
+                (pay.paysucceed = 0 and pay.paytype >= 8 and
+                pay.paytype != 23 and pay.paytype != 17 and
+                pay.paytype != 24))
+            and a.orderid = pay.orderid(+)
+            and a.orderid = i.orderid(+)
+          
+		]]>
+		<isNotEmpty prepend="AND" property="memberId">
+			a.memberId = #memberId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="begindate">
+			<![CDATA[ a.createdate >=  to_date(nvl(#begindate# ,'1900-01-01') ,'yyyy-MM-dd')  ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="enddate">
+			<![CDATA[ a.createdate <= to_date(nvl(#enddate# ,'2999-01-01') ,'yyyy-MM-dd') ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="memberCD">
+			a.membercd = #memberCD#
+		</isNotEmpty>
+		order by createDate desc) c
+				
+	</select>	
+	
+	<!-- b2b 代理订单管理查询 add by shizhongwen 2010-1-6-->
+	<select id="queryb2bMemberOrderHistoryByNet"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select distinct a.orderID, a.orderCD,a.linkMan, a.createdate, a.type,a.source,a.creator,
+				   a.orderstate,
+				   (case when a.orderstate = 3 
+					then 
+						decode(a.customerConfirm,0,1,1,9,null,1) 
+					else decode(a.orderstate, 9,1, 10,1, 12,1, 8,8, 7,2, 4,3, 6,4, 5,5, 13,6, 14,7, 2,1, a.orderstate) 
+					end) as orderstates,
+				   a.paymethod, 
+			       a.hotelName, a.roomTypename, a.roomquantity, a.CHECKINDATE, 
+			       a.CHECKOUTDATE, a.sum ,a.hotelconfirm,i.orderid as HASITEM,
+			       a.fellownames, 
+			       (select decode (orderState ,0,'已修改',1,'已提交修改',2,'已提交取消',3,'已取消') from B2BMODIFYORDER where orderid = 
+                        (select max(c.orderid)
+                   		   from B2BMODIFYORDER c
+                          where a.ordercd  = c.ordercd
+                          group by c.ordercd                 
+                    )) as modifystate
+			from or_order a , or_orderitem i
+			where a.illusive=0 
+			and a.orderstate !=1 
+   			and a.orderid = i.orderid(+)
+		]]>
+		<isNotEmpty prepend="AND" property="memberId">
+			a.memberId = #memberId#
+		</isNotEmpty>
+		<!-- B2B重构，修改查询条件：1,入住时间段；2,预定时间段；3,付款方式；4,订单状态提前退房改成部分noshow,5,修改排序先状态后创建时间2012.2.22 add by luoguangming -->
+		<isNotEmpty prepend="AND" property="checkinBeginDate">
+			<![CDATA[ a.checkoutdate >  to_date(nvl(#checkinBeginDate# ,'1900-01-01') ,'yyyy-MM-dd')  ]]>
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="checkinEndDate">
+			<![CDATA[ a.checkindate <  to_date(nvl(#checkinEndDate# ,'2999-01-01') ,'yyyy-MM-dd')  ]]>
+		</isNotEmpty> 
+		
+		<isNotEmpty prepend="AND" property="bookBeginDate">
+			<![CDATA[ a.createdate >=  to_date(CONCAT(#bookBeginDate#,' 00:00:00'),'yyyy-MM-dd hh24:mi:ss') ]]>
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="bookEndDate">
+			<![CDATA[ a.createdate <=  to_date(CONCAT(#bookEndDate#,' 23:59:59'),'yyyy-MM-dd hh24:mi:ss')  ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="paymethod">
+			a.paymethod =  #paymethod#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="memberCD">
+			a.membercd = #memberCD#
+		</isNotEmpty>
+		
+		<isEqual prepend="" property="isCorrectOrderCD" compareValue="1">
+			<isNotEmpty prepend="AND" property="orderCD">
+				a.orderCD = #orderCD#
+			</isNotEmpty>
+		</isEqual>
+		<isEqual prepend="" property="isCorrectOrderCD" compareValue="0">
+			<isNotEmpty prepend="AND" property="orderCD">
+				<![CDATA[ a.orderCD like '%$orderCD$%' ]]>
+			</isNotEmpty>
+		</isEqual>
+		
+		<isNotEmpty prepend="AND" property="hotelName">
+			<![CDATA[ a.hotelName like '%$hotelName$%' ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="linkMan">
+			<![CDATA[ upper(a.linkMan) like upper('%$linkMan$%') ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status1">
+			<![CDATA[(a.orderstate in (9,10,12) or (a.orderstate ='3' and a.customerConfirm='0')) ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status2">
+			a.orderstate=7
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status3">
+			a.orderstate=4
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status4">
+			a.orderstate =6
+		</isNotEmpty>
+		<!-- <isNotEmpty prepend="AND" property="status5">
+			a.orderstate =5
+		</isNotEmpty> -->
+		<isNotEmpty prepend="AND" property="status10">
+			a.orderstate =5
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status6">
+			a.orderstate =13
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status7">
+			a.orderstate =14
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status8">
+			a.orderstate =8
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status9">
+			<![CDATA[a.orderstate ='3' and a.customerConfirm='1' ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="fellowNames">
+			<![CDATA[ upper(a.fellowNames) like upper('%$fellowNames$%') ]]>
+		</isNotEmpty>
+		<isEqual prepend="AND" property="manageSign" compareValue="0">
+			<isNotEmpty  property="operaterId">
+				(a.creator = #operaterId# or a.linkman = #operaterId#)
+			</isNotEmpty>
+		</isEqual>
+		<isNotEmpty prepend="AND" property="source">
+			a.source = #source#
+		</isNotEmpty>
+
+		order by a.orderstate asc,a.createDate desc
+	</select>
+	<!-- 中台流转，工作效率查询 add by juesuchen 2010-4-8-->
+	<select id="queryWorkingRates"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select os.grouptype, sum(os.orderprocessmount)
+		orderprocessmount, sum(os.orderprocesstimes) orderprocesstimes,
+		decode(sum(os.orderprocessmount),0,0,round((sum(os.orderprocesstimes)/60)/sum(os.orderprocessmount))) AVERAGEPROCESSTIME,
+		sum(os.waitingordermount) waitingordermount,
+		max(os.longestwatingtime) longestwatingtime,
+		sum(os.waitingtimes) waitingtimes,
+		sum(os.hasassignordermount) hasassignordermount,
+		decode(sum(os.hasassignordermount),0,0,round((sum(os.waitingtimes)/60)/sum(os.hasassignordermount))) AVERAGEWAITINGTIME,
+		sum(os.relaxordermount) relaxordermount,
+		sum(os.relaxtimes) relaxtimes,
+		decode(sum(os.relaxordermount),0,0,round(sum(os.relaxtimes)/sum(os.relaxordermount))) AVERAGERELAXTIME
+		 from orderstations os
+		where trunc(os.operatordate) between
+		to_date(#beginDate#,'yyyy-MM-dd') and
+		to_date(#endDate#,'yyyy-MM-dd')
+		and os.grouptype < 8
+		]]>
+		<isNotEmpty prepend="AND" property="groups">
+			os.grouptype in ($groups$)
+		</isNotEmpty>
+		group by os.grouptype order by os.grouptype
+	</select>
+	<select id="queryMyWorkingRates"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select mr.grouptype, max(mr.operatorid) operatorid,
+		max(mr.operatorname) operatorname, sum(mr.orderprocessmount)
+		orderprocessmount, sum(mr.orderprocesstimes) orderprocesstimes,
+		decode(sum(mr.orderprocessmount),0,0,round(sum(mr.orderprocessmount)/(sum(mr.orderprocesstimes) / 3600),2)) WORKINGRATE,
+		sum(mr.relaxordermount) relaxordermount, sum(mr.relaxtimes)
+		relaxtimes, max(mr.operatordate) OPERATORDATE ,max(mr.total) total from myworkingrate
+		mr where trunc(mr.operatordate) between to_date(#beginDate#,
+		'yyyy-MM-dd') and to_date(#endDate#, 'yyyy-MM-dd')
+		and mr.grouptype < 8
+		]]>
+		<isNotEmpty prepend="AND" property="groups">
+			mr.grouptype in ($groups$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="loginName">
+			mr.operatorid = #loginName#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="name">
+			mr.operatorname = #name#
+		</isNotEmpty>
+		group by mr.grouptype order by mr.grouptype
+	</select>
+	<select id="queryMyWorkingRatesByAjax"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (select mr.operatorid, mr.operatorname,
+		mr.grouptype, mr.orderprocessmount, mr.orderprocesstimes,
+		nvl(mr.workingrate,0) workingrate, mr.relaxordermount, mr.relaxtimes, mr.total,
+		case when mr.operatordate = trunc(sysdate) and exists (select 1 from
+		or_workstates os, htl_work_states_skill hs where os.logonid =
+		hs.logon_id and os.logonid = mr.operatorid and os.state = 1 and
+		hs.group_id = mr.grouptype) then 1 else 0 end status from
+		myworkingrate mr where mr.operatordate = to_date(#theDate#,
+		'yyyy-MM-dd') and mr.grouptype < 8
+		]]>
+		<isNotEmpty prepend="AND" property="groups">
+			mr.grouptype in ($groups$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="loginName">
+			mr.operatorid = #loginName#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="name">
+			mr.operatorname = #name#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="workergroup">
+			mr.grouptype = $workergroup$
+		</isNotEmpty>
+		) t where 1 = 1
+		<isNotEmpty prepend="and" property="workStatusCheck">
+			t.status in ($workStatusCheck$)
+		</isNotEmpty>
+		order by t.status desc,t.workingrate desc
+	</select>
+	<select id="queryMyWorkingRatesTopByAjax"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (select mr.OPERATORID,
+	       max(mr.GROUPTYPE) GROUPTYPE,
+	       max(mr.operatorname) OPERATORNAME,
+	       sum(mr.orderprocessmount) ORDERPROCESSMOUNT,
+	       sum(mr.orderprocesstimes) orderprocesstimes,
+	       decode(sum(mr.orderprocessmount),0,0,decode(sum(mr.orderprocesstimes),0,0,round(sum(mr.orderprocessmount)/(sum(mr.orderprocesstimes) / 3600),2))) WORKINGRATE,
+	       sum(mr.relaxordermount) relaxordermount,
+	       sum(mr.relaxtimes) RELAXTIMES,max(mr.total) total,
+	       max(case
+	         when mr.operatordate = trunc(sysdate) and exists
+	          (select 1
+	                 from or_workstates os, htl_work_states_skill hs
+	                where os.logonid = hs.logon_id
+	                  and os.logonid = mr.operatorid
+	                  and os.state = 1
+	                  and hs.group_id = mr.grouptype) then
+	          1
+	         else
+	          0
+	       end) STATUS
+	  from myworkingrate mr
+	 where trunc(mr.operatordate) between to_date(#beginDate#,
+		'yyyy-MM-dd') and to_date(#endDate#, 'yyyy-MM-dd')
+	   and mr.grouptype = $workergroup$
+	 group by mr.operatorid) t
+	 where rownum < 11
+	 order by t.WORKINGRATE desc
+ ]]>
+	</select>
+	
+	
+		<!--诺曼底商旅修改取消订单查询 add by haibo.li 2010-3-22-->
+	<select id="queryTmcHotelOrderEdit"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select distinct a.orderID, a.orderCD,a.linkMan,  a.type,a.hotelName,a.sumRmb,a.roomQuantity,
+			a.createdate,a.PAYMETHOD,a.refundDoneForFinance,a.iscreditassured,
+				   (case when a.orderstate = 3 
+					then 
+						decode(a.hotelConfirm,0,1,1,2,null,1) 
+					else decode(a.orderstate, 9,1, 10,1, 12,1, 8,2, 7,2, 4,2, 6,2, 5,2, 13,3, 14,3, a.orderstate) 
+					end) as orderstates, a.CHECKINDATE, b.ORDERSTATE as TMCORDERSTATE,
+			       a.CHECKOUTDATE,a.hotelconfirm,i.orderid as HASITEM,
+			     (case when b.orderCD is null
+                   		then ''
+                  		 else decode (b.orderState ,0,'已修改',1,'已提交修改',2,'已取消',3,'已取消')
+              		end
+              	) as modifystate
+			from or_order a , or_orderitem i,htl_tmcorderedit b
+			where a.illusive=0 
+   			and a.orderid = i.orderid(+)
+   			and a.type=6   	
+   			and a.orderCD=b.orderCD(+)
+   			and a.CHECKOUTDATE  >= sysdate-1
+		]]>
+		<isNotEmpty prepend="AND" property="memberCD">
+			a.MEMBERCD = #memberCD# 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="begindate">
+			<![CDATA[ a.CHECKINDATE >=  to_date(nvl(#begindate# ,'1900-01-01') ,'yyyy-MM-dd')  ]]>
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="enddate">
+			<![CDATA[ a.CHECKINDATE <= to_date(nvl(#enddate# ,'2999-01-01') ,'yyyy-MM-dd') ]]>
+		</isNotEmpty>  
+		<isNotEmpty prepend="AND" property="hotelName">
+			<![CDATA[ a.hotelName like '%$hotelName$%' ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="linkMan">
+			<![CDATA[ a.linkMan like '%$linkMan$%' ]]>
+		</isNotEmpty> 
+		order by 
+			a.createDate desc 					
+	</select>
+	
+	
+	
+	<!--诺曼底商旅修改取消订单查询 add by haibo.li 2010-3-22-->
+	<select id="queryAllTmcHotelOrderEdit"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select distinct a.orderID, a.orderCD,a.linkMan,  a.type,a.hotelName,a.sumRmb,a.roomQuantity,
+			a.createdate,a.PAYMETHOD,a.refundDoneForFinance,a.iscreditassured,
+				   (case when a.orderstate = 3 
+					then 
+						decode(a.hotelConfirm,0,1,1,2,null,1) 
+					else decode(a.orderstate, 9,1, 10,1, 12,1, 8,2, 7,2, 4,2, 6,2, 5,2, 13,3, 14,3, a.orderstate) 
+					end) as orderstates, a.CHECKINDATE, b.ORDERSTATE as TMCORDERSTATE,
+			       a.CHECKOUTDATE,a.hotelconfirm,i.orderid as HASITEM,
+			     (case when b.orderCD is null
+                   		then ''
+                  		 else decode (b.orderState ,0,'已修改',1,'已提交修改',2,'已提交取消',3,'已取消')
+              		end
+              	) as modifystate
+			from or_order a , or_orderitem i,htl_tmcorderedit b
+			where a.illusive=0 
+   			and a.orderid = i.orderid(+)
+   			and a.type=6   	
+   			and a.orderCD=b.orderCD(+)	
+   			and a.CHECKOUTDATE < sysdate-1
+		]]>
+		<isNotEmpty prepend="AND" property="memberCD">
+			a.MEMBERCD = #memberCD# 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="begindate">
+			<![CDATA[ a.CHECKINDATE >=  to_date(nvl(#begindate# ,'1900-01-01') ,'yyyy-MM-dd')  ]]>
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="enddate">
+			<![CDATA[ a.CHECKINDATE <= to_date(nvl(#enddate# ,'2999-01-01') ,'yyyy-MM-dd') ]]>
+		</isNotEmpty>  
+		<isNotEmpty prepend="AND" property="hotelName">
+			<![CDATA[ a.hotelName like '%$hotelName$%' ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="linkMan">
+			<![CDATA[ a.linkMan like '%$linkMan$%' ]]>
+		</isNotEmpty> 
+		order by 
+			a.createDate desc 					
+	</select>
+	
+	<!--查询订单取消短信，短信的处理情况add by luoguangming2012.2.21-->
+	<select id="smsQuery" parameterClass="com.mangocity.util.collections.FormatMap" resultClass="java.util.HashMap">
+	<![CDATA[
+select orderid,ordercd,mobile,checkindate,checkoutdate,orderstate,decode(orderstate,14,'已取消','未取消') as orderstate2,
+       context,to_char(recvtime,'yyyy-MM-dd hh24:mi:ss') as recvtime,fromno,content,decode(status,null,0,status) as status,
+       decode(status,null,'未做',0,'未做',1,'成功',-1,'失败','未做') as status2,
+       orderid_recv,modifierrole,rn
+  from (select distinct o.orderid,o.ordercd,o.mobile,o.checkindate,o.checkoutdate,o.orderstate,f.context,r.recvtime,r.fromno,r.content,r.status,r.orderid as orderid_recv,h.modifierrole,
+               row_number() over(partition by o.orderid order by r.status desc,r.recvtime desc) rn
+          from or_order o,
+               or_orderextinfo f,
+               (select v.sequenceid,v.recvtime,trunc(v.recvtime) as recvdate,v.status,v.lastupdate,v.fromno,v.content,v.timechar,v.orderid from or_sms_recv v) r,
+               (select orderid, modifierrole
+                  from (select l.orderid,
+                               l.modifierrole,
+                               row_number() over(partition by l.orderid order by l.logid asc) rn2
+                          from or_handlelog l
+                         where l.beforestate != 14
+                           and l.afterstate = 14)
+                 where rn2 = 1) h
+         where o.orderid = f.orderid
+           and o.orderid = h.orderid(+)
+           and f.type = '03'
+           and o.mobile = r.fromno(+)
+           and o.checkindate = r.recvdate(+)
+           and (r.orderid = o.orderid or r.orderid is null)]]>
+           <isNotEmpty prepend="AND" property="datefrom">
+						<![CDATA[ o.CHECKINDATE >=  to_date(nvl(#datefrom# ,'1900-01-01') ,'yyyy-MM-dd')  ]]>
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="dateto">
+						<![CDATA[ o.CHECKINDATE <=  to_date(nvl(#dateto# ,'1900-01-01') ,'yyyy-MM-dd')  ]]>
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="ordercd">
+						<![CDATA[ o.ordercd like '%$ordercd$%' ]]>
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="mobile">
+						o.mobile = #mobile# 
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="operator">
+						h.modifierrole = #operator# 
+					</isNotEmpty>
+					<isEqual prepend="AND" property="orderstate" compareValue="1">
+			  			o.orderstate=14
+			  		</isEqual>
+			  		<isEqual prepend="AND" property="orderstate" compareValue="0">
+			  			o.orderstate!=14
+			  		</isEqual>
+			  		
+      <![CDATA[ ) fb where rn=1]]> 
+      <isNotEmpty prepend="AND" property="processstate">
+  				<isEqual prepend="" property="processstate" compareValue="0">
+			  			(status = 0 or status is null)
+			  	</isEqual>
+			  	<isNotEqual prepend="" property="processstate" compareValue="0">
+			  			status = #processstate# 
+			  	</isNotEqual>
+	  </isNotEmpty>
+      <![CDATA[order by fb.checkindate desc,fb.rn asc]]>
+	
+	</select>
+</sqlMap>

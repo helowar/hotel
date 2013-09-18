@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    add by shengwei.zuo  地理位置/名胜 实体类  2009-07-29
+-->
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+    <class name="HtlGeographicalposition" table="HTL_GEOGRAPHICALPOSITION" dynamic-insert="true" dynamic-update="true" lazy="false">
+        <id name="ID" unsaved-value="0" column="ID">
+			<generator class="sequence">
+				<param name="sequence">SQL_HTL_GEOGRAPPOSITION</param>
+			</generator>
+			
+		</id>
+
+		<property name="provinceName">
+            <column name="PROVINCE_NAME">
+                <comment>省份名称</comment>
+            </column>
+        </property>
+        <property name="cityName">
+            <column name="CITY_NAME">
+                <comment>城市名称</comment>
+            </column>
+        </property>
+        <property name="gisId">
+            <column name="GIS_ID">
+                <comment>电子地图</comment>
+            </column>
+        </property>
+        <property name="longitude">
+            <column name="LONGITUDE">
+                <comment>经度</comment>
+            </column>
+        </property>
+        <property name="latitude">
+            <column name="LATITUDE">
+                <comment>纬度</comment>
+            </column>
+        </property>
+        <property name="baiduLongitude">
+            <column name="BLONGITUDE">
+                <comment>百度经度</comment>
+            </column>
+        </property>
+        <property name="baiduLatitude">
+            <column name="BLATITUDE">
+                <comment>百度纬度</comment>
+            </column>
+        </property>
+        <property name="gptypeId">
+            <column name="GPTYPE_ID">
+                <comment>类型ID</comment>
+            </column>
+        </property>
+        <property name="name">
+            <column name="NAME">
+                <comment>地点</comment>
+            </column>
+        </property>
+        
+        <property name="address">
+            <column name="ADDRESS">
+                <comment>详细地点</comment>
+            </column>
+        </property>
+        
+        <property name="operationer">
+            <column name="OPERATIONER">
+                <comment>操作人名称</comment>
+            </column>
+        </property>
+        <property name="operationerId">
+            <column name="OPERATIONERID">
+                <comment>操作人ID</comment>
+            </column>
+        </property>
+        <property name="operationDate">
+            <column name="OPERATIONDATE">
+                <comment>操作时间</comment>
+            </column>
+        </property>
+         <property name="cityCode">
+            <column name="CITY_CODE">
+                <comment>城市三字码</comment>
+            </column>
+        </property>
+         <property name="seqNo">
+            <column name="SEQ_NO">
+                <comment>序号</comment>
+            </column>
+        </property>
+        <property name="isActive">
+            <column name="ISACTIVE">
+                <comment>是否生效</comment>
+            </column>
+        </property>
+        <property name="sortNum" column="sortnum" />
+    </class>
+    
+    <query name="queryGPByName">
+		<![CDATA[ 
+		from HtlGeographicalposition gp where gp.gptypeId =? and gp.cityName = ? and gp.isActive ='1' order by gp.ID
+		]]>
+	</query>
+    
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+   <class name="HtlCheckReservateLog" table="HTL_CHECK_RESERVATE_LOG"  dynamic-insert="true" dynamic-update="true">
+   	<id name="id" column="ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_CHECK_RESERVATE_LOG</param>
+			</generator>
+	</id>  
+	<property name="hotelId" type="java.lang.Long">
+            <column name="HOTEL_ID" length="10"/>
+    </property> 
+    <property name="roomTypeId" type="java.lang.Long">
+            <column name="ROOM_TYPE_ID" length="10"/>
+    </property> 
+    <property name="priceTypeId" type="java.lang.Long">
+            <column name="PRICE_TYPE_ID" length="10"/>
+    </property> 
+  	<property name="checkInDate" type="java.util.Date">
+            <column name="CHECK_IN_DATE" length="20"/>
+    </property>
+	<property name="checkOutDate" type="java.util.Date">
+            <column name="CHECK_OUT_DATE" length="20"/>
+    </property>
+	<property name="operateType" type="java.lang.String">
+            <column name="OPERATE_TYPE" length="16"/>
+    </property>
+    <property name="appName" type="java.lang.String">
+            <column name="APP_NAME" length="16"/>
+    </property>
+    <property name="operateBeginTime" type="java.util.Date">
+            <column name="OPERATE_BEGIN_TIME" length="20"/>
+    </property>
+    <property name="operateEndTime" type="java.util.Date">
+            <column name="OPERATE_END_TIME" length="20"/>
+    </property>
+    <property name="operateUsedTime" type="java.lang.Long">
+            <column name="OPERATE_USED_TIME" length="10"/>
+    </property> 
+     <property name="channelType" type="java.lang.Integer">
+            <column name="CHANNEL_TYPE" length="2"/>
+    </property> 
+    <property name="createTime" type="java.util.Date">
+            <column name="CREATE_TIME" length="20"/>
+    </property>
+   </class>   
+</hibernate-mapping>

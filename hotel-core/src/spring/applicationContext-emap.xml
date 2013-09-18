@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<bean id="hibernateDao"
+		class="com.mangocity.framework.base.dao.impl.HibernateDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseService"
+		class="com.mangocity.framework.base.service.impl.BaseServiceImpl">
+		<property name="hibernateDao" ref="hibernateDao" />
+	</bean>
+	
+	<bean id="gisBaseInfoService"
+		class="com.mangocity.mgis.app.service.baseinfo.impl.GisBaseInfoServiceImpl">
+		<property name="baseService" ref="baseService" />
+	</bean>
+	
+	<bean id="tempGisBaseInfoService"
+		class="com.mangocity.mgis.app.service.baseinfo.impl.TempGisBaseInfoServiceImpl">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="gisGenerateService"
+		class="com.mangocity.mgis.app.service.baseinfo.impl.GisGenerateServiceImpl">
+		<property name="gisBaseInfoService" ref="gisBaseInfoService" />
+	</bean>
+	
+	<bean id="gisService"
+		class="com.mangocity.mgis.app.service.baseinfo.impl.GisServiceImpl">
+		<property name="gisBaseInfoService" ref="gisBaseInfoService" />
+	</bean>
+	
+	<bean id="favoriteService"
+		class="com.mangocity.mgis.app.service.baseinfo.impl.FavoriteServiceImpl">
+		<property name="baseService" ref="baseService" />
+	</bean>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
+        <property name="host" value="smtp.mangocity.com" />  
+        <property name="port" value="25" />  
+        <property name="username" value="cs@mangocity.com" />  
+        <property name="password" value="cs098icq" />  
+        <property name="javaMailProperties">  
+            <props>  
+                <prop key="mail.smtp.auth">true</prop>  
+            </props>  
+        </property>  
+    </bean>  
+	
+	<bean id="gisToolbarService"
+		class="com.mangocity.mgis.app.service.baseinfo.impl.GisToolbarServiceImpl">
+		<property name="mailSender" ref="mailSender" />
+		<property name="gisBaseInfoService" ref="gisBaseInfoService" />
+		<property name="favoriteService" ref="favoriteService" />
+	</bean>
+	
+</beans>

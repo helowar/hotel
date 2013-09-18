@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlBatchMtnPrice" table="htl_batch_mtn_price" dynamic-insert="true" dynamic-update="true" lazy="false">
+
+
+		 <id name="ID" column = "batch_mtn_price_id" >
+            <generator class="sequence">
+				<param name="sequence">sq_htl_batch_mtn_price</param>
+			</generator>
+        </id>
+
+
+		<property name="hotelId" column="hotel_id" />
+		<property name="beginDate" column="begin_date" />
+		<property name="EndDate" column="End_date" />
+		<property name="adjustWeek" column="adjust_week" />
+		<property name="quotaType" column="quota_type" />
+		<property name="roomTypeId" column="ROOM_TYPE_ID" />
+		<property name="childRoomTypeId" column="child_room_type_id" />
+		<property name="payMethod" column="pay_method" />
+		<property name="incBreakfastNumber" column="inc_breakfast_number" />
+		<property name="incBreakfastType" column="INC_BREAKFAST_TYPE" />
+		<property name="updateFlag" column="update_flag" />
+		<property name="createById" column="create_by_id" />
+		<property name="CreateBy" column="Create_by" />
+		<property name="createTime" column="create_time" />
+		<property name="modifyById" column="modify_by_id" />
+		<property name="modifyBy" column="modify_by" />
+		<property name="modifyTime" column="modify_time" />
+
+
+
+	
+
+
+
+	</class>
+
+	
+
+
+</hibernate-mapping>

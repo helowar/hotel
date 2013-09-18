@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Price">
+	<resultMap class="com.mangocity.hotel.base.persistence.HtlPrice"
+		id="queryPriceResult">
+		<result property="childRoomTypeId" column="CHILD_ROOM_TYPE_ID" />
+		<result property="salePrice" column="SALE_PRICE" />
+		<result property="compagesDate" column="compagesDate" />
+	</resultMap>
+
+	<select id="queryPrice"
+		parameterClass="java.util.Map"
+		resultMap="queryPriceResult">
+		<![CDATA[
+			select a.CHILD_ROOM_TYPE_ID,a.SALE_PRICE,
+				   connstr(to_char(beginday, 'yyyy-mm-dd') || nvl2(endday, ' --- ', '') || to_char(endday, 'yyyy-mm-dd'))as compagesDate 
+			from (
+					select a.CHILD_ROOM_TYPE_ID, a.SALE_PRICE,
+					       a.ABLE_SALE_DATE as beginday,a.last,a.next,
+					       (case
+					         when last = 0 and next = 0 then
+					          null
+					         when last = 0 and next = 1 then
+					          lead(ABLE_SALE_DATE) over(partition by SALE_PRICE order by CHILD_ROOM_TYPE_ID, SALE_PRICE, ABLE_SALE_DATE)
+					         when last = 1  then
+					          ABLE_SALE_DATE
+					         when last > 1 and next > 1 then
+					          null
+					         when last > 1 and next = 0 then         
+					          null
+					         when last > 1 and next = 1 then         
+					          lead(ABLE_SALE_DATE) over(partition by SALE_PRICE order by CHILD_ROOM_TYPE_ID, SALE_PRICE, ABLE_SALE_DATE)
+					       end) endday
+					from (select a.*,
+					               lag(ABLE_SALE_DATE) over(partition by SALE_PRICE order by CHILD_ROOM_TYPE_ID, SALE_PRICE, ABLE_SALE_DATE) as last_day,
+					               a.ABLE_SALE_DATE - nvl(lag(ABLE_SALE_DATE) over(partition by SALE_PRICE order by CHILD_ROOM_TYPE_ID, ABLE_SALE_DATE),
+					               ABLE_SALE_DATE) as last,
+					               lead(ABLE_SALE_DATE) over(partition by SALE_PRICE order by CHILD_ROOM_TYPE_ID, SALE_PRICE, ABLE_SALE_DATE) as next_day,
+					               nvl(lead(ABLE_SALE_DATE)
+					                   over(partition by SALE_PRICE order by CHILD_ROOM_TYPE_ID, ABLE_SALE_DATE),
+					                   ABLE_SALE_DATE) - ABLE_SALE_DATE as next
+					      from htl_price a
+					      where 1=1
+		]]>					      		
+						<isNotEmpty prepend="and" property="priceTypeID">
+					      CHILD_ROOM_TYPE_ID =#priceTypeID# 
+						</isNotEmpty>					      
+						<isNotEmpty prepend="" property="startDate">
+							<isNotEmpty prepend="and" property="endDate">
+								ABLE_SALE_DATE between #startDate# and #endDate#
+							</isNotEmpty>
+				  		</isNotEmpty>
+				  		<isNotEmpty prepend="and" property="quotaType">
+					      QUOTA_TYPE = #quotaType# 
+						</isNotEmpty>
+						<isNotEmpty prepend="and" property="payMethod">
+					      PAY_METHOD = #payMethod# 
+						</isNotEmpty>
+		<![CDATA[			
+					      ) a		
+					where (last <> 1 or next <> 1) 
+			        order by SALE_PRICE, ABLE_SALE_DATE) a 
+			where nvl(a.beginday,sysdate) <> nvl(endday,sysdate) 
+			group by a.CHILD_ROOM_TYPE_ID,a.SALE_PRICE
+		]]>
+	</select>
+	<!-- 延长合同存储过程调用 add by kun.chen 2007-9-14 -->
+    <parameterMap id="getSomeParams" class="java.util.Map" > 
+	<parameter property="result"       jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/> 
+	<parameter property="piHotelID"    jdbcType="INTEGER" javaType="java.lang.Long" mode="IN"/> 
+	<parameter property="piContractID" jdbcType="INTEGER" javaType="java.lang.Long" mode="IN"/> 
+	<parameter property="psBeginDate"  jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+	<parameter property="psEndDate"    jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+	<parameter property="psNewBeginDate" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+	<parameter property="psNewEndDate"   jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+	</parameterMap>
+	
+	<procedure id="sp_hotel_ImpContractData" parameterMap="getSomeParams"> 
+	{?= call sp_hotel_ImpContractData(?,?,?,?,?,?)} 
+	</procedure>
+    
+</sqlMap>

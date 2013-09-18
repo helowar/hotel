@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+   <class name="VOrOrder" table="V_OR_ORDER" lazy="false" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID">
+			<generator class="sequence">
+				<param name="sequence">seq_v_order_order</param>
+			</generator>
+	</id>          
+		<version name="version" generated="always" unsaved-value="null"/>
+         <property name="orderCD" />
+         <property name="hotelId" />
+         <property name="hotelName" />
+      
+         <property name="orderState" />
+         <property name="suretyState" />
+         <property name="auditState" />
+         <property name="roomQuantity" />
+         <property name="checkinDate" />
+         <property name="checkoutDate" />
+         
+         <property name="modifierName" />
+         <property name="modifiedTime" />
+         <property name="specialNote" />
+         <property name="noshowReason" />
+         <property name="orderType" />
+         <property name="linkMan" />
+         <property name="mobile" />         
+         <property name="roomTypeId" />
+         <property name="roomTypeName" />
+         <property name="isCreditAssured" />   
+         <property name="fellowNames" /> 
+         <property name="payMethod" />  
+         <property name="confirmNo" />  
+         <property name="memberId" />  
+         <property name="memberName" />
+         <!-- add by chenkeming@2008.12.04 v2.4.1 新增noshow原因代码 -->
+         <property name="noshowCode" />
+         <!-- add by chenjiajie@2008.12.31 v2.4.2 订单的创建时间--> 
+         <property name="createDate" />   
+         
+         <!-- v2.5增加订单渠道 add by chenkeming@2009.04.14 --> 
+         <property name="channel" />
+         
+         <!-- QC444日审操作后最后修改人中文名和工号对不上 add by chenjiajie@2009-05-05 --> 
+         <property name="modifier" />
+         
+         <property name="channelID" />         
+         <property name="channelName" />   
+         <property name="genAudit" />   
+         <property name="orderAuditState" />
+         <!-- 增加日审备注和房间号 by juesu.chen 2009-10-22 begin -->
+         <property name="roomNum" />
+         <property name="auditRemark" />
+          <property name="memberCd" />
+         <!-- 增加日审备注和房间号 by juesu.chen 2009-10-22 end  -->                              
+   </class>
+    	<!-- 查询日审订单明细 日审结果 -->   
+	<query name="hQueryOrder_audit">
+		<![CDATA[ 
+		from VOrOrder a 
+		where 
+			a.ID = ?
+			and a.orderType = ?
+		order by 
+			a.ID			
+		]]>
+	</query>
+</hibernate-mapping>

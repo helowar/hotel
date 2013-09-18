@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 酒店网站改版v2.10 struts配置文件 -->
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="dreamweb" namespace="/" extends="struts-default">
+		<global-results>
+		    <result name="forwardToError">WEB-INF/jsp/commonjsp/errorjsp/error.jsp</result>
+		    <result name="forwardToMsgBox">WEB-INF/jsp/commonjsp/errorjsp/msg.jsp</result>			
+			<result name="daoException" type="chain">
+				exceptionHandle
+			</result>
+			<result name="rootException" type="chain">
+				exceptionHandle
+			</result>
+		</global-results>	
+		<!-- 全局异常类 -->
+		<global-exception-mappings>       
+		    <exception-mapping exception="com.mangocity.util.exception.DAOException"
+				result="daoException" />
+			<exception-mapping exception="java.lang.Exception"
+				result="rootException" />
+			<exception-mapping exception="java.lang.RuntimeException"
+				result="rootException" />
+		</global-exception-mappings>
+		<!-- 异常处理 -->
+		<action name="exceptionHandle"
+			class="com.mangocity.hotel.base.web.webwork.ExceptionHandleAction" />
+
+		<!-- 酒店查询 		-->
+		<action name="hotel-query" class="com.mangocity.hotel.dreamweb.search.action.HotelQueryAction">
+		    <result name="success">WEB-INF/jsp/hotellayout/hotel-list.jsp</result>
+		</action>
+		
+		<!-- 百度APP酒店查询 		-->
+		<action name="hotel-baiduquery" class="com.mangocity.hotel.dreamweb.search.action.HotelBaiduQueryAction">
+		    <result name="success">WEB-INF/jsp/hotellayout/hotel-list.jsp</result>
+		</action>
+		
+		<!-- 酒店预订 -->
+		<action name="hotel-booking" class="com.mangocity.hotel.dreamweb.booking.action.HotelBookingActionNew">
+		    <result name="success">WEB-INF/jsp/hotelbooking/hotel-booking-new.jsp</result>
+		    <result name="pre_pay">WEB-INF/jsp/hotelbooking/hotel-booking-new.jsp</result>
+		</action>
+		
+		<!-- 订单核对界面 -->
+		<action name="hotel-check" class="com.mangocity.hotel.dreamweb.ordercheck.action.HotelOrderCheckActionNew">
+		    <result name="orderCheck">WEB-INF/jsp/hotelordercheck/hotel-orderchecknew.jsp</result>
+		    <result name="orderComplete">WEB-INF/jsp/hotelcomplete/hotel-complete-new.jsp</result>
+		
+		</action>
+		
+		
+		<!-- 订单完成界面 -->
+		<action name="hotel-complete" class="com.mangocity.hotel.dreamweb.orderComplete.action.HotelCompleteActionNew">
+		    <result name="success">WEB-INF/jsp/hotelcomplete/hotel-complete-new.jsp</result>
+			<result name="payOnline">WEB-INF/jsp/hotelcomplete/hotel-payonline.jsp</result>		
+			<result name="noPayOrder">WEB-INF/jsp/hotelcomplete/hotel-noPayOrder</result>
+			 <result name="orderCheck">hotel-check.shtml?fagChange=1</result>
+		</action>
+		
+		<!-- 在线支付 -->
+		<!-- 在线支付的action add by shengwei.zuo  -->
+		<action name="hotel-payonline" class="com.mangocity.webnew.action.HotelOnlinePaymentAction">
+			<result name="mpmGateway">WEB-INF/jsp/hotelcomplete/hotel_mpmgateway.jsp</result>
+		</action>
+		
+		<!-- 在线支付状态查询的action add by shengwei.zuo  -->
+		<action name="hotel-payonlineStatus" class="com.mangocity.webnew.action.HotelQueryOnlinePaymentStatusAction">
+			<result name="onlinePayStatus">WEB-INF/jsp/hotelcomplete/hotel-onlinePaymentStatus.jsp</result>	
+		</action>
+		
+		<!-- 在线支付回调的action add by shengwei.zuo  -->
+		<action name="mpmFromPay" class="com.mangocity.webnew.action.MpmFromPayAction">
+			<result name="success">WEB-INF/jsp/hotelcomplete/hotel-mpm-notify.jsp</result>	
+		</action>
+		
+		<!-- 在线支付完成的action add by shengwei.zuo  -->
+		<action name="hotel-onlineComplete" class="com.mangocity.webnew.action.HotelOnlinePayCompleteAction">
+			<result name="onlinePaySuccess">WEB-INF/jsp/hotelcomplete/hotel-complete-new.jsp</result>	
+		</action>
+				
+		<!-- 会员登录 -->
+		<action name="hotel-member" class="com.mangocity.hotel.dreamweb.search.action.HotelMemberCheckInAction">
+			<result name="success">WEB-INF/jsp/hotellayout/membercheckin.jsp</result>
+		</action>
+		
+		<!-- ajax -->
+		<action name="hotel_query_business" class="com.mangocity.hotel.dreamweb.search.action.HotelQueryBusinessAction">
+			<result name="success">WEB-INF/jsp/commonjsp/hotel_business_info.jsp</result>
+		</action>
+		
+		<action name="hotel-geo" class="com.mangocity.hotel.dreamweb.search.action.HotelGeoAction">
+			<result name="success">WEB-INF/jsp/hotellayout/position-list.jsp</result>
+		</action>
+		<action name="hotel-excel" class="com.mangocity.hotel.dreamweb.search.action.HotelExcelAction">
+			<result name="success">WEB-INF/jsp/hotellayout/membercheckin.jsp</result>
+		</action>
+		<action name="hotel-position" class="com.mangocity.hotel.dreamweb.search.action.HotelPostionAction">
+			<result name="success">WEB-INF/jsp/hotellayout/moreposition.jsp</result>
+		</action>
+		<!-- 目的地类型查询 -->
+		<action name="hotel-position-class" class="com.mangocity.hotel.dreamweb.search.action.HotelPositionClassAction">
+			<result name="success">WEB-INF/jsp/hotellayout/position-class.jsp</result>
+		</action>
+		<!-- 城市类型查询 -->
+		<action name="hotel-city-position" class="com.mangocity.hotel.dreamweb.search.action.HotelCityPostitonAction">
+			<result name="success">WEB-INF/jsp/hotellayout/position-city.jsp</result>
+		</action>
+		
+		<action name="position-city-class" class="com.mangocity.hotel.dreamweb.search.action.HotelCityClassPostionAction">
+			<result name="success">WEB-INF/jsp/hotellayout/position-city-class.jsp</result>
+		</action>
+		
+		<action name="hotel-distance" class="com.mangocity.hotel.dreamweb.search.action.HotelGeoDistanceAction">
+			<result name="success">WEB-INF/jsp/hotellayout/position-list.jsp</result>
+		</action>
+		
+		<action name="hotel-hotArea" class="com.mangocity.hotel.dreamweb.search.action.HotelHotAreaAction">
+			<result name="success">WEB-INF/jsp/hotellayout/hotcities.jsp</result>
+		</action>
+		
+		<action name="hotel-information" class="com.mangocity.hotel.dreamweb.search.action.HotelInfoAction">
+			<result name="success">WEB-INF/jsp/hotellayout/hotel-info.jsp</result>
+		</action>
+		
+		<!--活动 酒店详情页 -->
+		<action name="hotel-infopa" class="com.mangocity.hotel.dreamweb.search.action.HotelInfoPAAction">
+			<result name="success">WEB-INF/jsp/hotellayout/hotel-infopa.jsp</result>
+		</action>
+		
+		
+		<!-- 酒店详情 -->
+		<action name="hotel-information-map" class="com.mangocity.hotel.dreamweb.search.action.HotelInfoMapAction">
+			<result name="success">WEB-INF/jsp/hotellayout/hotel-info-map.jsp</result>
+		</action>
+		
+		<action name="hotel-access" class="com.mangocity.hotel.dreamweb.search.action.HotelAccessAction">
+			<result name="success">WEB-INF/jsp/hotellayout/hotelaccessrecored.jsp</result>
+		</action>
+		
+		<action name="hotel-lucene" class="com.mangocity.hotel.dreamweb.search.action.HotelLuceneAction">
+			<result name="success">WEB-INF/jsp/hotellayout/hotelaccessrecored.jsp</result>
+		</action>		
+		
+		<!-- 香港酒店 -->
+		<action name="hk" class="com.mangocity.webnew.action.QueryAllHkHotelAction">
+			<result name="success">WEB-INF/jsp/hotelHK/hotel1-search-HK-sale.jsp</result>
+			<result name="skipQmango">WEB-INF/jsp/hotelHK/skipqmango.jsp</result>
+		</action>
+		<action name="mac" class="com.mangocity.webnew.action.QueryAllHkHotelAction">
+			<result name="success">WEB-INF/jsp/hotelHK/hotel1-search-HK-sale.jsp</result>
+		</action>
+		<action name="query-all-hk-hotel" class="com.mangocity.webnew.action.QueryAllHkHotelAction">
+			<result name="success">WEB-INF/jsp/hotelHK/hotel1-search-HK-sale.jsp</result>
+		</action>
+		<action name="query-limitFav-status" class="com.mangocity.webnew.action.HotelLimitFavourableReturnAction">
+			<result name="result">WEB-INF/jsp/hotelHK/hotel-limitFav-status.jsp</result>
+		</action>
+		
+
+	    <!-- 会员查询酒店历史订单 -->			
+		<action name="browseOrders" class="com.mangocity.webnew.action.OrderBrowseAction">
+		    <result name="member" type="redirect">/paginateQueryMemberOrders.shtml?queryID=queryMemberOrderHistoryByNet&amp;forward=queryMemberOrderHistoryByNet&amp;ec_i=ec&amp;ec_crd=10
+		    </result>
+			<result name="detail">/WEB-INF/jsp/hotelordermanage/saleshistoryhotel_detail.jsp</result>
+		</action>
+		
+		<!-- 分页查询历史订单 -->
+		<action name="paginateQueryMemberOrders" class="com.mangocity.webnew.action.PaginateQueryMemberOrders">
+			<result name="queryMemberOrderHistoryByNet">
+				/WEB-INF/jsp/hotelordermanage/saleshistory_search.jsp
+			</result>											
+		</action>
+	  	
+		  <action name="webEmailAction" class="com.mangocity.webnew.action.WebEmailAction">
+			<result name="preview">/WEB-INF/jsp/email/email_preview.jsp</result>
+			<result name="print">/WEB-INF/jsp/email/email_print.jsp</result>
+			<result name="save">/WEB-INF/jsp/email/email_save.jsp</result>
+ 	   	 </action>
+ 	   	 
+ 	   	 <!-- 酒店对比 -->
+		<action name="hotel-compare" class="com.mangocity.hotel.dreamweb.search.action.HotelCompareAction">
+		   <result name="success">WEB-INF/jsp/hotellayout/hotel-compare.jsp</result>
+		</action>
+		
+	    <!-- 酒店品牌 -->
+	    <action name="hotel-brandEnter" class="com.mangocity.hotel.dreamweb.brand.action.HotelBrandEnterAction">
+	       <result name="success">WEB-INF/jsp/hotelbrand/hotel-brandIndex.jsp</result>
+	    </action>
+	    <action name="hotel-brandQuery" class="com.mangocity.hotel.dreamweb.brand.action.HotelBrandQueryAction">
+	       <result name="success">WEB-INF/jsp/hotelbrand/hotel-onebrand.jsp</result>
+	    </action>
+	    <action name="hotel-brandDetail" class="com.mangocity.hotel.dreamweb.brand.action.HotelBrandInOneCity">
+	       <result name="success">WEB-INF/jsp/hotelbrand/hotel-onebrandDetail.jsp</result>
+	    </action>
+	
+		<!-- 订单查询接口 -->
+		<action name="hotel-orderDupCheck" class="com.mangocity.hotel.dreamweb.booking.action.HotelBookQueryAction">
+		<!-- action name="hotel-information" class="com.mangocity.hotel.dreamweb.search.action.HotelInfoAction"-->
+		<!-- action name="hotel-orderDupliactionCheck" class="com.mangocity.hotel.dreamweb.booking.action.HotelBookQueryAction" -->
+			<!-- result type="httpheader"><param name="headers"></param></result-->
+		</action>
+		
+		<!-- 网站取消订单 -->
+		<action name="hotel-orderCancel" class="com.mangocity.hotel.dreamweb.ordercancel.action.OrderCancelAction">
+			<result name="main">WEB-INF/jsp/hotelcancel/main-hotelcancel.jsp</result>
+			<result name="success">WEB-INF/jsp/hotelcancel/success-hotelcancel.jsp</result>
+		</action>
+		
+		<!-- 网站改版入口 -->
+		<action name="hotel-search" class="com.mangocity.hotel.dreamweb.search.action.HotelEnterActionNew" method="initPage">
+			<result name="success">WEB-INF/jsp/hotelIndex/hotel-index.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="ajaxHotelIndex" namespace="/"
+		extends="json-default">
+		
+		<action name="asyhotelCityGitSearch" class="com.mangocity.hotel.dreamweb.search.action.HotelEnterActionNew" method="ajaxgetMgisMap">
+			<result type="json" name="success">
+				<param name="ignoreHierarchy">true</param>
+				<param name="includeProperties">
+					resultMap.*,cityCode
+				</param>
+			</result>
+		</action>
+		
+		<action name="asyhotelkeywordAutoShow" class="com.mangocity.hotel.dreamweb.search.action.HotelEnterActionNew" method="ajaxgetKeywordMsg">
+			<result type="json" name="success">
+				<param name="ignoreHierarchy">true</param>
+				<param name="includeProperties">
+					content.*
+				</param>
+			</result>
+		</action>
+		
+	</package>
+	
+</struts>

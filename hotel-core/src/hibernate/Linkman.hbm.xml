@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+   <class name="Linkman" table="or_linkman"    dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="linkId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_linkman</param>
+			</generator>
+	</id>       
+    
+         <property name="linkName" />
+         <property name="appellative" />
+         <property name="mobile" />
+         <property name="telephone" />
+         <property name="fax" />
+         <property name="email" />
+         <property name="vehicleType" />
+         <property name="vehicleNo" />
+         <property name="addOnService" />
+         <property name="specialDemand" />
+         <property name="earlyArriveTime" />
+         <property name="lateArriveTime" />
+         <property name="demandPayTime" />
+
+    
+    
+    
+    
+    
+    
+    
+    
+   </class>
+
+   
+</hibernate-mapping>

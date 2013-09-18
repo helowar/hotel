@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<!--  zhx提供的Service  -->
+	<!--  测试环境  
+	<bean id="zhxService" class="zhx.service.impl.ZhxService">
+	  <property name="url">
+	  	 <value>http://202.106.139.49:9090/directlink/tbeController.do</value>
+	  </property>
+	  <property name="officeId">
+	  	 <value>NATEST</value>
+	  </property>
+	  <property name="userId">
+	  	 <value>NATEST00C</value>
+	  </property>	  
+	  <property name="password">
+	  	 <value>12345678</value>
+	  </property>
+	</bean> -->
+
+	<!--  zhx提供的Service  -->
+	<!--  生产环境   -->
+	<bean id="zhxService" class="zhx.service.impl.ZhxService">
+	  <property name="url">
+	  	 <value>${WS_ZHX_URL}</value>
+	  </property>
+	  <property name="officeId">
+	  	 <value>${WS_ZHX_OFFICEID}</value>
+	  </property>
+	  <property name="userId">
+	  	 <value>${WS_ZHX_USERID}</value>
+	  </property>	  
+	  <property name="password">
+	  	 <value>${WS_ZHX_PASSWORD}</value>
+	  </property>
+	</bean>
+	
+    <bean name="zhxFactory" class="zhx.dto.ObjectFactory">
+    </bean>
+	
+	<bean id="zhxMappingService" class="zhx.service.impl.ZhxMappingServiceImpl">
+	</bean>	
+	
+	<bean id="zhxScheduleService" class="zhx.service.impl.ZhxScheduleService">
+	</bean>
+	
+	<bean id="zhxManage" class="zhx.service.impl.ZhxManage">
+	</bean>		
+	
+	<bean id="zhxDao" class="zhx.dao.impl.ZhxDaoImpl">
+	</bean>
+	
+</beans>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hotelII">
+	<property environment="env"/>
+	<property name="businessgroup" value="hotelgroup" />
+	<property name="project.list" value="hotelII,hotel-core,hotelMQ"/>
+	<property name="war.name" value="hotelII" />
+	<import file="${env.accio.scripts}/root_build.xml"/>
+	
+	<path id="gwtcompiler.classpath">
+	    <pathelement location="${output.lib}/compile-all/gwt-user-2.3.0.jar"/>
+		<pathelement location="${output.lib}/compile-all/gwt-dev-2.3.0.jar"/>
+	</path>
+	
+	<target name="gwtc" description="GWT compile to JavaScript (production mode)">
+	    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+	      <classpath>
+	        <pathelement location="src"/>
+	      	<path refid="gwtcompiler.classpath"/>
+	      	<pathelement location="${output.lib}/runtime/validation-api-1.0.0.GA.jar" />
+	     	<pathelement location="GWTCompiler/validation-api-1.0.0.GA-sources.jar" />
+	      </classpath>
+	      <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+	      <jvmarg value="-Xmx256M"/>
+	      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+	      <arg line=""/>
+	      <arg value="com.mangocity.MangocityGWT"/>
+	      <arg value="com.mangocity.hotelInfoGWT"/>
+	    </java>
+	</target>
+	
+	
+	
+		<target name="-make-war" depends="verify">
+		  <fail unless="isApp">It's not an application project or you not defind "war.name" property</fail>
+     	<delete dir="${build.releases.dir}/${ant.project.name}" quiet="true"/>
+     	<antcall target="flex-resolver" />
+     	<antcall target="gwt-resolver" />
+     	
+     	<!-- for hotel support gwt -->
+      <delete dir="${project.root}/WebRoot/hotelGWT"/>
+		  <delete dir="${project.root}/WebRoot/hotelInfoGWT"/>
+		  <delete dir="${project.root}/WebRoot/nesthotelListGWT"/>
+		  <antcall target="gwtc"/>
+		  <copy todir="${project.root}/WebRoot" overwrite="true">
+			 <fileset dir="${project.root}/war" includes="**/*.*"/>
+		  </copy>	
+     	
+     	
+     	
+     	<!--for release  	-->   
+     	<war warfile="${build.releases.dir}/${ant.project.name}/${war.name}.war" webxml="${input.WebRoot}/WEB-INF/web.xml">
+     		<fileset dir="${input.WebRoot}"/>
+     		<lib dir="${output.lib}/runtime" />
+     		<classes dir="${output.build.classes}"/>
+     	</war>
+     	<!--for be depends-->
+     <war warfile="${output.deliverable.releasefile}/${ant.project.name}-${version}.war" webxml="${input.WebRoot}/WEB-INF/web.xml">
+     		<fileset dir="${input.WebRoot}"/>
+     		<lib dir="${output.lib}/runtime" />
+     		<classes dir="${output.build.classes}"/>
+     	</war>
+     	
+     	<zip destfile="${output.deliverable.srcfile}/${ant.project.name}-${version}-sources.jar" basedir="${project.root}"/> 	 	   	
+	</target>  
+	
+</project>
+

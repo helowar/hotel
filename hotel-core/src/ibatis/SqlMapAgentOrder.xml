@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+				   <!-- 原来 and not  exists (select it.orderid from or_orderitem it where it.orderid=r.orderid and it.settlement=0 and r.payMethod='pay')				   and r.orderState in(4,5,6,7,8)-->
+				   
+				   
+				   <!-- 曾 	and exists (select it.orderid from or_orderitem it where it.orderid=r.orderid and ((r.paymethod = 'pre_pay') or (r.paymethod = 'pay' and it.auditstate = 3 and it.orderstate = 1) or (r.paymethod='conversion' and it.orderstate=1)))	 and r.orderState in(4,5,6,7,8)-->
+<sqlMap namespace="AgentOrder">
+
+	<select id="queryAgentOrder"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+			select r.ORDERID,
+       r.membercd,
+       r.ordercd,
+       r.hotelname,
+       r.checkindate,
+       r.checkoutdate,
+       r.roomtypename,
+       r.childroomtypename,
+       r.bedtype,
+       r.roomquantity,
+       r.sumrmb,
+       r.paymentcurrency,
+       r.rateid,
+       r.FELLOWNAMES,
+       r.creator,
+       r.linkman,
+       r.source,
+       decode(inc.isMinPrice,null,'N',0,'N',1,'Y','Y') isMinPrice
+  from or_order r left join htlb2b_orderincrease inc on r.orderid = inc.orderid
+ where 1 = 1
+					and exists (select it.orderid from or_orderitem it where it.orderid=r.orderid and ((it.settlement=1 
+
+		<isNotEmpty prepend="AND" property="beginQueryDate">
+		<![CDATA[		
+			 it.settlementDate>= to_date(#beginItemDate#, 'YYYY-MM-DD')
+		]]>			
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endQueryDate">
+		<![CDATA[		
+			it.settlementDate<to_date(#endItemDate#, 'YYYY-MM-DD')
+		]]>			
+		</isNotEmpty>
+ 	) or (r.payMethod='pre_pay'
+ 		<isNotEmpty prepend="AND" property="beginQueryDate">
+		<![CDATA[		
+			 r.checkoutdate >= to_date(#beginQueryDate#, 'YYYY-MM-DD')
+		]]>			
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endQueryDate">
+		<![CDATA[		
+			r.checkoutdate <= to_date(#endQueryDate#, 'YYYY-MM-DD')
+		]]>			
+		</isNotEmpty>
+ 	)))and r.orderState in(4,5,6,7,8) and r.type=4				   
+				   and r.membercd = #agentCode#
+		order by r.orderid desc
+	</select>
+	
+	
+	
+	 <resultMap class="com.mangocity.hagtb2b.persistence.AgentOrg"
+		id="queryAgentResult">
+
+		<result property="org_id" column="org_id"/>
+		<result property="org_name" column="org_name"/>
+		<result property="linkman" column="linkman"/>
+		<result property="agentcode" column="agentcode"/>
+		<result property="description" column="description"/>
+		<result property="policyscope" column="policyscope"/>
+		<result property="agentkind" column="agentkind"/>
+		<result property="org_address" column="ORG_ADDRESS"/>
+		<result property="phoneumber" column="PHONENUMBER"/>
+		<result property="faxnumber" column="FAXNUMBER"/>
+		<result property="agentnumber" column="AGENTNUMBER"/>
+		<result property="areavalue" column="AREAVALUE"/>
+		<result property="agentemail" column="AGENTEMAIL"/>
+		<result property="bankname" column="BANKNAME"/>
+		<result property="account" column="ACCOUNT"/>
+		<result property="bankusername" column="BANKUSERNAME"/>
+	</resultMap>	
+	<select id="queryAgentOrg"
+		parameterClass="java.util.Map"
+		resultMap="queryAgentResult"> 
+         select c.org_id,c.org_name,c.linkman,c.agentcode,c.description,c.policyscope,c.agentkind,c.ORG_ADDRESS,c.PHONENUMBER,c.FAXNUMBER,c.AGENTNUMBER,c.AREAVALUE,c.AGENTEMAIL,c.BANKNAME,c.ACCOUNT,c.BANKUSERNAME from b2b_organizaioninfo c where c.status=1 and (c.policyscope=1 or c.policyscope=3)  
+         <isNotEmpty prepend="AND" property="org_name">
+				c.org_name like '%$org_name$%'
+			</isNotEmpty>
+         <isNotEmpty prepend="AND" property="agentcode">
+				c.agentcode like '%$agentcode$%'
+		</isNotEmpty>
+
+		
+         order by c.org_id
+	
+	</select>
+
+
+	
+	
+		 <resultMap class="com.mangocity.hagtb2b.persistence.AgentUser"
+		id="queryRoleResult">
+
+		<result property="userid" column="userid"/>
+		<result property="loginname" column="loginname"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+		<result property="usertype" column="usertype"/>
+		<result property="permission" column="PERMISSION"/>
+		<result property="orgid" column="org_id"/>
+		<result property="adminArea" column="adminarea"/>
+	</resultMap>	
+	<select id="queryAgentRole"
+		parameterClass="java.lang.String"
+		resultMap="queryRoleResult"> 
+         select u.userid,u.org_id,u.loginname,u.name,u.email,u.usertype,u.PERMISSION,u.adminArea from B2B_USER u  where u.status=1  and u.loginname=#loginname#
+	
+	</select>
+	
+	
+	
+	 <resultMap class="com.mangocity.hagtb2b.persistence.CommPolicySecond"
+		id="queryPolicyResult">
+
+		<result property="ID" column="org_id"/>
+		<result property="agentCode" column="org_name"/>
+		<result property="active" column="linkman"/>
+		<result property="nightRoomNum" column="agentcode"/>
+		<result property="comm1" column="description"/>
+		<result property="comm2" column="active"/>
+	</resultMap>	
+	<select id="queryPolicy"
+		parameterClass="java.util.Map"
+		resultMap="queryPolicyResult"> 
+         select a from b2b_commpolicy_second a where a.id in (select max(c.id) mid from b2b_commpolicy_second c group by c.agentcode) where status=1   
+         <isNotEmpty prepend="AND" property="agentcode">
+				a.agentCode=#agentcode#
+			</isNotEmpty>
+         order by a.id
+	
+	</select>
+	
+	
+	
+		 <resultMap class="com.mangocity.hagtb2b.persistence.AgentOrg"
+		id="queryAgentResultStat">
+
+		<result property="org_id" column="org_id"/>
+		<result property="org_name" column="org_name"/>
+		<result property="linkman" column="linkman"/>
+		<result property="agentcode" column="agentcode"/>
+		<result property="description" column="description"/>
+		<result property="policyscope" column="policyscope"/>
+		<result property="agentkind" column="agentkind"/>
+		<result property="org_address" column="ORG_ADDRESS"/>
+		<result property="phoneumber" column="PHONENUMBER"/>
+		<result property="faxnumber" column="FAXNUMBER"/>
+		<result property="agentnumber" column="AGENTNUMBER"/>
+		<result property="areavalue" column="AREAVALUE"/>
+		<result property="agentemail" column="AGENTEMAIL"/>
+		<result property="confirmed" column="confirmed"/>
+		
+	</resultMap>	
+	
+	
+			
+	<select id="queryAgentOrgList"
+		parameterClass="java.util.Map"
+		resultMap="queryAgentResultStat"> 
+          select  distinct c.org_id,c.org_name,c.linkman,c.agentcode,c.description,c.policyscope,c.agentkind,c.ORG_ADDRESS,c.PHONENUMBER,c.FAXNUMBER,c.AGENTNUMBER,c.AREAVALUE,c.AGENTEMAIL,
+		case
+         when ts.confirmed = 1 then
+          '已确认'
+         when ts.confirmed =0 or ts.confirmed is null then
+	  	'未确认'
+       end confirmed
+         from b2b_organizaioninfo c,(select tsa.statiid,tsa.agent_code,tsa.confirmed from t_statistics_agent_order tsa where  tsa.confirmed=1 
+          <isNotEmpty prepend="AND" property="syear">
+		<![CDATA[		
+			tsa.statis_year=#syear#
+		]]>			
+		</isNotEmpty>
+		
+        <isNotEmpty prepend="AND" property="smonth">
+		<![CDATA[		
+			tsa.statis_month=#smonth#
+		]]>			
+		</isNotEmpty>     
+         ) ts 
+         where c.agentcode=ts.agent_code(+) and c.status=1 
+
+		and c.agentcode in(
+			select distinct membercd from or_order r where  r.orderState in(4,5,6,7,8) and r.type=4
+      			and  exists (select it.orderid from or_orderitem it where it.orderid=r.orderid and  ((it.settlement=1 
+
+		<isNotEmpty prepend="AND" property="beginItemDate">
+		<![CDATA[		
+			 it.settlementDate>= to_date(#beginItemDate#, 'YYYY-MM-DD')
+		]]>			
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endItemDate">
+		<![CDATA[		
+			it.settlementDate<to_date(#endItemDate#, 'YYYY-MM-DD')
+		]]>			
+		</isNotEmpty>) or r.payMethod='pre_pay')))
+
+         <isNotEmpty prepend="AND" property="agentcode">
+				c.agentCode=#agentcode#
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="areavalue">
+				c.areavalue in ($areavalue$)
+				
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="agentname">
+				c.org_name like '%$agentname$%'
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="agentnumber">
+				c.agentnumber =#agentnumber#
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="org_id">
+				c.org_id =#org_id#
+		</isNotEmpty>	
+			
+         order by c.org_id
+	
+	</select>
+	
+	
+	<select id="queryAgentOrgObject"
+		parameterClass="java.util.Map"
+		resultMap="queryAgentResult"> 
+         select c.org_id,c.org_name,c.linkman,c.agentcode,c.description,c.policyscope,c.agentkind,c.ORG_ADDRESS,c.PHONENUMBER,c.FAXNUMBER,c.AGENTNUMBER,c.AREAVALUE,c.AGENTEMAIL,c.BANKNAME,c.ACCOUNT,c.BANKUSERNAME from b2b_organizaioninfo c where c.status=1   
+         <isNotEmpty prepend="AND" property="org_name">
+				c.org_name like '%$org_name$%'
+			</isNotEmpty>
+         <isNotEmpty prepend="AND" property="agentcode">
+				c.agentCode=#agentcode#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="org_id">
+				c.org_id =#org_id#
+		</isNotEmpty>
+		
+         order by c.org_id
+	
+	</select>
+	
+	
+	          <!-- 			select distinct membercd from or_order r where  r.orderState in(4,5,6,7,8)
+      			and  exists (select it.orderid from or_orderitem it where it.orderid=r.orderid and ((r.paymethod = 'pre_pay' and it.orderstate=1) or (r.paymethod = 'pay' and it.auditstate = 3 and it.orderstate = 1) or (r.paymethod='conversion' and it.orderstate=1)))
+      			
+      			
+      			r.orderState in(4,5,6,7,8) and  exists (select it.orderid from or_orderitem it where it.orderid=r.orderid and ((r.paymethod = 'pre_pay') or (r.paymethod = 'pay' and it.auditstate = 3 and it.orderstate = 1) or (r.paymethod='conversion' and it.orderstate=1)))
+	           -->
+	  <!-- b2b我的文档，add by luoguangming -->
+      <select id="queryForMyDoc"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap"> 
+		<![CDATA[
+         	select m.membercd,m.username,m.psw from b2b_mydoc m where 1=1 
+         ]]>
+         <isNotEmpty prepend="AND" property="membercd">
+				m.membercd=#membercd#
+		</isNotEmpty>
+	</select>
+</sqlMap>

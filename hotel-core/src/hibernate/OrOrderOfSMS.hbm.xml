@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="OrOrderOfSMS" table="OR_ORDER_SMS" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="ORDERID">
+			<generator class="assigned" />
+	</id>          
+
+         <property name="orderDate" />
+         <property name="sendDate" />         
+         <property name="mobile" />
+         <property name="type" />
+         <property name="memberState" />       
+   </class>
+</hibernate-mapping>

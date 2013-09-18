@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="HEBooking">
+
+<!-- 查询留言 -->
+    <select id="queryLeaveWords"
+            parameterClass="com.mangocity.util.collections.FormatMap"
+            resultClass="java.util.HashMap">
+            select 
+           to_char(leave.OPERATIONDATE,'yyyy-mm-dd hh24:mi:ss') as OPERATIONDATE,
+	       leave.TOPIC,
+	       leave.CONTENT,
+	       leave.OPERATIONER,
+	       leave.LEAVEWORDID,
+	       leave.REFERER,
+	       leave.HASREAD,
+	       leave.ADDRESSER,
+	       leave.ADDRESSEE,
+	       a.CHN_NAME,a.product_manager 
+      	 from HTL_Ebooking_Leaveword_Annal leave ,htl_hotel a 
+            where (leave.addresser = a.hotel_id or leave.addressee = a.hotel_id)
+            and a.active = 1 and a.hotel_system_sign='01' 
+        	<isNotEmpty property="theAreaLoginerCanCheck">
+				 <isEqual property="msgType" compareValue="sent">
+				 	<!-- 发件人MangoCity则为已发送 -->
+			  		   and leave.ADDRESSER = '0'
+			  		<!-- 操作人为自身则为已发送 -->
+			  		<isNotEqual prepend="AND" property="theAreaLoginerCanCheck" compareValue="ALL">
+			  		    leave.OPERATIONERID = #loginName#
+			  		</isNotEqual>
+				 </isEqual>	
+				 <isEqual property="msgType" compareValue="received">
+				 	<!-- 收件人MangoCity则为已收到 -->
+			  		   and leave.ADDRESSEE = '0'
+			  		<!-- 发送的酒店是登陆者所管理的酒店则为已收到 -->
+			  		<isNotEqual prepend="AND" property="theAreaLoginerCanCheck" compareValue="ALL">
+			  			exists(
+			  				select 1 from HTL_AREA ar where ar.CITYCODE = a.CITY
+			  				and ar.AREACODE = #theAreaLoginerCanCheck#
+			  			)
+			  		</isNotEqual>
+				 </isEqual>	
+				 <!-- 未读留言 -->
+				 <isEqual property="msgType" compareValue="unRead">
+				 	<!-- 收件人MangoCity，且查阅人为空 -->
+			  		   and leave.ADDRESSEE = '0' 
+			  		<!-- 发送的酒店是登陆者所管理的酒店且查阅人为空 -->
+			  		<isNotEqual prepend="AND" property="theAreaLoginerCanCheck" compareValue="ALL">
+			  		   exists(
+			  				select 1 from HTL_AREA ar where ar.CITYCODE = a.CITY
+			  				and ar.AREACODE = #theAreaLoginerCanCheck#
+			  			)
+			  		</isNotEqual>
+			  		  and leave.HASREAD = 0 
+				 </isEqual>	
+				 <!-- 已发送 + 已收到 = 全部 -->			
+				 <isEqual property="msgType" compareValue="all">
+			  		<!-- 发送的酒店是登陆者所管理的酒店则为已收到 -->
+			  		<isNotEqual prepend="AND" property="theAreaLoginerCanCheck" compareValue="ALL">
+			  		    (leave.OPERATIONERID = #loginName# or exists(
+			  				select 1 from HTL_AREA ar where ar.CITYCODE = a.CITY
+			  				and ar.AREACODE = #theAreaLoginerCanCheck#)
+			  			)
+			  		</isNotEqual>   
+				 </isEqual>
+			</isNotEmpty>
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(a.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(a.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hoteltype">
+			a.HOTEL_TYPE like '$hoteltype$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstar">
+			a.HOTEL_STAR in ($hotelstar$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCountry">
+			a.country = #hotelCountry#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstate">
+			a.STATE = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			a.CITY = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			a.ZONE = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			a.BIZ_ZONE = #hotelbizzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="mainCommend">
+			a.commendtype = #mainCommend#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="parentHotelGroup">
+			a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="plateName">
+			a.NAMEPLATE_NAME = #plateName#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="saleChannelQuery">
+			a.sale_channel like '$saleChannelQuery$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="purchaseChannelQuery">
+			a.purchase_channel like '$purchaseChannelQuery$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="productManager">
+			upper(a.PRODUCT_MANAGER) like upper('%$productManager$%')
+		</isNotEmpty>
+			order by leave.operationdate desc
+    </select>
+    
+<!-- 查询酒店查看权限 -->
+    <select id="queryRightManage"
+            parameterClass="com.mangocity.util.collections.FormatMap"
+            resultClass="java.util.HashMap">
+            select right.RIGHTID,right.MEMBERID,right.MEMBERNAME,right.AREA 
+             from HTL_EBOOKING_RIGHT_MANAGE right where 1=1 
+        <isNotEmpty property="checkarea">
+				 <isEqual prepend="AND" property="checkarea" compareValue="HDQ">
+			  		    right.AREA = #checkarea#
+				 </isEqual>				
+				 <isEqual prepend="AND" property="checkarea" compareValue="HBQ">
+						right.AREA = #checkarea#
+				 </isEqual>	
+				 <isEqual prepend="AND" property="checkarea" compareValue="GZQ">
+						right.AREA = #checkarea#
+				 </isEqual>	
+				 <isEqual prepend="AND" property="checkarea" compareValue="BBQ">
+						right.AREA = #checkarea#
+				 </isEqual> 					 
+		</isNotEmpty>	
+    </select> 
+
+	<!-- hotel2.9 查询调价记录 -->
+    <select id="selectEbookingPriceRedressal"
+            parameterClass="com.mangocity.util.collections.FormatMap"
+            resultClass="java.util.HashMap">
+		<![CDATA[
+		select *
+			from (SELECT H.HOTEL_ID,
+			       max(H.CHN_NAME) CHN_NAME,
+			       max(H.CITY) CITY,
+			       max(H.STATE) STATE,
+			       max(H.ZONE) ZONE,
+			       max(H.PRODUCT_MANAGER) PRODUCT_MANAGER,
+			       max(PR.EXIGENCEGRADE) EXIGENCEGRADE,
+			       max(PR.PRICEREDRESSALID) PRICEREDRESSALID,
+			       max(PR.PRICEREDRESSALNAME) PRICEREDRESSALNAME,
+			       max(PR.PRICEREDRESSALNAMEID) PRICEREDRESSALNAMEID,
+			       to_char(PR.OPERATIONDATE, 'yyyy-mm-dd hh24:mi:ss') OPERATIONDATE,
+			       CASE
+			         WHEN MIN(PR.REQUISITIONSTATE) = 0 THEN
+			          0
+			         WHEN MIN(PR.REQUISITIONSTATE) = 1 THEN
+			          1
+			         ELSE
+			          2
+			       END REQUISITIONSTATE
+			  FROM HTL_EBOOKING_PRICE_REDRESSAL PR, HTL_HOTEL H
+			 WHERE TO_NUMBER(PR.HOTELID) = H.HOTEL_ID
+	     ]]> 
+		<isNotEmpty prepend="AND" property="userArea">
+			h.CITY in ( select c.citycode from htl_area c where c.areacode = #userArea# )
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(h.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(h.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCountry">
+			h.country = #hotelCountry#
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="hotelstate">
+			h.STATE = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			h.CITY = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			h.ZONE = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			h.BIZ_ZONE = #hotelbizzone#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="productManager">
+			upper(h.PRODUCT_MANAGER) like upper('%$productManager$%')
+		</isNotEmpty>
+	<!-- 	<isEmpty prepend="AND" property="requisitionstate">
+			requisitionstate = 0
+		</isEmpty>
+	 -->	
+		<isNotEmpty prepend="AND" property="exigencegrade">
+			PR.EXIGENCEGRADE = #exigencegrade#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="PRICEREDRESSALNAMEID">
+			PRICEREDRESSALNAMEID = #PRICEREDRESSALNAMEID#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="operationdate">
+			trunc(PR.OPERATIONDATE) = to_date(#operationdate#,'yyyy-mm-dd')
+		</isNotEmpty>
+		<![CDATA[        
+			 GROUP BY PR.OPERATIONDATE, H.HOTEL_ID
+ 			 ORDER BY PR.OPERATIONDATE DESC
+	     )
+		]]>	     
+		<isNotEmpty property="requisitionstate">
+        	where REQUISITIONSTATE = #requisitionstate#
+		</isNotEmpty>
+    </select> 
+    <!-- 查询酒店房态调整 -->
+    <select id="queryRoomStatHotels" 
+    parameterClass="com.mangocity.util.collections.FormatMap"
+            resultClass="java.util.HashMap">
+    <![CDATA[
+    select r.HOTELID,
+       MAX(r.HOTELNAME) as HOTELNAME,
+       MAX(h.PRODUCT_MANAGER) as PRODUCT_MANAGER,
+       MAX(r.ID) as ID,
+       MAX(h.STATE) as STATE,
+       MAX(h.CITY) as CITY,
+       MAX(h.ZONE) as ZONE,
+       MAX(h.BIZ_ZONE) as BIZ_ZONE,
+       MAX(r.CONTENTS) as CONTENTS,
+       MAX(to_char(r.OPERATIONERTIME, 'yyyy-mm-dd hh24:mi:ss')) as OPERATIONERTIME,
+       MAX(r.AUDITSTATE) as AUDITSTATE
+	  from HTL_EBOOKING_ROOMSTATE r, HTL_HOTEL h
+	 where r.HOTELID = h.HOTEL_ID
+	   and r.HASNEEDAUDIT = 1
+ 
+    ]]>
+    <isNotEmpty prepend="AND" property="userArea">
+			h.CITY in ( select c.citycode from htl_area c where c.areacode = #userArea# )
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(h.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(h.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCountry">
+			h.country = #hotelCountry#
+		</isNotEmpty>			
+		<isNotEmpty prepend="AND" property="hotelstate">
+			h.STATE = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			h.CITY = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			h.ZONE = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			h.BIZ_ZONE = #hotelbizzone#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="productManager">
+			upper(h.PRODUCT_MANAGER) like upper('%$productManager$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="operationertime">
+			to_char(r.operationertime,'yyyy-MM-dd') = #operationertime#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="req_number">
+			r.ID = #req_number#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="auditState">
+			r.AUDITSTATE = #auditState#
+		</isNotEmpty> 
+   <![CDATA[
+   	group by r.HOTELID
+    ]]>
+    </select>
+    
+    <select id="roomStatHotelsDetail" 
+    parameterClass="com.mangocity.util.collections.FormatMap"
+            resultClass="java.util.HashMap">
+    <![CDATA[
+    	select r.ID,
+        r.ROOMBEDNAME,
+        r.SETDATES,
+        r.OPERATIONERINAME,
+        to_char(r.OPERATIONERTIME, 'yyyy-mm-dd hh24:mi:ss') as OPERATIONERTIME,
+        r.AUDITSTATE,
+        r.AUDITRESULT,
+        r.AUDITORNAME,
+        to_char(r.AUDITORTIME, 'yyyy-mm-dd hh24:mi:ss') as AUDITORTIME
+   from HTL_EBOOKING_ROOMSTATE r
+  	where r.HASNEEDAUDIT = 1
+    ]]>
+    	<isNotEmpty prepend="AND" property="hotelId">
+			r.HOTELID = #hotelId#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="auditState">
+			r.AUDITSTATE = #auditState#
+		</isNotEmpty> 
+		<![CDATA[
+		order by r.OPERATIONERTIME DESC
+		]]>
+    </select>
+</sqlMap>

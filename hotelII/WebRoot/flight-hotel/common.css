@@ -1,0 +1,54 @@
+/* CSS Document */
+body {padding:0; margin:0; font-size:12px;  color:#333; font-family: microsoft yahei;}
+* {padding:0; margin:0; }
+ul {padding:0; margin:0;}
+li {list-style:none; line-height:100%;}
+img {border:none;}
+.clear {clear:both; visibility:hidden; width:1px; line-height:0; font-size:0px;}
+.strong { font-weight:bold;}
+
+.city_select:hover{
+	border-color:#f7a176;
+}
+.hotelName{cursor:pointer;font-size:20px;font-weight:400;color:#131313;font-family:Microsoft Yahei,宋体;}
+.hotelName:hover{text-decoration:underline;color:blue;}
+.roomName{display:block;clear:left;height:20px;padding-top:10px;padding-left:11px;color:#666666;
+	font-size:14px;font-family:arial,SimSun,Verdana,Geneva,Helvetica;}
+.currency{font-family: microsoft yahei;font-size:14px;}
+
+.top { width:100%; height:286px; background:url(img/top.png) no-repeat; margin:0 auto;} 
+.con  { width:990px; margin:-90px auto 0 auto; overflow:hidden;}
+.top2{width:100%;height:115px;background:url(img/con1.png);}
+.con1 { width:990px; height:38px; background:url(img/con1_bt.png) repeat-x;}
+.con1_l { float:left; width:313px ; padding-top:5px;font-size:24px;color:#37066f;}
+.con1_r { float:right; width:600px;height:34px; padding:5px 20px 0 0; }
+.con1_r li { font-size:14px;color:#37066f;float:left; width:60px; height:33px; line-height:33px; text-align:center;cursor:pointer;}
+.con1_r .on { background:url(img/con1.gif) no-repeat;cursor:pointer;font-weight:bold;color:#000;}
+.con2 { width:990px; margin:0 auto; overflow:hidden;}
+.con2 li {text-align:left;float:left; width:311px; height:415px; border:1px solid #DFDFDF; margin-top:25px ; overflow:hidden;}
+.con2 li:hover{ border:1px solid #808080;}
+.con21 { width:291px; height:218px; margin:10px; }
+.con22 { width:301px; height:auto; text-align:left; line-height:24px; padding-left:10px;
+font-style:normal;font-family:arial,SimSun,Verdana,Geneva,Helvetica; 
+color:#666666}
+.con23 { margin-top:4px;}
+.con24 { width:286px; height:50px; padding:15px 10px 0 15px; }
+.con24_l { float:left; color:#FF6600; line-height:25px;font-family:arial,SimSun,Verdana,Geneva,Helvetica;}
+
+.sub_btn1 { display:block;float:right;cursor:pointer;text-align:center;width:110px;height:27px;line-height:27px;
+background:url(img/btn.png);font-weight:bold;font-size:14px;}
+.sub_btn2 {background:url(img/btn2.png);}
+
+.con3 { width:100%; height:36px; margin-top:10px; font-size:24px;border-bottom:1px solid #0963AF; color:#0863AC;}
+.con4 { width:990px; height:230px; margin:20px 0 50px 0;  cursor:pointer; overflow:hidden;}
+.hotpic { width: 990px; height: 220px; overflow: hidden; margin: 0 auto; }
+#NewsPic { position: relative; width: 990px; height: 220px; overflow: hidden;  }
+    #NewsPic a { overflow: visible; border: 0; text-decoration: none; }
+    #NewsPic .Picture { position: absolute; left: 0; top: 0; }
+    #NewsPic .Nav { position: absolute; height: 13px; line-height: 14px; bottom: 0px; right: 1px; }
+        #NewsPic .Nav span { font-size: 12px; font-weight: 400; color: #FFF; float: right; display: block; width: 24px; text-align: center; background: #000; border-left: solid 1px #FFF; cursor: pointer; }
+            #NewsPic .Nav span.Normal { color: #FFF; background: #000; filter: Alpha(opacity=50); opacity: .5; }
+            #NewsPic .Nav span.Cur { background: #ce0609; color: #FFF; }
+
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="Fulfillment" table="or_fulfillment" lazy="false"  dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="fulfillId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_fulfillment</param>
+			</generator>
+	</id>      
+    
+         <property name="isInvoice" />
+         <property name="invoiceTitle" />
+         <property name="invoiceAddress" />
+         <property name="fee" />
+         <property name="address" />
+         <property name="department" />
+         <property name="linkman" />
+         <property name="linkPhone" />
+         <property name="postNo" />
+
+    
+    
+    
+    
+    
+    
+    
+    
+   </class>
+
+   
+</hibernate-mapping>

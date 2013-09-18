@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 酒店网站改版v2.10 struts配置文件 -->
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="monitor" namespace="/" extends="struts-default">
+<!-- 酒店查询 		-->
+		<action name="hotel-query-home" class="com.mangocity.hotel.dreamweb.search.action.HotelQueryAction">
+		    <result name="success">WEB-INF/jsp/hotellayout/hotel-list.jsp</result>
+		</action>
+		<action name="hotel-query-out" class="com.mangocity.hotel.dreamweb.search.action.HotelQueryAction">
+		    <result name="success">WEB-INF/jsp/hotellayout/hotel-list.jsp</result>
+		</action>
+	</package>
+</struts>

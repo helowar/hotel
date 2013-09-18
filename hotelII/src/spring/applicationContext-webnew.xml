@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!-- 酒店网站改版v2.10 spring bean配置文件 -->
+ <beans default-autowire="byName" default-lazy-init="true">
+ 	
+ 	<!--酒店查询  -->
+ 	<bean id="hotelQueryService" class="com.mangocity.webnew.service.impl.HotelQueryServiceImpl">		
+ 	</bean>
+ 	<bean id="hotelGetHdlPrice" class="com.mangocity.webnew.util.HotelGetHdlPrice">		
+ 	</bean>
+ 	
+ 	<!-- 下单的service类 -->
+	<bean id="hotelBookingService" class="com.mangocity.webnew.service.impl.HotelBookingServiceImpl">
+	</bean>
+	
+	<!--查询支付是否成功的services实现类 add by shengwei.zuo -->
+	<bean id="onlineMpmService" class="com.mangocity.webnew.service.impl.OnlineMpmServiceImpl">
+	</bean>
+	
+	<!-- 订单审核service add by chenjiajie -->
+ 	<bean id="hotelCheckOrderService" class="com.mangocity.webnew.service.impl.HotelCheckOrderService">
+ 	</bean>
+	
+	<!-- 订单完成service add by chenjiajie -->
+ 	<bean id="hotelOrderCompleteService" class="com.mangocity.webnew.service.impl.HotelOrderCompleteService">
+ 	</bean>
+ 	<!-- 新网站web酒店查询类 -->
+	<bean id="hotelManageWebForNewHotels" class="com.mangocity.hweb.manage.impl.HotelManageWebForHotelsImpl">		
+	</bean>
+ 	
+ 	<!-- 即时确认，发送短信，Email，传真的Service add by shengwei.zuo 2010-2-1 -->
+	<bean id="orderImmedConfirmService" class="com.mangocity.webnew.service.impl.OrderImmedConfirmServiceImpl">		
+	</bean>
+	
+	<!-- 芒果的酒店促销 Service add by shengwei.zuo 2010-8-22 -->
+	<bean id="mangoSalesService" class="com.mangocity.webnew.service.impl.MangoSalesServiceImpl">		
+	</bean>
+	
+	<!-- 芒果的酒店促销 Dao add by shengwei.zuo 2010-8-22 -->
+	<bean id="mangoSalesDao" class="com.mangocity.webnew.dao.impl.MangoSaleDaoImpl">		
+	</bean>
+	
+	<!-- 香港酒店促销service add by zhijie.gu 2010-11-6 -->
+	<bean id="queryAllHkHotelService" class="com.mangocity.webnew.service.impl.QueryAllHkHotelServiceImpl">		
+	</bean>
+	
+	<!-- 香港酒店促销dao add by zhijie.gu 2010-11-6 -->
+	<bean id="queryAllHkHotelDao" class="com.mangocity.webnew.dao.impl.QueryAllHkHotelDaoImpl">		
+	</bean>
+ </beans>

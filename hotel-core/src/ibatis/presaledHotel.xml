@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="HtlHotel">
+
+	<!-- Select with no parameters using the result map for HtlPresale class. -->
+	<select id="queryPresaledHotes"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select presaleHotel.presale_hotel_ID PRESALE_HOTEL_ID,hotel.STATE STATE,hotel.CITY CITY,hotel.ZONE
+		ZONE,hotel.CHN_NAME CHN_NAME,hotel.HOTEL_STAR
+		HOTEL_STAR,hotel.COMMENDTYPE COMMENDTYPE from v_htl_hotel
+		hotel,HTL_PRESALE_HOTEL presaleHotel where 
+		presaleHotel.HOTEL_ID=hotel.HOTEL_ID
+		and hotel.HOTEL_SYSTEM_SIGN = '01'
+		and	presaleHotel.PRESALE_ID=#presaleID#
+		<!--
+			 
+			<dynamic prepend="WHERE">
+			
+			(presaleHotel.HOTEL_ID=hotel.HOTEL_ID)
+			<isNotEmpty prepend="AND" property="entityID">
+			(PRESALE_HOTEL_ID = #entityID#)
+			</isNotEmpty>
+			
+			
+			</dynamic>
+		-->
+	</select>
+    
+    <!-- 增加促销酒店信息按条件查询  by haibo.li -->
+    <select id="queryHotelSel"
+            parameterClass="com.mangocity.util.collections.FormatMap"
+            resultClass="java.util.HashMap">
+            select presaleHotel.presale_hotel_ID PRESALE_HOTEL_ID,hotel.STATE STATE,hotel.CITY CITY,hotel.ZONE
+		    ZONE,hotel.CHN_NAME CHN_NAME,hotel.HOTEL_STAR
+		    HOTEL_STAR,hotel.COMMENDTYPE COMMENDTYPE from v_htl_hotel
+		    hotel,HTL_PRESALE_HOTEL presaleHotel where 
+		    presaleHotel.HOTEL_ID=hotel.HOTEL_ID
+		    and hotel.HOTEL_SYSTEM_SIGN = '01'
+		    and	presaleHotel.PRESALE_ID=#presaleID#
+		    <isNotEmpty prepend="AND" property="chinesename">
+				upper(hotel.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstar">
+				hotel.HOTEL_STAR = #hotelstar#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				hotel.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				hotel.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				hotel.ZONE like #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mainCommend">
+				hotel.COMMENDTYPE = #mainCommend#
+			</isNotEmpty>
+    
+    
+    
+    
+    </select>
+
+
+
+
+
+
+
+
+</sqlMap>

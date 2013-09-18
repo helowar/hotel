@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    shengwei.zuo hotel2.9.3 优惠条款总表 2009-08-25
+-->
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+    <class name="HtlFavourable" table="htl_favourable" dynamic-insert="true" dynamic-update="true">
+        <id name="id" unsaved-value="0" column="ID">
+            <generator class="sequence">
+            	<param name="sequence">seq_htl_favourable</param>
+            </generator>
+        </id>
+        <property name="cityCode">
+            <column name="city_code">
+                <comment>城市编码</comment>
+            </column>
+        </property>
+        <property name="cityName">
+            <column name="city_name">
+                <comment>城市名称</comment>
+            </column>
+        </property>
+        <property name="hotelId">
+            <column name="hotel_id">
+                <comment>酒店Id</comment>
+            </column>
+        </property>
+        <property name="hotelName">
+            <column name="hotel_name">
+                <comment>酒店名称</comment>
+            </column>
+        </property>
+        <property name="favA">
+            <column name="fav_a">
+                <comment>半价优惠</comment>
+            </column>
+        </property>
+        <property name="favB">
+            <column name="fav_b">
+                <comment>7折优惠</comment>
+            </column>
+        </property>
+        <property name="favC">
+            <column name="fav_c">
+                <comment>零利优惠</comment>
+            </column>
+        </property>
+        <property name="updateBy">
+            <column name="update_by">
+                <comment>更新人</comment>
+            </column>
+        </property>
+        <property name="updateTime">
+            <column name="update_time">
+                <comment>更新时间</comment>
+            </column>
+        </property>
+        <property name="flag">
+            <column name="flag" >
+                <comment>软删除</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

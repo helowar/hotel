@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="OrLockedOrders" table="or_locked_orders" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="orderId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_order</param>
+			</generator>
+	</id>          
+         <property name="orderId" />
+         <property name="orderCD" />
+         <property name="type" />
+         <property name="locker" />              
+		 <property name="lockTime" />            
+		 <property name="frontLock" />   
+    
+   </class>
+		
+   
+</hibernate-mapping>

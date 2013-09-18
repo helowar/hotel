@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    shengwei.zuo hotel2.9.3 优惠参数实体类 2009-08-25
+-->
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+    <class name="HtlFavouraParameter" table="HTL_FAVOURA_PARAMETER" dynamic-insert="true" dynamic-update="true">
+        <id name="id" unsaved-value="0" column="ID">
+	    	 <generator class="sequence">
+            	<param name="sequence">SEQ_HTL_FAVOURA_PARAMETER</param>
+             </generator>
+	    </id>
+        <property name="favourableType" type="java.lang.String">
+            <column name="FAVOURABLE_TYPE" >
+                <comment>优惠类型</comment>
+            </column>
+        </property>
+        <property name="continueNight" type="java.lang.Long">
+            <column name="CONTINUE_NIGHT" >
+                <comment>住几晚</comment>
+            </column>
+        </property>
+        <property name="donateNight" type="java.lang.Long">
+            <column name="DONATE_NIGHT" >
+                <comment>送几晚</comment>
+            </column>
+        </property>
+        <property name="circulateType" type="java.lang.Long">
+            <column name="CIRCULATE_TYPE" >
+                <comment>循环类型</comment>
+            </column>
+        </property>
+        <property name="discount" type="java.lang.Double">
+            <column name="DISCOUNT" >
+                <comment>折扣</comment>
+            </column>
+        </property>
+        <property name="decimalPointType" type="java.lang.Long">
+            <column name="DECIMAL_POINT_TYPE">
+                <comment>小数点类型</comment>
+            </column>
+        </property>
+        <property name="packagerateSaleprice" type="java.lang.Double">
+            <column name="PACKAGERATE_SALEPRICE">
+                <comment>包价售价</comment>
+            </column>
+        </property>
+        <property name="packagerateCommission" type="java.lang.Double">
+            <column name="PACKAGERATE_COMMISSION">
+                <comment>包价佣金</comment>
+            </column>
+        </property>
+        <property name="packagerateNight" type="java.lang.Long">
+            <column name="PACKAGERATE_NIGHT" >
+                <comment>包价晚数</comment>
+            </column>
+        </property>
+        
+        <!-- 和各晚房费表是一对多的关系 add by shengwei.zuo 2009-08-25 -->
+        <bag name="lstEveningsRent" cascade="all-delete-orphan">
+        	<key column="FAVOURA_PARAMETER_ID"></key>
+        	<one-to-many class="HtlEveningsRent" />
+        </bag>
+        
+        <!-- Add by Shengwei.Zuo 2009-08-25  和优惠条款总表的多对一关系  -->                       
+        <many-to-one name="favourableclauseEntiy" class="HtlFavourableclause" column="FAVOURABLE_CLAUSE_ID"></many-to-one>
+        
+    </class>
+</hibernate-mapping>

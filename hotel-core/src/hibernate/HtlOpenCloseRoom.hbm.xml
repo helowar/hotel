@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlOpenCloseRoom" table="HTL_OPEN_CLOSE_ROOM"  dynamic-insert="true" dynamic-update="true">
+
+		<id name="ID" unsaved-value="0" column="ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HOTEL_OPEN_CLOSE_ROOM</param>
+			</generator>
+			
+		</id>
+		<property name="hotelId" column="HOTEL_ID"></property>
+		<property name="roomType" column="ROOM_TYPE"></property>
+		<property name="beginDate" column="BEGIN_DATE"></property>
+		<property name="endDate" column="END_DATE"></property>
+		<property name="week" column="WEEK"></property>
+		<property name="opCloseSign" column="OP_CLOSE_SIGN"></property>
+		<property name="causeSign" column="CAUSE_SIGN"></property>
+		<property name="openRoomOP" column="OPENROOM_OP"></property>
+		<property name="openRoomTime" column="OPENROOM_TIME"></property>
+		<property name="closeRoomOP" column="CLOSEROOM_OP"></property>
+		<property name="roomTypeId" column="ROOM_TYPE_ID"></property>
+		<property name="closeRoomTime" column="CLOSEROOM_TIME"></property>
+		<property name="remark" column="REMARK"></property>	
+		<property name="message" column="MESSAGE"></property>	
+	</class>
+	
+	<query name="selectCloseRoomDate">
+		from HtlOpenCloseRoom c where c.opCloseSign='G' and hotelId=?
+	</query>
+	
+	
+	<query name="queryHtlOpenClose">
+		from HtlOpenCloseRoom
+			where hotelId=? 
+			and roomTypeId=? 
+			and opCloseSign = 'G'
+			and (
+			   ? BETWEEN beginDate AND endDate 
+			   or ? BETWEEN beginDate AND endDate 
+			   or((beginDate between ? and ?)and(endDate between ? and ?)))
+			)
+	</query>	
+</hibernate-mapping>

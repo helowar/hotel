@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+   <class name="Remark" table="or_remark"   dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="remarkId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_remark</param>
+			</generator>
+	</id>       
+    
+         <property name="privateRemark" />
+         <property name="roomRemark" />
+         <property name="contactRemark" />
+         <property name="hotelRemark" />
+
+    
+    
+    
+    
+    
+    
+    
+    
+   </class>
+
+   
+</hibernate-mapping>

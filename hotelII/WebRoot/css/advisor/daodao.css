@@ -1,0 +1,44 @@
+#daodao_container 
+{
+	border:1px solid #ccc;
+    border-width: 1px;
+}
+#daodao_img{
+	width:60px;
+	height:15px;
+}
+#color_words
+{
+	color:#008800;
+}
+#daodao_container #keywords
+{
+	color:#FF6600;
+	padding:10px 0 10px 0;
+}
+.daodao_c {
+	color:#FF6600;
+}
+#daodao_comment_num{
+	float:none;
+	position:relative;
+	top:-3px;
+	color:#777777;
+}
+#emap_pic{
+	background:url("http://himg.mangocity.com/img/h/2011/hotelicons.png") no-repeat scroll -75px 1px transparent;
+    float:none;
+    display:inline-block;
+    height:20px;
+    }
+#emap_pic a[name='eMap']{
+	position:relative;
+    left:15px;
+}
+#tab4 span{
+	padding-right:0;
+}
+.hotelname em{
+	 position:relative;
+	 top:2px;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlEbooking" table="HTL_EBOOKING" dynamic-insert="true" dynamic-update="true" >
+		<id name="ebookingID" unsaved-value="0" column ="EBOOKINGID">
+			<generator class="sequence">
+				<param name="sequence">SQ_HTL_EBOOKING</param>
+			</generator>
+		</id>
+		<property name="whetherEbooking" column="WHETHEREBOOKING" />
+		<property name="whetherPrice" column="WHETHERPRICE" />
+		<property name="whetherRoomType" column="WHETHERROOMTYPE" />
+		<property name="whetherContack" column="WHETHERCONTACT" />
+		<property name="whetherPayIncrease" column="WHETHERPAYINCREASE" />
+		<many-to-one name="htlHotel" class="com.mangocity.hotel.base.persistence.HtlHotel"  column="HOTEL_ID"/>
+		
+	</class>
+</hibernate-mapping>

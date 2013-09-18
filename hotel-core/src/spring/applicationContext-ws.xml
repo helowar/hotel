@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+	http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd "
+	default-autowire="byName">
+	
+	<http-conf:conduit name="*.http-conduit">
+		<http-conf:client ConnectionTimeout="30000"
+			ReceiveTimeout="30000" />
+	</http-conf:conduit>
+	
+	<bean id="mangoHotelService" class="com.mangocity.hdl.hotel.dto.MangoHotelService"
+		factory-bean="clientFactory" factory-method="create" />
+
+	<bean id="clientFactory"
+		class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass"
+			value="com.mangocity.hdl.hotel.dto.MangoHotelService" />
+		<property name="address"
+			value="${ws.hop.mangohotel.url}" />
+	</bean>
+	
+	<!-- 调用HDL WebService接口 -->
+	<bean id="hdlService" class="com.mangocity.hdl.service.impl.HDLServiceImpl">
+	</bean>
+	
+	<bean id="exService" class="com.mangocity.hdl.service.impl.ExMappingServiceImpl">
+	</bean>	
+	
+	<bean id="exHdlDao" class="com.mangocity.hdl.dao.impl.ExDaoImpl">
+	</bean>
+	
+	<!--  <import resource="classpath:zhx/config/applicationContext-zhx.xml" /> 由于该文件导致启动报错，故注释-->	
+	
+</beans>

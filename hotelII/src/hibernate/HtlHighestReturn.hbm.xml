@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.pricelowest.persistence" default-lazy="false">
+<class name="HtlHighestReturn" table="htl_highest_return" 
+		dynamic-insert="true" dynamic-update="true">
+
+		<id name="ID" column="ID">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_highest_return</param>
+			</generator>
+		</id>
+		<property name="cityCode" column="CITY_CODE"></property>
+		<property name="cityName" column="CITY_NAME"></property>
+		<property name="hotelId" column="HOTEL_ID"></property>
+		<property name="hotelName" column="HOTEL_NAME"></property>
+		
+		<property name="hotelStar" column="HOTEL_STAR"></property>	
+		<property name="bizZoneCode" column="BIZZONE_CODE"></property>
+		<property name="bizZoneName" column="BIZZONE_NAME"></property>
+		<property name="salePrice" column="SALE_PRICE"></property>
+		<property name="salePriceCurrency" column="SALW_PRICE_CURRENCY"></property>
+		
+		<property name="returnCash" column="RETURN_CASH"></property>
+		<property name="ableDate" column="ABLE_DATE"></property>
+		<property name="createTime" column="CREATE_TIME"></property>
+		<property name="modifyTime" column="MODIFY_TIME"></property>
+		<property name="hotelTheme" column="HOTEL_THEME"></property>
+		
+		<property name="supplierChannel" column="SUPPLIER_CHANNEL"></property>
+		<property name="hotelLongitude" column="LONGITUDE"></property>
+		<property name="hotelLatitude" column="LATITUDE"></property>
+		<property name="roomName" column="ROOMNAME"></property>
+		<property name="presaleInfo" column="PRESALEINFO"></property>
+
+</class>
+</hibernate-mapping>

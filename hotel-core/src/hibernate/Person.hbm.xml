@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false">
+
+	<class name="com.mangocity.demo.persistence.Person" table="T_PERSON"
+		dynamic-insert="true" dynamic-update="true" >
+
+	   	<id name="ID" column="PERSON_ID">
+				<generator class="sequence">
+					<param name="sequence">seq_person</param>
+				</generator>
+		</id>          		
+		
+		<!-- 如果字段名和列名一致，而不用配置column属性 -->
+		<property name="age" />
+		<property name="firstname" />
+		<property name="lastname" />
+
+			<bag name="accounts" cascade="all-delete-orphan" inverse="true"
+			lazy="true">
+			<key column="PERSON_ID"></key>
+			<one-to-many class="com.mangocity.demo.persistence.Account" />
+			</bag>
+			
+		<!-- 	
+			<one-to-one name="Event"
+			class="com.mangocity.demo.persistence.Event" cascade="save-update" />
+			
+			<set name="events" table="event_attendees">
+			<key column="event_id" />
+			<many-to-many column="attendee_id" class="Attendee" />
+			</set>
+		-->
+
+		<!-- 计算字段的用法：使用公式和子查询 -->
+		<!-- 
+			<property name="averageBidAmount" type="big_decimal"
+			formula="( select AVG(b.AMOUNT) from
+			BID b where b.ITEM_ID = ITEM_ID )" />
+			
+			
+			<property name="totalIncludingTax"
+			formula="TOTAL + TAX_RATE * TOTAL"
+			type="big_decimal"/>
+		-->
+
+		<!-- 自动生成值的字段
+			<property name="lastModified"
+			column="LAST_MODIFIED"
+			update="false"
+			insert="false"
+			generated="always"/>
+			
+		-->
+
+		<!-- One-One的设计
+			<one-to-one name="shippingAddress"
+			class="Address"
+			cascade="save-update"/>
+		-->
+
+		<!-- Many to one 
+			<many-to-one name="shippingAddress"
+			class="Address"
+			column="SHIPPING_ADDRESS_
+			cascade="save-update"
+			unique="true"/>
+		-->
+
+
+	</class>
+
+	<!-- 命名查询
+		<query name="query_user">
+		<![CDATA[ 
+		from User u where u.loginID=? and u.password=? 
+		]]>
+		</query>
+		
+	-->
+
+</hibernate-mapping>

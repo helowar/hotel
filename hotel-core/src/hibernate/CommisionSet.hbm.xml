@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="CommisionSet" table="htl_b2b_commision_set" dynamic-insert="true" dynamic-update="true" lazy="false">
+		
+		<id name="commID" unsaved-value="0"  type="java.lang.Long">
+			<column name="COMM_SETID" precision="10" scale="0"/>
+			<generator class="sequence">
+				<param name="sequence">seq_commision</param>
+			</generator>
+		</id>
+		<property name="b2BCd" type="java.lang.String">
+            <column name="B2BCD" length="32"/>
+        </property>
+        <property name="hotelStar" type="java.lang.String">
+            <column name="HOTEL_STAR" length="2" />
+        </property>
+		<property name="setType" type="java.lang.Long">
+            <column name="SETTYPE" precision="2" scale="0" />
+        </property>                
+		<property name="valueUnit" type="java.lang.Long">
+            <column name="VALUE_UNIT" precision="1" scale="0" />
+        </property> 
+		<property name="value1" type="java.lang.Double">
+            <column name="VALUE1" precision="3" scale="1" />
+        </property> 
+		<property name="value2" type="java.lang.Double">
+            <column name="VALUE2" precision="3" scale="1" />
+        </property> 
+        <property name="createDate" type="java.util.Date">
+            <column name="CREATE_DATE" length="7" />
+        </property>
+ 		<property name="modifyDate" type="java.util.Date">
+            <column name="MODIFY_DATE" length="7" />
+        </property>
+        <property name="createBy" type="java.lang.String">
+            <column name="CREATE_BY" length="32" />
+        </property>
+        <property name="modifyBy" type="java.lang.String">
+            <column name="MODIFY_BY" length="32" />
+        </property>
+        <property name="createById" type="java.lang.String">
+            <column name="CREATE_BY_ID" length="32" />
+        </property>
+       <property name="modifyById" type="java.lang.String">
+            <column name="MODIFY_BY_ID" length="32" />
+        </property>
+
+
+	</class>
+	<query name="queryHtlB2bCommset">
+    	<![CDATA[ 
+			from CommisionSet c where c.b2BCd =? and c.hotelStar= ?
+		]]>
+    </query>
+    
+   <!-- add by alfred.query batch commSet -->
+   <query name="queryHtlB2bCommsetList">
+    	<![CDATA[ 
+			from CommisionSet c where c.b2BCd = ?
+		]]>
+   </query>
+
+</hibernate-mapping>

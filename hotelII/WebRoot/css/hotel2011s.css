@@ -1,0 +1,934 @@
+/*reset css*/
+html, body, div, p, h1, h2, h3, h4, h5, h6, blockquote,
+ol, ul, li, dl, dt, dd, 
+form, fieldset, legend, button, input, textarea, 
+pre, code, th, td{
+   margin:0;
+   padding:0;
+}
+
+body, button, input, select, textarea{ font:12px \5b8b\4f53, Arial, Helvetica, sans-serif;}
+
+h1, h2, h3, h4, h5, h6{ font-size:100%;}
+
+ul, ol, li{ list-style:none;}
+
+a{ text-decoration:none;}
+
+address, caption, code, cite, dfn, em, var{ font-style:normal;}
+code, kbd, pre, samp{ font-family:courier new, courier, monospace;} 
+small { font-size: 12px;}
+
+legend{ color:#000000;}
+fieldset, img{ border:0;}
+
+button, input, select, textarea{ font-size: 100%; }
+
+table{ border-collapse:collapse; border-spacing:0;}
+
+:focus {
+	outline: 0;
+}
+
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after{
+	content: '';
+	content: none;
+}
+
+
+/*css for links*/
+a:link, a:visited{ color:#333;}
+a:hover{ color:#ff6600;}
+a.green:link, a.green:visited{ color:#008800;}
+/* global css */
+body{ background:#fff;}
+.w960{ width:960px; margin:0 auto;}
+.w970{ width:970px; margin:0 auto;}
+.cFloat{ clear:both; zoom:1;}
+.cFloat:after{ 
+   clear:both; 
+   content:"."; 
+   display:block; 
+   visibility:hidden; 
+   overflow:hidden; 
+   height:0; 
+   line-height:0; 
+   font-size:0;
+}
+.clear{ clear:both; font-size:0; line-height:0;}
+.txtin{ height:13px; padding:3px; border:1px solid #c9c9c9;}
+.iradio{ margin:3px 2px 0 0; *margin:-1px 0 0 -3px;}
+input.w20{ width:20px;}
+input.w57{ width:57px;}
+input.w134{ width:134px;}
+input.w144{ width:144px;}
+input.w152{ width:152px;}
+input.w176{ width:176px;}
+input.w182{ width:182px;}
+input.w199{ width:199px;}
+input.w272{ width:272px;}
+input.w398{ width:398px;}
+/* head */
+#head_mango{ width:960px; height:142px; overflow:hidden; margin:0 auto;}
+
+#header{ height:133px; overflow:hidden; margin-top:6px;}
+#header a:link, #header a:visited{ color:#333;}
+#logo{ float:left; display:inline; width:255px; height:94px; overflow:hidden; margin-top:-6px;}
+
+#header .updateAd{ float:left; display:inline; width:468px; height:60px; overflow:hidden;}
+#header .funVersion{ float:right; width:222px; padding-top:5px; background:transparent url(http://wimg.mangocity.com/img/home/new.jpg) no-repeat 172px 3px;
+}
+#header .funVersion .fun em{color:#008800;}
+#header .fun{ clear:both; height:33px; line-height:33px;}
+#header .fun span{ margin:0 8px;}
+#header .version{ float:right; width:222px;}
+#header .version li{ float:left; width:54px; padding-left:17px; background:transparent url(http://travel.mangocity.com/images/jiantou.jpg) no-repeat left center; line-height:19px;}
+#header .version li.w73{ width:75px;}
+#header .version li.w40{ width:40px;}
+
+#nav{ float:right; width:820px; height:29px; margin-top:-20px; background:transparent url(http://travel.mangocity.com/images/bjtiao.jpg) repeat-x left top;}
+#nav ul{ margin-left:19px;}
+#nav li{ float:left; padding:5px 1px 0; color:#F6BC01; line-height:23px;}
+#nav li a{ float:left; padding:1px 8px 2px; line-height:21px;}
+#nav li a:link, #nav li a:visited{ color:#FFFFFF;}
+#nav li a.current{ background-color:#FFFFFF;font-weight:bold;}
+#nav li a.current:link, #nav li a.current:visited{ color:#fc5f00; }
+#nav li.new{background:transparent url(http://www.mangocity.com/200912/images/new.gif) no-repeat right top;}
+
+#infoBar{ clear:both; height:29px; background:transparent url(http://travel.mangocity.com/images/bjx.jpg) repeat-x left top; line-height:29px;}
+#infoBar .phone{ float:left; display:inline; margin-left:12px; padding-left:23px; background:transparent url(http://travel.mangocity.com/images/tel.gif) no-repeat 0 6px;}
+#infoBar .login{ float:right;}
+#infoBar .login a{ margin:0 5px;}
+
+/* top bar */
+.hn-topbar{ height:37px;}
+.hn-topbar h1{ height:31px; margin:0 auto; padding-left:50px; background:transparent url(http://himg.mangocity.com/img/hotelicon.gif) no-repeat 5px -4px; line-height:31px;  font-size:16px; font-weight:bold;}
+.hn-topbar .status, .hn-topbar .step1, .hn-topbar .step2, .hn-topbar .step3, .hn-topbar .step4{ float:right; width:184px; height:31px; background:transparent url(http://himg.mangocity.com/img/h/2011/status.gif) no-repeat 14px 0;}
+.hn-topbar .step2{ background-position:14px -31px;}
+.hn-topbar .step3{ background-position:14px -62px;}
+.hn-topbar .step4{ background-position:14px -93px;}
+.status ul{ padding-top:17px;}
+.status li{ float:left; width:46px; text-align:center;}
+.status li.choice{ color:#ff6600;}
+
+/* main body */
+.hn-main{ float:left; width:740px;}
+
+/* start search form */
+.hn-search{ width:734px; height:187px; overflow:hidden; background:#fffeed; border:3px solid #ffc54a;}
+.hn-form{ width:706px; margin:0 auto; padding-top:20px;}
+.hn-form ul{ width:100%; overflow:auto; zoom:1;}
+.hn-form li{ float:left; margin-bottom:10px;}
+.hn-form li.w92{ width:92;}
+.hn-form li.w150{ width:150px;}
+.hn-form li.w158{ width:158px;}
+.hn-form li.w213{ width:213px;}
+.hn-form li.w280{ width:280px;}
+.hn-form li label, .hn-form li input, .hn-form li span, .hn-form li a{ float:left;}
+.hn-form li span, .hn-form li a{ height:26px; line-height:26px;}
+
+.input_label, .input_label input, .select_label, .select_label input{ background:transparent url(http://himg.mangocity.com/img/h/2011/hotel2011.png) no-repeat 0 0;}
+.hn-form li .input_label{ position:relative; padding-right:2px; background-position:right 0;}
+.hn-form li .input_label input, .hn-form li .select_label input{height:18px; padding:4px 0 4px 4px; background-position:0 0; border:none; line-height:20px;}
+.hn-form li .input_label input.required{ background-position:0 -26px;}
+.hn-form li input.greytxt{ color:#777;}
+.hn-form li input.w20{ text-align:center;}
+.hn-form li .mg0508{ margin:0 5px 0 8px;}
+.hn-form li .select_label{ position:relative; padding-right:25px; background-position:right -78px;}
+.cboxWrap{ clear:both; height:32px;}
+.cboxWrap span, .cboxWrap label, .cboxWrap input{ float:left;}
+.cboxWrap span, .cboxWrap label{ height:21px; line-height:21px;}
+.cboxWrap span{width:60px;}
+.cboxWrap label{ margin-right:13px; color:#333;}
+
+.btnWrap{ clear:both; width:420px; height:40px; margin:0 auto; padding:15px 0 0 286px; border-top:1px dashed #d2d2d2;}
+.btnWrap a{ float:left; width:135px; line-height:32px;}
+.btn135x32a{ display:block; width:135px; height:32px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotel2011.png) no-repeat 0 -249px; line-height:32px; text-indent:53px; font-size:14px; font-weight:bold;}
+.btnWrap a.btn135x32a{ margin-right:15px;}
+.btnWrap a.btn135x32a:hover{ background-position:0 -281px;}
+a.btn135x32a:link, a.btn135x32a:visited{ color:#fff;}
+
+.hn-waiting{ clear:both; height:40px; padding-top:15px; border-top:1px dashed #d2d2d2; text-align:center;}
+
+.cityIcon, .dateIcon{ height:26px; padding-right:18px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotel2011.png) no-repeat 0 0; position:absolute; top:0; right:3px; line-height:16px;}
+.cityIcon{ background-position:0 -52px;}
+.dateIcon{ background-position:0 -78px;}
+
+.hidetxt, .festival{ position:absolute; top:0; right:24px; color:#999;}
+.festival{ right:105px;}
+a.hidetxt:link, a.hidetxt:visited{ color:#999;}
+.hn-form li .hidetxt{ line-height:27px;}
+/* end search form */
+
+/* start hot hotel */
+.hothotelBar{ height:26px;}
+.hothotelBar h2{ float:left; padding-left:11px; line-height:26px; font-size:14px; color:#ff6600;}
+.hothotelNav{ float:right;}
+.hothotelNav h3{ display:inline; float:left; margin-left:1px; font-weight:normal;}
+.hothotelNav a{ display:block; width:55px; height:26px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotel2011.png) no-repeat -56px -314px; line-height:26px; text-align:center;}
+
+.hothotelNav a.on{ background-position:0 -313px; font-size:14px; font-weight:bold;}
+.hothotelNav a.on:link, .hothotelNav a.on:visited{ color:#fff;}
+.hothotelPanel{ clear:both; width:738px; border:1px solid #ffc54a; border-top:2px solid #fc8505;}
+.hotPanel{ border-bottom:1px dashed #d2d2d2;}
+.hotPanel table{ width:100%; border:1px solid #fff;}
+.hotPanel table th{ width:14px; padding:10px; background:#fefab0 url(http://himg.mangocity.com/img/h/2011/nryellow.png) no-repeat 27px center; font-size:14px; color:#ff6600; font-weight:normal; line-height:21px;}
+.hotPanel table td{ padding:10px 15px;}
+
+.hotFocus{ position:relative; margin-top:-1px; background:#fffcd1; border:1px solid #ffc54a; border-width:1px 0;}
+.hotFocus table{ border:none;}
+.hotFocus table th{ font-weight:bold;  background:#fffcd1 url(http://himg.mangocity.com/img/h/2011/nryellow.png) no-repeat 27px center;}
+
+.hotPanel p{ line-height:23px; color:#777;}
+.hotPanel p span{ margin:0 5px; color:#ccc;}
+.nobor{ border:none;}
+/* end hot hotel */
+
+/* sidebar */
+.hn-sidebar{ float:right; width:210px;}
+.hn-boxtop, .hn-boxbot{ width:210px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotel2011.png) no-repeat 0 0;}
+.hn-boxtop{ height:28px; background-position:0 -173px;}
+.hn-boxmid{ border:1px solid #ccc; border-width:0 1px;}
+.hn-boxbot{ clear:both; height:5px; background-position:0 -201px; font-size:0; line-height:0;}
+.hn-boxtop h2{ padding-left:10px; line-height:28px; font-size:14px;}
+.hn-boxtop .more{ float:right; padding-right:10px; line-height:28px;}
+.whychoice{ height:38px; background-position:0 -130px;}
+.whychoice h2{ line-height:38px; font-size:16px;}
+
+
+.choiceul{ width:188px; margin:0 auto; padding-top:15px;}
+.choiceul li{ padding-bottom:10px;}
+.choiceul li h3{ height:15px; padding-left:17px; background:transparent url(http://himg.mangocity.com/img/h/2011/numicon.png) no-repeat left center; line-height:15px; color:#ff6600;}
+.choiceul li h3.no_1{background-position:0 1px;}
+.choiceul li h3.no_2{background-position:0 -105px;}
+.choiceul li h3.no_3{background-position:0 -211px;}
+.choiceul li h3.no_4{background-position:0 -305px;}
+.choiceul li h3.no_5{background-position:0 -411px;}
+
+.choiceul li p{ color:#9a9a9a; line-height:17px;}
+.choiceul li a{ display:block; height:17px; margin-top:-17px; line-height:17px; text-align:right;}
+
+.myreviews{ width:210px; height:42px; overflow:hidden;}
+.myreviews a{ display:block; width:210px; height:0; overflow:hidden; padding-top:42px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotel2011.png) no-repeat 0 -206px;}
+
+.loginul{ width:190px; height:94px; margin:0 auto; padding-top:15px;}
+.loginul li, .loginul li label, .loginul li input{ float:left;}
+.loginul li{ margin-bottom:10px;}
+.loginul li label{ width:60px; height:21px; line-height:21px;}
+.loginul li input.input130x20{ width:124px; height:16px; padding:2px 3px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotel2011.png) no-repeat -73px -105px; border:none; line-height:16px;}
+.btn62x23{ width:62px; height:23px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotel2011.png) no-repeat -204px -105px; border:none; text-align:center; line-height:23px;}
+.loginul li .btn62x23{ margin-left:60px; cursor:pointer;}
+
+.passhotel{ width:192px; margin:0 auto; padding:9px 0 3px;}
+.passhotel li{ height:24px; line-height:24px; vertical-align:top;}
+.passhotel li .hoteltit, .passhotel li .reviews{ float:left; width:166px; height:24px; overflow:hidden; white-space:nowrap;}
+.passhotel li .reviews{ float:right; width:26px;}
+
+.hotelbanner{ width:210px; overflow:hidden; margin-bottom:13px;}
+
+.hotcity{ clear:both; padding:10px 0; background:#f5f5f5;}
+.hotcity h2{ height:21px; padding:0 10px; line-height:21px; color:#ff6600;}
+.hotcity p, .hotcity .hotcitylist{ padding:0 10px; line-height:21px;}
+.hotcity p a{ margin-right:10px;}
+
+.hotticket{ clear:both; width:100%; margin-bottom:-1px;}
+.hotticket li{ padding:7px 0 7px 10px; border-bottom:1px dotted #e0e0e0; vertical-align:top; line-height:18px;}
+.hotticket li .ticketname{ width:195px; line-height:19px;}
+.hotticket li .price{ color:#ff6600;}
+.hotticket li .orgprice{ color:#787878;}
+.hotticket li .orgprice em{ text-decoration:line-through;}
+.hotticket li.nobor{ border:none;}
+
+.rentalcar{ width:192px; margin:0 auto; padding:9px 0 3px;}
+.rentalcar li{ height:24px; line-height:24px; vertical-align:top;}
+.rentalcar li .carname, .rentalcar li .price{ float:left; width:106px; height:24px; overflow:hidden; white-space:nowrap;}
+.rentalcar li .price{ float:right; width:80px; text-align:right; color:#ff6600;}
+
+
+.yen{ font-family:Arial;}
+/* other comm */
+.footer{ clear:both; height:70px; overflow:hidden;}
+.mgb10{ margin-bottom:13px;}
+
+/* city select */
+.mgiframe{
+    width: 210px;
+}
+.mgSelect{
+    position:absolute;
+	left:445px;
+	top:310px;
+    background-color:#FF7A23;
+    color:#FF7A23;
+    background:#fcfcfc;
+    border:1px #ccc solid;
+    border-color:#FF7A23;
+    list-style:none;
+    width: 210px;
+    z-index: 1001;
+	display:none;
+}
+.mgsltit{ height:24px; padding-left:10px; border-bottom:1px dashed #ccc; line-height:24px; color:#787878;}
+.mgcitylist{ padding-top:8px;}
+.mgcitylist a{ display:block; height:24px; overflow:hidden; padding:0 9px; border:1px solid #fcfcfc; border-width:1px 0; line-height:24px; cursor:pointer;}
+.mgcitylist a.current{ background:#ff9a00; border-color:#FF7A23;}
+.mgcitylist a:link, .mgcitylist a:visited{ color:#333;}
+.mgcitylist a:hover{ background:#FFF4D2; border-color:#FF7A23;}
+.mgcitylist span, .mgcitylist em{ height:24px; white-space:nowrap; overflow:hidden; }
+.mgcitylist span{ float:right; width:108px;text-align:right;}
+.mgcitylist em{ float:left; width:80px;}
+
+.dynamicFrame{ width:745px; height:1475px; overflow:auto;}
+#airports{ width:121px;}
+
+.holitip{ position:absolute; top:0; right:50px; color:#999;}
+
+/* hotel retult list */
+.crumbs{ height:31px; line-height:31px;}
+.crumbs em{ color:#ff6600;}
+.requery{ width:736px; background:#fff; border:2px solid #FFC54A;}
+
+.requery .hn-form{ width:716px;}
+
+.requerytit{ height:35px; background:transparent url(http://himg.mangocity.com/img/h/2011/requerytit.gif) repeat-x left top; border-bottom:1px solid #ffe3a4;}
+.requerytit h2{ padding-left:10px; line-height:35px; font-size:16px;}
+.requerytit .feedback{ float:right; padding-right:10px; line-height:35px; color:#777;}
+.feedback strong{ color:#ff6600;}
+.btn92x26a, .btn92x26, .gbtn92x26{ display:block; width:92px; height:26px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat -176px -20px; border:none; line-height:26px; text-indent:21px; font-weight:bold; color:#fff;}
+input.btn92x26a{ cursor:pointer;}
+a.btn92x26a:link, a.btn92x26a:visited, a.btn92x26:link, a.btn92x26:visited{ color:#fff;}
+.btn92x26{ background-position:-176px -47px;}
+.gbtn92x26{ background-position:-176px -20px; }
+
+.conditions{ display:none; clear:both; border-top:2px solid #eaeaea;}
+.conditions dl{ clear:both; width:716px; height:28px; margin:0 auto; padding-top:10px; position:relative;}
+.conditions dt, .conditions dd, .conditions input, .conditions label,  .conditions a{ float:left;}
+.conditions dt, .conditions label, .conditions a{ height:21px; line-height:21px;}
+.conditions dt{width:60px;}
+.conditions a{ margin-right:13px;}
+.conditions label{ margin-right:13px; color:#333;}
+.conditions .odd{ background:#f9f9f9;}
+
+.conditions a:link, .conditions a:visited{ color:#008800;}
+.conditions dd{ width:656px;}
+
+.cdchosen{ width:726px; padding:10px 0 10px 10px; background:#fff; border-bottom:1px solid #FFE1A3}
+.cdchosen ul{ width:100%; overflow:auto; zoom:1;}
+.cdchosen li{ float:left; margin-right:10px; padding-left:5px; background:#FFFBEF; border:1px solid #FFE1A3; line-height:21px; white-space:nowrap;}
+.cdchosen .close{ float:left; width:14px; height:13px; margin:4px 5px 0 7px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat 0 -30px; cursor:pointer;}
+.conditions .cdchosen label{ float:left; margin-right:0;}
+
+.reqbot{ clear:both; height:7px; background:#fffbef; font-size:0; border-top:1px solid #ffe1a3;}
+.contract{ display:block; width:105px; height:19px; margin:-2px auto 10px; position:relative; text-align:center; line-height:17px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat 0 0; text-indent:19px;}
+.pull{ background-position:-282px 0;}
+.back{ background-position:-176px 0;}
+
+.requeryList{ clear:both;}
+.reqtab{ width:100%; height:28px; border-bottom:2px solid #fc8505;}
+.reqtab h2{ float:left; height:28px; margin-right:20px; padding-left:3px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat -432px 0;}
+.reqtab h2 span{ display:block; padding:7px 13px 5px 10px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat right -28px; font-size:14px; color:#fff;}
+.reqtab form, .reqtab select{ float:left; font-size:13px;}
+.reqtab .querypage{ float:right; margin-top:4px; line-height:21px;}
+.querypage a, .querypage span{ float:left; margin-left:5px;}
+.querypage .nextpage, .querypage .prepage{ width:57px; height:21px; border:none; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat -330px -41px; line-height:21px; text-indent:7px}
+.querypage .prepage{ background-position:-272px -41px; text-indent:13px;}
+.querypage em{ color:#ff6600;}
+.queryWrap{ width:100%; clear:both;}
+.queryBox{ width:100%; margin-bottom:30px; padding-top:15px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat 0 -112px;}
+.queryBox .img360{ display:inline; float:left; width:77px; height:104px; margin-left:15px; }
+.img360 .imgWrap{ display:block; width:75px; height:75px; overflow:hidden; margin:1px auto; border:1px solid #ddd; padding:1px;}
+
+.queryBox .txtWrap{ display:inline; float:right; width:605px; margin-right:15px;}
+.queryBox .hotelName{ float:left; width:515px; height:17px; margin-bottom:5px; font-size:14px;}
+.queryBox .goldenhotel{ padding-left:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat -76px -33px;}
+.queryBox .hotelName a{ float:left;}
+.hotelstar{ float:left; width:75px; height:14px; margin:1px 0 0 10px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat 0 -33px; font-size:12px;}
+.star0{ background-position: 0 -103px;}
+.star1{ background-position: 0 -89px;}
+.star2{ background-position: 0 -75px;}
+.star3{ background-position: 0 -61px;}
+.star4{ background-position: 0 -47px;}
+.star5{ background-position: 0 -33px;}
+
+.queryBox .roomInfo{ margin-bottom:3px; padding:12px 59px 12px 21px; min-height:71px; _height:71px; background:#f9f9f9; border:1px solid #eaeaea;}
+.roomInfo .hidebox{ float:right; width:58px; margin:30px -58px 0 0; line-height:21px; text-align:center;}
+.roomInfo .roominfolist{ float:left; width:560px;}
+.roominfolist li{ float:left; line-height:24px; text-align:left;}
+.roominfolist li.w200{ width:200px;}
+.roominfolist li.w360{ width:360px;}
+.queryBox .tocompare{ float:right; padding-right:13px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat 48px 1px;}
+.queryBox .hotelDescription{ clear:both; color:#777; line-height:21px;}
+.queryBox .hotelInfo{ clear:both; width:100%; overflow:auto;}
+.queryBox .hotelEvaluation{ clear:both; height:21px; line-height:21px;}
+.hotelEvaluation li{ display:inline; margin-right:15px;}
+.hotelEvaluation em{ color:#ff6600;}
+.hotelInfo li{ float:left; height:21px; line-height:21px;}
+.hotelInfo li.map{ float:right; width:50px; padding-left:19px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat -75px 2px;}
+.hotelInfo li.businessarea{ width:348px; overflow:hidden;}
+.hotelInfo li.spacstructure{ width:168px;}
+.spc_icon{ width:15px; height:15px; margin:2px 6px 0 0; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat 0 0;}
+.spc_01_on{ background-position:0 0;}
+.spc_01_off{ background-position:0 -15px;}
+.spc_02_on{ background-position:-15px 0;}
+.spc_02_off{ background-position:-15px -15px;}
+.spc_03_on{ background-position:-30px 0;}
+.spc_03_off{ background-position:-30px -15px;}
+.spc_04_on{ background-position:-45px 0;}
+.spc_04_off{ background-position:-45px -15px;}
+.spc_05_on{ background-position:-60px 0;}
+.spc_05_off{ background-position:-60px -15px;}
+
+.hotelInfo span, .hotelInfo em, .hotelInfo a{ float:left;}
+.hotelInfo .mgr25{ margin-right:25px;}
+.hotelInfo a:link, .hotelInfo a:visited, 
+.hoteldata a:link, .hoteldata a:visited,
+.hotelEvaluation a:link, .hotelEvaluation a:visited{ color:#008800;}
+.queryBox .hoteldata{ clear:both; width:710px; margin:0 auto; padding-top:6px; color:#333;}
+
+.hoteldata table{ width:100%;}
+.hoteldata table th, .hoteldata table .tit{ height:26px; background:#f2f2f2; font-weight:normal; color:#787878;}
+.hoteldata table td{ height:26px; border-bottom:1px solid #f2f2f2; text-align:center;}
+.hoteldata .w199{ width:199px;}
+.hoteldata .w150{ width:150px;}
+.hoteldata .w125{ width:125px;}
+.hoteldata .w120{ width:120px;}
+.hoteldata .w110{ width:110px;}
+.hoteldata .w100{ width:100px;}
+.hoteldata .w90{ width:90px;}
+.hoteldata .w88{ width:88px;}
+.hoteldata .w77{ width:77px;}
+.hoteldata .w70{ width:70px;}
+.hoteldata .w64{ width:64px;}
+.hoteldata .w60{ width:60px;}
+.hoteldata .roomtype{ float:left; margin-left:4px; padding-right:10px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat right -127px; line-height:21px;}
+.hoteldata .breakfase, .hoteldata .gifts, .hoteldata .pricetypeName{ float:left;}
+.hoteldata .breakfase, .hoteldata .pricetypeName{ margin-left:5px; line-height:21px;}
+.hoteldata .gifts{ width:12px; height:12px; margin:3px 0 0 3px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat -78px -59px; font-size:0; cursor:pointer;}
+
+.hoteldata .orgprice, .hoteldata strong, .hoteldata .recash{ font-family:Arial;}
+.hoteldata .orgprice{ text-decoration:line-through;}
+.hoteldata strong, .hoteldata .recash{ color:#ff6600;}
+.hoteldata strong.hasbf{ text-decoration:underline; cursor:pointer;}
+
+.hoteldata .bookbtn, .hoteldata .viewbtn, .hoteldata .fullbtn, .m .bookbtn{ display:block; width:50px; height:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat -286px -63px; margin:0 auto; line-height:21px; text-align:center; border:none; cursor:pointer; color:#fff;}
+.hoteldata .fullbtn, .hoteldata .viewbtn{ background-position: -337px -63px;color:#999999;}
+.hoteldata td .viewbtn{ background-position: -337px -63px;color:#999999;}
+a.bookbtn:link, a.bookbtn:visited{ color:#fff;}
+a.viewbtn:link, a.viewbtn:visited{ color:#999;}
+a.fullbtn:link, a.fullbtn:visited{ color:#999;}
+.viewmore{ clear:both; height:21px; padding-top:6px; line-height:21px;}
+.moreroom{ float:right; padding-right:10px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat right -127px;}
+.hoteldata .viewDefault{ background-position:right -146px;}
+
+.img360 .imgtit{ display:block; height:27px; line-height:27px; text-align:center; font-size:14px;}
+.w710{ width:710px; margin:0 auto;}
+
+/* compare box */
+.comparebox{ display:none; position:absolute; left:810px; top:560px; width:198px; background:#fff; border:1px solid #ffac03;}
+.comparebox .cptit{ height:26px; background:transparent url(http://himg.mangocity.com/img/h/2011/requerytit.gif) repeat-x left bottom; border-bottom:1px solid #ffd57f;}
+.cptit h3{ padding-left:10px; line-height:25px; font-size:14px;}
+.cptit .close{ float:right; width:14px; height:13px; margin:6px 5px 0 7px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat 0 -30px; cursor:pointer;}
+.cptit .cpnote{ float:right; width:80px; text-align:right; color:#777; line-height:25px;}
+.cptit strong{ color:#ff6600;}
+.compareList{ width:100%; margin-bottom:8px;}
+.compareList li{ width:100%; overflow:auto; zoom:1; border-bottom:1px dotted #fed57d; line-height:24px; vertical-align:top;}
+.compareList li span, .compareList li a, .compareList li input{ float:left;}
+.compareList li input{ margin:6px 3px 0 10px; *margin:1px 0 0 5px;}
+.compareList li .removli{ width:12px; height:11px; margin:6px 0 0 3px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat -79px -170px; font-size:0; cursor:pointer;}
+.comparebtn{ clear:both; height:34px;}
+.comparebtn .btn92x26{ margin:0 auto; text-indent:0; text-align:center; font-size:14px;}
+.tocare{ clear:both; height:23px; text-align:center; color:#ff6600;}
+
+/* tip box */
+.tipbox, .tipatbt{ display:none; position:absolute; left:0; top:0; padding-top:6px; background:transparent url(http://himg.mangocity.com/img/h/2011/tiptopbg.png) no-repeat center top; color:#777;}
+.tipborder{ padding:5px 5px 5px 10px; background:#fff; border:2px solid #ffc54a; line-height:25px;}
+.tipborder em{ color:#ff6600;}
+
+table.tipborder td{ padding:8px 10px;}
+table.tipborder td.tiphead{ background:#fffcd1; font-weight:normal; color:#787878;}
+.priceBox{ width:170px; padding:5px; background:#fefefe; border:2px solid #FFC54A}
+.priceBox table td{ padding:5px 2px;}
+.priceBox table td input{ width:64px; padding:2px;}
+
+.tipatbt{ padding:0 0 6px 0; background:transparent url(http://himg.mangocity.com/img/h/2011/tipbtbg.png) no-repeat center bottom;}
+
+.bftip{ width:340px; line-height:22px;}
+.bftip em, .prtip em{ color:#ff6600;}
+
+.prtip{ width:410px;}
+.prtip .tipborder{ padding:5px;}
+.prtip table{ width:100%;}
+.prtip table th{ background:#fffcd1; height:28px; font-weight:normal; color:#787878;}
+.prtip table td{ padding:8px 0; line-height:17px; text-align:center; color:#333;}
+.hotelviewed li{ width:99%; overflow:hidden;}
+
+/* css for detail */
+.detailwrap{ width:738px; border:1px solid #ffc54a;}
+
+.detail_bar{ height:67px; padding-left:10px; background:transparent url(http://himg.mangocity.com/img/h/2011/detailbar.png) repeat-x left top; border-bottom:1px solid #ffe2a4;}
+.detail_bar .hotelname{ float:left; width:550px; height:24px; padding-top:15px; overflow:hidden; white-space:nowrap; font-size:18px;}
+.detail_bar .hotelname h1{ float:left;}
+
+.detail_bar .goldenhotel{ padding-left:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat -76px -33px;}
+.detail_bar .toolbar{ float:right; width:130px; height:15px; margin-top:24px;}
+.toolbar a{ float:left; margin-right:10px; padding-left:19px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicon.png) no-repeat 0 0; line-height:15px;}
+.toolbar a:link, .toolbar a:visited{ color:#008800;}
+.toolbar a.print{ background-position:0 -38px;}
+.detail_bar .ename{ clear:both; font-family:Arial; font-size:16px;}
+
+.detail_bar .hotelstar{ font-size:12px;}
+
+.w718{ width:718px; margin:0 auto;}
+.detail_info{ padding:15px 0; overflow:auto; zoom:1;}
+.detail_info .view360{ float:left; width:185px; height:214px; border:1px solid #ccc;}
+.detail_info .viewrap{ width:181px; height:210px; margin:1px auto 0; background:#eaeaea; border:1px solid #eaeaea;}
+.detail_info .imgWrap{ width:181px; height:181px; overflow:hidden;}
+.detail_info .txtWrap{ width:181px; height:29px; overflow:hidden; line-height:29px; white-space:nowrap; text-align:center;}
+
+.detail_info .viewinfo{ float:right; width:521px; padding-top:10px; line-height:22px;}
+.viewinfo dt, .viewinfo dd{ float:left;}
+.viewinfo dt{ width:60px;}
+.viewinfo dd{ width:460px;}
+.viewinfo .dd_wrap{ height:22px;}
+.viewinfo .spc_icon{ float:left; margin-top:4px;}
+.viewinfo .reviews, .viewinfo .recomm, .viewinfo .unrecomm{ float:left; margin-right:15px; padding-left:15px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicon.png) no-repeat 0 -73px; line-height:22px;}
+.viewinfo .recomm{ background-position:0 -114px;}
+.viewinfo .unrecomm{ background-position:0 -151px;}
+.viewinfo a:link, .viewinfo a:visited{ color:#008800;}
+
+.detail_con{ clear:both;}
+.detail_nav{ height:26px;}
+.detail_nav .toreview{ float:right; width:66px; height:24px; padding-left:30px; background:transparent url(http://himg.mangocity.com/img/h/2011/hoteldetail.png) no-repeat right -3px; line-height:24px; font-size:14px;}
+.detail_nav ul{ float:left; width:580px;}
+.detail_nav li{ float:left;}
+.detail_nav .dnormal, .detail_nav .don{ float:left; padding-left:3px; margin-right:1px; background:transparent url(http://himg.mangocity.com/img/h/2011/hoteldetail.png) no-repeat 0 0; font-size:14px;}
+.detail_nav .dnormal span, .detail_nav .don span{ display:block; padding:7px 10px 5px 8px; background:transparent url(http://himg.mangocity.com/img/h/2011/hoteldetail.png) no-repeat right -28px;}
+.detail_nav .don span{ font-weight:bold; color:#fff;}
+.detail_nav .dnormal{ background-position:0 -57px;}
+.detail_nav .dnormal span{ background-position:right -84px;}
+.detail_panel{ clear:both; padding-top:10px; background:transparent url(http://himg.mangocity.com/img/h/2011/hoteldetail.png) no-repeat 0 -112px;}
+
+.detail_panel .hn-form{ width:706px; padding-top:0; height:34px;}
+.detail_panel .hn-form ul{ float:right; width:370px; overflow:inherit;}
+.detail_panel .hn-form li{ margin-bottom:0;}
+.detail_panel .hn-form li button{ width:50px; height:26px; font-size:14px; cursor:pointer;}
+
+.detail_panel .hoteldata{ width:706px; margin:0 auto 10px;}
+.detail_panel .roomInfo .hidebox{ margin-right:0;}
+.detail_panel .roomInfo{ margin-bottom:3px; padding:12px 0 12px 21px; min-height:71px; _height:71px; background:#f9f9f9; border:1px solid #eaeaea;}
+.detail_panel .hoteldata .w199{ text-align:left; text-indent:8px;}
+
+.dtprice{ clear:both; width:706px; margin:0 auto 10px;}
+.dtprice h3{ height:26px; padding-left:10px;background:transparent url(http://himg.mangocity.com/img/h/2011/hotelinfobar.png) repeat-x left top; border:1px solid #ddd; line-height:26px;}
+.dtprice p{ padding:10px; line-height:22px;}
+.gline{ color:#999;}
+
+.hn-boxmid .hn-form{ width:189px; margin:0 auto; padding-top:10px;}
+.hn-form li.w189{ width:189px;}
+.hn-boxmid .hn-form .btn92x26a{ margin:0 auto; cursor:pointer;}
+
+.orderfill{ margin-bottom:10px; border:2px solid #ffc54a;}
+.orderfill .orderbar{ height:73px; padding-left:10px; background:#fffcd1; border-bottom:1px solid #ddd;}
+.orderbar .hotelname{ height:27px; padding-top:15px; font-size:18px;}
+.orderbar .hotelname h1{ float:left;}
+.orderbar .goldenhotel{ padding-left:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicons.png) no-repeat -76px -16px;}
+.orderbar .simpleinfo{ clear:both; height:21px; line-height:21px;}
+.simpleinfo span{ margin-right:19px;}
+.simpleinfo strong{ color:#ff6600;}
+.simpleinfo .changetime{ padding:4px 0 4px 20px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelicon.png) no-repeat 0 -503px; color:#008800; cursor:pointer;}
+.orderform{ padding-top:14px; border-top:1px solid #eaeaea;}
+
+.orderform ul{ padding-left:10px;}
+.orderform li{ height:36px; vertical-align:top;}
+.orderform li label, .orderform li input, .orderform li select, .orderform li em{ float:left;}
+.orderform li input, .orderform li select{ margin-right:10px;}
+.orderform li strong{ margin-right:5px; color:#ff6600; font-weight:normal;}
+.orderform li select{ padding:2px; font-size:13px;}
+.orderform li input{ padding:4px 3px;}
+.orderform li label, .orderform li em{ line-height:22px;}
+input.w114{ width:114px;}
+
+.orderform .total{ clear:both; height:43px; margin-bottom:9px; padding-left:22px; line-height:43px;}
+.total strong{ color:#ff6600;}
+.total a{ margin-right:15px;}
+.total a:link, .total a:visited{ color:#008800;}
+
+.spaciltip{ margin:0 10px; padding-top:10px; border-top:1px dashed #ccc;}
+.tipwrap{ padding-left:10px;}
+.tipwrap strong{ display:block;}
+
+.tipwrap ol{ padding-top:4px; margin-bottom:10px; line-height:20px;}
+.tipwrap ol li{ height:20px; line-height:20px;}
+.tipwrap p{ height:27px; line-height:23px;}
+
+.specailrequire{ margin:0 10px;}
+.specailrequire .sprqtip{ height:26px; padding-left:10px; background:#f2f2f2; line-height:26px; color:#777;}
+.sprqtip strong{ font-size:14px; color:#333;}
+.sprqcont{ height:27px; padding:8px 0 0 10px;}
+.sprqcont input, .sprqcont select, .sprqcont label{ float:left;}
+.sprqcont label{ margin-right:15px; line-height:19px;}
+
+.ohtrequire{ clear:both; margin:0 0 21px 21px;}
+.ohtrequire label{ display:block; height:19px; line-height:19px;}
+.ohtrequire textarea.w597{ width:597px; height:98px; overflow:auto;}
+
+.orderbox{ border:1px solid #ccc;}
+.orderbox .boxtit{ height:28px; padding-left:23px; background:#fffcd1 url(http://himg.mangocity.com/img/h/2011/hotelicon.png) no-repeat 10px -559px; border-bottom:1px solid #ddd; line-height:28px;}
+.orderbox .boxcont{ padding:15px 10px; border-top:1px solid #eaeaea;}
+
+.attention{ clear:both; height:32px; line-height:32px; color:#ff6600;}
+.fillsub{ height:47px; margin:0 auto; padding-top:20px;}
+.fillsub a, .fillsub input{ float:left;}
+.fillsub a{ line-height:27px;}
+.fillsub input{ margin-left:300px;}
+
+.btn96x27{ width:96px; height:27px; background:transparent url(../image/btn96x27.png) no-repeat 0 0; border:none; text-align:center; line-height:27px; color:#fff; font-weight:bold; cursor:pointer; font-size:14px;}
+
+.successbar{ height:55px; margin:0 0 0 144px; padding:14px 0 0 38px;  background:transparent url(http://himg.mangocity.com/img/h/2011/fillsuccess.png) no-repeat left 20px;
+ line-height:24px; }
+.successbar strong{ font-size:14px;}
+.successbar em{ color:#ff6600;}
+
+.orderendinfo{ padding:5px 5px 5px 10px; border-top:1px solid #eaeaea;}
+
+.extentbg{ width:100%; overflow:auto; zoom:1; background:#f2f2f2;}
+.extentcont{ float:left; width:68%; background:#fff; line-height:25px;}
+.extentcont h2{ height:29px; color:#ff6600; line-height:29px;}
+.extentcont strong{ color:#ff6600;}
+.extentcont dt{ font-weight:bold;}
+.extentbar{ float:left; width:32%;}
+.extentbar p, .extentbar ol{ padding:4px 10px; line-height:25px;}
+.extentbar ol.notice{ color:#ff6600;}
+.extentbar li{ padding-left:17px;}
+.extentbar li .num{ margin-left:-17px;}
+.orderbox .orderlist{ padding:10px 10px 0 10px;}
+.orderlist ul{ line-height:21px;}
+.orderlist li{ display:inline; margin-right:30px; white-space:nowrap;}
+.orderlist .total{ clear:both; height:41px; margin-top:8px; border-top:1px dashed #ccc; line-height:41px;}
+
+/* paystyle */
+.payment{ height:29px;}
+.payment input, .payment label, .payment span{ float:left;}
+.payment label, .payment span{ line-height:21px;}
+.payment em{ color:#ff6600; font-family:Arial;}
+.payment label{ margin-right:15px;}
+.payment span{ padding-left:10px;}
+.payment .w57{ padding:2px 7px;}
+.actualpa{ height:29px;}
+.actualpa strong, .actualpa em{ color:#ff6600; font-family:Arial;}
+
+/* css for netbank */
+.netbank{ padding:7px 0; border-top:1px dotted #ccc;}
+.netbank .notice{ height:27px; line-height:27px; color:#777;}
+.netbank .notice em{ color:#ff6600;}
+.netbank ul{ width:750px; overflow:auto; zoom:1;}
+.netbank li{ float:left; width:183px; height:35px;}
+.netbank li label, .netbank li input, .netbank li img{ float:left;}
+.netbank li label{ margin-right:5px; line-height:35px;}
+.netbank li input{ margin-top:10px; *margin-top:6px;}
+.netbank li img{ margin-top:4px;}
+/* css for credit */
+
+.creditpaywrap{ margin:0 auto 15px; border-top:1px dotted #ccc;}
+.creditpaywrap .title{ 
+    height:27px;
+	padding-top:8px;
+	line-height:27px;
+	
+}
+.creditpaywrap h2{ float:left;font-size:14px;}
+.creditpaywrap .creditUse{ float:right;}
+.mgcBox{ width:100%; margin:0 auto; padding:0; line-height:23px;}
+.creditUse a:link, .creditUse a:visited{ color:#008800;}
+.creditUse a{ float:right; display:block;}
+.creditUse a em{ display:none; width:300px; padding:5px 10px; background:#fff url(http://himg.mangocity.com/img/h/2011/zhufulogo.gif) no-repeat 10px 5px; border:1px solid #669900; color:#333333; cursor:text;}
+.creditUse a em strong{ display:block; height:32px; padding:10px 0 0 55px; color:#008800; font-size:24px;}
+.creditUse a em ins{ display:block; padding:10px 0; text-decoration:none; font-weight:normal; line-height:19px;}
+.creditUse a:hover{ display:block; position:relative; text-decoration:none;}
+.creditUse a:hover em{ display:inline; position:absolute; left:-154px; top:23px;}
+
+.danbao{ height:100px; margin-bottom:6px; padding:8px 20px 8px 30px; border:1px solid #787878; overflow-y:scroll; text-align:center;}
+.danbao p{ text-align:left;}
+.selectCredit{ clear:both; margin-top:15px;}
+.selectCredit label{ font-weight:bold;}
+
+.oldCredit{ padding:2px 0 0 20px;}
+.newCredit{ width:100%; background:transparent url(http://himg.mangocity.com/img/h/2011/xyk.jpg) no-repeat right bottom; line-height:17px;}
+.newCredit table{ width:100%;}
+.newCredit table td{ padding:4px 0;}
+.newCredit table .w14{ width:16%; text-align:right; font-weight:normal;}
+.newCredit table .w23{ width:23%;}
+.newCredit table .w62{ width:60%; padding-left:6px;}
+.creditpaywrap select{ padding:2px; font-size:13px;}
+
+.notes{ margin-top:-8px;}
+.notes em{ color:#ff6600;}
+
+a.verify{ float:left; display:block;}/* block for safari*/
+a.verify em{ display:none; width:300px; padding:5px 10px; background-color:#FFFFFF; border:1px solid #669900; color:#333333;}
+a.verify:hover{ display:block; position:relative; text-decoration:none;}/*block for opera; position for ie6*/
+a.verify:hover em{ display:inline; position:absolute; left:70px; top:-40px;}
+
+.creditpaywrap input.w60, .creditpaywrap input.w181{ padding:3px;}
+.creditpaywrap input.w60{ width:30px;}
+.creditpaywrap input.w181{ width:181px;}
+
+/* css for Invoice */
+.invoice{ padding-top:15px; border-top:1px dotted #ccc;}
+.invoice_click{ height:29px;}
+.invoice_tit{ height:27px; padding-left:10px; background:#f2f2f2; line-height:27px;}
+.invoice ul{ padding-top:10px;}
+.invoice li{ height:27px; margin-bottom:10px; vertical-align:top;}
+.invoice li label, .invoice li input, .invoice li select{ float:left;}
+.invoice li input{ margin-right:10px; padding:3px 5px;}
+.invoice li select{ padding:2px; font-size:13px;}
+.invoice li label{ line-height:25px;}
+.invoice li em{ color:#ff6600;}
+
+/* changedate */
+
+#mango-overlay{ width:100%; height:100%; position:absolute; left:0; top:0; z-index:99;}
+.changedate{ width:487px; height:93px;}
+.popbox{ background:#fff; border:1px solid #ffab00; position:absolute; z-index:1000; display:none;}
+.poptit{ height:26px; background:transparent url(http://himg.mangocity.com/img/h/2011/dp_tit.png) repeat-x left top; border-bottom:1px solid #ffd57f;}
+.popclose{ float:right; width:14px; height:13px; overflow:hidden; margin:7px 9px 0 0; background:transparent url(http://himg.mangocity.com/img/h/2011/popclose.png) no-repeat 0 0; text-indent:-999px; cursor:pointer;}
+.changedate .hn-form{ width:474px; padding-left:10px;}
+
+.btn81x26{ width:81px; height:26px; background:transparent url(http://himg.mangocity.com/img/h/2011/btn81x26.png) no-repeat 0 0; border:none; text-align:center; line-height:26px; color:#fff; font-size:14px; font-weight:bold; cursor:pointer;}
+
+
+/* add 2011-02-12 */
+#fankui
+{
+	text-align: right;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 10px;
+}
+.shangquan {
+	background-color: #FFFFFF;
+	border: 1px solid #B1C645;
+	width: 395px;
+	padding-top: 10px;
+	padding-right: 3px;
+	padding-bottom: 10px;
+	padding-left: 3px;
+}
+.sq_xiaxian {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCCCCC;
+	color: #FF6600;
+	text-align: center;
+	margin-top: 5px;
+	display: inline-block;
+	clear: both;
+	width: 390px;
+}
+.weizhi {
+	width: 390px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCCCCC;
+}
+.weizhi li{
+	color: #333333;
+	text-align: left;
+	float: left;
+	width: 100px;
+	margin: 2px;
+	display: block;
+}
+.weizhi li a{
+	color: #333333;
+	text-decoration: none;
+	display: block;
+}
+.weizhi li a:hover{
+	color: #008800;
+	width: 100px;
+	background-color: #EFF9EE;
+	display: block;
+}
+.shangquan_list {
+	width: 395px;
+}
+.shangquan_list li{
+	color: #333333;
+	text-align: left;
+	float: left;
+	width: 120px;
+	margin-top:2px;
+	margin-bottom: 2px;
+	margin-left: 5px;
+	margin-right: 5px;
+	display: block;
+}
+.shangquan_list li a{
+	color: #333333;
+	text-decoration: none;
+	display: block;
+}
+.shangquan_list li a:hover{
+	color: #008800;
+	width: 120px;
+	background-color: #EFF9EE;
+	display: block;
+}
+.xiaxian {
+	height: 24px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #bbbbbb;
+	padding-left: 6px;
+}
+.xiaxian a {
+	color: #333333;
+	text-decoration: none;
+}
+.xiaxian a:hover{
+	color: #FF6600;
+	text-decoration: underline;
+}
+
+/* css for GWT */
+.conditions dt, .conditions .gwt-RadioButton label, .conditions .gwt-CheckBox label, .conditions .gwt-RadioButton a, .conditions .gwt-CheckBox a{ height:21px; line-height:normal;}
+.conditions dd div{ float:left;}
+#hotel_search_location a, #hotel_search_hotelband a,  #hotel_search_hotelprice a{ line-height:normal;}
+
+/* css for login box */
+.loginTip{ position:absolute; width:562px; height:414px; background:#fff; z-index:1000; display:none;}
+.loginframe{width:562px; height:387px;}
+.logintit{ width:560px; height:26px; background:transparent url(http://vimg.mangocity.com/img/v/2011/dp_tit.png) repeat-x left top; border:1px solid #ff6600; border-bottom:none;}
+.loginclose{ float:right; width:14px; height:13px; overflow:hidden; margin:7px 9px 0 0; background:transparent url(http://vimg.mangocity.com/img/v/2011/dp_bg.png) repeat-x left top; text-indent:-999px; cursor:pointer;}
+
+.hotellogin{width: 562px; filter:progid:DXImageTransform.Microsoft.DropShadow ( enabled=bEnabled , color=#B3B1AE , offX=iOffsetX , offY=iOffsetY , positive=bPositive );}
+.dlu{width: 562px; height: 387px;}
+.guanbi
+{
+	background-image: url(http://himg.mangocity.com/img/guanbi.gif);
+	background-repeat: no-repeat;
+	background-position: 508px 4px;
+	height: 22px;
+	width: 552px;
+	background-color: #FE5E00;
+	text-align: right;
+	padding-top: 4px;
+	padding-right: 10px;
+}
+.guanbi a {
+	float: right;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+.guanbi a:hover{
+	float: right;
+	color: #FFE360;
+	text-decoration: none;
+	font-weight: bold;
+}
+#contact-overlay{ background:#000;}
+
+
+/* add 2011-05-24 */
+.reqtab table{ float:right;}
+.reqtab select{ margin-top:5px;}
+.reqtab button{ cursor:pointer;}
+
+.popupContent .shangquan{ width:auto; padding:5px; background:#fefefe; border:2px solid #FFC54A}
+.popupContent .shangquan table{ width:100%;}
+.popupContent .shangquan table td{ padding:8px 10px;}
+.popupContent .shangquan table td input{ width:64px; padding:2px;}
+.requeryList table{ margin:0 auto;}
+.requeryList .gwt-Button{ margin:2px; padding:3px 6px; background:#fff; border:1px solid #ccc; cursor:pointer;}
+
+.requeryList .gwtPageSelected{ background:#f60; color:#fff;}
+.requeryList .pageSelected{background-color: #FFEDE1;border: 1px solid #FD6D01;color: #FD6D01;font-weight: bold;} 
+
+.conditions dl.cdDL{ width:726px; padding:10px 0 10px 10px; background:#FFFBEF; border-bottom:1px solid #FFE1A3}
+.conditions .cdChosen{ float:left; margin-right:10px; padding-left:5px; background:#fff; border:1px solid #FFE1A3;}
+.cdChosen .close{ float:left; width:14px; height:13px; margin:4px 5px 0 7px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat 0 -30px; cursor:pointer;}
+.cdChosen .ChosenNote{ float:left; line-height:21px;}
+
+.requeryList .gwtSpanMiddlePage{ display:block; line-height:28px;}
+.requeryList .gwtButtonGray{ background:#eee; color:#999;}
+
+.goldenhotel{ padding-left:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/golden.png) no-repeat left top}
+.silverhotel{ padding-left:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/silver.png) no-repeat left top}
+.bronzehotel{ padding-left:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/bronze.png) no-repeat left top}
+.diamondhotel{ padding-left:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/diamond.png) no-repeat left center;  _background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://himg.mangocity.com/img/h/2011/diamond.png" ,sizingMethod="crop");}
+.waitImg{ padding-top:50px; height:250px; text-align:center;}
+
+/* 2011-05-31 */
+#hotelNav{ width:100%; height:28px;}
+#hotelNav h2{ float:left; padding-left:0;}
+#hotelNav h2 span{ display:block; height:28px; background:transparent url(http://himg.mangocity.com/img/h/2011/hoteltabnav.png) no-repeat 0 0; text-indent:10px; cursor:pointer;}
+#hotelNav .navl{ width:105px;}
+#hotelNav .navl span{ width:105px; background-position:left top;}
+#hotelNav .navl span.on{ background-position:left -28px;}
+#hotelNav .navr{ width:105px;}
+#hotelNav .navr span{ width:105px; background-position:right top;}
+#hotelNav .navr span.on{ background-position:right -28px;}
+.panelist .passhotel{ overflow:auto; zoom:1;}
+.panelist .hotelviewed li{ float:left; width:90px; padding-left:5px; overflow:hidden;}
+
+/* 2011-06-02 */
+.banner740x80{ clear:both; width:740px; height:80px; overflow:hidden; margin-bottom:10px; text-align:center;}
+.banner210x88{ width:210px; overflow:hidden; margin-bottom:5px;}
+.banner210x88 a{ display:block; width:210px; height:88px; overflow:hidden; margin-bottom:5px;}
+.iradio input{ *margin:-4px 0 0 -3px;}
+
+/* Z--2011-06-10 */
+
+.float_storey{ position:absolute; width:250px; background:#fff; border:1px solid #ddd;}
+.float_storey ol{width:250px;}
+.float_storey ol .storer_li{float:left; width:75px; line-height:23px; line-height:23px; cursor:pointer; }
+.float_storey ol li:hover{color:#ff6600;}
+.float_storey ol .clear_li{ float:left; width:100%; height:8px; border-bottom:1px dashed #cbcbcb;}
+
+/* zwm2011-06-11 */
+.btn50x26{ width:50px; height:26px; background:transparent url(http://himg.mangocity.com/img/h/2011/hbtn50x26.png) no-repeat 0 0; border:none; text-align:center; line-height:26px; cursor:pointer;}
+
+/* zj2011-06-13 */
+.conditions .label_orange{ background-color: #FE6700; width:30px; color:#ffffff; text-align:center;}
+.conditions .font_close{ background:none; border:none; color:#fe6700;}
+.conditions .font_close a{ padding-right:13px; background:url(http://himg.mangocity.com/img/h/2011/sift_bg.png) no-repeat right;}
+.conditions .m{top:13px; left: 600px; position: absolute; text-align: right; width: 120px;}
+.conditions .m a{float:right; margin-left:2px; display:inline;}
+.conditions .m a.grey:link, .conditions .m a.grey:visited{color:#333333;}
+.bookbtn_01{ display:block; width:50px; height:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat -337px -63px; margin:0 auto; line-height:21px; text-align:center; border:none; cursor:pointer; color:#fff;}
+a.bookbtn_02{ display:block; width:69px; height:20px; background:url(http://himg.mangocity.com/img/h/2011/multiple_bg.png) no-repeat 0 0; margin:0 auto; line-height:21px; text-align:center; border:none; cursor:pointer; color:#fff;}
+.conditions dd ul{width:600px; display:block; overflow:hidden;}
+.conditions dd li{width:76px; float:left;white-space: nowrap; padding:2px 0; display:inline; }
+.conditions dd li.li_long{width:200px;}
+.conditions dd .li_long input{ float:none;}
+.conditions dd li a{white-space: nowrap; overflow:hidden;}
+.conditions dd li a:link, .conditions dd li a:visited{color:#333333;}
+.conditions dd li a:hover{color:#fff; background:#fe6700; padding:0 3px;}
+
+/* zj2011-06-14 */
+.hoteldata .hasbf{ font-size:13px;}
+.gg{margin-bottom:15px;}
+
+/* zj2011-06-15 */
+.selectedConditions{ clear:both; border-top:2px solid #eaeaea;}
+.selectedConditions dl{ clear:both; width:716px; height:28px; margin:0 auto; padding-top:10px; position:relative;}
+.selectedConditions dt, .selectedConditions dd, .selectedConditions input, .selectedConditions label,  .selectedConditions a{}
+.selectedConditions dt, .selectedConditions label, .selectedConditions a{ height:21px; line-height:21px;}
+.selectedConditions dt{width:60px; float:left;}
+.selectedConditions a{ margin-right:13px;}
+.selectedConditions label{ margin-right:13px; color:#333;}
+.selectedConditions .odd{ background:#f9f9f9;}
+
+.hotel_ero{ width:450px; margin:50px auto; border:solid 2px #FFC548;}
+.hotel_ero h2{font-size:16px; color: #FF6800; height:73px; line-height:73px; padding-left:220px; background:url(http://himg.mangocity.com/img/h/2011/ero.jpg) no-repeat 160px; background-color: #FFFCD1; border-bottom: solid 2px #ddd;}
+.hotel_ero p{ width:300px; margin:30px auto; line-height:20px;}
+.hotel_ero p input{display:block; width:50px; height:20px; background:transparent url(http://himg.mangocity.com/img/h/2011/hotelresult.png) no-repeat -286px -63px; margin:0 auto; line-height:21px; text-align:center; border:none; cursor:pointer; color:#fff;}
+
+<html xmlns="http://www.w3.org/1999/xhtml"><body xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><img width='77' height='5' src='chrome://livemargins/skin/monitor-background-horizontal.png' style='position: absolute;left:-77px;top:-5px'/> <img src='chrome://livemargins/skin/monitor-background-vertical.png' style='position: absolute;left:0;top:-5px;'/> <img id='monitor-play-button' src='chrome://livemargins/skin/monitor-play-button.png' onmouseover='this.style.opacity=1' onmouseout='this.style.opacity=0.5' style='position: absolute;left:1px;top:0;opacity:0.5;cursor:pointer'/>

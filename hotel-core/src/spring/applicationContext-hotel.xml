@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+ <beans default-autowire="byName" default-lazy-init="true">
+ 	
+ 	<!-- 酒店基本信息管理类 -->
+    <bean name="hotelManage" class="com.mangocity.hotel.base.manage.impl.HotelManageImpl">
+		<property name="saleDao" ref="saleDao"></property>
+		<property name="hotelPictureDao" ref="hotelPictureDao"></property>				
+    </bean>
+    
+    <bean name="roomControlManage" class="com.mangocity.hotel.base.manage.impl.RoomControlManageImpl">
+    </bean>       
+    
+    <!-- 目标房控处理实现 add by zhineng.zhuang 2008.11.13 modify by zhijie.gu 2010-01-05用异步保存交接事项，
+    不再使用AOP实现  2010-01-25 modify by shaojun.yang 目前旧房态需要用到AOP来处理暂时回滚-->
+       
+    <!-- 目标房控处理实现 add by zhineng.zhuang 2008.11.13 -->
+    <bean name="roomStateManage" class="com.mangocity.hotel.base.manage.impl.RoomStateManageImpl">
+    </bean>
+  
+    <bean name="hotelRoomStateCC" class="com.mangocity.hotel.order.service.impl.HotelRoomStateCCService">		
+    </bean>
+    <!-- 酒店本部对CC配额管理
+     -->
+    <bean name="quotaForCCDao" class="com.mangocity.hotel.base.dao.impl.QuotaForCCDaoImpl"/>
+   
+	<!-- 配额扣取退回类 -->
+	<!-- --> 
+    <bean id="quotaForCCService" class="com.mangocity.hotel.base.service.impl.QuotaForCCServiceImpl"/>
+	
+    <bean id="quotaControl" class="com.mangocity.hotel.base.service.impl.QuotaControlImpl"/>
+    <bean id="quotaManage" class = "com.mangocity.hotel.base.manage.impl.QuotaManageImpl"/>
+
+    <bean name="hotelPriorityManage" class="com.mangocity.hotel.base.manage.impl.HotelPriorityManageImpl">
+    </bean>
+    
+    <bean name="changePriceManage" class="com.mangocity.hotel.base.manage.impl.ChangePriceManageImpl">
+  		<property name="changePriceDao" ref="changePriceDao"></property>
+  		<property name="queryAnyDao" ref="queryAnyDao"></property>  		  		
+    </bean>
+    
+    <!-- 合同管理类 -->
+	<bean id="contractManage" class="com.mangocity.hotel.base.manage.impl.ContractManageImpl">
+		<property name="saleDao" ref="saleDao"></property>
+		<property name="contractFileDao" ref="contractFileDao"></property>
+	</bean>
+	
+	<!-- 批量调整预定条款管理类 Add by Shengwei.Zuo 2009-02-03 -->
+	<bean id="clauseManage"  class="com.mangocity.hotel.base.manage.impl.ClauseManageImpl">
+	</bean>
+	
+	<!-- 配额及价格管理类 -->
+	<bean id="quotaPriceManage" class="com.mangocity.hotel.base.manage.impl.QuotaPriceManageImpl">
+	</bean>
+	
+	<!-- 模拟的IHotelService接口实现 -->
+	<!--
+	<bean id="hotelService" class="com.mangocity.hotel.base.service.impl.SimHotelService" scope="prototype">
+	</bean>
+	-->
+	<bean id="hotelService" class="com.mangocity.hotel.base.service.impl.HotelServiceImpl">
+	</bean>
+	
+    <bean id="genericDAOHibernateImpl" class="com.mangocity.util.dao.GenericDAOHibernateImpl">
+	</bean>
+	
+	<bean id="supplierInfoService" class="com.mangocity.hotel.base.service.impl.SupplierInfoServiceImpl">
+	   <property name="genericDAOHibernateImpl" ref="genericDAOHibernateImpl"></property>
+	</bean>
+	
+
+	<!-- 酒店集团 -->
+	<bean id="hotelManageGroup" class="com.mangocity.hotel.base.manage.impl.HotelManageGroupImpl">
+	</bean>
+	
+	<bean name="roomControlDao" class="com.mangocity.hotel.base.dao.impl.RoomControlDaoImpl">
+
+    </bean>
+    
+    	
+	<!--预付担保信息查询TMC用-->
+	<bean id="creditAssureService" class="com.mangocity.hotel.outsytem.interf.impl.HotelForTMCInterfaceImpl">
+	</bean>
+	<!--添加系统外酒店TMC用-->
+	<bean id="addSysOuterHotelService" class="com.mangocity.hotel.outsytem.interf.impl.AddSysOuterHotelTMCinterfaceImpl">			
+	</bean>
+
+    <!--  价格计算类，主要用于读取公式脚本，并计算价格 -->
+    <bean name="priceCalculator" class="com.mangocity.hotel.base.formula.PriceCalculatorImpl" >       
+		<property name="resourceManager" ref="resourceManager"></property>
+		<!-- 存放公式脚本的资源ID -->
+		<property name="resourceID" value="price_calculator"></property>
+      
+    </bean>
+    <!-- 价格管理包括价格计算，录入，查询，修改 -->
+    <bean name="priceManage" class="com.mangocity.hotel.base.manage.impl.PriceManageImpl">
+         <property name="priceDao" ref="priceDao"></property>
+         <property name="priceCalculator" ref="priceCalculator"></property>
+    
+    </bean>
+     <bean name = "changePriceWarningManage" class = "com.mangocity.hotel.base.manage.impl.ChangePriceWarningManageImpl">  
+    </bean>
+    <!--refactor: change it's package name -->
+	<bean name = "genAllCity" class = "com.mangocity.hotel.base.util.GenAllCity">  
+	</bean>	
+	<bean name="cityLookUpService" class="com.mangocity.hotel.base.service.impl.CityLookUpServiceImpl">
+	</bean>
+    
+    <!-- 酒店返现规则 add by xiaojun.xiong 2010-9-13 -->    
+    <bean name="returnService" class="com.mangocity.hotel.base.service.impl.HotelFavourableReturnServiceImpl">
+    </bean> 
+	
+	  <!-- 酒店预定担保条款模板添加类 Add by Shengwei.Zuo 2009-02-09 -->
+	<bean id="claluseTemplateManage"  class="com.mangocity.hotel.base.manage.impl.ClaluseTemplateManageImpl">
+	</bean>
+  
+	<!-- 按日期调整预定条款类 Add by Shengwei.Zuo 2009-02-18 -->
+	<bean id="clauseTemplateByDateManage"  class="com.mangocity.hotel.base.manage.impl.ClauseTemplateByDateManageImpl">
+	</bean>
+   
+	<!-- 预定条款单条款操作 add by haibo.li 2009-2-6 Hotel V2.6 -->
+	<bean name="onlyManage" class="com.mangocity.hotel.base.manage.impl.OnlyClauserManageImpl">
+		<property name="onlyClauserDao" ref="onlyClauserDao"></property>    	
+	</bean>
+	<bean name="manyManage" class="com.mangocity.hotel.base.manage.impl.ManyManageImpl"></bean>
+
+    <!-- 房态界面查询会展信息 v2.8.1 by juesu.chen 2009-05-08 begin-->
+    <bean id="queryExhibit" name="queryExhibit" class="com.mangocity.hotel.base.web.QueryExhibitAction">
+    	<property name="queryDao" ref="queryDao"></property>    	    	
+	</bean>
+	<!-- end -->
+	
+     <!-- 疑难单提示 v2.8.1 by shizhongwen 2009-05-11 begin-->
+    <bean id="puzzleOrderservice" name="puzzleOrderservice" class="com.mangocity.hotel.order.service.impl.PuzzleOrderServiceImpl">    		    	
+	</bean> 	
+	<!-- end -->
+	
+    <!-- 操作留言板和酒店区域查看的DWR -->
+    <bean name="leavewordAnnalDWR" class="com.mango.hotel.ebooking.action.LeavewordAnnalAndRightDWR">
+    </bean> 		
+	
+    <!-- 地理位置/名胜service v2.9.1  by shengwei.zuo  2009-07-31 begin-->
+    <bean  name="geograpPositionService" class="com.mangocity.hotel.base.service.impl.GeograpPositionServiceImpl">    		    	
+    </bean> 
+    <bean id ="geoDistanceDao" class="com.mangocity.hotel.base.dao.impl.GeoDistanceDaoImpl">		
+    </bean>
+   
+     <bean id ="geoDistanceService" class="com.mangocity.hotel.base.service.impl.GeoDistanceServiceImpl">
+     	<property name="geoDistanceDao" ref="geoDistanceDao"></property>
+		<property name="hotelManage" ref="hotelManage"></property>
+    </bean>
+    
+    <bean id ="geographicalPositionService" class="com.mangocity.hotel.base.service.impl.GeographicalPositionServiceImpl">
+    	<property name="geograpPositionDAO" ref="geograpPositionDAO"></property>
+    </bean>
+    
+     <bean  name="mangoEmapService" class="com.mangocity.hotel.base.service.impl.MangoEmapServiceImpl">    		
+         	<property name="hotelManage" ref="hotelManage" />
+         	<property name="geograpPositionService" ref="geograpPositionService" />  
+         	<property name="geoDistanceService" ref="geoDistanceService" />
+    </bean> 
+    
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+          <property name="dataSource" ref="dataSource" /> 
+    </bean>
+    
+	 <bean id="favourableDecreaseAction" class="com.mangocity.hotel.base.web.FavourableDecreaseAction" scope="prototype">
+    	<property name="clauseTemplateByDateManage" ref="clauseTemplateByDateManage"></property>    	    	
+	</bean>
+	<!-- 房态调整 v2.9.3 by juesu.chen -->
+	<bean name="adjustRoomStateService" class="com.mango.hotel.ebooking.service.impl.AdjustRoomStateServiceImpl">    		    	
+	</bean>    
+
+	  
+	<!-- 新房态用service v2.9.3 by zhijie.gu -->
+	<bean name="newRoomControlService" class="com.mangocity.hotel.newroomcontrol.service.impl.NewRoomControlServiceImpl">    		    	
+	</bean> 
+	<!-- 酒店乱码修复调用接口实现类 add by chenjiajie 2010-03-13 -->
+	<bean name="hotelMessyCodeFixService" class="com.mangocity.hotel.base.service.impl.HotelMessyCodeFixService">    		    	
+	</bean>
+	<!-- 现金返还 v2.9.3 by xiaojun.xiong -->
+	<bean id="favourableReturnAction" class="com.mangocity.hotel.base.web.FavourableReturnAction" scope="prototype">
+	</bean> 
+	<!-- 限量返现   -->
+	<bean id="htlLimitFavourableAction" class="com.mangocity.hotel.base.web.HtlLimitFavourableAction" scope="prototype">
+	</bean> 
+	<!-- 批量开关房 -->
+	<bean id="batchRoomControlManage" class="com.mangocity.hotel.base.manage.impl.BatchRoomControlManageImpl">
+		<property name="batchRoomControlDao"  ref="batchRoomControlDao"></property>
+	</bean>
+	
+	<!-- 房型ServiceBean -->
+	<bean name="hotelRoomTypeService" class="com.mangocity.hotel.base.service.impl.HotelRoomTypeServiceImpl">    		    	
+	</bean>
+	
+	<!-- 系统数据Service bean 如地区代码，汇率，系统参数等等-->
+	<bean name="systemDataService" class="com.mangocity.hotel.base.service.impl.SystemDataServiceImpl"></bean>
+	
+	<!-- B2B佣金Service bean -->
+	<bean name="commissionService" class="com.mangocity.hotel.base.service.impl.CommissionServiceImpl"></bean>
+	
+	<!-- 房态Service bean -->
+	<bean name="hotelRoomService" class="com.mangocity.hotel.base.service.impl.HotelRoomServiceImpl"></bean>
+	
+	<!--refactor 增加合同的service类 -->
+	<bean name="contractService" class="com.mangocity.hotel.base.manage.impl.ContractServiceImpl"></bean>
+	
+	<!--B2B加幅-->
+	<bean id="b2BIncreaseManage" class="com.mangocity.hotel.base.manage.impl.B2BIncreaseManageImpl">
+		<property name="b2BIncreaseDao"  ref="b2BIncreaseDao"></property>
+	</bean>
+	<!--财务回调service-->
+	<bean id="payOutCallBackForUpdateOrderPrepayStatusService" class="com.mangocity.hotel.base.service.impl.PayOutCallBackForUpdateOrderPrepayStatusServiceImpl">
+		<property name="orOrderDao"  ref="orOrderDao"></property>
+	</bean>
+	
+	<!--限量返现活动service-->
+	<bean id="htlLimitFavourableManage" class="com.mangocity.hotel.base.manage.impl.HtlLimitFavourableManageImpl">
+		<property name="htlLimitFavourableDao"  ref="htlLimitFavourableDao"></property>
+	</bean>
+	
+	<!--限量返现活动与酒店映射service-->
+	<bean id="htlFavourableHotelManage" class="com.mangocity.hotel.base.manage.impl.HtlFavourableHotelManageImpl">
+		<property name="htlFavourableHotelDao"  ref="htlFavourableHotelDao"></property>
+	</bean>
+	
+	<!-- 限量活动酒店标签 -->
+	<bean id="limitFavKeyWordService"  class="com.mangocity.hotel.base.service.impl.LimitFavKeyWordServiceImpl">
+	</bean>
+	
+	<bean id="htlProjectCodeManage" class="com.mangocity.hotel.base.manage.impl.HtlProjectCodeManageImpl">
+		<property name="htlProjectCodeDao"  ref="htlProjectCodeDao"></property>
+	</bean>
+	
+	<bean id="operateLogService" class="com.mangocity.hotel.order.service.impl.OperateLogServiceImpl">
+		<property name="operateLogDao"  ref="operateLogDao"></property>
+	</bean>	
+	
+	<!--艺龙担保条款service-->
+	<bean id="hotelElOrderService" class="com.mangocity.hotel.order.service.impl.HotelElOrderServiceImpl">
+	</bean>	
+	
+	<!-- 配额service add ting.li -->
+	<bean id="hotelQuotaNewService" class="com.mangocity.hotel.base.service.impl.HotelQuotaNewServiceImpl">
+		<property name="hotelQuotaNewDao" ref="hotelQuotaNewDao"></property>
+	</bean>
+	
+	<!-- 上下架 -->
+	<bean id="oldOnSaleService" class="com.mangocity.hotel.base.service.impl.OldOnSaleServiceImpl"/>
+ </beans>

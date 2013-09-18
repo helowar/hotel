@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlSupplierBookSetup" table="HTL_SUPPLIER_BOOK_SETUP" dynamic-insert="true" dynamic-update="true" lazy="false">
+
+		<id name="bookID" unsaved-value="0" column="book_setup_id">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_supplier_book_setup</param>
+			</generator>
+			
+		</id>
+		<property name="bookChnName" column="chn_name"></property>
+		<property name="weeks" column="WEEKS"></property>
+		<property name="bookBeginDate" column="BEGIN_DATE"></property>
+		<property name="bookEndDate" column="END_DATE"></property>
+		<property name="bookBeginTime" column="BEGIN_TIME"></property>		
+		<property name="bookEndTime" column="END_TIME"></property>
+		<property name="bookfax" column="FAX"></property>
+		<property name="bookemail" column="EMAIL"></property>
+		<property name="bookctctName" column="ctct_name"></property>
+		<property name="bookctctType" column="CTCT_TYPE"></property>
+		<property name="bookRemark" column="REMARK"></property>
+		<property name="createBy" column="Create_by" />		
+		<property name="modifyBy" column="modify_by" />
+		<property name="createById" column="Create_by_id" />		
+		<property name="modifyById" column="modify_by_id" />		
+		<property name="createTime" column="create_time" />
+		<property name="modifyTime" column="modify_time" />
+		<property name="active" column="active" />
+	    <many-to-one name="supplierInfo" class="HtlSupplierInfo" column="SUPPLIER_ID" />         	
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mango.hotel.ebooking.persistence" default-lazy="false">
+	<class name="LeavewordAnnalBean" table="HTL_Ebooking_Leaveword_Annal" dynamic-insert="true" dynamic-update="true" >
+		<id name="leaveWordID" unsaved-value="0" column ="LeaveWordID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_EBOOKING_LEAVEWORD</param>
+			</generator>
+		</id>
+		<property name="addressee" type="java.lang.String"/>
+		<property name="addresser" type="java.lang.String"/>
+		<property name="content"  type="java.lang.String"/>
+		<property name="operationdate"  type="java.util.Date"/>
+		<property name="operationer"  type="java.lang.String"/>
+		<property name="operationerID"  type="java.lang.String"/>
+		<property name="referdate" type="java.util.Date" />
+		<property name="referer" type="java.lang.String"  />
+		<property name="revert" type="java.lang.Long" />
+		<property name="leaveType" type="java.lang.Long" />
+		<property name="topic" type="java.lang.String" />
+		<property name="uploadfilename" type="java.lang.String" />
+		<property name="hasRead"/>
+		<property name="hasLock"/>
+		<property name="hasReadId"/>
+		<property name="hasReadName"/>
+		<property name="hasReadTime"/>
+	</class>
+</hibernate-mapping>

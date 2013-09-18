@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlRoomStatusProcess" table="htl_room_Status_process"
+		dynamic-insert="true" dynamic-update="true">
+				
+		<id name="ID" unsaved-value="0" column="process_id">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_room_status_process</param>
+			</generator>
+		</id>   
+
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="processDatetime" column="process_Datetime"></property>
+		<property name="processDate" column="process_Date"></property>
+		<property name="processBy" column="process_by"></property>
+		<property name="processById" column="process_by_id"></property>
+		<property name="processRemark" column="process_remark"></property>
+		<property name="isRoomStatusReport" column="is_roomstatus_report"></property>
+	</class>
+	
+	
+	<query name="queryRoomStatus" >
+		<![CDATA[
+			from HtlRoomStatusProcess hrsp where hrsp.processDate = ( select max(processDate) from HtlRoomStatusProcess where hotelId=? ) and hrsp.hotelId = ?
+		]]>
+	</query>
+
+
+
+</hibernate-mapping>

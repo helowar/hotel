@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlCreditAssure" table="htl_credit_assure"  dynamic-insert="true" dynamic-update="true" >
+
+		<id name="ID" unsaved-value="0" column="CREDIT_ID">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_credit_assure</param>
+			</generator>
+			
+		</id>
+		<property name="contractId" column="CONTRACT_ID"></property>
+		<property name="hotelId" column="HOTEL_ID"></property>
+		<property name="beginDate" column="BEGIN_DATE"></property>
+		<property name="endDate" column="END_DATE"></property>
+		<property name="roomType" column="ROOM_TYPE"></property>
+		<property name="assureConditions" column="ASSURE_CONDITIONS"></property>
+		<property name="assureType" column="ASSURE_TYPE"></property>
+		<property name="assureLetter" column="ASSURE_LETTER"></property>
+
+		<property name="allowModify" column="ALLOW_MODIFY"></property>
+		<property name="lastAssureTime" column="LAST_ASSURE_TIME"></property>
+		<property name="aheadDays" column="AHEAD_DAY"></property>
+		<property name="balanceMethod" column="BALANCE_METHOD"></property>
+	    <property name="prepayMoneyType" column="prepay_money_type"></property>
+		<property name="timeLimitType" column="TIME_LIMIT_TYPE"></property>
+		<property name="timeLimit" column="TIME_LIMIT"></property>
+		<property name="remark" column="REMARK"></property>
+		
+		<property name="aheadTimer" column="AHEAD_TIME"></property>
+		<property name="continueNight" column="CONTINUE_NIGHT"></property>
+		<property name="mustDate" column="MUST_DATE"></property>
+		<property name="mustBeforeDate" column="MUST_BEFORE_DATE"></property>
+		<property name="mustBeforeTime" column="MUST_BEFORE_TIME"></property>
+		<property name="creator" column="creator" />		
+		<property name="modifyBy" column="modifyBy" />		
+		<property name="createTime" column="CREATETIME" />
+		<property name="modifyTime" column="modifyTime" />
+		<property name="prepayAheadTime" column="PREPAY_AHEAD_TIME" />
+		
+		<bag name="htlAssureItem" cascade="all-delete-orphan" lazy="false">
+            <key>
+                <column name="CREDIT_ID" />
+            </key>
+            
+            <one-to-many class="com.mangocity.hotel.base.persistence.HtlAssureItem" />
+        </bag>
+        <bag name="htlCreditAssureDate" cascade="all-delete-orphan" lazy="false">
+            <key>
+                <column name="CREDIT_ID" />
+            </key>
+            
+            <one-to-many class="com.mangocity.hotel.base.persistence.HtlCreditAssureDate" />
+        </bag>
+        <bag name="htlAssureCardItem" cascade="all-delete-orphan" lazy="false">
+            <key>
+                <column name="CREDIT_ID" />
+            </key>
+            
+            <one-to-many class="com.mangocity.hotel.base.persistence.HtlAssureCardItem" />
+        </bag>
+	</class>
+	 <query name="queryCreditAssure">
+		<![CDATA[ 
+		 from HtlCreditAssure a where a.hotelId=?
+		                         and ( ? between a.beginDate and a.endDate)                                
+                                 
+		]]>
+	</query>   
+	<query name="checkIsOlympic">
+		<![CDATA[ 
+		 from HtlCreditAssure a where a.hotelId=?
+		                         and (( ? between a.beginDate and a.endDate) or (? between a.beginDate and a.endDate))
+								 and a.remark like '%prepay%'
+								 and (( ? between to_date('2008-8-1','yyyy-mm-dd') and to_date('2008-8-31','yyyy-mm-dd'))
+								 or (? between to_date('2008-8-1','yyyy-mm-dd') and to_date('2008-8-31','yyyy-mm-dd')))                                                
+		]]>		
+	</query>
+	
+	<query name="queryCreditAssures">
+		<![CDATA[ 
+		from HtlCreditAssure creditAssure where creditAssure.contractId =? and creditAssure.roomType = ?
+		]]>
+	</query>
+	
+	<query name="queryCreditAssuresOrder">
+		<![CDATA[ 
+		from HtlCreditAssure creditAssure where creditAssure.contractId =? and creditAssure.roomType = ? order by creditAssure.modifyTime
+		]]>
+	</query>
+	
+	<query name="querySubCreditAssures">
+		<![CDATA[ 
+		from HtlCreditAssure creditAssure where creditAssure.contractId =? and creditAssure.roomType = ? and creditAssure.modifyTime<=? order by creditAssure.beginDate
+		]]>
+	</query>
+	
+	
+</hibernate-mapping>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='hotelGWT'>
+  <!-- Inherit the core Web Toolkit stuff.                        -->
+  <inherits name='com.google.gwt.user.User'/>
+
+  <!-- Inherit the default GWT style sheet.  You can change       -->
+  <!-- the theme of your GWT application by uncommenting          -->
+  <!-- any one of the following lines.                           
+  <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
+ 
+  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+  <!-- Other module inherits                                     
+  <script src ="http://wres.mangocity.com/js/home/cloud/js/jquery-1.3.2.js" />
+  <script src ="http://wres.mangocity.com/js/home/cloud/js/city.hotel.js" />
+  <script src ="http://hres.mangocity.com/js/h/2011/hotel2011.js" />
+  <script src ="http://hres.mangocity.com/js/h/2011/hotelquery.js" />-->
+  
+  
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class='com.mangocity.client.HotelListShow'/>
+  <define-linker name="xs" class="com.google.gwt.core.linker.XSLinker" />
+  <add-linker name="xs" />
+  <!-- Specify the paths for translatable code                    -->
+  <source path='client' />
+  <source path='hotel/common/vo' />
+  <source path='hotel/search/vo' />
+  <source path='hotel/search/sort' />
+</module>
+

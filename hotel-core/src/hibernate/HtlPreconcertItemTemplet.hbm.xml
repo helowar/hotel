@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- 
+	create by Shengwei.Zuo 2009-02-03
+	酒店预订担保预付条款模板
+ -->
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlPreconcertItemTemplet" table="htl_preconcert_item_templet" 
+		dynamic-insert="true" dynamic-update="true">
+		
+		<id name="ID" unsaved-value="0" column="ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_preconcert_item_templet</param>
+			</generator>
+		</id>
+		<property name="hotelID" column="HOTEL_ID" />
+		<property name="reservationName" column="RESERVATION_NAME" />
+		<property name="createBy" column="CREATE_BY" />
+		<property name="createByID" column="CREATE_BY_ID" />
+		<property name="createTime" column="CREATE_TIME" />
+		<property name="modifyBy" column="MODIFY_BY" />
+		<property name="modifyByID" column="MODIFY_BY_ID" />
+		<property name="modifyTime" column="MODIFY_TIME" />
+		<property name="delBy" column="DEL_BY" />
+		<property name="delByID" column="DEL_BY_ID" />
+		<property name="delTime" column="DEL_TIME" />
+		<property name="Active" column="ACTIVE" />
+		
+		<bag name="htlAssureTemplateZ" cascade="all-delete-orphan"  >
+            <key>
+                <column name="RESERVATION_TEMPLATE_ID" />
+            </key>
+            <one-to-many class="HtlAssureTemplate" />
+        </bag>		
+  
+		<bag name="htlPrepayTemplateZ" cascade="all-delete-orphan"  >
+            <key>
+                <column name="RESERVATION_TEMPLATE_ID" />
+            </key>
+            <one-to-many class="HtlPrepayTemplate" />
+        </bag>
+
+		<bag name="htlReservationTemplateZ" cascade="all-delete-orphan">
+            <key>
+                <column name="RESERVATION_TEMPLATE_ID" />
+            </key>           
+            <one-to-many class="HtlReservationTemplate" />
+        </bag>
+		
+	</class>
+	<query name="queryClausesByHTLID">
+		<![CDATA[ 
+			from HtlPreconcertItemTemplet c where c.hotelID =? and c.Active='1'
+		]]>
+	</query>
+</hibernate-mapping>

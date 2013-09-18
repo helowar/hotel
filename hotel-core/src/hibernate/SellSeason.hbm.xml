@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="SellSeason" table="HTL_SELLSEASON" 
+	 dynamic-insert="true" dynamic-update="true">
+
+		<id name="sellID" unsaved-value="0" column="SELL_ID">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_sellseason</param>
+			</generator>
+			 
+		</id>
+		<property name="sellName" column="SELL_NAME"></property>
+		<property name="sellBeginDate" column="SELL_BEGINDATE"></property>
+		<property name="sellEndDate" column="SELL_ENDDATE"></property>
+		<property name="sellWeek" column="SELL_WEEK"></property>
+		<property name="sellCD" column="SELL_CD"></property>
+		<property name="sellRemark" column="SELL_REMARK"></property>
+		
+		
+		<property name="create_by" column="create_by" update="false"></property>
+		<property name="create_by_id" column="create_by_id" update="false"></property>
+		<property name="modify_by" column="modify_by"></property>
+		<property name="modify_by_id" column="modify_by_id"></property>
+		<property name="create_time" column="create_time" update="false"></property>
+		<property name="modify_time" column="modify_time"></property>
+		
+		<many-to-one name="htlHotel" class="com.mangocity.hotel.base.persistence.HtlHotel" column="HOTEL_ID" />
+	</class>
+</hibernate-mapping>

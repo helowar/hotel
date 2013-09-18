@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="HotelInfo">
+
+	<!-- Select with no parameters using the result map for HtlPresale class. -->
+	<select id="selectHotelInfo"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		   select a.* from V_HTL_HOTEL a
+		            where  a.active='1'
+		           
+	     ]]> 
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(a.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(a.ENG_NAME) like upper('%$englishname$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hoteltype">
+				a.HOTEL_TYPE like '$hoteltype$'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelSystemSign">
+				a.HOTEL_SYSTEM_SIGN = #hotelSystemSign#
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="hotelstar">
+				a.HOTEL_STAR in ($hotelstar$)
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				a.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				a.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				a.ZONE like #hotelzone#
+			</isNotEmpty>
+           
+			<isNotEmpty prepend="AND" property="mainCommend">
+				a.commendtype = #mainCommend#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="active">
+				a.ACTIVE = #active#
+			</isNotEmpty>
+			
+			 <!--根据用户所在区域过滤酒店 add by kun.chen 2009-9-28  -->
+	        <isNotEmpty prepend="AND" property="area">
+				a.CITY in ( select c.citycode from htl_area c where c.areacode=#area#)
+			</isNotEmpty>
+			<!-- add end -->
+
+	</select>
+
+<select id="selectHotelInfoHBIZ"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (
+		   select a.*, 
+		   (select count(*) from htl_price p where p.close_flag = 'G' and p.able_sale_date = trunc(Sysdate)
+              and p.hotel_id=a.HOTEL_ID)as close_Room_Num
+		   from V_HTL_HOTEL a
+		            where  a.active='1'
+		          and a.HOTEL_SYSTEM_SIGN ='01'
+	     ]]> 
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(a.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(a.ENG_NAME) like upper('%$englishname$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hoteltype">
+				a.HOTEL_TYPE like '$hoteltype$'
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="hotelstar">
+				a.HOTEL_STAR in ($hotelstar$)
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelCountry">
+				a.country = #hotelCountry#
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="hotelstate">
+				a.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				a.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelid">
+				a.HOTEL_ID = #hotelid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				a.ZONE = #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelbizzone">
+				a.BIZ_ZONE = #hotelbizzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mainCommend">
+				a.commendtype = #mainCommend#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="parentHotelGroup">
+				a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="plateName">
+				a.NAMEPLATE_NAME = #plateName#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="saleChannelQuery">
+				a.sale_channel like '$saleChannelQuery$'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="purchaseChannelQuery">
+				a.purchase_channel like '$purchaseChannelQuery$'
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="active">
+				a.ACTIVE = #active#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="firstpageRecommend">
+				a.FIRSTPAGE_RECOMMEND = #firstpageRecommend#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="productManager">
+			upper(a.PRODUCT_MANAGER) like upper('%$productManager$%')
+			</isNotEmpty>
+			<!-- 预付合约经理 add by dongjietao@2013.05.28 -->
+			<isNotEmpty prepend="AND" property="roomStateManager">
+			  a.HOTEL_ID in( select e.hotel_id from htl_hotel_ext e where 
+              room_state_manager like upper('%$roomStateManager$%'))
+			</isNotEmpty>
+			
+			<!-- 酒店主题 add by chenkeming@2008.09.26 -->
+			<isNotEmpty prepend="AND" property="hotelThemeQuery">
+				a.theme like '$hotelThemeQuery$'
+			</isNotEmpty>			
+			
+			 <!--根据用户所在区域过滤酒店 add by kun.chen 2009-9-28  -->
+	        <isNotEmpty prepend="AND" property="area">
+				a.CITY in ( select c.citycode from htl_area c where c.areacode=#area#)
+			</isNotEmpty>			
+			<!-- add end -->
+			
+			 <!--根据售卖状态过滤酒店 add by juesu.chen 2009-4-29  -->
+	        <isNotEmpty prepend="AND" property="firstSellStatus">
+	        	a.SELL_STATUS = #firstSellStatus#
+			</isNotEmpty>			
+			<!-- add end -->
+			
+			<!-- hotel2.9.2 增加直联合作方查询条件 add by chenjiajie 2009-08-19 -->
+			<isNotEmpty prepend="AND" property="hotelCooperator">
+				a.cooperate_channel = #hotelCooperator#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="userName">
+				a.MODIFY_BY_ID =  #userName#		
+				order by a.MODIFY_TIME desc
+			</isNotEmpty> 
+			)			
+	</select>
+	<select id="selectChangePrice"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select A.CHN_NAME,A.HOTEL_CD,B.* from v_HTL_HOTEL
+		A,htl_change_price B where A.HOTEL_ID=B.HOTEL_ID
+		and A.HOTEL_SYSTEM_SIGN = '01'
+		<dynamic>
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(A.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(A.ENG_NAME) like upper('%$englishname$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hoteltype">
+				A.HOTEL_TYPE like '$hoteltype$'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstar">
+				HOTEL_STAR in ($hotelstar$)
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				A.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				A.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				A.ZONE like #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="taskCode">
+				B.TASK_CODE like '%$taskCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="changePrice_Status">
+				B.STATUS = #changePrice_Status#
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="beginDate">
+				<![CDATA[		
+					(B.CREATE_TIME  >= to_date(#beginDate#, 'YYYY-MM-DD'))
+				]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="endDate">
+				<![CDATA[
+	  		        (B.CREATE_TIME  <= to_date(#endDate#, 'YYYY-MM-DD'))
+	  		     ]]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<select id="selectHotelExhibit"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select * from HTL_EXHIBIT
+
+
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="state">
+				STATE = #state#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="cityid">
+				CITYID = #cityid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="name">
+				NAME like '%$name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="exhibitType">
+				EXHIBIT_TYPE = #exhibitType#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="description">
+				DESCRIPTION like '%$description$%'
+			</isNotEmpty>						
+			<isNotEmpty prepend="AND" property="beginDate">
+				<![CDATA[
+	  		        ((BEGINDATE  between to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD') or ENDDATE between to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD') or  (BEGINDATE >= to_date(#beginDate#, 'YYYY-MM-DD') and ENDDATE <= to_date(#endDate#, 'YYYY-MM-DD')))
+	  		     	or (to_date(#beginDate#, 'YYYY-MM-DD')  between BEGINDATE and ENDDATE or to_date(#endDate#, 'YYYY-MM-DD') between BEGINDATE and ENDDATE or  (to_date(#beginDate#, 'YYYY-MM-DD') >= BEGINDATE and to_date(#endDate#, 'YYYY-MM-DD') <= ENDDATE)))
+	  		     ]]>
+			</isNotEmpty>
+			<!-- <isNotEmpty property="beginDate"> 
+				<isNotEmpty prepend="OR" property="endDate">
+					<![CDATA[
+		  		        ((BEGINDATE between to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD'))
+		  		         and 
+		  		        (ENDDATE between to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD')))
+		  		        
+		  		     ]]>
+				</isNotEmpty>	
+			</isNotEmpty> -->			
+		</dynamic>
+	</select>
+
+
+	<!-- 促销页面的酒店查询 -->
+	<select id="presale.queryHotels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select a.* from V_HTL_HOTEL a  where a.active='1'
+		and a.HOTEL_SYSTEM_SIGN = '01'
+        and not Exists(select 1 from
+		htl_presale_hotel b where b.hotel_id = a.hotel_id and
+		b.PRESALE_ID = #presaleID#)
+	
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(a.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(a.ENG_NAME) like upper('%$englishname$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hoteltype">
+				a.HOTEL_TYPE = #hoteltype#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				a.STATE like #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				a.CITY like #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				a.ZONE like #hotelzone#
+			</isNotEmpty>
+		    <isNotEmpty prepend="AND" property="mainCommend">
+				a.commendtype = #mainCommend#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="hotelstar">
+				a.HOTEL_STAR in ($hotelstar$)
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelCooperator">
+				a.cooperate_channel = #hotelCooperator#
+			</isNotEmpty>
+			
+			 <!--根据用户所在区域过滤酒店 add by kun.chen 2009-9-28  -->
+	        <isNotEmpty prepend="AND" property="area">
+				a.CITY in ( select c.citycode from htl_area c where c.areacode=#area#)
+			</isNotEmpty>
+			<!-- add end -->
+	</select>
+	<!-- 主推页面的酒店查询 -->
+	<select id="queryCommendHotels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select a.* from HTL_HOTEL a where 
+		a.active='1'
+		and not Exists(select 1 from
+		htl_comm_list b where b.hotel_id = a.hotel_id)
+		
+
+		<!--  dynamic prepend="WHERE"-->
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(a.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(a.ENG_NAME) like upper('%$englishname$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hoteltype">
+				a.HOTEL_TYPE = #type#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstar">
+				a.HOTEL_STAR = #start#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelstate">
+				a.STATE like #state#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				a.CITY like #city#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				a.ZONE like #zone#
+			</isNotEmpty>
+			 <!--根据用户所在区域过滤酒店 add by kun.chen 2009-9-28  -->
+	        <isNotEmpty prepend="AND" property="area">
+				a.CITY in ( select c.citycode from htl_area c where c.areacode=#area#)
+			</isNotEmpty>
+			<!-- add end -->
+		<!--  /dynamic-->
+	</select>
+
+	<!-- 酒店管理集团信息查询 -->
+	<select id="queryHotelManage"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select hg.HOTEL_GROUP_ID,hg.GROUP_NAME,hg.GROUP_KIND,gadress.ADDRESS from htl_hotel_group hg,
+                      (
+                          select hotel_group_id,address from htl_contactinfo where communicate_type='GroupHQ'
+                      ) gadress
+                 where hg.hotel_group_id=gadress.hotel_group_id(+)
+
+		<!-- <dynamic prepend="where">  -->
+			<isNotEmpty prepend="AND" property="groupName">
+				upper(hg.GROUP_NAME) LIKE upper('%$groupName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="groupKind">
+				hg.GROUP_KIND = #groupKind#
+			</isNotEmpty>
+		<!-- </dynamic>   -->
+	</select>
+
+	<!-- 查询用户评论 -->
+	<select id="queryHotelNetComment"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select hotel.HOTEL_ID,hotel.CITY,hotel.HOTEL_STAR,usescomment.COMMENT_ID,
+		usescomment.AUTHOR,usescomment.CREATETIME,usescomment.CONTEXT,usescomment.ROOM_POINT,
+		usescomment.ENVIRONMENT_POINT,usescomment.SERVICE_POINT,usescomment.STAR_POINT,
+		usescomment.GENERAL_POINT,usescomment.COMMENT_STATUS
+
+		from HTL_HOTEL hotel ,HTL_USES_COMMENT usescomment where
+		hotel.HOTEL_ID = usescomment.HOTEL_ID
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(hotel.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(hotel.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hoteltype">
+			hotel.HOTEL_TYPE like '$hoteltype$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstar">
+			hotel.HOTEL_STAR in ($hotelstar$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="state">
+			hotel.STATE = #state#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="city">
+			hotel.CITY = #city#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="zone">
+			hotel.ZONE = #zone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status">
+			usescomment.COMMENT_STATUS = #status#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="memberName">
+			upper(usescomment.AUTHOR) like upper('%$memberName$%')
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="commentDate">		    
+		    <![CDATA[		
+					usescomment.CREATETIME like to_date(#commentDate#,'YYYY-MM-DD')
+			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="verifyDate">		    
+		    <![CDATA[		
+					usescomment.VERIFY_DATE like to_date(#verifyDate#,'YYYY-MM-DD')
+			]]>
+		</isNotEmpty>
+
+	</select>
+	
+	<select id="select_hotelGroup"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        select HOTEL_GROUP_ID name, GROUP_NAME descr from htl_hotel_group order by FIRST_LETTER        
+    </select>
+    
+    <!-- 集团所属品牌 -->
+	<select id="select_namePlate"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        select NAMEPLATE_ID name, NAMEPLATE_NAME descr 
+        from HTL_NAMEPLATE
+	    <dynamic prepend="WHERE">
+	        <isNotEmpty prepend="AND" property="groupName">
+	         	HOTEL_GROUP_ID = #groupName#
+	         </isNotEmpty >
+         </dynamic>  
+    </select>
+    
+    	<!-- 酒店预订条约查询 -->
+    <resultMap class="com.mangocity.hotel.base.persistence.HtlCreditAssure"
+		id="queryCreditAssureResult">
+
+		<result property="aheadDays" column="AHEAD_DAY"/>
+		<result property="aheadTimer" column="AHEAD_TIME"/>
+		<result property="mustBeforeDate" column="MUST_BEFORE_DATE"/>
+		<result property="mustBeforeTime" column="MUST_BEFORE_TIME"/>
+		<result property="continueNight" column="CONTINUE_NIGHT"/>
+		<result property="mustDate" column="MUST_DATE"/>
+	</resultMap>	
+	<select id="queryCreditAssure"
+		parameterClass="java.util.Map"
+		resultMap="queryCreditAssureResult"> 
+         select AHEAD_DAY,AHEAD_TIME, MUST_BEFORE_DATE,MUST_BEFORE_TIME,CONTINUE_NIGHT,MUST_DATE 
+         from htl_credit_assure   where rownum =1
+   			<isNotEmpty prepend="AND" property="hotelId">
+				hotel_id=#hotelId#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="beginDate">
+				<![CDATA[		
+					(to_date(#beginDate#, 'YYYY-MM-DD') between BEGIN_DATE and END_DATE)
+				]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="roomType">
+				<![CDATA[	
+ 				  ',' || room_type ||',' like #roomType#				  
+				]]>
+			</isNotEmpty>
+
+	      order by createtime desc
+	
+	</select>
+		
+	<!-- 
+	    酒店映射查询 add by chenjiajie 2008-11-25 V2.5 
+	    生产bug501 增加 hotel_system_sign = '01'的查询条件 modify by chenjiajie 2009-05-22
+	-->
+	<select id="selectMappingHotelInfo"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (
+		select distinct hh.hotel_id,
+		       hh.state STATE,
+		       hh.city CITY,
+		       hh.zone ZONE,
+		       hh.hotel_star HOTEL_STAR,
+		       hh.parent_hotel_group HOTEL_GROUP,
+		       hh.chn_name CHN_NAME,
+		       hh.hotel_cd HOTEL_CODE,
+		       (select b.commendtype
+		          from htl_comm_list b
+		         where b.hotel_id = hh.hotel_id
+		           and sysdate between b.begin_date and b.end_date
+		           and rownum < 2) commendtype,
+		       he.cooperate_channel CHANNELTYPE,
+		       he.isctshotel ISCTSHOTEL,
+		       hh.product_manager PRODUCT_MANAGER
+		  from htl_hotel hh,
+		       htl_hotel_ext he,
+		       (select * from ex_mapping m1 where m1.type = 2) em2,
+		       (select * from ex_mapping m1 where m1.type = 3) em3
+		 where hh.active = '1'
+		   and hh.hotel_system_sign = '01'
+		   and hh.hotel_id = em2.hotelid(+)
+		   and hh.hotel_id = em3.hotelid(+)
+		   and hh.hotel_id = he.hotel_id(+)
+		   
+	     ]]> 
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(hh.CHN_NAME) like upper('%$chinesename$%') 
+			</isNotEmpty>       
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(hh.ENG_NAME) like upper('%$englishname$%') 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hoteltype">
+				hh.HOTEL_TYPE like '$hoteltype$' 
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="hotelstar">
+				hh.HOTEL_STAR in ($hotelstar$) 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelCountry">
+				hh.country = #hotelCountry# 
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="hotelstate">
+				hh.STATE = #hotelstate# 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				hh.CITY = #hotelcity# 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				hh.ZONE = #hotelzone# 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelbizzone">
+				hh.BIZ_ZONE = #hotelbizzone# 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="parentHotelGroup">
+				hh.PARENT_HOTEL_GROUP = #parentHotelGroup# 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="saleChannelQuery">
+				hh.sale_channel like '$saleChannelQuery$' 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="productManager">
+				upper(hh.PRODUCT_MANAGER) like upper('%$productManager$%') 
+			</isNotEmpty>			
+	        <isNotEmpty prepend="AND" property="cooperator">
+				he.cooperate_channel = #cooperator# 
+			</isNotEmpty>	
+	        <isNotEmpty prepend="AND" property="priceConfirmedState">
+				<isEqual property="priceConfirmedState" compareValue="">
+			  		     em3.isactive in (1,0)
+				 </isEqual>				
+				 <isEqual property="priceConfirmedState" compareValue="1">
+				 		 em3.isactive = 1
+				 </isEqual>		
+				<isEqual property="priceConfirmedState" compareValue="0">
+				 		 em3.isactive = 0
+				 </isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcodeforchannel">
+				em2.hotelcodeforchannel = trim('$hotelcodeforchannel$')
+			</isNotEmpty>		
+	        <isNotEmpty prepend="AND" property="roomConfirmedState">
+				<isEqual property="roomConfirmedState" compareValue="">
+			  		     em2.isactive in (1,0)
+				 </isEqual>				
+				 <isEqual property="roomConfirmedState" compareValue="1">
+				 		 em2.isactive = 1
+				 </isEqual>		
+				<isEqual property="roomConfirmedState" compareValue="0">
+				 		 em2.isactive = 0
+				 </isEqual>
+			</isNotEmpty>
+		    <!-- 增加是否香港直联酒店条件 V2.8 by chenjiajie 2009-03-16 -->		
+	        <isNotEmpty prepend="AND" property="isCTSHotel">
+	       			<isEqual property="isCTSHotel" compareValue="1">
+						he.isctshotel = #isCTSHotel# 
+					</isEqual>
+					<isEqual property="isCTSHotel" compareValue="0">
+						(he.isctshotel = #isCTSHotel# or he.isctshotel is null)
+					</isEqual>
+		    </isNotEmpty>
+		    <isNotEmpty prepend="AND" property="isDerbyChangeHotel">
+		        exists (select d.hotelid 
+					   from htl_derby_change d
+			         where d.hotelid = hh.hotel_id
+			           and d.flag = 1
+			         group by d.hotelid
+			        having count(d.hotelid) > 0)
+		    </isNotEmpty>
+			<![CDATA[
+			   ) h
+		   		where 1 = 1
+		 	]]> 
+		   <isNotEmpty prepend="AND" property="mainCommend">
+				h.commendtype = #mainCommend# 
+		   </isNotEmpty>
+	</select>
+	<select id="queryHotelPriceList"		
+		    parameterClass="com.mangocity.util.collections.FormatMap"
+			resultClass="java.util.HashMap">
+			   <![CDATA[
+				select currency,sale_price,
+				room_state,breakfast_type,inc_breakfast,
+				sum(nvl(h.COMMON_QUOTA_ABLE_NUM,0) + nvl(h.BUY_QUOTA_ABLE_NUM,0) + nvl(h.CASUAL_QUOTA_ABLE_NUM,0)) as avail_qty
+			    from V_HOTEL_QUOTA_PRICE_NEW h 		    
+				]]>	
+			<dynamic prepend="WHERE">	  
+				<isNotEmpty prepend="AND" property="hotelId">
+				  	h.hotel_id = #hotelId# 
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="roomTypeId">
+				  	h.room_type_id = #roomTypeId# 
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="payMethod">
+				  	h.pay_method = #payMethod# 
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="ableSaleDate">
+					<![CDATA[
+		  		        (h.able_sale_date  = to_date(#ableSaleDate#, 'YYYY-MM-DD'))
+		  		     ]]>
+				</isNotEmpty>
+			</dynamic>	
+			   <![CDATA[	
+			   	group by currency,sale_price,room_state,breakfast_type,inc_breakfast	    
+				]]>	  	  
+		</select>
+		<!--add by haibo.li 查询ebooking酒店设置 酒店2.9  -->
+	<select id="selecEbookingHotel"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+	<![CDATA[
+		select * from (
+		   select a.STATE,a.CITY,a.ZONE,a.HOTEL_STAR,a.CHN_NAME,a.HOTEL_ID, 
+		   (select count(*) from htl_price p where p.close_flag = 'G' and p.able_sale_date = trunc(Sysdate)
+              and p.hotel_id=a.HOTEL_ID)as close_Room_Num
+		   from V_HTL_HOTEL a
+		            where  a.active='1'
+		          and a.HOTEL_SYSTEM_SIGN ='01'
+	     ]]>
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(a.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(a.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hoteltype">
+			a.HOTEL_TYPE like '$hoteltype$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstar">
+			a.HOTEL_STAR in ($hotelstar$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelid">
+			a.HOTEL_ID = #hotelid#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCountry">
+			a.country = #hotelCountry#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstate">
+			a.STATE = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			a.CITY = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			a.ZONE = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			a.BIZ_ZONE = #hotelbizzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="mainCommend">
+			a.commendtype = #mainCommend#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="parentHotelGroup">
+			a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="plateName">
+			a.NAMEPLATE_NAME = #plateName#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="saleChannelQuery">
+			a.sale_channel like '$saleChannelQuery$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="purchaseChannelQuery">
+			a.purchase_channel like '$purchaseChannelQuery$'
+		</isNotEmpty>
+		<!-- 过虑Ebooking酒店 by juesuchen-->
+		<isNotEmpty prepend="AND" property="isEbookingHotel">
+			a.HOTEL_ID in (
+		          select e.HOTEL_ID from HTL_EBOOKING e
+		          where e.WHETHEREBOOKING = #isEbookingHotel#
+		          )
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="active">
+			a.ACTIVE = #active#
+		</isNotEmpty>
+
+		<isNotEmpty prepend="AND" property="productManager">
+			upper(a.PRODUCT_MANAGER) like upper('%$productManager$%')
+		</isNotEmpty>
+		<isNotEmpty property="area">
+			<isNotEqual prepend="AND" property="area" compareValue="ALL">
+				a.CITY in ( select c.citycode from htl_area c where
+			c.areacode=#area#)
+			</isNotEqual>
+		</isNotEmpty>
+		)
+	</select>
+	
+	<!-- hotel 2.9.2查询中旅加幅酒店 add by chenjiajie 2009-08-14 -->	
+	<select id="queryHotelIncreasePrice"		
+		    parameterClass="com.mangocity.util.collections.FormatMap"
+			resultClass="java.util.HashMap">
+			   <![CDATA[
+				select h.hotel_id,
+				       h.chn_name,
+				       h.state,
+				       h.city,
+				       h.biz_zone,
+				       e.hotelcodeforchannel,
+				       h.product_manager
+				  from htl_hotel h, ex_mapping e
+				 where h.hotel_id = e.hotelid
+				   and e.channeltype = '8'
+				   and e.type = 1 		    
+				]]>	
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(h.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(h.ENG_NAME) like upper('%$englishname$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelCountry">
+				h.country = #hotelCountry#
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="hotelstate">
+				h.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				h.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				h.ZONE = #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelbizzone">
+				h.BIZ_ZONE = #hotelbizzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="productManager">
+				upper(h.PRODUCT_MANAGER) like upper('%$productManager$%')
+			</isNotEmpty>	
+			<isNotEmpty prepend="AND" property="hotelCodeForChannel">
+				e.hotelcodeforchannel like upper('%$hotelCodeForChannel$%')
+			</isNotEmpty>	  	  
+	</select>
+	
+	<!-- 房态与价格解绑的房台查询 -->	
+	<select id="queryAvailRoomStatusReport"		
+		    parameterClass="com.mangocity.util.collections.FormatMap"
+			resultClass="java.util.HashMap">
+			   <![CDATA[
+					SELECT 
+					  RPL.CURDATE,
+					  EXM.HOTELNAME,
+					  EXM.ROOMTYPENAMEFORMANGO,
+					  EXM.ROOMTYPEID,
+					  EXM.ROOMTYPECODEFORCHANNEL,
+					  EXM.PRICETYPENAME,
+					  EXM.PRIVETYPEID,
+					  EXM.RATEPLANCODE,
+					  RPL.ROOM_SATE,
+					  to_char(RPL.MODIFYTIME,'yyyy-MM-dd HH24:mi:ss') as MODIFYTIME
+					FROM HTL_II.EX_ROOM_PRICE_LOG RPL, HTL_II.EX_MAPPING EXM
+					WHERE RPL.HOTELCODE_CHANNEL = EXM.HOTELCODEFORCHANNEL
+					 AND RPL.ROOM_TYPE_CHANNEL_ID = EXM.ROOMTYPECODEFORCHANNEL
+					 AND RPL.ROOM_SATE IS NOT NULL
+					 AND EXM.TYPE = 3		    
+				]]>	
+			
+			<isNotEmpty prepend="AND" property="hotelId">
+				 EXM.HOTELID = #hotelId# 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="roomTypeId">
+				 EXM.ROOMTYPEID = #roomTypeId#
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="beginDate">
+				<![CDATA[		
+					RPL.CURDATE >= to_date(#beginDate#,'YYYY-MM-DD')
+				]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="endDate">
+				<![CDATA[		
+				 	RPL.CURDATE < to_date(#endDate#,'YYYY-MM-DD')
+				 ]]>
+			</isNotEmpty>
+			<![CDATA[
+			ORDER BY RPL.CURDATE ASC  
+			 ]]>
+			
+	</select>
+	
+	<!-- 房态与价格解绑的价格查询 -->	
+	<select id="queryExPriceReport"		
+		    parameterClass="com.mangocity.util.collections.FormatMap"
+			resultClass="java.util.HashMap">
+			   <![CDATA[
+					SELECT 
+					  RPL.CURDATE,
+					  EXM.HOTELNAME,
+					  EXM.ROOMTYPENAMEFORMANGO,
+					  EXM.ROOMTYPEID,
+					  EXM.ROOMTYPECODEFORCHANNEL,
+					  EXM.PRICETYPENAME,
+					  EXM.PRIVETYPEID,
+					  EXM.RATEPLANCODE,
+					  RPL.AMOUT,
+					  RPL.RATEAMOUNTTWOPERSON,
+					  RPL.RATEAMOUNTEXTRAADULT,
+					  to_char(RPL.MODIFYTIME,'yyyy-MM-dd HH24:mi:ss') as MODIFYTIME
+					FROM HTL_II.EX_ROOM_PRICE_LOG RPL, HTL_II.EX_MAPPING EXM
+					WHERE RPL.HOTELCODE_CHANNEL = EXM.HOTELCODEFORCHANNEL
+					 AND RPL.ROOM_TYPE_CHANNEL_ID = EXM.ROOMTYPECODEFORCHANNEL
+					 AND RPL.ROOM_SATE IS NULL
+					 AND EXM.TYPE = 3	    
+				]]>
+					
+			<isNotEmpty prepend="AND" property="hotelId">
+				  	 EXM.HOTELID = #hotelId# 
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="roomTypeId">
+				 	EXM.ROOMTYPEID = #roomTypeId#
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="beginDate">
+				<![CDATA[		
+					RPL.CURDATE >= to_date(#beginDate#,'yyyy-MM-dd')
+				]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="endDate">
+				<![CDATA[		
+				 	RPL.CURDATE < to_date(#endDate#,'yyyy-MM-dd')
+				 ]]>
+			</isNotEmpty>
+			<![CDATA[		
+			ORDER BY RPL.CURDATE ASC  
+		   ]]>
+	</select>
+	
+	<!-- add by xiaojun.xiong  2010-9-13  查询网站返现酒店-->	
+	<select id="selecFavourableReturnHBIZ"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (
+		   select a.STATE,
+		     	  a.CITY,
+		     	  a.ZONE,
+		     	  a.CHN_NAME,
+		     	  a.COMMENDTYPE,
+		     	  a.SELL_STATUS,
+		     	  a.HOTEL_ID,
+		     	  a.PRODUCT_MANAGER,
+		     	  a.COOPERATE_CHANNEL,
+		     	  a.WHETHEREBOOKING,
+		     	  (select count(hf.id) from htl_favourable_return hf where hf.enddate >= trunc(sysdate)  
+           and hf.hotel_id=a.HOTEL_ID)as favourable_Return_Num,
+                  (select count(priceTypeId) from (select hp.hotel_id as hotelId,decode(sign(ret.return_scale - 1),
+                       '1',
+                       ret.return_scale,
+                       decode(hp.formulaid,
+                              '0',
+                              hp.sale_price,
+                              'priceF',
+                              hp.sale_price,
+                              decode(hp.commission_rate,0,0,hp.commission / hp.commission_rate) *ret.return_scale)) as returnAmount,
+                              hp.commission as commission,
+                              hp.child_room_type_id priceTypeId
+                        from htl_price hp,htl_favourable_return ret 
+                        where hp.hotel_id=ret.hotel_id
+                        and hp.child_room_type_id = ret.pricetype_id
+                        and hp.able_sale_date >= ret.begindate 
+                        and hp.able_sale_date <= ret.enddate
+                        and hp.able_sale_date <= trunc(sysdate)+30
+                        and hp.able_sale_date >= trunc(sysdate)
+                        and hp.sale_price>0
+                        and hp.pay_method = decode(ret.paymethod,1,'pay','per_pay')
+                        )where commission <= returnAmount and commission>0 and returnAmount >0 and hotelId = a.hotel_id) as RETURN_OVER_NUM 
+		   from V_HTL_HOTEL a
+		            where  a.active='1'
+		          and a.HOTEL_SYSTEM_SIGN ='01'
+	     ]]>
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(a.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(a.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCountry">
+			a.country = #hotelCountry#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstate">
+			a.STATE = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			a.CITY = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			a.ZONE = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			a.BIZ_ZONE = #hotelbizzone#
+		</isNotEmpty>
+		<!-- 主推类型 -->
+		<isNotEmpty prepend="AND" property="mainCommend">
+			a.commendtype = #mainCommend#
+		</isNotEmpty>
+		<!-- 所属酒店集团 -->
+		<isNotEmpty prepend="AND" property="parentHotelGroup">
+			a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+		</isNotEmpty>
+		<!-- 所属品牌 -->
+		<isNotEmpty prepend="AND" property="plateName">
+			a.NAMEPLATE_NAME = #plateName#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="productManager">
+			upper(a.PRODUCT_MANAGER) like upper('%$productManager$%')
+		</isNotEmpty>
+		<!-- 是否有现金返还 -->
+		<isNotEmpty prepend="AND" property="returnFavourableStatus">
+			<isEqual property="returnFavourableStatus" compareValue="1">
+				(select count(hf.id) from htl_favourable_return hf where hf.enddate >= trunc(sysdate) and hf.hotel_id=a.HOTEL_ID) > 0
+			</isEqual>
+			<isEqual property="returnFavourableStatus" compareValue="0">
+				(select count(hf.id) from htl_favourable_return hf where hf.enddate >= trunc(sysdate) and hf.hotel_id=a.HOTEL_ID) = 0
+			</isEqual>
+	    </isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCooperator">
+				a.cooperate_channel = #hotelCooperator#
+		</isNotEmpty>
+		<!-- 返还现金是否大于佣金 -->
+		<isNotEmpty prepend="AND" property="overStatus">
+			<isEqual property="overStatus" compareValue="1">
+			a.HOTEL_ID in (select hotelId from (select hp.hotel_id as hotelId,decode(sign(ret.return_scale - 1),
+                       '1',
+                       ret.return_scale,
+                       decode(hp.formulaid,
+                              '0',
+                              hp.sale_price,
+                              'priceF',
+                              hp.sale_price,
+                              decode(hp.commission_rate,0,0,hp.commission / hp.commission_rate) *ret.return_scale)) as returnAmount,
+                              hp.commission as commission                             
+                        from htl_price hp,htl_favourable_return ret 
+                        where hp.hotel_id=ret.hotel_id
+                        and hp.child_room_type_id = ret.pricetype_id
+                        and hp.able_sale_date >= ret.begindate 
+                        and ret.enddate >= hp.able_sale_date 
+                        and trunc(sysdate)+ 30 >= hp.able_sale_date 
+                        and hp.able_sale_date >= trunc(sysdate)
+                        and hp.sale_price>0
+                        and hp.pay_method = decode(ret.paymethod,1,'pay','per_pay')
+                        )where returnAmount >= commission and commission>0 and returnAmount >0)
+			</isEqual>
+			<isEqual property="overStatus" compareValue="0">
+			    a.HOTEL_ID not in (select hotelId from (select hp.hotel_id as hotelId,decode(sign(ret.return_scale - 1),
+                       '1',
+                       ret.return_scale,
+                       decode(hp.formulaid,
+                              '0',
+                              hp.sale_price,
+                              'priceF',
+                              hp.sale_price,
+                              decode(hp.commission_rate,0,0,hp.commission / hp.commission_rate) *ret.return_scale)) as returnAmount,
+                              hp.commission as commission                             
+                        from htl_price hp,htl_favourable_return ret 
+                        where hp.hotel_id=ret.hotel_id
+                        and hp.child_room_type_id = ret.pricetype_id
+                        and hp.able_sale_date >= ret.begindate 
+                        and ret.enddate >= hp.able_sale_date
+                        and trunc(sysdate)+30 >= hp.able_sale_date 
+                        and hp.able_sale_date >= trunc(sysdate)
+                        and hp.sale_price>0
+                        and hp.pay_method = decode(ret.paymethod,1,'pay','per_pay')
+                        )where returnAmount >= commission and commission>0 and returnAmount >0)
+			</isEqual>
+	    </isNotEmpty>
+		)
+	</select>
+	
+		<!-- add by xieyanhui 2011-08-20 -->
+	<select id="selectSupplierInfo"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		   select * from HTL_SUPPLIERINFO hs where 1 = 1
+		           
+	     ]]> 
+			<isNotEmpty prepend="AND" property="suppliername">
+				upper(hs.NAME) like upper('%$suppliername$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="active">
+				upper(hs.ACTIVE) like upper('%$active$%')
+			</isNotEmpty>
+			
+	</select>
+	<select id="select_supplier"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        select ID name, ALIAS descr from htl_supplierinfo hs where hs.active = 1      
+    </select>
+    <!-- add end -->
+    
+        <select id="selectLimitFavourableHotels"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+select distinct *
+  from (select a.*,
+               f.fav_a,
+               f.fav_b,
+               f.fav_c,
+               k.favid,
+               k.favname,
+               k.favisstart
+          from V_HTL_HOTEL a
+          left join htl_favourable f
+            on a.HOTEL_ID = f.hotel_id
+           and f.flag = 1
+          left join (select h.hotelid, l.favid, l.favname, l.favisstart
+                      from htl_favourable_hotel h
+                      left join htl_limit_favourable l
+                        on l.favid = h.favid
+                     where h.htlflag = 1
+                       and l.flag = 1
+                       and l.favisstart = 1) k
+            on a.HOTEL_ID = k.hotelid
+         where a.active = '1'
+           and a.HOTEL_SYSTEM_SIGN = '01'
+	     ]]> 
+			<isNotEmpty prepend="AND" property="chinesename">
+				upper(a.CHN_NAME) like upper('%$chinesename$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="englishname">
+				upper(a.ENG_NAME) like upper('%$englishname$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelCountry">
+				a.country = #hotelCountry#
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="hotelstate">
+				a.STATE = #hotelstate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelcity">
+				a.CITY = #hotelcity#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelid">
+				a.HOTEL_ID = #hotelid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelzone">
+				a.ZONE = #hotelzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="hotelbizzone">
+				a.BIZ_ZONE = #hotelbizzone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mainCommend">
+				a.commendtype = #mainCommend#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="parentHotelGroup">
+				a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="plateName">
+				a.NAMEPLATE_NAME = #plateName#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="saleChannelQuery">
+				a.sale_channel like '$saleChannelQuery$'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="purchaseChannelQuery">
+				a.purchase_channel like '$purchaseChannelQuery$'
+			</isNotEmpty>			
+			<isNotEmpty prepend="AND" property="active">
+				a.ACTIVE = #active#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="firstpageRecommend">
+				a.FIRSTPAGE_RECOMMEND = #firstpageRecommend#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="productManager">
+			upper(a.PRODUCT_MANAGER) like upper('%$productManager$%')
+			</isNotEmpty>
+			
+			 <!--根据用户所在区域过滤酒店 add by kun.chen 2009-9-28  -->
+	        <isNotEmpty prepend="AND" property="area">
+				a.CITY in ( select c.citycode from htl_area c where c.areacode=#area#)
+			</isNotEmpty>			
+			<!-- add end -->
+			
+			<!-- hotel2.9.2 增加直联合作方查询条件 add by chenjiajie 2009-08-19 -->
+			<isNotEmpty prepend="AND" property="hotelCooperator">
+				a.cooperate_channel = #hotelCooperator#
+			</isNotEmpty>
+			
+			 <!-- 根据活动ID过滤酒店 -->
+            <isNotEmpty prepend="AND" property="favId">
+                k.favid = #favId#
+            </isNotEmpty>
+            <!-- 根据活动标签过滤酒店 -->
+            <isNotEmpty prepend="AND" property="fav_a">
+               f.fav_a=#fav_a#
+           </isNotEmpty>
+           <isNotEmpty prepend="AND" property="fav_b">
+              f.fav_b=#fav_b#
+           </isNotEmpty>
+           <isNotEmpty prepend="AND" property="fav_c">
+              f.fav_c=#fav_c#
+           </isNotEmpty>
+			)			
+	</select>
+	
+		<select id="select_limitfavourable"
+		parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+select f.favid name,f.favid||'_'||f.favname descr
+  from htl_limit_favourable f
+ where f.flag = 1
+   and f.favisstart = 1
+   order by f.favid desc  
+    </select>
+    
+    <select id="select_queryid" 
+		resultClass="java.util.HashMap">
+		select r.room_type_id,r.room_name,r.bed_type,p.price_type_id,p.price_type
+           from htl_roomtype r
+           ,htl_price_type p
+            where p.room_type_id(+) = r.room_type_id
+           and hotel_id=#hotelId#
+		
+    </select>
+    <select id="select_hotel_name" 
+		resultClass="java.util.HashMap">
+		    select chn_name from htl_hotel h where hotel_id=#hotelId#
+    </select>
+    
+    
+    <!-- 查询商品上下架记录 -->
+    <select id="queryHtlOnSale"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select hr.room_name || '  ( ' || ht.price_type ||' )'  price_type,
+		       c.salechannelname salechannelname,
+		       (case 
+             when o.salestate=1 then '上架'
+             when o.salestate=0 then '下架'
+             end) salestate,
+		       o.salestartdate salestartdate, 
+		       o.saleenddate saleenddate, 
+		       o.checkstartdate checkstartdate, 
+		       o.checkenddate checkenddate, 
+		       o.creator creator,
+		       o.createdate createdate  
+		from htl_onsale o,htl_price_type ht,htl_roomtype hr,htl_salechannel c
+		where o.commodityid=ht.price_type_id
+		and ht.room_type_id=hr.room_type_id
+		and o.salechannelid=c.salechannelid
+		and o.commodityid=#priceTypeId#
+		and o.salechannelid=#saleChannelId#
+		order by o.onsaleid   desc,
+		         o.createdate desc
+	</select>
+</sqlMap>

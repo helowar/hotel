@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlArea" table="htl_area" 
+		dynamic-insert="true" dynamic-update="true" lazy="false">
+
+
+		<id name="ID" unsaved-value="0" column="AREA_ID">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_area</param>
+			</generator>
+		</id>
+
+
+		<property name="areaCode" column="AREACODE" />
+		<property name="areaName" column="AREANAME" />
+		<property name="cityCode" column="CITYCODE" />
+		<property name="cityName" column="CITYNAME" />
+		<property name="qpinyin" column="QPINYIN" />
+		<property name="jpinyin" column="JPINYIN" />
+		<property name="stateCode" column="STATECODE" />
+		<property name="stateName" column="STATENAME" />
+	</class>
+	<query name="checkAreaExist">
+		<![CDATA[ 
+			from HtlArea c where c.areaCode =? and c.cityCode=?
+		]]>
+	</query>
+	<query name="queryAreaCode">
+		<![CDATA[ 
+			from HtlArea c where c.cityCode=?
+		]]>
+	</query>
+</hibernate-mapping>

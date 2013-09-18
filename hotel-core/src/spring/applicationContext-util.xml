@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<!-- 资源管理，用于加载资源 -->
+	<bean name="resourceManager"
+		class="com.mangocity.hotel.base.resource.ResourceManager">
+		<property name="resourceFactory" ref="resourceFactory"></property>
+		<property name="cache" ref="resourceCache"></property>
+	</bean>
+
+	<!-- 用于读取配置资源，从不同的数据源中加载，如remote, db, xml等 -->
+	<bean name="resourceFactory" init-method="init"
+		class="com.mangocity.hotel.base.resource.ResourceDescriptorFactory">
+		<property name="queryDao" ref="ibatisDao"></property>
+		<property name="configLocation">
+			<value>classpath:resourceDescr.xml</value>
+		</property>
+	</bean>
+
+	<bean name="queryBuilder" class="com.mangocity.util.QueryBuilder">
+		<property name="entityManager" ref="entityManager"></property>
+	</bean>
+
+	<!-- ehcache管理器 -->
+	<bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+
+	</bean>
+
+    <!-- 资源缓存 -->
+	<bean id="resourceCache"
+		class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="cacheName">
+			<value>com.mangocity.hotel.base.resource.ResourceManager</value>
+		</property>
+	</bean>
+
+	<bean id="hdlCheckReservateManager" class="com.mangocity.hdl.service.impl.HdlCheckReservateManager">
+		<property name="hdlService" ref="hdlService"></property>
+	</bean>
+	
+	<bean id="checkBizManager" class="com.mangocity.hotel.util.CheckBizManager">
+		<property name="contractManage" ref="contractManage"></property>
+		<property name="priceManage" ref="priceManage"></property>		
+	</bean>
+
+    <bean id="orderDwrAction" class="com.mangocity.hotel.order.web.OrderDwrAction" scope="prototype">
+    	<property name="memberInterfaceService" ref="memberInterfaceService"></property>
+    	<property name="orderService" ref="orderService"></property>
+    	<property name="msgAssist" ref="msgAssist"></property>    	
+		<property name="hotelService" ref="hotelService"></property>    	    	
+	</bean>   
+	
+	<bean id="hdlCheckReservateAction" class="com.mangocity.hotel.order.web.HdlCheckReservateAction" scope="prototype">
+    	<property name="hdlCheckReservate" ref="hdlService"></property>
+	</bean>   
+
+	<bean id="urlClient" class="com.mangocity.hotel.base.service.assistant.URLClient">
+	</bean>
+	
+    <bean id="ctsDwrAction" class="com.mangocity.hotel.order.web.CtsDwrAction" scope="prototype">
+    	<property name="hkService" ref="hkService"></property>    	    	
+	</bean> 	
+	
+	<!-- hotel2.9.3 因有多个应用公用该bean，从applicationContext-hweb.xml剪切过来 add by chenjiajie 2009-08-27 -->
+	<bean id="configParaBean" class="com.mangocity.util.ConfigParaBean">
+		<property name="webRecEmail" value="${WEB_REC_EMAIL}"></property>
+		<!-- <property name="webRecEmail" value="cstrain@mangocity.com"></property> -->
+		<property name="hwebMemberLoginURL" value="${HWEB_MEMBER_LOGIN_URL}"></property>
+		<property name="hwebMemberLoginReturnURL" value="${HWEB_MEMBER_LOGIN_RETURN_URL}"></property>
+		<property name="hwebIPSPayURL" value="${HWEB_IPS_PAY_URL}"></property>
+		<property name="hwebIPSPayReturnURL" value="${HWEB_IPS_PAY_RETURN_URL}"></property>
+		<property name="hwebCMBPayURL" value="${HWEB_CMB_PAY_URL}"></property>
+		<property name="hwebCMBPayReturnURL" value="${HWEB_CMB_PAY_RETURN_URL}"></property>
+		<property name="ccVoucherRequestURL" value="${VOUCHER_CLIENT_LINK}/VCHWeb/vch"></property>
+		<property name="hwebVoucherRequestURL" value="${VOUCHER_CLIENT_LINK}/VCHWeb/webvch"></property>
+	</bean>
+</beans>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    shengwei.zuo hotel2.9.3 优惠条款总表 2009-08-25
+-->
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+    <class name="HtlFavourableclause" table="HTL_FAVOURABLECLAUSE" dynamic-insert="true" dynamic-update="true">
+        <id name="id" unsaved-value="0" column="ID">
+            <generator class="sequence">
+            	<param name="sequence">SEQ_HTL_FAVOURABLECLAUSE</param>
+            </generator>
+        </id>
+        <property name="hotelId">
+            <column name="HOTEL_ID">
+                <comment>酒店ID</comment>
+            </column>
+        </property>
+        <property name="contractId">
+            <column name="CONTRACT_ID">
+                <comment>合同ID</comment>
+            </column>
+        </property>
+        <property name="priceTypeId">
+            <column name="PRICE_TYPE_ID">
+                <comment>价格类型ID</comment>
+            </column>
+        </property>
+        <property name="priceTypeName">
+            <column name="PRICE_TYPE_NAME">
+                <comment>价格类型名称</comment>
+            </column>
+        </property>
+        <property name="favourableType">
+            <column name="FAVOURABLE_TYPE">
+                <comment>优惠类型</comment>
+            </column>
+        </property>
+        <property name="beginDate">
+            <column name="BEGIN_DATE">
+                <comment>开始日期</comment>
+            </column>
+        </property>
+        <property name="endDate">
+            <column name="END_DATE">
+                <comment>结束日期</comment>
+            </column>
+        </property>
+        <property name="week">
+            <column name="WEEK">
+                <comment>星期</comment>
+            </column>
+        </property>
+        <property name="createById">
+            <column name="CREATE_BY_ID">
+                <comment>创建人ID</comment>
+            </column>
+        </property>
+        <property name="createBy">
+            <column name="CREATE_BY" >
+                <comment>创建人</comment>
+            </column>
+        </property>
+        <property name="createTime">
+            <column name="CREATE_TIME" >
+                <comment>创建时间</comment>
+            </column>
+        </property>
+        <property name="modifyById">
+            <column name="MODIFY_BY_ID" >
+                <comment>修改人ID</comment>
+            </column>
+        </property>
+        <property name="modifyBy">
+            <column name="MODIFY_BY" >
+                <comment>修改人</comment>
+            </column>
+        </property>
+        <property name="modifyTime">
+            <column name="MODIFY_TIME" >
+                <comment>修改时间</comment>
+            </column>
+        </property>
+        <property name="randomNumber">
+            <column name="RANDOM_NUMBER" >
+                <comment>随机数</comment>
+            </column>
+        </property>
+
+        <!-- 和优惠参数表是一对多的关系 add by shengwei.zuo 2009-08-25 -->
+        <bag name="lstPackagerate" cascade="all-delete-orphan"> 
+        	<key column="FAVOURABLE_CLAUSE_ID"></key>
+        	<one-to-many class="HtlFavouraParameter" />
+        </bag>
+        
+    </class>
+    
+    <query name="queryFavourableclauseOrder">
+			<![CDATA[ 
+				from HtlFavourableclause fc where fc.contractId =? and fc.priceTypeId = ?  order by fc.modifyTime desc
+			]]>
+	</query>
+		
+	<query name="querySubFavClause">
+			<![CDATA[ 
+				from HtlFavourableclause fc where fc.contractId =? and fc.priceTypeId = ?  and fc.modifyTime<=? order by fc.beginDate
+			]]>
+	</query>
+    
+</hibernate-mapping>

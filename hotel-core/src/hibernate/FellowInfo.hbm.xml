@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="FellowInfo" table="or_fellowinfo" lazy="false"  dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="guestId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_fellowinfo</param>
+			</generator>
+	</id>     
+    
+         <property name="fellowName" />
+         <property name="fellowNationality" />
+         <property name="fellowTelNo" />
+         <property name="fellowGender" />
+         <property name="fellowPaperType" />
+         <property name="fellowPaperNo" />
+         <property name="fellowManType" />
+
+    
+		<!-- 和Order关联 -->
+		<many-to-one name="order"
+			class="Order"
+			column="orderId" 
+			cascade="save-update"
+			unique="true"/>      
+    
+   </class>
+
+   
+</hibernate-mapping>

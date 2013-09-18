@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+ <beans default-autowire="byName" default-lazy-init="true">
+ 
+    <bean name="newOrderParamService" class="com.mangocity.hotel.order.service.impl.NewOrderParamServiceImpl">	 
+    <property name="dao" ref="newOrderParamDao"/> 
+    <property name="resourceManager" ref="resourceManager"></property>
+    <property name="hotelService" ref="hotelService"></property>
+    <property name="contractDao" ref="contractDao"></property>
+    <property name="hotelQueryDao" ref="hotelQueryDao"></property>    
+    </bean>
+    <bean name="orderService" class="com.mangocity.hotel.order.service.impl.OrderService">	    
+    </bean>
+
+    <bean name="lockedOrderService" class="com.mangocity.hotel.order.service.impl.LockedOrderService">	    
+    </bean>
+    
+    <bean name="operOrderDerferTimeService" class="com.mangocity.hotel.order.service.impl.OperOrderDerferTimeImpl">	    
+    </bean>
+    
+    <bean name="hurryOrderService" class="com.mangocity.hotel.order.service.impl.HurryOrderServiceImpl">	    
+    </bean>
+    <bean name="orChannelNoService" class="com.mangocity.hotel.order.service.impl.OrChannelNoServiceImpl">	    
+    </bean>
+    <bean name="htlOrderStsLogService" class="com.mangocity.hotel.order.service.impl.HtlOrderStsLogServiceImpl">	    
+    </bean>
+    
+    <bean name="lockedRecordService" class="com.mangocity.hotel.base.service.LockedRecordService">
+    </bean>
+    
+    <bean name="roomStratFromCCService" class="com.mangocity.hotel.order.service.impl.RoomStratFromCCService">	    
+    </bean>        
+    <!--
+    <bean name="memberService" class="com.mangocity.hotel.member.service.impl.MemberService">
+    </bean>
+    -->
+    
+    <bean name="auditService" class="com.mangocity.hotel.order.service.impl.AuditService">
+    </bean>   
+    
+    <bean name="hraManager" class="com.mangocity.hotel.order.manager.HraManager">
+    </bean> 
+    
+    <!--refactor  -->
+    <bean name="dao" class="com.mangocity.util.dao.DAOHibernateImpl">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+	
+	<bean name="operationSetService" class="com.mangocity.hotel.base.service.impl.OperationSetServiceImpl">
+	</bean>
+	<bean name="CDMService" class="com.mangocity.hotel.base.service.impl.CDMServiceImpl">
+	</bean>
+	
+	
+    <bean name="workStatesManager" class="com.mangocity.hotel.base.manage.OrWorkStatesManager">
+    </bean>                  	 
+          
+    <bean id="hotelFaxManager" class="com.mangocity.hotel.order.manager.HotelFaxManager">
+	</bean>   
+    
+	<bean name="msgAssist" init-method="init" class="com.mangocity.hotel.order.service.assistant.MsgAssist">
+	</bean>    
+	
+	<bean name="orderAssist" class="com.mangocity.hotel.order.persistence.assistant.OrderAssist">
+	</bean>	
+    
+	<bean name="translateUtil" class="com.mangocity.hotel.base.web.TranslateUtil">
+	</bean>	    
+	
+    <!-- V2.7.1 chenjiajie 处理给客人发短信的业务逻辑 2009-02-17 -->
+    <bean name="memberConfirmService" class="com.mangocity.hotel.order.service.impl.MemberConfirmService">
+    </bean>
+    
+    <bean name="orderEditService" class="com.mangocity.hotel.order.service.impl.OrderEditService">	    
+    </bean>  
+    
+    <!-- V2.7.1 shizhongwen 处理会员联名卡业务逻辑 2009-02-19 -->    
+	<bean name="aliasManager" class="com.mangocity.hotel.order.manager.AliasManager">
+    </bean>  
+    
+    <!-- V2.5 增加checkservice add by chenkeming@2009-04-02 -->
+    <bean name="checkservice" class="com.mangocity.hotel.order.service.impl.CheckOrderServiceImpl">
+    </bean> 
+    
+    <bean name="calculatePriceService" class="com.mangocity.hotel.order.service.impl.CalculatePriceService">
+    </bean>
+    
+    <!-- V2.9.1电子地图查询 -->
+    <bean name="hotelEmapService" class="com.mangocity.hotel.order.service.impl.HotelEmapServiceImpl"/>
+    
+    <!-- V2.9.1 CC小电子地图查询 -->    
+	<bean id="hotelManageWeb" class="com.mangocity.hweb.manage.impl.HotelManageWebImpl">		
+	</bean>   
+	
+    <bean name="auditOrderService" class="com.mangocity.hotel.order.service.impl.AuditOrderService">
+    </bean>   	
+
+	<!-- V2.9.3 日审重构 by juesuchen -->
+	 <bean id="dailyAuditService" class="com.mangocity.hotel.order.service.impl.DailyAuditServiceImpl">		
+	</bean>
+	 
+	<!-- V2.9.3 代金券接口 add by chenjiajie 2009-09-15 -->
+	<bean id="voucherInterfaceService" class="com.mangocity.hotel.order.service.impl.VoucherInterfaceService">
+	</bean> 
+	
+	<!-- V2.9.3.1 优惠立减 add by chenjiajie 2009-10-16 -->
+	<bean id="benefitService" class="com.mangocity.hotel.base.service.BenefitService">
+	</bean> 	
+	
+	<bean id="favourableDecreaseDAO" class="com.mangocity.hotel.base.dao.impl.FavourableDecreaseDAOImpl">
+	</bean> 
+	
+	<!-- refactor : orderservice use IOderBenefitService instead of IBenefitService -->
+	<bean id="orderBenefitService" class="com.mangocity.hotel.order.service.impl.OrderBenefitServiceImpl">
+	</bean>
+	
+	<!-- refactor: orderservice use this service that break down from hotelService-->
+	<bean id="hotelReservationInfoService" class="com.mangocity.hotel.order.service.impl.HotelReservationInfoServiceImpl">
+	</bean>
+	
+	<!-- tmc查询辅助类 chenkeming@2009-09-28 -->
+	<bean name="queryAssist" class="com.mangocity.tmc.service.util.QueryAssist">
+	</bean>
+ 	<!-- 中台流转管理类 juesuchen@2010-3-29 -->
+	<bean name="midOrderTransfer" class="com.mangocity.hotel.order.manager.MidOrderTransfer">
+	</bean>
+ 	<!-- 传输改造处理延时加载信息的Service add by chenjiajie 2010-03-08 -->
+ 	<bean id="hotelDelayLoadService" class="com.mangocity.hotel.base.service.impl.HotelDelayLoadServiceImpl"></bean>
+ 	
+ 	<bean id="b2bOrderDao" class="com.mangocity.hagtb2b.dao.impl.B2bOrderDao">		
+	</bean>
+	
+	<bean id="b2bService" class="com.mangocity.hagtb2b.service.impl.B2bService">		
+		<property name="b2bOrderDao" ref="b2bOrderDao"/>
+		<property name="b2bOrderIncDao" ref="b2bOrderIncDao"/>
+	</bean>
+	
+	<!--	预付底价订单增幅-->
+	<bean id="b2bOrderIncService" class="com.mangocity.hagtb2b.service.impl.B2bOrderIncServiceImpl">		
+		<property name="b2bOrderIncDao" ref="b2bOrderIncDao"/>
+	</bean>
+	
+	<!-- 即时确认，发送短信，Email，传真的Service add by xiaowei.wang 2011-7-25 -->
+	<bean id="orderImmedConfirmService" class="com.mangocity.webnew.service.impl.OrderImmedConfirmServiceImpl">		
+	</bean>
+		<!-- 芒果的酒店促销 Dao add by xiaowei.wang 2011-7-25  -->
+	<bean id="mangoSalesDao" class="com.mangocity.webnew.dao.impl.MangoSaleDaoImpl">		
+	</bean>
+	<!-- 查询订单信息 -->
+	<bean id="orderInfoToXMLService" class="com.mangocity.hotel.order.service.impl.OrderInfoToXMLServiceImpl">
+	<property name="orderDao" ref="orderDao"></property>
+	</bean>
+	<!-- 订单乱码修复调用接口实现类 add by zhouna 2011-09-13 -->
+	<bean name="orderMessyCodeFixService" class="com.mangocity.hotel.order.service.impl.OrderMessyCodeFixServiceImpl">    		    	
+	</bean>
+
+
+
+	<!-- 短信接收service dao 2012.3.21 luoguangming new add-->
+	<bean id="orSMSRecvDao" class="com.mangocity.hotel.order.dao.impl.OrSMSRecvDaoImpl"></bean>
+	<bean id="orSMSService" class="com.mangocity.hotel.order.service.impl.OrSMSService"></bean>
+	<!-- 取消订单发送确认service 2012.3.21 luoguangming new add -->
+	<bean name="orderCancelConfirmService" class="com.mangocity.webnew.service.impl.OrderCancelConfirmServiceImpl">    		    	
+	</bean>
+	
+	<bean id="orderRecordService" class="com.mangocity.hotel.orderrecord.service.impl.OrderRecordServiceImpl"></bean>
+	
+	 <bean name="epOrderService" class="com.mangocity.hotel.base.service.impl.EpOrderServiceImpl"/>
+	 <bean name="epOrderManagerService" class="com.mangocity.ep.service.Impl.EpOrderManagerServiceImpl"/>
+	 <bean name="epDailyAuditService" class="com.mangocity.ep.service.Impl.EpDailyAuditServiceImpl"/>
+	 
+	 <bean name="synEpOrderService" class="com.mangocity.ep.service.Impl.SynEpOrderServiceImpl">
+	   <property name="epOrderManagerDAO" ref="epOrderManagerDAO"/>
+	   <property name="orderService" ref="orderService"/>
+	   <property name="tempOrderDao" ref="tempOrderDao"/>
+	   <property name="hotelService" ref="hotelService"/>
+	   <property name="msgAssist" ref="msgAssist"/>
+	   <property name="htlOrderStsLogService" ref="htlOrderStsLogService"/>
+	   <property name="communicaterService" ref="communicaterService"/>
+	   <property name="hotelFaxManager" ref="hotelFaxManager"/>
+	   <property name="memberConfirmService" ref="memberConfirmService"/>
+	   <property name="memberInterfaceService" ref="memberInterfaceService"/>
+	 </bean>
+	 
+	 <!-- add by lgm 检查艺龙酒店担保以及修改条款 -->
+	<bean id="checkElongAssureService" class="com.mangocity.webnew.service.impl.CheckElongAssureServiceImpl"></bean>
+    <bean name="htlOrderChannelService" class="com.mangocity.hotel.order.service.impl.HtlOrderChannelServiceImpl"/>
+ </beans>

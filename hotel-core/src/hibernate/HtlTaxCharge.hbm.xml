@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlTaxCharge" table="HTL_TAX_CHARGE"  dynamic-insert="true" dynamic-update="true">
+
+		<id name="ID" unsaved-value="0" column="TAX_CHARGE_ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HOTEL_TAX_CHARGE</param>
+			</generator>
+			
+		</id>
+		<property name="contractId" column="contract_ID"></property>
+		<property name="taxBeginDate" column="BEGIN_DATE"></property>
+		<property name="taxEndDate" column="END_DATE"></property>
+		<property name="roomIncTax" column="ROOM_INC_TAX"></property>
+		<property name="commIncTax" column="COMM_INC_TAX"></property>
+		<property name="commTax" column="COMM_TAX"></property>
+		<property name="roomTax" column="ROOM_TAX"></property>
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="createBy" column="Create_by" />		
+		<property name="modifyBy" column="modify_by" />
+		<property name="createById" column="Create_by_id" />		
+		<property name="modifyById" column="modify_by_id" />		
+		<property name="createTime" column="create_time" />
+		<property name="modifyTime" column="modify_time" />
+		<property name="roomTaxName" column="room_tax_name" />
+		<property name="roomTaxUnit" column="room_tax_unit" />
+		<property name="active" column="active" />
+		<!-- 
+		<many-to-one name="htlContract" class="com.mangocity.hotel.base.persistence.HtlContract" column="CONTRACT_ID" />		
+	    -->
+	</class>
+	
+	<query name="queryTaxCharges">
+		<![CDATA[ 
+		from HtlTaxCharge taxcharge where taxcharge.contractId =? 
+		]]>
+	</query>
+
+	<query name="queryTaxCharges1">
+		<![CDATA[ 		
+		  from HtlTaxCharge taxcharge
+		 where taxcharge.hotelId = ?
+		   and taxcharge.roomIncTax > 0
+		   and not (taxcharge.taxEndDate < ? 
+		   or taxcharge.taxBeginDate > ? )
+		]]>
+	</query>
+	
+</hibernate-mapping>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="OrOrderFor114Log" table="OR_ORDER_FOR_114_LOG" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="ID">
+			<generator class="sequence">
+				<param name="sequence">seq_order_for_114_log</param>
+			</generator>
+	</id>             
+         <property name="beginTime" />
+         <property name="endTime" />         
+         <property name="total" />
+         <property name="sucCount" />
+         <property name="failCount" />
+         <property name="exceptCount" />    
+   </class>   
+</hibernate-mapping>

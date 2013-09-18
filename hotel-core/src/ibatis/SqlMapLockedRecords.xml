@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LockedRecords">
+
+    <typeAlias alias="lockedRecords" type="com.mangocity.hotel.base.persistence.OrLockedRecords"/>
+	
+
+	<resultMap class="com.mangocity.hotel.base.persistence.OrLockedRecords" id="lockedRecordsResult">
+		<result property = "recordId" column = "RECORD_ID"/>
+		<result property = "recordCD" column="RECORD_CD"/>
+		<result property = "lockType" column ="LOCK_TYPE"/>
+		<result property = "lockerName" column ="LOCKER_NAME"/>
+		<result property = "lockerLoginName" column ="LOCKER_LOGINNAME"/>		
+		<result property = "lockTime" column ="LOCK_TIME"/>	
+		<result property = "remark" column ="REMARK"/>	
+	</resultMap>
+	
+	<select id="getLockedRecord"  parameterClass="lockedRecords" resultClass="lockedRecords" resultMap="lockedRecordsResult">
+		<![CDATA[ 
+		     SELECT RECORD_ID, RECORD_CD, LOCK_TYPE, LOCKER_NAME, LOCKER_LOGINNAME, LOCK_TIME , REMARK 
+		     FROM OR_LOCKED_RECORDS 
+		     WHERE RECORD_CD = #recordCD# and LOCK_TYPE = #lockType#
+		]]>
+	</select>
+	
+	<select id="queryAllLockedRecord" parameterClass="com.mangocity.util.collections.FormatMap" resultClass="java.util.HashMap">
+		 SELECT RECORD_ID, RECORD_CD, LOCK_TYPE, LOCKER_NAME, LOCKER_LOGINNAME, LOCK_TIME , REMARK 
+	     FROM OR_LOCKED_RECORDS 
+		<dynamic prepend="WHERE">
+	         <isNotEmpty prepend="AND" property="chineseName">
+	         	REMARK like '$chineseName$%'  
+	         </isNotEmpty > 
+	         <isNotEmpty prepend="AND" property="lockType">
+	         	LOCK_TYPE = #lockType# 
+	         </isNotEmpty > 
+	         <isNotEmpty prepend="AND" property="lockerName">
+	         	LOCKER_NAME like '$lockerName$%' 
+	         </isNotEmpty > 
+	         <isNotEmpty prepend="AND" property="lockerLoginName">
+	         	LOCKER_LOGINNAME = #lockerLoginName# 
+	         </isNotEmpty > 
+	         <isNotEmpty prepend="AND" property="beginDate">
+	         	<![CDATA[
+			   	LOCK_TIME > to_date(#beginDate#, 'YYYY-MM-DD')
+			 	]]>
+	         </isNotEmpty > 
+	         <isNotEmpty prepend="AND" property="endDate">
+	         	<![CDATA[
+			   	LOCK_TIME <= to_date(#endDate#, 'YYYY-MM-DD') + 1
+			 	]]>
+	         </isNotEmpty > 
+         </dynamic>           
+	     ORDER BY LOCK_TIME  
+	</select>
+	
+	<insert id="insertLockedRecord"	parameterClass="lockedRecords">
+	   <![CDATA[
+    	  	INSERT INTO OR_LOCKED_RECORDS(RECORD_ID, RECORD_CD, LOCK_TYPE, LOCKER_NAME, LOCKER_LOGINNAME, LOCK_TIME , REMARK) VALUES (seq_order_order.NEXTVAL, #recordCD#, #lockType#, #lockerName#, #lockerLoginName#, #lockTime#, #remark#)
+		]]>
+	</insert>
+	
+	<delete id="deleteLockedRecord" parameterClass="lockedRecords">
+ 		<![CDATA[
+		    DELETE FROM OR_LOCKED_RECORDS WHERE RECORD_CD = #recordCD# and LOCK_TYPE = #lockType#
+		]]>
+	</delete>
+	
+	<delete id="deleteLockedRecordTwo" parameterClass="lockedRecords">
+ 		<![CDATA[
+		    DELETE FROM OR_LOCKED_RECORDS WHERE RECORD_CD = #recordCD# and LOCK_TYPE = #lockType# and LOCKER_LOGINNAME =#lockerLoginName#
+		]]>
+	</delete>
+</sqlMap>

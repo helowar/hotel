@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="HtlMainCommend">
+
+	<!-- Select with no parameters using the result map for HtlPresale class. -->
+	<select id="queryMainCommends"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select hotel.chn_name chnHotelName, commend.commendType
+			mainCommend, commend.begin_date beginDate, commend.end_date
+			endDate, commend.hotellist_id hotellistid, hotel.city city,
+			hotel.zone zone, hotel.biz_zone bizzone, hotel.hotel_star
+			hotelstar,hotel.cooperate_channel
+		from htl_comm_list commend,v_htl_hotel hotel 
+		where hotel.HOTEL_ID=commend.HOTEL_ID
+		and hotel.HOTEL_SYSTEM_SIGN = '01'
+
+		<isNotEmpty prepend="AND" property="chinesename">
+			(upper(hotel.chn_name) like upper('%$chinesename$%'))
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			(upper(hotel.eng_name) like upper('%$englishname$%'))
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hoteltype">
+			(hotel.HOTEL_TYPE like '$hoteltype$')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstar">
+			(hotel.hotel_star in ($hotelstar$))
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="state">
+			(hotel.state like #state#)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="city">
+			(hotel.city like #city#)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="zone">
+			(hotel.zone like #zone#)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="commendType">
+			(commend.commendType like #commendType#)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="beginDate">
+			<![CDATA[		
+				(commend.begin_Date  >= to_date(#beginDate#, 'YYYY-MM-DD'))
+			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="endDate">
+			<![CDATA[
+  		        (commend.end_Date  <= to_date(#endDate#, 'YYYY-MM-DD'))
+  		     ]]>
+		</isNotEmpty>
+			
+		<!-- hotel2.9.2 增加直联合作方查询条件 add by chenjiajie 2009-08-19 -->
+		<isNotEmpty prepend="AND" property="hotelCooperator">
+			hotel.cooperate_channel = #hotelCooperator#
+		</isNotEmpty>
+
+	</select>
+
+
+</sqlMap>

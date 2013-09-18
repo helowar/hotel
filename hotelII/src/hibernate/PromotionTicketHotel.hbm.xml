@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.sendmessage.model"
+	default-lazy="false">
+	<class name="PromotionTicketHotel"
+		table="t_htl_promotion_tickethotel" dynamic-insert="true"
+		dynamic-update="true">
+
+		<id name="ticketHotelId" unsaved-value="0" column="ticket_hotel_id">
+			<generator class="sequence">
+				<param name="sequence">
+					seq_htl_promotion_tickethotel
+				</param>
+			</generator>
+		</id>
+
+		<property name="hotelId" column="hotel_id" />
+		<property name="hotelName" column="hotel_name" />
+		<property name="fagAttend" column="is_attend" />
+		<many-to-one name="ticketType" column="ticket_type_id" class="PromotionTicketType"/>		
+		<property name="createDate" column="createdate" />
+		
+	</class>
+
+</hibernate-mapping>

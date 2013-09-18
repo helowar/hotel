@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+	<!-- 持久化配置文件 -->
+	<!-- 持久化配置文件 -->
+	<import
+		resource="classpath:spring/applicationContext-persistence.xml" />
+
+	<!-- 只读库配置 -->
+	
+	<import resource="classpath:spring/applicationContext-hibernate.xml" />
+
+	<import resource="classpath:spring/applicationContext-dao.xml" />
+	
+	<import resource="classpath:spring/applicationContext-dao-cc.xml" />
+
+	<import resource="classpath:spring/applicationContext-hotel.xml" />	
+	
+	<import resource="classpath:spring/applicationContext-hweb.xml" /> 
+	<import resource="classpath:spring/applicationContext-order.xml" />
+	
+	<!-- 网站改版 add by haibo.li -->
+	<import resource="classpath:spring/applicationContext-webnew.xml" />
+	
+	
+	
+	<!-- <import resource="classpath:spring/applicationContext-rmi.xml" /> -->
+	<!-- 
+	<import resource="classpath:spring/rmi-client.xml" />
+	 -->
+	<!-- 外部接口 2007-07-31 -->
+	<import resource="classpath:spring/applicationContext-outServices.xml" />
+	<import resource="classpath:spring/applicationContext-proxy.xml" />
+		 
+	<import resource="classpath:spring/applicationContext-util.xml" />
+	
+	<!-- 港中旅接口 2009-03-12 add by shizhongwen--> 
+	<import resource="classpath:spring/applicationContext-hk.xml" />
+	
+	<!-- 电子地图 2009-04-13 -->
+	<import resource="classpath:spring/applicationContext-emap.xml" />
+	
+	
+	<!-- 新会员jar获取-->
+	<import	resource="classpath:spring/applicationContext-newmember.xml" />
+	
+
+	<!-- hotel2.9.3 代金券Spring配置 add by chenjiajie 2009-09-03 -->
+	<import resource="classpath:spring/applicationContext-voucher.xml"/>	
+
+	<!-- 调用HDL WebService -->
+	<import resource="classpath:spring/applicationContext-ws.xml" />
+				
+	<import resource="classpath:spring/applicationContext-dreamweb.xml" />
+	<import	resource="classpath:spring/applicationContext-hotelSearch.xml" />
+	
+	<!-- 调用EJB hotelSearch -->
+	<import	resource="classpath:spring/applicationContext-htoc.xml" />
+	
+	
+		<!-- 调用点评的接口-->
+	<import resource="classpath:spring/applicationContext-comment.xml"/>
+	
+	
+	<!-- 酒店查询的接口-->
+	<import resource="classpath:spring/applicationContext-hotelBookQuery.xml"/>
+	
+	<import resource="classpath:spring/applicationContext-reservation.xml"/>
+	<import resource="classpath:spring/applicationContext-quotationdisplay.xml"/>
+	
+	 	<!-- 查询机票的订单-->
+	<import resource="classpath:spring/applicationContext-sendmessage.xml"/>
+	
+	<!-- -->  <import resource="classpath:spring/applicationContext-quartz.xml"/>
+	
+
+
+	<!-- Action类配置文件 --><!--
+		<import resource="classpath:applicationContext-action.xml" />		
+	-->
+
+	
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager"></property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>				
+			</props>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<value>*Service, *Manage,hotelManageWeb, *FaxManager, hraManager, workStatesManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<import resource="classpath:spring/applicationContext-flight-hotel.xml"/>
+</beans>

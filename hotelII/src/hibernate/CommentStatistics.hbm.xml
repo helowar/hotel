@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mangocity.hotel.dreamweb.comment.model" default-lazy="false">
+<class name="CommentStatistics" table="htl_comment_statistics" 
+		dynamic-insert="true" dynamic-update="true">
+
+		<id name="commentStatisticsId" unsaved-value="0" column="comment_statistics_id">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_comment_statistics</param>
+			</generator>
+		</id>
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="totalScore" column="total_score"></property>
+		<property name="commentNumber" column="comment_number"></property>
+		<property name="recommendNumber" column="recommend_number"></property>
+		<property name="unrecommendNumber" column="unrecommend_number"></property>
+		<property name="updateDate" column="updatedate"></property>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<!-- 资源管理，用于加载资源 -->
+	<bean name="commoditycache"
+		class="com.mangocity.hotel.search.test.CommodityCache">
+		<property name="commodityInfoService" ref="commodityInfoService"></property>
+		<property name="cache" ref="resourceCache"></property>
+	</bean>
+	<!-- ehcache管理器 -->
+	<bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+
+	</bean>
+
+    <!-- 资源缓存 -->
+	<bean id="resourceCache"
+		class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="cacheName">
+			<value>com.mangocity.hotel.search.test.CommodityCache</value>
+		</property>
+	</bean>
+
+   
+</beans>

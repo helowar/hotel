@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlContract" table="htl_contract" 
+		dynamic-insert="true" dynamic-update="true">
+
+		<id name="ID" unsaved-value="0" column="contract_id">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_contract</param>
+			</generator>
+		</id>
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="contractName" column="contract_name"></property>
+		<property name="contractCode" column="contract_code"></property>
+		<property name="contractType" column="contract_type"></property>
+		<property name="beginDate" column="begin_date"></property>
+		<property name="endDate" column="end_date"></property>
+		<property name="hotelBankName" column="hotel_Bank_Name"></property>
+		<property name="bankName" column="bank_name"></property>
+		<property name="bankAccount" column="bank_account"></property>
+		<property name="hotelBankName2" column="hotel_Bank_Name2"></property>		
+		<property name="bankName2" column="bank_name2"></property>
+		<property name="bankAccount2" column="bank_account2"></property>
+		<property name="serviceCharge" column="service_Charge"></property>
+		<property name="incServiceCharge" column="inc_service_Charge"></property>
+		<property name="email" column="email"></property>
+		<property name="currency" column="currency"></property>
+		<property name="paymentMethod" column="payment_method"></property>
+		<property name="balanceMethod" column="balance_method"></property>
+		<property name="quotaPattern" column="quota_pattern"></property>
+		<property name="hotelDeposit" column="hotel_deposit"></property>
+		<property name="othersRemark" column="others_remark"></property>
+		<property name="insideNotes" column="inside_notes"></property>
+		<property name="changePriceHint" column="changepricehint"></property>
+		<property name="createBy" column="create_by"></property>
+		<property name="createById" column="create_by_id"></property>
+		<property name="modifyBy" column="modify_by"></property>
+		<property name="modifyById" column="modify_by_id"></property>
+		<property name="createTime" column="create_time"></property>
+		<property name="modifyTime" column="modify_time"></property>
+		<property name="active" column="active"></property>
+		<property name="balanceAccount" column="balance_account"></property>
+		<property name="hotelCheckReckoning" column="hotel_check_reckoning"></property>
+		<property name="invoiceTitle" column="invoice_title"></property>
+		<property name="invoiceItemName" column="invoice_item_name"></property>
+		<property name="balanceCommissioner" column="balance_commissioner"></property>
+		<property name="contactPhone" column="contact_phone"></property>
+	 	<property name="prepayDeposit" column="prepay_deposit"></property>
+		<property name="balanceHint" column="balance_hint"></property>
+		<property name="checkQuomodo" column="check_quomodo"></property>
+		<property name="checkFax" column="check_fax"></property>
+		<property name="checkMail" column="check_mail"></property>
+		<property name="clusterRoomNumber" column="CLUSTER_ROOM_NUMBER"></property>
+		<!-- 
+		<bag name="htlQuotabatchs" inverse="true" >
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlQuotabatch" />
+		</bag>
+		 -->
+		<bag name="htlSalesPromos" inverse="true" >
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlSalesPromo" />
+		</bag>
+		<bag name="htlCreditAssures" inverse="true" >
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlCreditAssure"/>
+		</bag>
+		<bag name="htlWelcomePrices" inverse="true">
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlWelcomePrice"/>		
+		</bag>
+		<bag name="htlChargeBreakfasts" inverse="true" >
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlChargeBreakfast"/>		
+		</bag>
+		<bag name="htlRewardinfos" inverse="true" >
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlRewardInfo"/>		
+		</bag>	
+		<bag name="htlAddBedPrices" inverse="true">
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlAddBedPrice"/>		
+		</bag>
+		<bag name="htlTaxCharge" inverse="true" >
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlTaxCharge"/>		
+		</bag>	
+		<bag name="htlInternet" cascade="save-update">
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlInternet"/>		
+		</bag>
+		
+		<bag name="htlAlerttypeInfoLst" inverse="true">
+			<key>
+				<column name="contract_id"></column>
+			</key>
+			<one-to-many class="HtlAlerttypeInfo"/>		
+		</bag>									
+	</class>
+
+
+	<query name="queryRoomTypes">
+		<![CDATA[ 
+		from HtlRoomtype room where room.hotelID =? 
+		]]>
+	</query>
+	
+	<query name="checkContractDate">
+		<![CDATA[ 
+			from HtlContract c where c.hotelId =? and ( ( ? between beginDate and endDate) or ( ? between beginDate and endDate )or((beginDate between ? and ?)and(endDate between ? and ?)))
+		]]>
+	</query>
+	
+	<query name="checkEditContractDate">
+		<![CDATA[ 
+			from HtlContract c where c.hotelId =? and ( ( endDate between ? and ? ) or ( endDate between ? and ? ) or ( beginDate between ? and ? )or ( beginDate between ? and ? ))
+		]]>
+	</query>
+	
+	<query name="checkContinueContractDate">
+		<![CDATA[ 
+			from HtlContract c where c.hotelId=? and c.ID<>? and not ( c.endDate<? or c.beginDate>=? )
+		]]>
+	</query>
+	
+	<!-- Add by  Shengwei.Zuo  2009-02-01  -->
+	<query name="queryContractsByHotelID">
+		<![CDATA[ 
+			from HtlContract c where c.hotelId=?
+		]]>
+	</query>
+
+</hibernate-mapping>

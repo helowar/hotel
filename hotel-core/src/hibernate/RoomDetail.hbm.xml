@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence" default-lazy="false">
+   <class name="RoomDetail" table="or_room_detail"   dynamic-insert="true" dynamic-update="true">
+   	<id name="ID" column="roomId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_room_detail</param>
+			</generator>
+	</id>           
+    
+         <property name="productId" />
+         <property name="quotaId" />                  
+         <property name="roomNum" />                           
+         <property name="saleDate" column="fellowDate" />
+         <property name="salePrice" />
+         <property name="basePrice" />
+         <property name="roomPrice" />
+         <property name="recommendPrice" />
+         <property name="serviceFee" />
+         <property name="includeService" />
+         <property name="commission" />
+         <property name="breakfast" />
+         <property name="breakfastNum" />
+         <property name="breakfastWay" />
+         <property name="breakfastPrice" />
+         <property name="includeBreakfast" />
+         <property name="roomState" />
+
+
+		<!-- 和Order关联 -->
+		<many-to-one name="order"
+			class="Order"
+			column="orderId" 
+			cascade="save-update"
+			unique="true"/>
+    
+
+    
+   </class>
+
+   
+</hibernate-mapping>

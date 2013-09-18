@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName">
+	
+	<!-- 会员接口 调用JAR -->
+	<bean id="memberInterfaceService"
+		class="com.mangocity.proxy.member.service.impl.MemberInterfaceServiceImpl"
+		lazy-init="true" dependency-check="default" abstract="false">
+	</bean>
+	
+
+	<!-- 配送接口 -->
+	<bean id="dSBillService"
+		class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean"
+		lazy-init="true">
+		<property name="jndiName"
+			value="${hotelii_i_delivery.jndiName}" />
+		<property name="lookupHomeOnStartup" value="false" />
+		<property name="refreshHomeOnConnectFailure" value="true" />
+		<property name="businessInterface"
+			value="com.mangocity.delivery.bill.DSBillService" />
+		<property name="jndiEnvironment">
+			<props>
+				<prop key="java.naming.provider.url">
+					${hotelii_i_delivery.naming_url}
+				</prop>
+				<prop key="java.naming.factory.initial">
+					${hotelii_i_delivery.naming_factory}
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="deliveryInterfaceService"
+		class="com.mangocity.proxy.delivery.service.impl.DeliveryInterfaceServiceImpl"
+		lazy-init="true" dependency-check="default" abstract="false">
+		<property name="dSBillService">
+			<ref local="dSBillService" />
+		</property>
+	</bean>
+
+	<!-- CDM接口 -->
+</beans>

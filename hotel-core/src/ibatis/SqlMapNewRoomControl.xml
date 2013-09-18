@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- 房态酒店查询 -->
+<sqlMap namespace="NewRoomControl">
+	<select id="newSelectRoomState" parameterClass="com.mangocity.util.collections.FormatMap"
+			resultClass="java.util.HashMap">
+		<![CDATA[
+		select scheduleid,
+		       scheduledate,
+		       hotelid,
+		       nowassignedid,
+		       nowassignedname,
+		       acquireway,
+		       hotelcity CITY,
+		       hotelstate STATE,
+		       hotelzone ZONE,
+		       hotelbizzone,
+		       nightcounthalfyearhotel,
+		       quotawarninghotel,
+		       fullroomrejectratehotel,
+		       epriceaudithotel,
+		       checkpoint,
+		       modifytime,
+		       substr(modifybyid,instr(modifybyid,',',-1,1)) modifybyid,
+		       substr(modifybyname,instr(modifybyname,',',-1,1)) modifybyname,
+		       hotelname,
+		       hotelstar,
+		       exhibitionhotel,
+		       commendtypehotel,
+		       acquirestate,
+		       state SCH_STATE,
+		       productmanager,
+		       ccsetroomfullorclose,
+		       setup,
+		       operationlogid,
+		       englishname,
+		       activecallhotel,
+		       roomstatemanager,
+		       isgreenmangohotel,
+		       cooperatechannel,
+		       nights1,
+		       nights2,
+		       nights3,
+		       nights4,
+		       nights5,
+		       epricefullroomaudit,
+		       hotelsellstate,
+		       EPRICEHOTEL,
+		       FreeSaleHotel
+		  from htl_roomcontrol_hotel_schedule sch
+		 where sch.scheduledate = trunc(sysdate)
+		 	
+		]]>
+		<!-- 是否查询登陆人员默认的区域 -->
+	    <isNotEmpty property="loginName">
+			<isEqual prepend="AND" property="useWorkArea" compareValue="true">
+				<![CDATA[
+	 			fnc_match_rm_area_condition(#loginName#,sch.hotelcity,sch.hotelstate) > 0
+				]]>
+			</isEqual>
+		</isNotEmpty>
+		
+		<!-- 取不到登录人员的登录名，查不出酒店列表 -->
+		<isEmpty prepend="AND" property="loginName">
+				<![CDATA[	
+	 			1 = 2
+				]]>
+		</isEmpty>
+		<!-- 取前几行 -->
+		<isNotEmpty prepend="AND" property="rowNum">
+			<![CDATA[
+			$rowNum$ >= rownum
+			]]>		
+		</isNotEmpty>
+		<!-- 是否未分配的 -->
+		<isNotEmpty prepend="AND" property="acquireState">
+			<![CDATA[
+			sch.ACQUIRESTATE = #acquireState#
+			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="chinesename">
+				upper(sch.HOTELNAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+				upper(sch.ENGLISHNAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstar">
+				sch.HOTELSTAR in ($hotelstar$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstate">
+				sch.HOTELSTATE =#hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+				sch.HOTELCITY =#hotelcity#
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="hotelzone">
+				sch.HOTELZONE =#hotelzone#
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+				sch.HOTELBIZZONE =#hotelbizzone#
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="priTime">
+				sch.checkPoint >=#priTime#
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="AND" property="processSearch">
+				sch.state =#processSearch#
+		</isNotEmpty>
+		<!-- 该判断需要动态增加OR关键字 -->
+		<isNotEmpty prepend="AND" property="stateContidionFlag">
+			(
+				<isNotEmpty property="freeSaleHotel">
+					<isNotEqual property="stateContidionFlag" compareValue="freeSaleHotel">
+						OR
+					</isNotEqual>
+					<isEqual property="freeSaleHotel" compareValue="1">
+						sch.FreeSaleHotel >0
+					</isEqual>
+				</isNotEmpty>
+				<isNotEmpty property="ccsetroomfullorclose">
+					<isNotEqual property="stateContidionFlag" compareValue="ccsetroomfullorclose">
+						OR
+					</isNotEqual>
+					<isEqual property="ccsetroomfullorclose" compareValue="1">
+						sch.CCSETROOMFULLORCLOSE = 1
+					</isEqual>
+				</isNotEmpty>
+				<isNotEmpty property="epricefullroomaudit">
+					<isNotEqual property="stateContidionFlag" compareValue="epricefullroomaudit">
+						OR
+					</isNotEqual>
+					<isEqual property="epricefullroomaudit" compareValue="1">
+						sch.EPRICEFULLROOMAUDIT >0
+					</isEqual>
+				</isNotEmpty>
+				<isNotEmpty property="fullroomrejectratehotel">
+					<isNotEqual property="stateContidionFlag" compareValue="fullroomrejectratehotel">
+						OR
+					</isNotEqual>
+					<isEqual property="fullroomrejectratehotel" compareValue="1">
+						sch.FULLROOMREJECTRATEHOTEL >0
+					</isEqual>
+				</isNotEmpty>
+				<isNotEmpty property="exhibitionhotel">
+					<isNotEqual property="stateContidionFlag" compareValue="exhibitionhotel">
+						OR
+					</isNotEqual>
+					<![CDATA[
+	 					sch.EXHIBITIONHOTEL < 999
+					]]>
+					
+				</isNotEmpty>
+				<isNotEmpty property="goldType">
+					<isNotEqual property="stateContidionFlag" compareValue="goldType">
+						OR
+					</isNotEqual>
+					sch.COMMENDTYPEHOTEL in ($goldType$)
+				</isNotEmpty>
+				<isNotEmpty property="forewarnFlag">
+					<isNotEqual property="stateContidionFlag" compareValue="forewarnFlag">
+						OR
+					</isNotEqual>
+					sch.QUOTAWARNINGHOTEL >=#forewarnFlag#
+				</isNotEmpty>
+			)
+		</isNotEmpty>
+		
+		<isNotEmpty  prepend="AND" property="bedStatus"> 
+				sch.hotelid in(select distinct hotel_id from htl_room m where m.room_state like '%:$bedStatus$%'
+				<isNotEmpty  property="beginDate">
+					<isNotEmpty prepend="AND(" property="endDate">		
+					<![CDATA[
+						m.able_sale_date between  to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD'))
+					]]>
+					</isNotEmpty>
+				</isNotEmpty>					  		  				
+				)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="isRoomStatusReport">
+				sch.ACTIVECALLHOTEL =#isRoomStatusReport#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="CCSetRoom">
+				sch.CCSETROOMFULLORCLOSE =#CCSetRoom#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="room_state_manager">
+				sch.ROOMSTATEMANAGER =#room_state_manager#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="isGreenMangoHotel">
+			<isEqual property="isGreenMangoHotel" compareValue="0">
+				(sch.ISGREENMANGOHOTEL = '0' or sch.ISGREENMANGOHOTEL is null)
+			</isEqual>
+			<isEqual property="isGreenMangoHotel" compareValue="1">
+				sch.ISGREENMANGOHOTEL = #isGreenMangoHotel#
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCooperator">
+				sch.COOPERATECHANNEL =#hotelCooperator#
+		</isNotEmpty>
+		<isNotEmpty property="sortingStr">
+			 order by $sortingStr$
+		</isNotEmpty> 		
+	</select>
+
+	<select id="selectRoomStateProcessHistory"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+
+		<![CDATA[
+			select to_char(P.PROCESS_DATE,'yyyy-mm-dd hh24:mi:ss') as PROCESS_DATETIME,p.PROCESS_BY ,p.PROCESS_REMARK
+				from htl_room_status_process p 
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="hotelId">
+				<![CDATA[
+				 p.HOTEL_ID = #hotelId#
+				 ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="bnDate">
+				<![CDATA[
+				 p.PROCESS_DATETIME >= to_date(#bnDate#, 'YYYY-MM-DD')
+				 ]]>
+				
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="enDate">
+				<![CDATA[
+				 p.PROCESS_DATETIME <= (to_date(#enDate#, 'YYYY-MM-DD')+1)
+				 ]]>
+				
+			</isNotEmpty>
+		</dynamic>
+		
+			order by p.PROCESS_DATETIME desc
+	</select>
+	
+	<!--房态界面设置会展信息 -->
+	<select id="selectHotelExhibitForRoomState"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select * from HTL_EXHIBIT
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="state">
+				STATE = #state#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="cityid">
+				CITYID = #cityid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="zone">
+				ZONE = #zone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="bizZone">
+				BIZ_ZONE = #bizZone#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="name">
+				NAME like '%$name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="exhibitType">
+				EXHIBIT_TYPE = #exhibitType#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="description">
+				DESCRIPTION like '%$description$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="activeCompositorValues">
+				ACTIVE_FOR_ROOMSTATE = #activeCompositorValues#
+			</isNotEmpty>						
+			<isNotEmpty prepend="AND" property="beginDate">
+				<![CDATA[
+	  		        (BEGINDATE  between to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD') or ENDDATE between to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD') or  (BEGINDATE <= to_date(#beginDate#, 'YYYY-MM-DD') and ENDDATE >= to_date(#beginDate#, 'YYYY-MM-DD')))
+	  		     ]]>
+			</isNotEmpty>
+			
+			<!-- <isNotEmpty property="beginDate"> 
+				<isNotEmpty prepend="OR" property="endDate">
+					<![CDATA[
+		  		        ((BEGINDATE between to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD'))
+		  		         and 
+		  		        (ENDDATE between to_date(#beginDate#, 'YYYY-MM-DD') and to_date(#endDate#, 'YYYY-MM-DD')))
+		  		        
+		  		     ]]>
+				</isNotEmpty>	
+			</isNotEmpty> -->			
+		</dynamic>
+			order by BEGINDATE asc
+	</select>
+	<!-- 查询工作结果 addby juesuchen 2010-1-8 -->
+	<select id="queryAllWorkResult"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select t.* from HTL_ROOMCONTROL_WORKSTATION t
+			where t.AUDITDATE >= to_date(#beginDate#, 'YYYY-MM-DD')
+			and t.AUDITDATE <= to_date(#endDate#, 'YYYY-MM-DD') 
+			]]>
+		<isNotEmpty prepend="AND" property="loginName">
+		<![CDATA[
+			t.OPERATORID = #loginName#
+			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="name">
+		<![CDATA[
+			t.OPERATORNAME like '%$name$%'
+			]]>
+		</isNotEmpty>
+		<!-- 如果是管理员,则返回全部员工的,否则只返回本人的 -->
+		<isEqual property="isRSCAdmin" compareValue="false" prepend="AND">
+		<![CDATA[
+			t.OPERATORID = #thisLoginName#
+			]]>
+		</isEqual>
+		<isEqual property="sortType" compareValue="name">
+		<![CDATA[
+			order by t.OPERATORID desc,t.HOTELMOUNT desc
+			]]>
+		</isEqual>
+		<isEqual property="sortType" compareValue="date">
+		<![CDATA[
+			order by t.AUDITDATE desc,t.HOTELMOUNT desc
+			]]>
+		</isEqual>
+	</select>
+	
+	<!-- 房态操作日志-->
+	<select id="selectRommControlOperationLogs"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+			select l.OPERATORNAME,
+			to_char(l.FINISHTIME,'yyyy-mm-dd hh24:mi:ss') as FINISHTIME ,
+			l.OPERATORCONTENT
+			from htl_roomcontrol_operation_logs l
+			]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="hotelID">
+				l.HOTELID = #hotelID#
+			</isNotEmpty>
+			<isNotEmpty  property="queryRommControlBeginDate">
+				<isNotEmpty prepend="AND" property="queryRommControlEndDate">
+				<![CDATA[
+					trunc(l.FINISHTIME) between to_date(#queryRommControlBeginDate#,'YYYY-MM-DD') and to_date(#queryRommControlEndDate#,'YYYY-MM-DD')
+				]]>
+				</isNotEmpty>
+			</isNotEmpty>
+		</dynamic>
+		<![CDATA[	
+			order by nvl(l.FINISHTIME,to_date('1000-01-01','yyyy-MM-dd')) desc
+		]]>
+	</select>
+	
+
+</sqlMap>

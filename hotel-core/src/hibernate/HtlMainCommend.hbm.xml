@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlMainCommend" table="htl_comm_list" 
+		dynamic-insert="true" dynamic-update="true">
+				
+		<id name="ID" unsaved-value="0" column="hotelList_id">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_mainCommend</param>
+			</generator>
+		</id>   
+			
+		<property name="hotelID" column="hotel_id" />
+		<property name="beginDate" column="begin_date" />
+		<property name="endDate" column="End_date" />
+		<property name="commendType" column="commendType" />
+		<property name="memo" column="memo" />
+		
+		<property name="create_by" column="create_by" update="false"></property>
+		<property name="create_by_id" column="create_by_id" update="false"></property>
+		<property name="modify_by" column="modify_by"></property>
+		<property name="modify_by_id" column="modify_by_id"></property>
+		<property name="create_time" column="create_time" update="false"></property>
+		<property name="modify_time" column="modify_time"></property>
+		
+		<bag name="lstCommScore" inverse="true" cascade="all-delete-orphan">
+			<key>
+				<column name="hotellist_id"></column>
+			</key>        
+			<one-to-many class="HtlHotelScore"/>
+        </bag>
+		
+		</class>
+		
+		<query name="checkMainCommendDate">
+		<![CDATA[ 
+			from HtlMainCommend m where not Exists(from  HtlMainCommend where ID =?) and m.hotelID =? and ( ( ? between m.beginDate and m.endDate) or ( ? between m.beginDate and m.endDate ) or (? <= m.beginDate and ? >= m.endDate) )
+		]]>
+	</query>
+
+
+</hibernate-mapping>

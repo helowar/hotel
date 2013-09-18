@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlCtlDsply" table="HTL_CTL_DSPLY" dynamic-insert="true" dynamic-update="true" lazy="false">
+		
+		
+		<meta attribute="implement-equals">true</meta>
+		<cache usage="read-write" />
+
+		<id name="ID" unsaved-value="0" column="CTLID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HOTEL_CTL_DSPLY</param>
+			</generator>
+		</id>
+		<property name="hotelID" column="HOTEL_ID"/>
+		<property name="roomTypeId" column="ROOM_TYPE_ID"/>
+		<property name="priceTypeId" column="PRICE_TYPE_ID"/>
+		<property name="payMethod" column="PAY_METHOD"/>
+		<property name="CC" column="CC"/>
+		<property name="TP" column="TP"/>
+		<property name="TMC" column="TMC"/>
+		<property name="WEB" column="WEB"/>
+		<property name="AGENT" column="AGENT"/>
+		<property name="FLD1" column="FLD1"/>		
+		<property name="FLD2" column="FLD2"/>
+		<property name="FLD3" column="FLD3"/>
+		<property name="FLD4" column="FLD4"/>
+	</class>
+	
+    <query name="lstAllCtlDsply">
+        from HtlCtlDsply c where c.hotelID=?
+    </query>
+</hibernate-mapping>

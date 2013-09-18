@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="CreditCard" table="or_creditcard"  lazy="false" dynamic-insert="true" dynamic-update="true">
+	<id name="ID" column="creditCardId">
+			<generator class="sequence">
+				<param name="sequence">seq_order_creditcard</param>
+			</generator>
+	</id>       
+    
+         <property name="cardType" />
+         <property name="cardNo" />
+         <property name="validPeriod" />
+         <property name="ownerName" />
+         <property name="ownerIdType" />
+         <property name="ownerId" />
+         <property name="verifyNo" />
+         <property name="isSave" />
+         <property name="active" />
+
+		<!-- 和Order关联 -->
+		<many-to-one name="order"
+			class="Order"
+			column="orderId" 
+			cascade="save-update"
+			unique="true"/>     
+    
+   </class>
+
+   
+</hibernate-mapping>

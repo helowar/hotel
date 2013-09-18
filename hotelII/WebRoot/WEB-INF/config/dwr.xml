@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Document   : dwr.xml.xml
+	Created on : 2006年10月20日, 上午10:10
+	Author     : zhengxin
+	Description:
+	Purpose of the document follows.
+-->
+
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+	<allow>
+		
+		<create creator="spring" javascript="resourceManager">
+			<param name="beanName" value="resourceManager" />
+			<include method="getResourceByParam" />
+		</create>
+		
+		
+		<create creator="spring" javascript="queryBuilder">
+			<param name="beanName" value="queryBuilder" />
+			<include method="query" />
+		</create>
+		
+
+        <convert converter="bean" match="com.mangocity.util.resource.Property"/>
+        
+        
+        
+
+
+    </allow>
+	<signatures>
+		<![CDATA[
+       import java.util.Map;
+       import java.util.List;
+       import com.mangocity.hotel.base.resource.Property;
+       import com.mangocity.hotel.base.resource.ResourceManager;
+       import com.mangocity.util.QueryBuilder;
+       import com.mangocity.util.collections.OrderedMap;
+       import javax.servlet.http.HttpServletRequest;
+
+       List<Proprty> ResourceManager.getResourceByParam(String resourceID, Map<String,String> params);
+       List  QueryBuilder.query(String resourceID, OrderedMap params);
+       ]]>
+	</signatures>
+</dwr>
+

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- Create by Shengwei.Zuo 2009-07-03  E-Booking 操作日志查询-->
+
+<sqlMap namespace="clause">
+
+	<!-- Add by Shengwei.Zuo 2009-07-03 按日期,操作人,功能模块查询酒店： -->
+	<select id="selecLogHotel"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (
+		   select distinct a.STATE,a.CITY,a.ZONE,a.HOTEL_STAR,a.CHN_NAME,a.HOTEL_ID
+		   from V_HTL_HOTEL a,HTL_EBOOKING_OPERATIONLOG  b
+		   where  a.active='1'
+		    and a.HOTEL_SYSTEM_SIGN ='01'
+		    and a.HOTEL_ID=b.HOTELID
+	     ]]>
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(a.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(a.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hoteltype">
+			a.HOTEL_TYPE like '$hoteltype$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstar">
+			a.HOTEL_STAR in ($hotelstar$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCountry">
+			a.country = #hotelCountry#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstate">
+			a.STATE = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			a.CITY = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			a.ZONE = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			a.BIZ_ZONE = #hotelbizzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="mainCommend">
+			a.commendtype = #mainCommend#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="parentHotelGroup">
+			a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="plateName">
+			a.NAMEPLATE_NAME = #plateName#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="saleChannelQuery">
+			a.sale_channel like '$saleChannelQuery$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="purchaseChannelQuery">
+			a.purchase_channel like '$purchaseChannelQuery$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="active">
+			a.ACTIVE = #active#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="productManager">
+			upper(a.PRODUCT_MANAGER) like upper('%$productManager$%')
+		</isNotEmpty>
+		
+		
+		<isNotEmpty prepend="AND" property="functionalmoduleid">
+			b.FUNCTIONALMODULEID = #functionalmoduleid#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="operationmode">
+			b.OPERATIONMODE = #operationmode#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="operationer">
+			upper(b.OPERATIONERID) like upper('%$operationer$%')
+		</isNotEmpty>
+	
+
+		<isNotEmpty prepend="AND" property="endDate">
+			<![CDATA[
+			    	(b.OPERATIONDATE <= to_date(#endDate#, 'YYYY-MM-DD'))
+			 	]]>
+		</isNotEmpty>
+
+		<isNotEmpty prepend="AND" property="beginDate">
+			<![CDATA[
+			    	(b.OPERATIONDATE >= to_date(#beginDate#, 'YYYY-MM-DD'))
+			 	]]>
+		</isNotEmpty>
+
+		<isNotEmpty prepend="AND" property="area">
+			a.CITY in ( select c.citycode from htl_area c where
+			c.areacode=#area#)
+		</isNotEmpty>
+		)
+	</select>
+	
+
+<!-- Add by Shengwei.Zuo 2009-03-26 预定条款操作日志酒店查询： -->
+
+<!--  
+	<select id="selecClaDoLogHotel"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		select * from (
+		   select distinct a.STATE,a.CITY,a.ZONE,a.HOTEL_STAR,a.CHN_NAME,a.HOTEL_ID
+		   from V_HTL_HOTEL a,HTL_PRECONCERT_ITEM_BATCH  b
+		   where  a.active='1'
+		    and a.HOTEL_SYSTEM_SIGN ='01'
+		    and a.HOTEL_ID=b.HOTEL_ID
+	     ]]>
+		<isNotEmpty prepend="AND" property="chinesename">
+			upper(a.CHN_NAME) like upper('%$chinesename$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="englishname">
+			upper(a.ENG_NAME) like upper('%$englishname$%')
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hoteltype">
+			a.HOTEL_TYPE like '$hoteltype$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstar">
+			a.HOTEL_STAR in ($hotelstar$)
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelCountry">
+			a.country = #hotelCountry#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelstate">
+			a.STATE = #hotelstate#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelcity">
+			a.CITY = #hotelcity#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelzone">
+			a.ZONE = #hotelzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="hotelbizzone">
+			a.BIZ_ZONE = #hotelbizzone#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="mainCommend">
+			a.commendtype = #mainCommend#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="parentHotelGroup">
+			a.PARENT_HOTEL_GROUP = #parentHotelGroup#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="plateName">
+			a.NAMEPLATE_NAME = #plateName#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="saleChannelQuery">
+			a.sale_channel like '$saleChannelQuery$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="purchaseChannelQuery">
+			a.purchase_channel like '$purchaseChannelQuery$'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="active">
+			a.ACTIVE = #active#
+		</isNotEmpty>
+
+		<isNotEmpty prepend="AND" property="productManager">
+			upper(a.PRODUCT_MANAGER) like upper('%$productManager$%')
+		</isNotEmpty>
+		
+-->		
+
+<!-- 
+
+		<isNotEmpty prepend="AND" property="endDate">
+			<![CDATA[
+			    	(b.VALID_DATE <= to_date(#endDate#, 'YYYY-MM-DD'))
+			 	]]>
+		</isNotEmpty>
+
+		<isNotEmpty prepend="AND" property="beginDate">
+			<![CDATA[
+			    	(b.VALID_DATE >= to_date(#beginDate#, 'YYYY-MM-DD'))
+			 	]]>
+		</isNotEmpty>
+
+		<isNotEmpty prepend="AND" property="area">
+			a.CITY in ( select c.citycode from htl_area c where
+			c.areacode=#area#)
+		</isNotEmpty>
+		)
+	</select>
+-->		
+
+	<!-- add by shengwei.zuo  2009-03-26 根据酒店ID查询操作日志 -->
+	
+		<select id="viewDoLogByHtlID"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		
+		    select   he.OPERATIONER,
+		    		 he.OPERATIONERID,
+		    		 he.OPERATIONMODE,
+		             he.OPERATIONCONTENT,
+		             he.FUNCTIONALMODULEID,
+       				 to_char(he.OPERATIONDATE,'yyyy-mm-dd hh24:mi:ss') as  OPERATIONDATE
+       			    
+		   	from HTL_EBOOKING_OPERATIONLOG he
+		   	
+	     ]]>
+	     
+	    <dynamic prepend="WHERE">
+	        <isNotEmpty prepend="AND" property="hotelId">
+	    	<![CDATA[
+			 he.HOTELID = #hotelId#
+			 ]]>
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="functioModuleId">
+	    	<![CDATA[
+			 he.functionalmoduleid = #functioModuleId#
+			 ]]>
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="operMode">
+	    	<![CDATA[
+			 he.OPERATIONMODE = #operMode#
+			 ]]>
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="operOner">
+	    	<![CDATA[
+			 upper(he.OPERATIONERID) like upper('%$operOner$%')
+			 ]]>
+			</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="AND" property="endDate">
+				<![CDATA[
+			    	(he.OPERATIONDATE <= to_date(#endDt#, 'YYYY-MM-DD'))
+			 	]]>
+			</isNotEmpty>
+
+			<isNotEmpty prepend="AND" property="beginDate">
+				<![CDATA[
+			    	(he.OPERATIONDATE >= to_date(#beginDt#, 'YYYY-MM-DD'))
+			 	]]>
+			</isNotEmpty>
+			
+		    order by he.OPERATIONDATE desc
+			  	     
+         </dynamic>   
+	     
+	   
+	
+	</select>
+	 
+	
+</sqlMap>

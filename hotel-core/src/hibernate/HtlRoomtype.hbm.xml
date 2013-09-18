@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlRoomtype" table="HTL_ROOMTYPE" 
+		dynamic-insert="true" dynamic-update="true">
+				
+		<id name="ID" unsaved-value="0" column="room_type_id">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_roomtype</param>
+			</generator>
+		</id>   
+		
+		
+		<property name="hotelID" column="hotel_id" />
+		
+		<property name="roomName" column="room_name" />
+		<property name="classify" column="classify" />	
+		<property name="otherEquipment" column="OTHER_EQUIPMENT" />
+		<property name="roomEngName" column="room_eng_name" />
+		<!-- 二期新增属性 begin-->
+		<property name="roomTypeNo" column="room_typeno" />
+		<property name="maxPersons" column="room_maxpersons" />		
+		<property name="isAgrement" column="ROOM_HASAGREEMENT" />
+		<property name="roomEquipment" column="ROOM_EQUIPMENT" />
+		<property name="remark" column="remark"/>
+		<property name="roomNumber" column="room_qty"/>
+		<property name="channel" column="CHANNEL"/>
+		<property name="addBedQty" column="ADD_BED_QTY"/>
+		<property name="commendLevel" column="comm_level"></property>
+		<!-- 二期新增属性 end -->	
+		<property name="acreage" column="acreage" />
+		<property name="bedType" column="bed_type" />
+		<property name="createBy" column="Create_by" />		
+		<property name="createById" column="Create_by_Id" />	
+		<property name="modifyBy" column="modify_by" />
+		<property name="modifyById" column="modify_by_Id" />
+		<property name="createTime" column="create_time" />
+		<property name="modifyTime" column="modify_time" />
+		<property name="active" column="active" />
+		<property name="roomFloor" column="ROOM_FLOOR"/>
+		<property name="ishkroomtype" column="ishkroomtype"/>
+		<property name="quotaBedShare" column="QUOTA_BED_SHARE"/>
+		<property name="roomEquipmentRemark" column="ROOM_EQUIPMENT_REMARK"/>
+		<property name="isAddBed" column="IS_ADD_BED"/>
+		 <bag name="lstPriceType"   cascade="all-delete-orphan">
+			<key>
+				<column name="room_type_id"></column>
+			</key>        
+			<one-to-many class="HtlPriceType"/>
+        </bag>
+	</class>
+	<query name="lstHotelRoomType">
+		<![CDATA[ 
+			from HtlRoomtype c where c.hotelID=?
+		]]>
+	</query>
+   <query name="checkRoomType">
+		<![CDATA[ 
+			from HtlRoomtype r where r.hotelID=? and r.roomName=?
+		]]>
+	</query>
+   <query name="checkRoomTypeWithID">
+		<![CDATA[ 
+			from HtlRoomtype r where r.hotelID=? and r.roomName=? and r.ID<>?
+		]]>
+	</query>
+	<query name="queryRoomTypeForWeb">
+		<![CDATA[ 
+			from HtlRoomtype r where r.hotelID=? and r.ID=?
+		]]>
+	</query>
+</hibernate-mapping>

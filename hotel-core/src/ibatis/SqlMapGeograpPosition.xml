@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- Create by Shengwei.Zuo 2009-07-29  地理位置/名胜查询-->
+
+<sqlMap namespace="clause">
+
+	<!-- add by shengwei.zuo  2009-03-26 根据酒店ID查询操作日志 -->
+	
+		<select id="queryGeograpPosition"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+		
+		    select   gp.ID,
+		    		 gp.NAME,
+		    		 gp.ADDRESS,
+		    		 gp.PROVINCE_NAME,
+		    		 gp.CITY_NAME,
+		    		 gp.GIS_ID,
+		             gp.LONGITUDE,
+		             gp.LATITUDE,
+		             gp.GPTYPE_ID,
+		             gp.OPERATIONER,
+		             gp.OPERATIONERID,
+		             gp.OPERATIONDATE
+		             
+       			    
+		   	from HTL_GEOGRAPHICALPOSITION gp where gp.ISACTIVE='1'
+		   	
+	     ]]>
+	     
+	    <dynamic>
+			
+			<isNotEmpty prepend="AND" property="provinceName">
+	    	<![CDATA[
+			 gp.PROVINCE_NAME = #provinceName#
+			 ]]>
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="cityName">
+	    	<![CDATA[
+			 gp.CITY_NAME = #cityName#
+			 ]]>
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="gptypeId">
+	    	<![CDATA[
+			 gp.GPTYPE_ID = #gptypeId#
+			 ]]>
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="AND" property="name">
+	    	<![CDATA[
+			 upper(gp.NAME) like upper('%$name$%')
+			 ]]>
+			</isNotEmpty>
+			
+         </dynamic>   
+         
+         order by gp.OPERATIONDATE desc
+	
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.proxy.persistence">
+   <class name="CreditCardSerialNo" table="HTL_CREDITCARD_SERIALNO"  lazy="false" dynamic-insert="true" dynamic-update="true">
+		<id name="ID" column="id">
+				<generator class="sequence">
+					<param name="sequence">SEQ_CREDITCARD_SERIALNO</param>
+				</generator>
+		</id>       
+         <property name="customerId" column="customer_id"/>
+         <property name="orderCode" column="order_code"/>
+         <property name="serialNo" column="SERIAL_NO" />
+   </class>
+</hibernate-mapping>

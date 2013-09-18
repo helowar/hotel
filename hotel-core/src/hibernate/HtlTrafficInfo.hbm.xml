@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlTrafficInfo" table="HTL_TRAFFIC_INFO"  dynamic-insert="true" dynamic-update="true">
+
+		<id name="trafficID" unsaved-value="0" column="traffic_id">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_traffic_info</param>
+			</generator>
+			
+		</id>
+		<property name="arriveAddress" column="ARRIVE_ADDRESS"></property>
+		<property name="distance" column="DISTANCE"></property>
+		<property name="byCarTime" column="BY_CAR_TIME"></property>
+		<property name="arriveName" column="ARRIVE_NAME"></property>
+		
+		<property name="create_by" column="create_by" update="false"></property>
+		<property name="create_by_id" column="create_by_id" update="false"></property>
+		<property name="modify_by" column="modify_by"></property>
+		<property name="modify_by_id" column="modify_by_id"></property>
+		<property name="create_time" column="create_time" update="false"></property>
+		<property name="modify_time" column="modify_time"></property>
+		
+		<many-to-one name="htlHotel" class="com.mangocity.hotel.base.persistence.HtlHotel" column="HOTEL_ID" />
+	</class>
+</hibernate-mapping>

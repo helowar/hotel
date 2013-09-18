@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="queryHotelInfo">
+
+	<resultMap class="com.mangocity.hweb.persistence.HotelBookingInfoForHkSale"
+		id="queryHotelBookingInfoResult">
+		<result property="salePrice" column="sale_price" jdbcType="DECIMAL" nullValue="0"/>
+		<result property="hotelId" column="hotel_id" jdbcType="DECIMAL" nullValue="0"/>
+		<result property="firstBookableDate" column="first_bookable_date" />
+		<result property="firstBookableTime" column="first_bookable_time" />
+		<result property="latestBookableDate" column="latest_bookable_date" />
+		<result property="latestBokableTime" column="latest_bokable_time" />
+		<result property="needAssure" column="need_assure" />
+		<result property="mustLastDate" column="must_last_date" />
+		<result property="mustFirstDate" column="must_first_date" />
+		<result property="continueDay" column="continue_day" jdbcType="DECIMAL" nullValue="0"/>
+		<result property="mustInDate" column="must_in_date" />
+		<result property="hasReserv" column="has_reserv" jdbcType="DECIMAL" nullValue="0"/>
+		<result property="minRestrictNights" column="min_restrict_nights" jdbcType="DECIMAL" nullValue="0"/>
+		<result property="maxRestrictNights" column="max_restrict_nights" jdbcType="DECIMAL" nullValue="0"/>
+		<result property="continueDatesRelation" column="continue_dates_relation" />
+		<result property="closeFlag" column="close_flag" />
+		<result property="payMethod" column="pay_method" />
+		<result property="webPrepayShow" column="webprepayshow" />
+		<result property="roomState" column="room_state" />
+		<result property="hotelChnName" column="chn_name" />
+		<result property="bizZone" column="biz_zone" />
+		<result property="zone" column="zone" />
+		<result property="hotelStar" column="hotel_star" />
+		<result property="cityCode" column="city" />
+		<result property="childRoomTypeId" column="child_room_type_id" />
+		<result property="isHkRoomType" column="ishkroomtype" />
+		<result property="mappingIsActive" column="mappingIsActive" />
+		<result property="currency" column="currency" />
+		<result property="tuiJian" column="tuijian" />
+		<result property="sumquota" column="sumquota" jdbcType="DECIMAL" nullValue="0"/>
+	</resultMap>
+	
+	<resultMap class="com.mangocity.hotel.base.persistence.HtlHotelSortByArea"
+		id="queryHtlHotelSortByAreaResult">
+		<result property="cityCode" column="city" />
+		<result property="bizZone" column="biz_zone" />
+		<result property="zone" column="zone" />
+		<result property="sortByArea" column="sort_by_area"/>
+	</resultMap>	
+
+	<select id="queryAllHkHotelInfo"
+		parameterClass="java.util.Map"
+		resultMap="queryHotelBookingInfoResult">
+		<![CDATA[
+			 select  hp.sale_price,
+		             hp.hotel_id,
+		             hp.first_bookable_date,
+             		 hp.first_bookable_time,
+		             hp.latest_bookable_date,
+		             hp.latest_bokable_time,
+		             hp.need_assure,
+		             hp.must_last_date,
+		             hp.must_first_date,
+		             hp.continue_day,
+		             hp.must_in_date,
+		             hp.has_reserv,
+		             hp.min_restrict_nights,
+		             hp.max_restrict_nights,
+		             hp.continue_dates_relation,
+		             hp.close_flag,
+		             hp.pay_method,
+             		 hh.webprepayshow,
+		             hr.room_state,
+		             hh.chn_name,
+             		 hh.biz_zone,
+             		 hh.zone,
+             		 hh.hotel_star,
+             		 hh.city,
+             		 hp.child_room_type_id,
+             		 hrt.ishkroomtype,
+             		 (select ex.isactive  from  ex_mapping ex where ex.hotelid =hp.hotel_id and ex.channeltype=8 and ex.privetypeid =  hp.child_room_type_id and ex.type =3 and  rownum=1) as mappingIsActive,
+             		 (select hc.currency from htl_contract hc where hc.hotel_id = hp.hotel_id and rownum=1)as currency,
+                     (select hcl.commendtype from htl_comm_list hcl where hcl.hotel_id =hp.hotel_id and rownum=1
+                       ]]>
+                      <isNotEmpty prepend="and" property="ableSaleDate">
+					     <![CDATA[		
+								to_date(#ableSaleDate#,'yyyy-MM-dd') between hcl.begin_date and hcl.end_date
+						 ]]>
+					 </isNotEmpty>
+					 <![CDATA[
+                     ) as tuijian,
+		             sum(nvl(hqn.buy_quota_able_num, 0) +
+		                         nvl(hqn.common_quota_able_num, 0) +
+		                         nvl(hqn.casual_quota_able_num, 0) -
+		                         nvl(hqn.buy_quota_outofdate_num, 0) -
+		                         nvl(hqn.common_quota_outofdate_num, 0) -
+		                      nvl(hqn.casual_quota_outofdate_num, 0)) as sumquota
+            from     htl_hotel hh,
+            		 htl_price hp,
+                     htl_room hr,
+                     htl_quota_new hqn,
+                     htl_price_type hpt,
+                     htl_roomtype hrt
+            where    hp.sale_price > 0
+            		 and hp.sale_price < 999999.0
+			         and hp.room_type_id = hr.room_type_id
+			         and hp.child_room_type_id = hpt.price_type_id
+			         and hp.child_room_type_id = hpt.price_type_id
+			         and hrt.room_hasagreement = 1
+			         and hp.able_sale_date = hqn.able_sale_date
+			         and hp.room_type_id= hqn.roomtype_id
+			         and hr.room_type_id = hrt.room_type_id
+			         and hp.hotel_id = hrt.hotel_id
+			         and hp.able_sale_date = hr.able_sale_date
+			         and hp.hotel_id = hr.hotel_id
+			         and hp.hotel_id = hh.hotel_id
+		]]>
+			         <isNotEmpty prepend="and" property="ableSaleDate">
+					     <![CDATA[		
+								hp.able_sale_date = to_date(#ableSaleDate#,'yyyy-MM-dd')
+						 ]]>
+					 </isNotEmpty>
+		    <![CDATA[
+		    		 and hp.hotel_id in (select hotel_id from htl_hotel_for_sale where type =1 
+		     ]]>	 
+		    		<isNotEmpty prepend="and" property="cityCode">
+					     	cityCode = #cityCode#
+					</isNotEmpty>
+		    <![CDATA[
+		    )group by  hp.sale_price,
+		             hp.hotel_id,
+		             hp.first_bookable_date,
+             		 hp.first_bookable_time,
+		             hp.latest_bookable_date,
+		             hp.latest_bokable_time,
+		             hp.need_assure,
+		             hp.must_last_date,
+		             hp.must_first_date,
+		             hp.continue_day,
+		             hp.must_in_date,
+		             hp.has_reserv,
+		             hp.min_restrict_nights,
+		             hp.max_restrict_nights,
+		             hp.continue_dates_relation,
+		             hp.close_flag,
+		             hp.room_type_id,
+             		 hp.pay_method,
+             		 hh.webprepayshow,
+		             hr.room_state,
+		             hh.chn_name,
+             		 hh.biz_zone,
+             		 hh.zone,
+             		 hh.hotel_star,
+             		 hh.city,
+             		 hp.child_room_type_id,
+             		 hrt.ishkroomtype,
+             		 currency
+		]]>
+	</select>
+    <select id="queryHtlHotelSortByArea"
+		parameterClass="java.util.Map"
+		resultMap="queryHtlHotelSortByAreaResult">
+		<![CDATA[
+			select city,biz_zone,zone,sort_by_area from htl_hotel_sort_by_area where 1=1 
+		]]>
+		<isNotEmpty prepend="and" property="cityCode">
+			city = #cityCode#
+		</isNotEmpty>
+	</select>
+</sqlMap>

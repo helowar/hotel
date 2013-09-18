@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlFavourableHotel" table="HTL_FAVOURABLE_HOTEL" dynamic-insert="true" dynamic-update="true" lazy="false">
+		<id name="id" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_FAVOURABLE_HOTEL</param>
+			</generator>
+		</id>
+		<property name="favId" column="favId" />
+		<property name="hotelId" column="hotelId"/>
+		<property name="htlFlag" column="htlFlag" />
+		<property name="createTime" column="createTime" type="java.util.Date" />
+		<property name="modifyTime" column="modifyTime" type="java.util.Date" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OTRequest>
+	<TransactionName
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">
+		TH_HotelSingleAvailRQ
+	</TransactionName>
+	<Header>
+		<Application>hotelbe</Application>
+		<Language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">
+			CN
+		</Language>
+	</Header>
+	<HotelAvailRQ>
+		<HotelAvailCriteria>
+			<StayDateRange CheckOutDate="2010-10-25"
+				CheckInDate="2010-10-21" />
+			<RatePlanCandidates>
+				<RatePlanCandidate>
+					<VendorsIncluded>
+						<Vendor VendorCode="SOHOTO" />
+					</VendorsIncluded>
+				</RatePlanCandidate>
+			</RatePlanCandidates>
+			<HotelSearchCriteria>
+				<HotelRef HotelCode="SOHOTO2192" />
+			</HotelSearchCriteria>
+		</HotelAvailCriteria>
+	</HotelAvailRQ>
+	<IdentityInfo>
+		<OfficeID>SZX899</OfficeID>
+		<UserID>SZX89900C</UserID>
+		<Password>12345678</Password>
+	</IdentityInfo>
+	<Source>
+		<OfficeCode>SZX899</OfficeCode>
+	</Source>
+</OTRequest>

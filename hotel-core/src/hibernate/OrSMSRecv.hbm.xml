@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+   <class name="OrSMSRecv" table="or_sms_recv" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="sequenceid" column="sequenceid">
+			<generator class="sequence">
+				<param name="sequence">SEQ_OR_SMS_RECV</param>
+			</generator>
+	</id>          
+         <property name="recvtime" />
+         <property name="status" />
+         <property name="lastupdate" />
+         <property name="fromno" />
+         <property name="tomobile" />
+         <property name="content" />
+         <property name="operator" />
+         <property name="type" />
+         <property name="timechar" />
+         <property name="orderid" />
+	</class>
+</hibernate-mapping>

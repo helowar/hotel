@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+
+	<!-- 机票开发环境数据源，在本地使用
+	<bean id="dataSourceFlight"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">				
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@10.10.5.18:1901:hkcts01" />
+		<property name="username" value="atii" />
+		<property name="password" value="atii" />
+	</bean>
+	-->  
+	 
+	<!-- 机票生产环境数据源，上生产环境时更换为JNDI	-->
+	<bean id="dataSourceFlight" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/ATII"/>
+	</bean>
+ 
+	
+	<bean id="sessionFactoryFlight"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">	
+		<property name="dataSource" ref="dataSourceFlight"/>	
+		<property name="hibernateProperties">
+			<props>
+			<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+				<prop key="hibernate.query.substitutions">
+					true 1, false 0
+				</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.c3p0.minPoolSize">5</prop>
+				<prop key="hibernate.c3p0.maxPoolSize">20</prop>
+				<prop key="hibernate.c3p0.timeout">600</prop>
+				<prop key="hibernate.c3p0.max_statement">50</prop>
+				<prop key="hibernate.c3p0.testConnectionOnCheckout">
+					false
+				</prop>
+				<prop key="hibernate.cache.use_second_level_cache">
+					false
+				</prop>				  
+				<prop key="hibernate.cache.use_query_cache">
+					false
+				</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.EhCacheProvider
+				</prop>
+			</props>
+		</property>	
+	</bean>
+	
+	
+	<bean id="sendPromotionMsgRecordDao" class="com.mangocity.hotel.sendmessage.dao.impl.SendPromotionMsgRecordDaoImpl"></bean>
+ 	
+ 	<bean id="promotionMsgRecordService" class="com.mangocity.hotel.sendmessage.service.impl.SendPromotionMsgRecordServiceImpl">
+ 		<property name="sendPromotionMsgRecordDao" ref="sendPromotionMsgRecordDao"/>
+ 	</bean>
+ 	
+ 	<bean id="sendMsgSeqDao" class="com.mangocity.hotel.sendmessage.dao.impl.SendMsgSeqDaoImpl"></bean>
+ 	
+ 	<bean id="sendMsgSeqService" class="com.mangocity.hotel.sendmessage.service.impl.SendMsgSeqServiceImpl">
+ 		<property name="sendMsgSeqDao" ref="sendMsgSeqDao"></property>
+ 	</bean>
+ 	
+ 	<bean id="abstractSystemDataService" class="com.mangocity.hotel.sendmessage.service.AbstractSendMessageSystemDataService" abstract="true">
+ 	<property name="systemDataService" ref="systemDataService"/>
+ 	</bean>
+ 	
+ 	<bean id="sendPMsgSystemDataService" class="com.mangocity.hotel.sendmessage.service.impl.SendPmsgSystemDataServiceImpl" parent="abstractSystemDataService"></bean>
+	
+	<bean id="sendHkMacPmsgSystemDataService" class="com.mangocity.hotel.sendmessage.service.impl.SendHkMacPmsgSystemDataServiceImpl" parent="abstractSystemDataService"></bean>	
+		
+	<bean id="flightpromotionMessageService" class="com.mangocity.hotel.sendmessage.service.impl.XmlPromotionMessageServiceImpl">
+ 		<!-- -->
+ 		<property name="url" value="http://www.mangocity.com/sms-hotel.xml"></property> 
+ 	 	<!-- 	
+ 		<property name="url" value="http://local.mangocity.com:8080/hotelII/sms-hotel.xml"></property> 
+ 	-->
+ 	</bean>
+ 	
+ 	<bean id="hkMacpromotionMessageService" class="com.mangocity.hotel.sendmessage.service.impl.XmlPromotionMessageServiceImpl">
+ 		<!-- --> 
+ 		<property name="url" value="http://www.mangocity.com/hotelII/sms-hkmachotel.xml"></property> 	
+ 		<!-- 
+ 		<property name="url" value="http://local.mangocity.com:8080/hotelII/sms-hkmachotel.xml"></property> 
+ 	--> 
+ 	</bean>
+	
+		
+   <!-- add by liting 发送机票促销短信 -->	
+	<bean id="flightOrderDao" class="com.mangocity.hotel.sendmessage.dao.impl.FlightOrderDaoImpl">
+		<property name="sessionFactory" ref="sessionFactoryFlight"></property>
+	</bean>		
+	<bean id="flightOrderService" class="com.mangocity.hotel.sendmessage.service.impl.FlightOrderServiceImpl">
+		<property name="flightOrderDao" ref="flightOrderDao"></property>
+	</bean>
+	
+	<bean id="sendPromotionMessageToFlightService" class="com.mangocity.hotel.sendmessage.service.impl.SendPromotionMessageToFlightServiceImpl">
+		<property name="promotionMsgRecordService" ref="promotionMsgRecordService"></property>
+		<property name="promotionMessageService" ref="flightpromotionMessageService"></property>
+		<property name="communicaterService" ref="communicaterService"></property>
+		<property name="flightOrderService" ref="flightOrderService"></property>
+		<property name="sendMsgSeqService" ref="sendMsgSeqService"></property>	
+	</bean>
+	
+	
+	<bean id="sendPromotionSMSToFlightJobBean" class="com.mangocity.hotel.sendmessage.job.SendPromotionMessageJob">
+		<property name="sendPMsgSystemDataService" ref="sendPMsgSystemDataService"/>
+		<property name="sendPromotionMessageService" ref="sendPromotionMessageToFlightService"/>
+	</bean>	
+		 	
+ <!-- 港澳酒店门票促销短信发送 -->
+	 <bean id="hotelOrderDao" class="com.mangocity.hotel.sendmessage.dao.impl.HotelOrderDaoImpl"></bean>
+	
+	 <bean id="hotelOrderService" class="com.mangocity.hotel.sendmessage.service.impl.HotelOrderServiceImpl">
+	 	<property name="hotelOrderDao" ref="hotelOrderDao"></property>
+	 </bean>
+ 	
+ 	<bean id="promotionTicketDao" class="com.mangocity.hotel.sendmessage.dao.impl.PromotionTicketDaoImpl"></bean>
+ 	
+ 	<bean id="promotionTicketService" class="com.mangocity.hotel.sendmessage.service.impl.PromotionTicketServiceImpl">
+ 		<property name="promotionTicketDao" ref="promotionTicketDao"></property>
+ 	</bean>
+ 	
+ 	<bean id="promotionTicketTypeDao" class="com.mangocity.hotel.sendmessage.dao.impl.PromotionTicketTypeDaoImpl"></bean>
+ 	
+ 	<bean id="promotionTicketTypeService" class="com.mangocity.hotel.sendmessage.service.impl.PromotionTicketTypeServiceImpl">
+ 		<property name="promotionTicketTypeDao" ref="promotionTicketTypeDao"></property>
+ 	</bean>
+ 	
+ 	<bean id="promotionTicketHotelDao" class="com.mangocity.hotel.sendmessage.dao.impl.PromotionTicketHotelDaoImpl"></bean>
+ 	
+ 	<bean id="promotionTicketHotelService" class="com.mangocity.hotel.sendmessage.service.impl.PromotionTicketHotelServiceImpl">
+ 		<property name="promotionTicketHotelDao" ref="promotionTicketHotelDao"></property>
+ 	</bean>
+ 	
+ 	
+ 	<bean id="sendPromotionHkMacService" class="com.mangocity.hotel.sendmessage.service.impl.SendPromotionHkMacServiceImpl">
+		<property name="promotionMsgRecordService" ref="promotionMsgRecordService"></property>
+		<property name="promotionMessageService" ref="hkMacpromotionMessageService"></property>
+		<property name="communicaterService" ref="communicaterService"></property>
+		<property name="hotelOrderService" ref="hotelOrderService"></property>
+		<property name="sendMsgSeqService" ref="sendMsgSeqService"></property>	
+		<property name="promotionTicketService" ref="promotionTicketService"></property>
+		<property name="promotionTicketTypeService" ref="promotionTicketTypeService"></property>
+		<property name="promotionTicketHotelService" ref="promotionTicketHotelService"></property>
+	</bean>
+	
+	<bean id="sendPromotionSMSHkMacJobBean" class="com.mangocity.hotel.sendmessage.job.SendPromotionMessageHkMacJob">
+		<property name="sendPMsgSystemDataService" ref="sendHkMacPmsgSystemDataService"/>
+		<property name="sendPromotionMessageService" ref="sendPromotionHkMacService"/>
+	</bean>
+		
+</beans>

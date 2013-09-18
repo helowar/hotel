@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mangocity.hotel.pricelowest.persistence" default-lazy="false">
+<class name="HtlHighestReturnTask" table="htl_highest_return_task" 
+		dynamic-insert="true" dynamic-update="true">
+
+		<id name="ID"  column="id">
+			<generator class="sequence">
+				<param name="sequence">seq_htl_highest_return_task</param>
+			</generator>
+		</id>
+		<property name="cityCode" column="city_code"></property>
+		<property name="hotelId" column="hotel_id"></property>
+		<property name="isFinish" column="is_finish"></property>
+		<property name="finishTime" column="finish_time"></property>
+		<property name="isTaken" column="is_taken"></property>
+
+</class>
+</hibernate-mapping>

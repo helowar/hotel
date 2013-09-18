@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence" default-lazy="false">
+	<class name="HtlPresale" table="htl_presale" 
+		dynamic-insert="true" dynamic-update="true">
+				
+		<id name="ID" unsaved-value="0" column="presale_id">
+			<generator class="sequence">
+				<param name="sequence">seq_hotel_presale</param>
+			</generator>
+		</id>   
+		
+		<property name="presaleName" column="presale_Name" />
+		<property name="presaleContent" column="presale_Content" />	
+		<property name="beginDate" column="begin_Date" />	
+        <property name="endDate" column="end_Date" />	
+        <property name="url" column="url" />
+        <property name="webShow" column ="WEBSHOW" >
+        </property>        
+        <property name="isShowPreferentialCode" column ="IS_SHOW_PREFERENTIAL_CODE" >
+        </property>   
+        <property name="preferentialCode" column ="PREFERENTIAL_CODE" >
+        </property> 
+        
+        
+		<property name="create_by" column="create_by" update="false"></property>
+		<property name="create_by_id" column="create_by_id" update="false"></property>
+		<property name="modify_by" column="modify_by"></property>
+		<property name="modify_by_id" column="modify_by_id"></property>
+		<property name="create_time" column="create_time" update="false"></property>
+		<property name="modify_time" column="modify_time"></property>
+		
+        <!--property name="deleted" column="is_deleted" /-->
+        
+        <bag name="lstPresaleHotel"   lazy="true" inverse="true" cascade="all-delete-orphan">
+			<key>
+				<column name="PRESALE_ID"></column>
+			</key>        
+			<one-to-many class="HtlPresaleHotel"/>
+        </bag>
+    </class>
+<query name="lstPresale">
+		<![CDATA[ 
+		select p from HtlPresale p,HtlPresaleHotel ph where p.ID = ph.presaleId and ph.hotelId=? 
+		]]>
+	</query>
+<query name="lstPreOrderPresale">
+		<![CDATA[ 
+		 select p from HtlPresale p,HtlPresaleHotel ph 
+		 			where p.ID = ph.presaleId and 
+		 			    ph.hotelId=?   and  
+			            (
+			            (p.beginDate between ? and ?) or
+			            (p.endDate between ? and ?)  or
+			            (? between p.beginDate and p.endDate)  or
+			            (? between p.beginDate and p.endDate)
+			            )
+						            
+		]]>
+	</query>
+	
+	<query name="lstPresaleHWEB">
+		<![CDATA[ 
+			select pre
+			  from HtlPresale pre
+			 where pre.ID in
+			       (select preh.presaleId
+			          from HtlPresaleHotel preh
+			         where preh.hotelId = ?)
+			   and (? between pre.beginDate and pre.endDate)
+			   and pre.isShowPreferentialCode = ?
+		]]>
+	</query>
+	
+</hibernate-mapping>

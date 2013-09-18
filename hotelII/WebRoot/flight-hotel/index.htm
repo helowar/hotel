@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="酒店,酒店预订,机加酒,机票,机票预订,机票预定,特价机票,打折机票,飞机票,航班信息,航班查询,芒果网,mangocity.com,航班查询" />
+<meta name="description" content="酒店预订：芒果网为您提供方便的酒店预订服务，商务酒店、快捷酒店、星级酒店、宾馆预订当然选芒果网，国内酒店查询预订全国免费预订电话40066-40066." />
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<title>芒果机加酒</title>
+
+<link rel="stylesheet" type="text/css" href="http://wres.mangocity.com/css/w/module/datepicker.css" />
+<link type="text/css"  rel="stylesheet" href="http://wres.mangocity.com/css/f/banner/flight_index.css?v=20121119" />
+<link type="text/css" href="http://wres.mangocity.com/css/w/module/cityselecter_noreset.css" rel="stylesheet">
+<link type="text/css" href="http://wres.mangocity.com/css/home/2013/head2013.css"rel="stylesheet" />
+
+<link type="text/css" rel="stylesheet" href="common.css" >
+<link type="text/css" rel="stylesheet" href="http://wres.mangocity.com/css/w/Tail_height.css">
+<script type="text/javascript" src="http://wres.mangocity.com/js/home/cloud/js/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="js/jquery.litenav.js"></script>
+<style type="text/css">    
+#cover{
+	position:fixed;background-color:#e3e3e3;  z-index:998; 
+	left:0; top:0; display:none; width:100%; height:500px;opacity:0.5;
+	filter: alpha(opacity=50);-moz-opacity: 0.5;text-align:center;
+}
+.choose_flight{
+	position:fixed;width:604px;height:204px;left:0;top:0;
+	background-color:#fff;z-index:999;  display:none; 
+}
+
+
+.k_con { width:600px; height:200px; border:2px solid #BFBFBF;  margin:0 auto;   overflow:hidden;}
+.k_con_t {  width:30px; height:20px; padding-left: 570px ; margin-top:5px;}
+.k_con_m { width:100%; height:90px; margin-top:10px; padding-left:40px;line-height:45px;  }
+.k_con_b { padding-top:10px; text-align:center; }
+input {width:160px; height:20px;font-size:12px; line-height:20px;}
+.choose_flight_ul li{
+	float:left;padding-left:10px;
+}
+</style>
+</head>
+
+<body>
+<div class="head_height">
+<iframe name=framename src="http://www.mangocity.com/include/header.htm" width="100%" height="100%" frameborder="no" border="0"  marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
+<div class="top"></div>
+<div class="top2"></div>
+<div class="con">
+<div class="con1">
+	<div class="con1_l">热门组合酒店</div>
+	<div class="con1_r">
+	<ul>
+		<li id=nav_btn_0 onclick="SetBtn('nav',0);">北京</li>
+		<li id=nav_btn_1 onclick="SetBtn('nav',1);">上海</li>
+		<li id=nav_btn_2 onclick="SetBtn('nav',2);">广州</li>
+		<li id=nav_btn_3 onclick="SetBtn('nav',3);">深圳</li>
+		<li id=nav_btn_4 onclick="SetBtn('nav',4);">杭州</li>
+		<li id=nav_btn_5 onclick="SetBtn('nav',5);">南京</li>
+		<li id=nav_btn_6 onclick="SetBtn('nav',6);">青岛</li>
+		<li id=nav_btn_7 onclick="SetBtn('nav',7);">成都</li>
+		<li id=nav_btn_8 onclick="SetBtn('nav',8);">厦门</li>
+		<li id=nav_btn_9 onclick="SetBtn('nav',9);">西安</li>
+	</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+</div>
+
+<div class="con2" id="nav_con_1" ><ul id="hotel_list"></ul></div>
+
+<form name="flightform" id="flightform" action="http://www.mangocity.com/flights/flights-search.shtml" method="post">
+		<input type="hidden" name="index1" id="index1" />
+		<input type="hidden" name="index2" id="index2" />
+		<input type="hidden" name="queryParamVO.depCity" id="queryParamVO.depCity" value="">
+		<input type="hidden" name="queryParamVO.depCityCn" id="queryParamVO.depCityCn" value="">
+		<input type="hidden" name="queryParamVO.arrCity" id="queryParamVO.arrCity" value="">
+		<input type="hidden" name="queryParamVO.arrCityCn" id="queryParamVO.arrCityCn" value="">
+		<input type="hidden" name="queryParamVO.depDate" id="queryParamVO.depDate" value="">
+		<input type="hidden" name="queryParamVO.retDate" id="queryParamVO.retDate" value="">
+		<input type="hidden" name="queryParamVO.tripType" id="queryParamVO.tripType" value="ow">
+		<input type="hidden" name="hotelOrderVO.hotelId" id="hotelOrderVO.hotelId" value=""> 
+		<input type="hidden" name="hotelOrderVO.hotelName" id="hotelOrderVO.hotelName" value="">
+		<input type="hidden" name="hotelOrderVO.hotelAddress" id="hotelOrderVO.hotelAddress" value="">
+		<input type="hidden" name="hotelOrderVO.ratePlanId" id="hotelOrderVO.ratePlanId" value="">
+		<input type="hidden" name="hotelOrderVO.roomtypeId" id="hotelOrderVO.roomtypeId" value="">
+		<input type="hidden" name="hotelOrderVO.roomName" id="hotelOrderVO.roomName" value="">
+		<input type="hidden" name="hotelOrderVO.roomNum" id="hotelOrderVO.roomNum" value="1">
+		<input type="hidden" name="hotelOrderVO.checkInDate" id="hotelOrderVO.checkInDate" value=""/>
+		<input type="hidden" name="hotelOrderVO.checkOutDate" id="hotelOrderVO.checkOutDate" value="">
+		<input type="hidden" name="hotelOrderVO.totalAmount" id="hotelOrderVO.totalAmount" value="">
+		<input type="hidden" name="hotelOrderVO.currency" id="hotelOrderVO.currency" value="">
+		<input type="hidden" name="hotelOrderVO.channelId" id="hotelOrderVO.channelId" value="flighthotel">
+		<input type="hidden" name="orderChannel" id="orderChannel" value="flighthotel">
+		<input type="hidden" name="hotelOrderVO.projectcode" id="hotelOrderVO.projectcode" value="0136001">
+		<input type="hidden" name="hotelOrderVO.mainPage" id="hotelOrderVO.mainPage" value="http://hotel.mangocity.com/flight-hotel/index.htm">
+		<!--新加字段dongjietao -->
+		<input type="hidden" name="packedProductVO.projectcode" id="packedProductVO.projectcode" value="0136001">
+		<input type="hidden" name="packedProductVO.productType" id="packedProductVO.productType" value="hotel">
+		
+		<input type="hidden" name="packedProductVO.discountPrice" id="packedProductVO.discountPrice" value="">
+		<input type="hidden" name="packedProductVO.totalPrice" id="packedProductVO.totalPrice" value="">
+		
+		<input type="hidden" name="packedProductVO.priceTitleDescription" id="packedProductVO.priceTitleDescription" value="机酒总价">
+	    <input type="hidden" name="packedProductVO.discountTitleDescription" id="packedProductVO.discountTitleDescription" value="节省">
+				
+	
+		
+		<div id="priceinfo_div"></div>
+		<div id="bedtype_div"></div>
+</form>
+<div class="Tail_height">
+<iframe name=framename src="http://www.mangocity.com/include/footer.htm" width="100%" height="100%" frameborder="no" border="0"  marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>	
+<div id="cover"></div>
+<div class="choose_flight">
+	<div class="k_con">
+		<div class="k_con_t"><img id="shutimg" src="img/shut.gif" style="cursor:pointer" title="关闭" onclick="closeCover();"/></div>
+		<div class="k_con_m">
+			<ul class="sch_list cFloat choose_flight_ul">
+				<li>
+					<label>出发城市：</label>
+					<p><i class="icon_city" onclick="$('#id_startCity').focus();"></i><input id="id_startCity" class="city_select" name="queryPara.depCityCn" type="text" class="" value="中文/拼音" />
+					<input id="id_dpt" name="queryPara.depCity" type="hidden" value="" class="txt_input_1" /></p>
+				</li>
+				<li>
+					<label>到达城市：</label>
+					<p><i class="icon_city" onclick="$('#id_endCity').focus();"></i><input id="id_endCity"  name="queryPara.arrCityCn" type="text" class="" readonly="readonly" value="中文/拼音" />
+					<input id="id_arr" name="queryPara.arrCity" type="hidden" value="" class="txt_input_1" /></p>
+				</li>
+				<li>
+					<label>出发日期：</label>
+					<p>
+					<i class="icon_date" onclick="$('#id_startDate').focus();"></i>
+					<input id="id_startDate" tabindex="1" name="queryPara.depDate" type="text" />
+					</p>
+				</li>
+			</ul>
+		  </div>
+	 <div class="k_con_b"><img src="img/chakanhangban.gif" id="bookBtn" style="cursor:pointer" onclick="book();"/></div>
+	</div>
+</div>
+<textarea id="template" style="display:none"><li style='#marginleft#'>
+	<div style="height:350px;">
+		<div style="height:315px;clear:left;">
+		    <div class='con21'>
+			<img  onclick='chooseFlight(#index1#,#index2#)' 
+			style="cursor:pointer;width:291px;height:218px;" title="点击预订" src='#img#' /></div>
+			<div class='con22'>
+			
+				<span class='hotelName' title="查看酒店详情">#hotelName#</span>&nbsp;&nbsp;<img style='display:#imgDisplay#' src='img/#star#.png' title='#star#星级' /><br/>#address#
+			</div>
+		</div>
+		<div class="roomName">#roomName#</div>			
+	</div>
+	<div class='con23'><img src='img/hengxian .gif' /></div>	
+	<div class='con24'>
+		<div class='con24_l'><span name='currency_#commodityId#' class="currency"></span><span style='font-size:25px; font-weight:bold;'><span name='price_#commodityId#'></span></span>&nbsp;起</div>
+		<div onclick='chooseFlight(#index1#,#index2#)' class="sub_btn1" onmouseover="$(this).addClass('sub_btn2');" 
+onmouseout="$(this).removeClass('sub_btn2');"><font color="white">下一步：订机票</font></div>
+	</div>
+		</li></textarea>
+<script type="text/javascript">
+function chooseFlight(index1,index2){
+		openCover();
+		if($("#id_endCity").val()!=hotel_arr[index1].cityName){
+			$("#id_arr").val(hotel_arr[index1].city);
+			$("#id_endCity").val(hotel_arr[index1].cityName);
+		} 
+		$("#index1").val(index1);
+		$("#index2").val(index2);
+}
+function openCover(){
+	var left = $(document).width()/2 - $(".choose_flight").width()/2;
+	var top = $(window).height()/2 - $(".choose_flight").height()/2;
+	if ($.browser.msie && ($.browser.version == "6.0") && !$.support.style) {
+		$("#cover").css("position","absolute");
+		$(".choose_flight").css("position","absolute");
+		top = top + $(document).scrollTop();
+		$("#shutimg").attr("src","img/shut.gif");
+	}
+	$("#cover").css("width",$(document).width());
+	$("#cover").css("height",$(document).height());
+	$("#cover").show();
+	$(".choose_flight").css("left",left).css("top",top).show();
+}
+function closeCover(){
+	$(".choose_flight").hide();
+	$("#cover").hide();
+}
+function initDateAndCityPicker(){
+	var dateInput = document.getElementById('id_startDate');
+	dateInput.value=getStrFromDate(new Date());
+	var my_datepicker = new Datepicker(dateInput,{eachW:206,ttMonth:2,addDays:29,callback:function(o,t){o.value=t.title}});
+	var cityFrom = new MGTOOL.citySelecter({
+			target : $('#id_startCity')[0],
+			hideInput : $('#id_dpt')[0],
+			datatype : 'flight',
+			hotDatas:commoncitysFlight,
+			cityDatas :citysForFlight,
+			group : ['ABCD','EFGHIJK','LMNOPQ','RSTUVWXYZ'], 
+			wrapid : 'mangocityBox'
+	});
+	addEventOnCitySelecter(cityFrom);
+}
+function addEventOnCitySelecter(flight_city){
+	flight_city.onFocus.addFns('onFirst', function(e){
+			flight_city.addHotCommon(e.parentBox, e.hotlist, e.datalist);
+		});
+	flight_city.onFocus.addFns('toblur', function(e){
+		//输入框 ==> e.target 隐藏表单域==> e.hideinput
+		function getThreeWordBytCity(cityName){
+			var citys = citysForFlight;
+			var threeWord = "";
+			for(var i = 0,len = citys.length;i<len;i++){
+				if(cityName == citys[i][1]){
+					threeWord = citys[i][0];
+					break;
+				}
+			}
+			return threeWord;
+		}
+		var v = e.target.value;
+		var result = getThreeWordBytCity(v);
+		if(!!result.length || result !==""){
+			e.hideinput.value = result;
+		}else{
+			e.hideinput.value = "";
+		}
+	});
+	flight_city.onClick.addFns('hotCommonClick', function(e){
+		flight_city.setCommonValue(e);
+		e.target.style.color = '#333';
+		$('#id_startDate').focus();
+		removeWarn(flight_city.target, 'warniw124');
+	});
+	flight_city.onKey.addFns('inputChange', function(e){
+		flight_city.commenInputChange(e);
+	});
+	flight_city.onKey.addFns('keyClick', function(e){
+		flight_city.setKeyClick(e);
+		e.target.style.color = '#333';
+		$('#id_startDate').focus();
+		removeWarn(flight_city.target, 'warniw124');
+	});
+	flight_city.onKey.addFns('keyEnter', function(e){
+		flight_city.keyEnter(e);
+		e.target.style.color = '#333';
+		$('#id_startDate').focus();
+		removeWarn(flight_city.target, 'warniw124');
+	});
+}
+function removeWarn(target, classname){
+	var warn = MGTOOL.$id('warnID');
+	if(warn){
+		warn.style.display = 'none';
+	}
+	if(target && MGTOOL.hasClass(target, classname)){
+		MGTOOL.removeClass(target, classname);
+		target.blur();
+	}
+}
+$(document).ready(function(){
+	initDateAndCityPicker();
+	SetBtn('nav',0);
+});
+</script>
+<script type="text/javascript" src="http://wres.mangocity.com/js/h/flight_hotel/hotellist.js" ></script>
+<script type="text/javascript" src="js/hotel-flight.js" ></script>
+<script type="text/javascript" src="http://wres.mangocity.com/js/f/banner/airTicket.js" ></script>
+<script type="text/javascript" src="http://wres.mangocity.com/js/w/build/mgtool.js"></script>
+<script type="text/javascript" src="http://wres.mangocity.com/js/w/module/cityselecter.js"></script>
+<script type="text/javascript" src="http://wres.mangocity.com/js/w/module/datepicker.js"></script>
+<script type="text/javascript" src="http://wres.mangocity.com/js/w/common/js/o_code.js"></script>
+</body>
+</html>

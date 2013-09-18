@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.base.persistence">
+	<class name="HtlFITAlias" table="HTL_FIT_ALIAS" dynamic-insert="true" dynamic-update="true" lazy="false">
+
+		<id name="ID" unsaved-value="0"/>
+
+		<property name="aliasId" column="ALIASID" />
+		<property name="name" column="NAME" />
+		<property name="memo" column="MEMO" />
+		<property name="active" column="ACTIVE" />
+    </class>
+    <query name="queryAllFITAliasId">
+        <![CDATA[ 
+				from HtlFITAlias fr where fr.active=?
+			]]>
+    </query>
+</hibernate-mapping>

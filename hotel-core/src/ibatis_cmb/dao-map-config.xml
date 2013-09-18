@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+	<!-- Main JNDI DataSource for J2EE environments -->
+	<!-- Refers to the main database, containing product and account data -->
+	<!-- (see dataAccessContext-local.xml for an alternative) -->
+	<!-- bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>jdbc/ChinaPay</value>
+		</property>
+	</bean-->
+	<!-- Local DataSource that refers to a combined database -->
+	<!-- (see dataAccessContext-jta.xml for an alternative) -->
+	<!-- The placeholders are resolved from jdbc.properties through -->
+	<!-- the PropertyPlaceholderConfigurer in applicationContext.xml -->
+	
+<!--
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@10.10.4.16:1521:hccdev</value>
+		</property>
+		<property name="username">
+			<value>hccdevelop</value>
+		</property>
+		<property name="password">
+			<value>hccdevelop</value>
+		</property>
+	</bean>	
+-->	
+<!-- 生产环境 JNDI 数据库配置 -->
+<!--  -->  
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>jdbc/CTII1020</value>
+		</property>
+	</bean>	 
+<!-- ******************** Oracle DataBase Config End ******************** --> 
+
+<!-- 10.10.1.177 18数据库用
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@10.10.4.18:1521:hccdev</value>
+		</property>
+		<property name="username">
+			<value>test920</value>
+		</property>
+		<property name="password">
+			<value>test920</value>
+		</property>
+	</bean>	
+-->	
+	
+<!--
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@10.10.16.17:1521:nbtc2</value>
+		</property>
+		<property name="username">
+			<value>hwl</value>
+		</property>
+		<property name="password">
+			<value>hwl</value>
+		</property>
+	</bean>
+-->
+ 	
+<!-- 
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>jdbc/CTIIMangoWeb</value>
+		</property>
+	</bean>
+ -->		
+
+	<!-- Transaction manager for a single JDBC DataSource -->
+	<!-- (see dataAccessContext-jta.xml for an alternative) -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
+
+	<!-- SqlMap setup for iBATIS Database Layer -->
+	<bean id="sqlMap" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>ibatis_cmb/sql-map-config.xml</value>
+		</property>
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="CommonDao" class="mango.it.cmbpay.dao.ibatis.SqlMapCommonDao">
+		<property name="sqlMapClient">
+			<ref local="sqlMap" />
+		</property>
+	</bean>
+	
+	
+	<bean id="TSendTransDao" class="mango.it.cmbpay.dao.ibatis.SqlMapTSendTransDao">
+		<property name="sqlMapClient">
+			<ref local="sqlMap" />
+		</property>
+	</bean>
+	
+	<bean id="TReceiveTransDao" class="mango.it.cmbpay.dao.ibatis.SqlMapTReceiveTransDao">
+		<property name="sqlMapClient">
+			<ref local="sqlMap" />
+		</property>
+	</bean>
+	
+	
+	
+	
+	
+		<!-- rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr -->
+	
+	
+	
+	<bean id="CreditCardDao" class="mango.it.cmbpay.dao.ibatis.SqlMapCreditCardDao">
+        <property name="sqlMapClient">
+            <ref local="sqlMap"/>
+        </property>
+    </bean>
+    
+    <bean id="PreAuthListDao" class="mango.it.cmbpay.dao.ibatis.SqlMapPreAuthListDao">
+        <property name="sqlMapClient">
+            <ref local="sqlMap"/>
+        </property>
+    </bean>  
+    
+     <bean id="PreAuthTransDao" class="mango.it.cmbpay.dao.ibatis.SqlMapPreAuthTransDao">
+        <property name="sqlMapClient">
+            <ref local="sqlMap"/>
+        </property>
+    </bean> 
+        
+     <bean id="PreAuthCancelTransDao" class="mango.it.cmbpay.dao.ibatis.SqlMapPreAuthCancelTransDao">
+        <property name="sqlMapClient">
+            <ref local="sqlMap"/>
+        </property>
+    </bean> 
+    
+     <bean id="PreAuthAffirmTransDao" class="mango.it.cmbpay.dao.ibatis.SqlMapPreAuthAffirmTransDao">
+        <property name="sqlMapClient">
+            <ref local="sqlMap"/>
+        </property>
+    </bean> 
+	
+	
+	
+</beans>

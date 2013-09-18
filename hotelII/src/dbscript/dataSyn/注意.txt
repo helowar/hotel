@@ -1,0 +1,2 @@
+1. 导入数据时需初始化htlquery表的是否有免费宽带(freeNet)和佣金等字段(COMMISSIONRATE,COMMISSION,FORMULA)信息
+2. 导入数据时quotanumber字段不为null(最好默认为0)

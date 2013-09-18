@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<!--
+				<ref bean="updateLuceneSchedule"/>
+				-->
+				<ref bean="cronTriggerIncreaseSchedule"/>
+				<ref bean="cronTriggerHtlGeogpSchedule" />
+				<ref bean="cronTriggerMainPublicSchedule"/> 
+				<ref bean="cronHtlCommendTrigger"/>
+				<ref bean="cronTriggerPopularHW"/>
+			 	
+			    <ref bean="initHtlLowestTaskSchedule"/>
+			    <ref bean="updateHtlLowestPriceSchedule"/> 
+			    <ref bean="createJSForLowestPriceSchedule"/>
+			    <ref bean="cronHotelAllInfoTrigger"/>
+			    
+			    <ref bean="initHtlHighestReturnTaskSchedule"/>
+			    <ref bean="updateHtlHighestReturnSchedule"/>
+			   <!--  
+			    <ref bean="cronSendPromotionSMSToFlightTrigger"/>
+			    <ref bean="cronSendPromotionSMSHkMacTrigger"/>
+			    -->
+			    <ref bean="updateDaoDaoCommentJobSchedule"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 每天凌晨1点更新地标信息lucene索引文件 add by wangjian   begin-->	
+	<!-- 定义调用对象和调用对象的方法 -->
+	<bean id="htlGeographicalpositionSchedule"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.mangocity.hotel.job.HtlGeographicalpositionSchedule" />
+		<property name="jobDataAsMap">
+		  <map>
+		  		<entry key="hotelInfoIndexer">
+		  			<ref bean="hotelInfoIndexer"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>
+	<!-- 定义触发时间 -->
+	<bean id="cronTriggerHtlGeogpSchedule"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="htlGeographicalpositionSchedule" />
+		<property name="cronExpression">
+			<!-- 测试配置 每3分钟执行一次 
+			<value>0 0/3 * * * ?</value>-->
+			<!--发布配置 每天凌晨1点执行一次 -->
+			<value>0 0 1 * * ?</value>
+		</property>
+	</bean>	
+	
+	<!-- add by wuyun 合作方加幅记录 2009-04-19 V2.8 -->
+	<bean id="cronTriggerIncreaseSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="increaseSchedule" />
+	    <!--  20分钟一次  -->
+	    <property name="cronExpression" value="0 0/5 * * * ?" />
+	</bean>
+	<bean id="increaseSchedule" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.mangocity.hotel.util.IncreaseSchedule" />
+	    <property name="jobDataAsMap">
+		  	<map>
+		  		<entry key="hotelManage">
+		  			<ref bean="hotelManage"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>	
+	
+	
+	<!-- 今日低价、芒果推荐、最畅销 每天上午10点和下午3点执行一次 -->
+	<bean id="cronTriggerMainPublicSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="mainPublicSchedule" />
+	     <!-- 测试配置 每1分钟执行一次 
+			 <property name="cronExpression" value="0 0/1 * * * ?" />-->
+	    <!-- 发布配置 -->
+	    <property name="cronExpression" value="0 1 10,15 * * ?" /> 
+	</bean>
+	<bean id="mainPublicSchedule" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.mangocity.hotel.util.MainPublicSchedule" />
+	    <property name="jobDataAsMap">
+		  	<map>
+		  		<entry key="hotelManageWeb">
+		  			<ref bean="hotelManageWeb"/>
+		  		</entry>
+		  		<entry key="systemDataService">
+		  			<ref bean="systemDataService"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>	
+	
+	<!-- add by xuyiwen 网站首页特推酒店 2011-4-18 -->
+	<bean id="htlCommendJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass"> 
+		  <value>com.mangocity.hotel.util.HtlCommendSchedule</value> 
+		</property> 
+		<property name="jobDataAsMap"> 
+		    <map> 
+		        <entry key="hotelManageWeb"> 
+		            <ref bean="hotelManageWeb"/> 
+		         </entry> 
+		    </map> 
+		</property> 
+	</bean> 
+	
+	<bean id="cronHtlCommendTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail" ref="htlCommendJob" /> 
+		<property name="cronExpression">
+			 <!-- 测试配置 每1分钟执行一次 -->
+			 <!-- <value>0 0/1 * * * ?</value> -->
+			<!--发布配置 每天上午9点，下午2点执行一次  -->
+		   <value>0 1 9,14 * * ?</value>
+		</property> 
+	</bean>
+	<!-- end  -->
+	
+	<!-- 人气榜 -->
+	<bean id="cronTriggerPopularHW" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="popularPublicSchedule" />
+	    <!-- 测试配置 每1分钟执行一次
+			 <property name="cronExpression" value="0 0/1 * * * ?" />  -->
+	    <!-- 发布配置 -->
+	    <property name="cronExpression" value="0 1 10,15 * * ?" />
+	</bean>		
+	
+	<bean name="popularPublicSchedule" class="org.springframework.scheduling.quartz.JobDetailBean">
+	  <property name="jobClass" value="com.mangocity.hotel.util.PopularPublicSchedule" />
+	  <property name="jobDataAsMap">
+	  	<map>
+	  		<entry key="hotelManageWeb">
+	  			<ref bean="hotelManageWeb"/>
+	  		</entry>
+	  		<entry key="systemDataService">
+	  			<ref bean="systemDataService"/>
+	  		</entry>
+		</map>
+	  </property>	     	  
+	</bean>
+	
+	
+	<!-- add by xuyiwen 为电商统计网站来源订单用 2011-4-6 -->
+	<bean id="orderStatistikJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass"> 
+		  <value>com.mangocity.hotel.util.OrderStatistikSchedule</value> 
+		</property> 
+		<property name="jobDataAsMap"> 
+		    <map> 
+		        <entry key="hotelManageWeb"> 
+		            <ref bean="hotelManageWeb"/> 
+		         </entry> 
+		    </map> 
+		</property> 
+	</bean> 
+	
+	<bean id="cronOrderStatistikTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail" ref="orderStatistikJob" /> 
+		<property name="cronExpression"> 
+		 	<!-- 测试配置 每1分钟执行一次 -->
+			<!-- <value>0 0/1 * * * ?</value> -->
+			<!-- 每十五分钟执行一次 -->
+		    <value>0 0/15 * * * ?</value> 
+		</property> 
+	</bean> 
+	<!-- end  -->
+	
+	<!-- 同步酒店最低价start add by diandian.hou 2012-2-15-->
+	<!-- 初始化htlLowestTask -->
+	<bean id="initHtlLowestTaskSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="initHtlLowestTaskJob" />
+	    <!--  每天23点半执行一次  -->
+	    <property name="cronExpression" value="0 30 23 * * ?" />  
+	    <!--  test用 每13分钟跑一次  
+	    <property name="cronExpression" value="0 0/13 * * * ?" /> -->
+	    
+	</bean>
+	<bean id="initHtlLowestTaskJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.mangocity.hotel.schedule.HotelLowestTaskToDBSchedule" />
+	    <property name="jobDataAsMap">
+		  	<map>
+		  		<entry key="hotelLowestPriceService">
+		  			<ref bean="hotelLowestPriceService"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>
+	
+	<!-- 插入和更新htlLowestPrice -->
+	<bean id="updateHtlLowestPriceSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="updateHtlLowestPriceJob" />
+	    <!--  1-22时，5分钟一次 -->
+	    <property name="cronExpression" value="0 0/5 1-22 * * ?" />  
+	    <!-- test 
+	    <property name="cronExpression" value="0 0/2 * * * ?" /> -->
+	</bean>
+	<bean id="updateHtlLowestPriceJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.mangocity.hotel.schedule.HotelLowestPriceToDBSchedule" />
+	    <property name="jobDataAsMap">
+		  	<map>
+		  		<entry key="hotelLowestPriceService">
+		  			<ref bean="hotelLowestPriceService"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>
+	
+	<!-- 生成最低价的js -->
+	<bean id="createJSForLowestPriceSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="createJSForLowestPriceJob" />
+	    <!--  每天23点执行  -->
+	    <property name="cronExpression" value="0 0 23 * * ?" /> 
+	    <!--  test用 每5分钟跑一次 
+	    <property name="cronExpression" value="0 0/5 * * * ?" /> -->
+	</bean>
+	<bean id="createJSForLowestPriceJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.mangocity.hotel.schedule.HotelWebAllInfoSchedule" />
+	    <property name="jobDataAsMap">
+		  	<map>
+		  		<entry key="hotelLowestPriceService">
+		  			<ref bean="hotelLowestPriceService"/>
+		  		</entry>
+		  		<entry key="hotelHighestReturnService">
+		  			<ref bean="hotelHighestReturnService"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>
+	
+		
+	<!-- add by yangshaojun 网站酒店js 2011-4-29 -->
+	<bean id="hotleAllInfoJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass"> 
+		  <value>com.mangocity.hotel.util.HotelAllInfoSchedule</value> 
+		</property> 
+		<property name="jobDataAsMap"> 
+		    <map> 
+		        <entry key="hotelManageWeb"> 
+		            <ref bean="hotelManageWeb"/> 
+		         </entry> 
+		    </map> 
+		</property> 
+	</bean> 
+	
+	<bean id="cronHotelAllInfoTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail" ref="hotleAllInfoJob" /> 
+		<property name="cronExpression">
+			 <!-- 测试配置 每1分钟执行一次
+			 <value>0 0/5 * * * ?</value> --> 
+			<!--发布配置 每天上午9点，下午2点执行一次 --> 
+		   <value>0 1 9,14 * * ?</value>
+		</property> 
+	</bean>	
+	<!-- 同步酒店最低价end  -->
+	
+	
+	<!-- 同步酒店最高返现start add by longkangfu 2012-7-3-->
+	<!-- 初始化htlHighestReturnTask -->
+	<bean id="initHtlHighestReturnTaskSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="initHtlHighestReturnTaskJob" />
+	    <!--  每天23点半执行一次  -->
+	    <property name="cronExpression" value="0 30 23 * * ?" />  
+	    <!--  test用 每13分钟跑一次  
+	    <property name="cronExpression" value="0 0/13 * * * ?" /> -->
+	</bean>
+	<bean id="initHtlHighestReturnTaskJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.mangocity.hotel.schedule.HotelHighestReturnTaskSchedule" />
+	    <property name="jobDataAsMap">
+		  	<map>
+		  		<entry key="hotelHighestReturnService">
+		  			<ref bean="hotelHighestReturnService"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>
+	
+	<!-- 插入和更新htlHighestReturnSchedule -->
+	<bean id="updateHtlHighestReturnSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="updateHtlHighestReturnJob" />
+	    <!--  1-22时，5分钟一次  -->
+	    <property name="cronExpression" value="0 0/5 1-22 * * ?" /> 
+	    <!-- test 
+	    <property name="cronExpression" value="0 0/1 * * * ?" /> -->
+	</bean>
+	<bean id="updateHtlHighestReturnJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.mangocity.hotel.schedule.HotelHighestReturnToDBSchedule" />
+	    <property name="jobDataAsMap">
+		  	<map>
+		  		<entry key="hotelHighestReturnService">
+		  			<ref bean="hotelHighestReturnService"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>
+	<!-- 同步酒店最高返现end add by longkangfu 2012-7-3-->
+	
+
+	
+		<!-- 定时发送酒店促销信息 -->	
+	<bean id="sendPromotionSMSToFlightJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<property name="concurrent" value="false"/>
+	<property name="targetObject" ref="sendPromotionSMSToFlightJobBean" />
+	<property name="targetMethod" value="execute" />
+	
+	</bean>
+	
+    <bean id="sendPromotionSMSHkMacJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<property name="concurrent" value="false"/>
+	<property name="targetObject" ref="sendPromotionSMSHkMacJobBean" />
+	<property name="targetMethod" value="execute" />
+	
+	</bean>
+	
+		
+	<bean id="cronSendPromotionSMSToFlightTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail" ref="sendPromotionSMSToFlightJob" /> 
+		<property name="cronExpression">
+			<!-- 每5分钟执行一次 -->
+			 <value>0 0/5 * * * ?</value> 
+		</property> 
+	</bean>	
+	
+	
+	<bean id="cronSendPromotionSMSHkMacTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail" ref="sendPromotionSMSHkMacJob" /> 
+		<property name="cronExpression">
+			<!-- 每小时分钟执行一次 -->
+			 <value>0 0 0/1 * * ?</value> 
+		<!--  测试每5钟一次
+			  <value>0 0/5 * * * ?</value> 
+			  -->
+		</property> 
+	</bean>
+	
+	<!-- 同步到到网点评基本信息（把信息从到到网提供的xml文件同步到数据库的htl_comment_daodao表中） -->
+	<bean id="updateDaoDaoCommentJobSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="updateDaoDaoCommentJob" />
+	    <!--  每天凌晨3点执行  -->
+	    <property name="cronExpression" value="0 0 3 * * ?" /> 
+	    <!--  test用 每10分钟跑一次 
+	    <property name="cronExpression" value="0 0/10 * * * ?" /> -->
+	</bean>
+
+	<bean id="updateDaoDaoCommentJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.mangocity.hotel.schedule.HotelCommentDaoDaoToDBSchedule"/>	       
+	    <property name="jobDataAsMap">
+		  	<map>
+		  		<entry key="daoDaoCommentService">
+		  			<ref bean="daoDaoCommentService"/>
+		  		</entry>
+		  		<entry key="systemDataService">
+		  			<ref bean="systemDataService"/>
+		  		</entry>
+		  	</map>
+	    </property>
+	</bean>	
+</beans>

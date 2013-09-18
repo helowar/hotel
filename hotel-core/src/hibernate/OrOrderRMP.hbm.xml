@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hotel.order.persistence">
+	<class name="OrOrderRMP" table="OR_Order_rmp" dynamic-insert="true" dynamic-update="true" lazy="false">
+		<id name="orderrmpId" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">seq_OR_Order_rmp</param>
+			</generator>
+		</id>
+		<property name="supplierId" column="supplierid" />
+		<property name="supplierName" column="suppliername" />
+		<property name="abbreviation" column="abbreviation" />
+		<property name="supplyContactId" column="supplycontractid" />
+		<property name="supplyContactName" column="supplycontractname" />		
+		<property name="pricePlanId" column="priceplanid" />
+		<property name="pricePlanName" column="priceplanname" />
+		<property name="commdityId" column="commodityid" />
+		<property name="creator" column="creator" />
+		<property name="modifier" column="modifier" />		
+		<property name="modifytime" column="modifytime" />
+		
+		
+		
+		<property name="noticeInfo" column="noticeinfo" />
+		<!-- 和OrOrder关联 -->
+		<many-to-one name="order"
+			column="orderid" 
+			unique="true"/> 
+	</class>
+</hibernate-mapping>

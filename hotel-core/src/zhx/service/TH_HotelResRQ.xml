@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OTRequest>
+	<TransactionName
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">
+		TH_HotelResRQ
+	</TransactionName>
+	<Header>
+		<Application>hotelbe</Application>
+		<Language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">
+			CN
+		</Language>
+	</Header>
+	<HotelResRQ>
+		<HotelReservations>
+			<HotelReservation>
+				<RoomStays>
+					<RoomStay>
+						<BasicProperty HotelCode="SOHOTO00001" />
+						<RoomRates>
+							<RoomRate CrsIndicator="N" VendorCode="GGJ"
+								RatePlanCode="GG001" RoomTypeCode="INCE001" EndDate="2010-09-19"
+								StartDate="2010-09-18" HotelCode="SOHOTO00001">
+								<Quantity
+									xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									xmlns:xs="http://www.w3.org/2001/XMLSchema"
+									xsi:type="xs:string">
+									1
+								</Quantity>
+							</RoomRate>
+						</RoomRates>
+						<TimeSpan EndDate="2010-09-19"
+							StartDate="2010-09-18" />
+						<ArriveEarlyTime
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							1200
+						</ArriveEarlyTime>
+						<ArriveLateTime
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							1800
+						</ArriveLateTime>
+						<TotalAmount
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							19990
+						</TotalAmount>
+					</RoomStay>
+				</RoomStays>
+				<ResGuests>
+					<ResGuest>
+						<GuestProfile>
+							<PersonName
+								xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+								xmlns:xs="http://www.w3.org/2001/XMLSchema"
+								xsi:type="xs:string">
+								芒果测试
+							</PersonName>
+							<Mobile
+								xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+								xmlns:xs="http://www.w3.org/2001/XMLSchema"
+								xsi:type="xs:string">
+								13800138000
+							</Mobile>
+							<Telephone
+								xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+								xmlns:xs="http://www.w3.org/2001/XMLSchema"
+								xsi:type="xs:string">
+								11111111
+							</Telephone>
+						</GuestProfile>
+						<GuestIndex
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							0
+						</GuestIndex>
+						<Type
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							GUE
+						</Type>
+						<RoomNumber
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							1
+						</RoomNumber>
+					</ResGuest>
+				</ResGuests>
+				<ResGlobalInfo>
+					<TimeSpan EndDate="2010-09-19"
+						StartDate="2010-09-18" />
+					<Payment
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xmlns:xs="http://www.w3.org/2001/XMLSchema"
+						xsi:type="xs:string">
+						T
+					</Payment>
+				</ResGlobalInfo>
+				<ContactorInfo>
+					<Profile>
+						<PersonName
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							芒果测试
+						</PersonName>
+						<Mobile
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							13800138000
+						</Mobile>
+						<Telephone
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xsi:type="xs:string">
+							11111111
+						</Telephone>
+					</Profile>
+				</ContactorInfo>
+				<TotalAmount
+					xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">
+					19990
+				</TotalAmount>
+			</HotelReservation>
+		</HotelReservations>
+	</HotelResRQ>
+	<IdentityInfo>
+		<OfficeID>NATEST</OfficeID>
+		<UserID>NATEST00C</UserID>
+		<Password>12345678</Password>
+	</IdentityInfo>
+	<Source>
+		<OfficeCode>NATEST</OfficeCode>
+		<BookingChannel
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">
+			HOTELBE
+		</BookingChannel>
+	</Source>
+</OTRequest>

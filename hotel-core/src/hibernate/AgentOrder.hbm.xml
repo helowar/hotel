@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mangocity.hagtb2b.persistence">
+	<class name="AgentOrder" table="T_AGENT_ORDER" dynamic-insert="true" dynamic-update="true" lazy="false">
+	
+		<id name="ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_AGENT_ORDER</param>
+			</generator>
+		</id>
+		<property name="orderId" column="ORDERID" type="java.lang.Long"/>
+		<property name="orderCd" column="ORDERCD" type="java.lang.String"/>
+		<property name="hotelName" column="HOTEL_NAME" type="java.lang.String"/>
+		<property name="roomName" column="ROOM_NAME" type="java.lang.String"/>
+		<property name="childRoomName" column="CHILD_ROOM_NAME" type="java.lang.String"/>
+		<property name="bedType" column="BED_TYPE" type="java.lang.Integer"/>
+		<property name="roomNum" column="ROOM_NUM" type="java.lang.Integer"/>
+		<property name="checkInDate" column="CHECKINDATE" />
+		<property name="checkOutDate" column="CHECKOUTDATE" />
+		<property name="sumRmb" column="SUM_RMB" type="java.lang.Double"/>
+		<property name="commision" column="commision" type="java.lang.Double"/>
+		
+		<property name="commisionPrice" column="commisionPrice" type="java.lang.Double"/>
+		<property name="commisionRate" column="commisionRate" type="java.lang.Double"/>
+				
+		<property name="backCommission" column="BACK_COMM" type="java.lang.Double"/>
+		<property name="bookingname" column="BOOKINGNAME" type="java.lang.String"/>
+		
+		        <!-- 和AgentOrderItem关联 -->
+    	<bag name="orderItems" cascade="all-delete-orphan"
+			inverse="true" lazy="false" order-by="ID">
+			<key column="ORDERID"></key>
+			<one-to-many class="AgentOrderItem" />
+		</bag>
+		
+		
+		<!-- 和satisInfo关联 -->
+		<many-to-one name="satisInfo"
+			class="StatisticsInfo"
+			column="STATIID" 
+			cascade="save-update"
+			unique="true"/> 
+	</class>
+
+<!--
+	<query name="queryAccounts">
+		<![CDATA[ 
+		from Account account where account.birthday = ? 
+		]]>
+	</query>
+
+	<query name="queryAccountByName">
+		<![CDATA[ 
+		from Account account where account.firstName = ? 
+		]]>
+	</query>
+-->
+
+
+
+</hibernate-mapping>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed to the Apache Software Foundation (ASF) under one
+	or more contributor license agreements. See the NOTICE file
+	distributed with this work for additional information
+	regarding copyright ownership. The ASF licenses this file
+	to you under the Apache License, Version 2.0 (the
+	"License"); you may not use this file except in compliance
+	with the License. You may obtain a copy of the License at
+	
+	http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing,
+	software distributed under the License is distributed on an
+	"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+	KIND, either express or implied. See the License for the
+	specific language governing permissions and limitations
+	under the License.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd" 
+	default-autowire="byName">
+
+	<!-- 公共接口 -->
+	<bean id="commonService" class="hk.com.cts.ctcp.hotel.webservice.commonservice.CommonService"
+		factory-bean="commonFactory" factory-method="create" />
+		
+	<!-- 查询接口 -->
+	<bean id="enquiryService" class="hk.com.cts.ctcp.hotel.webservice.enquiryservice.EnquiryService"
+		factory-bean="enquiryFactory" factory-method="create" />
+	
+	<!-- 交易接口 -->
+	<bean id="saleService" class="hk.com.cts.ctcp.hotel.webservice.saleservice.SaleService"
+		factory-bean="saleFactory" factory-method="create" />
+	
+	<bean id="commonFactory"
+		class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass"
+			value="hk.com.cts.ctcp.hotel.webservice.commonservice.CommonService" />		
+		<!-- v2.8 hk address modify by shizhongwen  2009-05-14 将address 数据存入数据库 -->
+		<property name="address"
+			value="${WS_HK_ADDRESS_COMMONFACTORY_URL}" />				
+	</bean>	
+	
+	<bean id="enquiryFactory"
+		class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass"
+			value="hk.com.cts.ctcp.hotel.webservice.enquiryservice.EnquiryService" />
+		<!-- v2.8 hk address modify by shizhongwen  2009-05-14 将address 数据存入数据库 -->
+		<property name="address"
+			value="${WS_HK_ADDRESS_ENQUIRYFACTORY_URL}" />				
+	</bean>	
+
+
+	<bean id="saleFactory"
+		class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass"
+			value="hk.com.cts.ctcp.hotel.webservice.saleservice.SaleService" />		
+		<!-- v2.8 hk address modify by shizhongwen  2009-05-14 将address 数据存入数据库 -->
+		<property name="address"
+			value="${WS_HK_ADDRESS_SALEFACTORY_URL}" />				
+	</bean>	
+ 
+	<!--  sApiKey 为 MANGOCC - Mango call center , sApiKey 为 MANGOIT –  Mango internet -->
+	<!-- 针对hotelCC 
+	<bean id="hkService" class="hk.com.cts.ctcp.hotel.service.impl.HKServiceImpl">	
+	  <property name="agentCode" value="${WS_HOP_HBIZ_HK_AGENTCODE}"/>	  	
+	</bean>
+	-->
+	<!--  针对 网上预订  -->
+	<bean id="hkService" class="hk.com.cts.ctcp.hotel.service.impl.HKServiceImpl">
+	  <property name="agentCode">
+	  	 <value>${WS_HWEB_HK_AGENTCODE}</value>
+	  </property>
+	</bean>
+	
+	
+	<bean id="hkManage" class="hk.com.cts.ctcp.hotel.service.impl.HKManageImpl">		   	
+	</bean>
+	
+	<bean id="imappingService" class="hk.com.cts.ctcp.hotel.service.impl.ExMappingServiceImpl">		   	
+	</bean>
+	
+	<bean id="exDao" class="hk.com.cts.ctcp.hotel.dao.impl.ExDaoImpl">		   	
+	</bean>
+	
+</beans>
+

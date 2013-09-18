@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="His114">
+
+	<!-- 查询114历史订单信息 -->
+	<select id="query114His"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[
+			select a.ID, a.FILEPATH, a.fileName, a.type, a.counts, a.fileDate, a.creator, a.createTime, a.fileSize  
+			from gen_114_file a 
+			where a.genmemberid=#genMemberID# 
+				and a.fileType=#fileType# 
+				and a.dayType=1 
+		]]> 
+		<isNotEmpty prepend="AND" property="auditType">
+		<![CDATA[		
+			a.type = #auditType# 
+		]]>			
+		</isNotEmpty>		
+		<isNotEmpty prepend="AND" property="checkInDate">
+		<![CDATA[		
+			(a.FILEDATE >= to_date(#checkInDate#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>					
+		<isNotEmpty prepend="AND" property="checkInDateEnd">
+		<![CDATA[		
+			(a.FILEDATE <= to_date(#checkInDateEnd#,'yyyy-mm-dd')) 
+		]]>			
+		</isNotEmpty>		
+		order by a.FILEDATE, a.createTime 
+	</select>
+	
+</sqlMap>

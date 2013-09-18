@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="HtlPresale">
+
+	<!-- Select with no parameters using the result map for HtlPresale class. -->
+	<select id="queryPresales"
+		parameterClass="com.mangocity.util.collections.FormatMap"
+		resultClass="java.util.HashMap">
+		select * from HTL_PRESALE 
+
+ 
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="presaleName">
+				(presale_Name like '%$presaleName$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="presaleContent">
+				(presale_Content like '%$presaleContent$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="begin_Date">	
+			<![CDATA[		
+				(begin_Date >= to_date(#beginDate#, 'YYYY-MM-DD'))
+			]]>	
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="end_Date">
+			<![CDATA[
+  		        (end_Date  <= to_date(#endDate#, 'YYYY-MM-DD'))
+  		     ]]>
+				
+			</isNotEmpty>
+		</dynamic>
+
+      order by presale_id desc
+
+	</select>
+
+
+</sqlMap>

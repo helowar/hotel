@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+	<settings errorTracingEnabled="true" />
+
+
+	<!-- List the SQL Map XML files. They can be loaded from the 
+		classpath, as they are here (com.domain.data...) -->
+
+	<sqlMap resource="ibatis/HtlMainCommend.xml" />
+	<sqlMap resource="ibatis/DemoQuery.xml" />
+
+	<sqlMap resource="ibatis/presaledHotel.xml" />
+
+	<sqlMap resource="ibatis/SqlMapcontract.xml" />
+	<sqlMap resource="ibatis/SqlMapRoomControl.xml" />
+	<sqlMap resource="ibatis/SqlMapHotelInfo.xml" />
+	<sqlMap resource="ibatis/HtlPresale.xml" />
+	<!-- added by chenkeming@2007.05.17 -->
+	<sqlMap resource="ibatis/SqlMapOrder.xml" />	
+
+	<!-- added by chenkeming@2007.06.08 -->	
+	<sqlMap resource="ibatis/SqlMapLockedOrders.xml" />
+	<!-- <sqlMap resource="ibatis/SqlMapSimHotel.xml" /> -->
+	<!-- added by pengfeng@2007.07.29 -->
+	<sqlMap resource="ibatis/SqlMapHotelForWeb.xml" />
+
+
+	<sqlMap resource="ibatis/SqlMapPrice.xml" />	
+	<!--  -->
+	<sqlMap resource="ibatis/SqlMapHotelPicInfo.xml" />	
+	<sqlMap resource="ibatis/SqlMapBaseForCC.xml" />			
+	
+	<sqlMap resource="ibatis/SqlMapContractFile.xml" />
+	<!-- added by cmb@2008.05.22 -->		
+	<sqlMap resource="ibatis/SqlMapHWeb.xml" />
+	
+	<!-- added by chenjiajie@2008.8.27 -->
+	<sqlMap resource="ibatis/SqlMapLockedRecords.xml"/>
+	<!-- added by chenkeming@2008.09.01 -->	
+	<sqlMap resource="ibatis/SqlMap114His.xml" />	
+	
+	<!-- added by Shengwei.Zuo 2009-02-01 -->
+	<sqlMap resource="ibatis/SqlMapClauseInfo.xml"/>
+	<!-- added by shengwei.zuo E-Booking 2009-07-03 操作日志查询 -->
+	<sqlMap resource="ibatis/SqlMapOperationLog.xml"/>
+	
+	<!-- added by chenjuesu@2009.7.6 V2.9 留言板&酒店权限-->
+	<sqlMap resource="ibatis/SqlMapLeaveWordAndRightManage.xml"/>
+	
+	<!--   地理位置/名胜 added by Shengwei.Zuo 2009-07-29 -->
+	<sqlMap resource="ibatis/SqlMapGeograpPosition.xml"/>
+	<!--   配额实时报表 added by shaojun.yang 2009-08-27 -->
+	<sqlMap resource="ibatis/SqlMapQuotaReport.xml"/>
+
+	<!--  房态重构 added by shaojun.yang 2009-12-28 -->
+	<sqlMap resource="ibatis/SqlMapNewRoomControl.xml" />
+	<!-- 查询代理订单明细及统计 lixiaoyong@2010.01.11 -->
+	<sqlMap resource="ibatis/SqlMapAgentOrder.xml" />			
+	<!-- b2b佣金设置模板 add by zhijie.gu 2010-8-6  -->
+	<sqlMap resource="ibatis/SqlMapB2bCommissionTemp.xml" />	
+	
+	<!-- 香港促销活动，查询酒店最低价和酒店总体是否可订所需信息 add by zhijie.gu 2010-11-6  -->
+	<sqlMap resource="ibatis/SqlMapQueryAllHkHotelInfo.xml" />	
+	
+	<!-- 针对不同渠道返现情况查询 add by hushunqiang 2013-04-21  -->
+	<sqlMap resource="ibatis/SqlMapChannelCashbackControl.xml" />	
+			
+	<!-- 查询酒店品牌 add by hushunqiang 2013-05-18  -->
+	<sqlMap resource="ibatis/SqlMapHotelBrandQuery.xml" />	
+			
+</sqlMapConfig>

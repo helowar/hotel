@@ -1,0 +1,35 @@
+
+.guanbi
+{
+	background-image: url(../images/guanbi.gif);
+	background-repeat: no-repeat;
+	background-position: 508px 4px;
+	height: 22px;
+	width: 402px;
+	background-color: #FE5E00;
+	text-align: right;
+	padding-top: 4px;
+	padding-right: 10px;
+}
+.guanbi a {
+	float: right;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+.guanbi a:hover{
+	float: right;
+	color: #FFE360;
+	text-decoration: none;
+	font-weight: bold;
+}
+.menberlogin
+{
+	width: 562px;
+	filter : progid:DXImageTransform.Microsoft.DropShadow ( enabled=bEnabled , color=#B3B1AE , offX=iOffsetX , offY=iOffsetY , positive=bPositive );
+}
+.dlu
+{
+	width: 412px;
+	height: 292px;
+}

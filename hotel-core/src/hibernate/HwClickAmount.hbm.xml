@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- 酒店网站点击量统计表  -->
+<hibernate-mapping package="com.mangocity.hweb.persistence">
+   <class name="HwClickAmount" table="HW_CLICK_AMOUNT" lazy="true" dynamic-insert="true" dynamic-update="true">
+   	<id name="ID">
+			<generator class="sequence">
+				<param name="sequence">seq_HW_CLICK_AMOUNT</param>
+			</generator>
+	</id>          
+
+         <property name="hotelId" />
+         <property name="ipAddress" />
+         <property name="clickDate" />
+         <property name="clickType" />
+   </class>      
+   
+</hibernate-mapping>

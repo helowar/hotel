@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mango.hotel.ebooking.persistence" default-lazy="false">
+	<class name="RightManageBean" table="HTL_EBOOKING_RIGHT_MANAGE" dynamic-insert="true" dynamic-update="true" >
+		<id name="rightId" unsaved-value="0" column ="RIGHTID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_HTL_EBOOKING_RIGHTMANAGE</param>
+			</generator>
+		</id>
+		<property name="memberId" type="java.lang.String"/>
+		<property name="memberName" type="java.lang.String"/>
+		<property name="area" type="java.lang.String"/>
+		
+	</class>
+</hibernate-mapping>

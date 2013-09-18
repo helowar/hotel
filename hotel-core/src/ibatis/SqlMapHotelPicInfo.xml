@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="hotelpicinfo">
+	<resultMap id="get_hotelpicinfo_result" class="com.mangocity.hotel.base.persistence.HtlPictureInfo">
+		<result property="id" column="ID" nullValue="0" />
+		<result property="hotelId" column="HOTELID" nullValue="0" />
+		<result property="title" column="TITLE" nullValue="" />		
+		<result property="smollPic" column="SPIC" nullValue="" />	
+		<result property="bigPic" column="BPIC" nullValue="" />
+		<result property="isType" column="ISTYPE" nullValue="" />
+		<result property="sortNo" column="SORTNO" nullValue="0" />				
+	</resultMap>	
+
+    <resultMap id="get_noPicHotels_result" class="com.mangocity.hotel.base.persistence.HtlHotel">
+		<result property="ID" column="HOTEL_ID" nullValue="0" />
+		<result property="chnName" column="CHN_NAME" nullValue="0" />
+		<result property="city" column="CITY" nullValue="0" />
+		<result property="productManager" column="product_manager" nullValue="0" />
+	</resultMap>
+	
+	 <resultMap id="get_coverpic_result" class="com.mangocity.hotel.base.persistence.HtlCoverPicture">
+		<result property="pictureName" column="picturename" nullValue="0" />
+		<result property="pictureId" column="pictureid" nullValue="0" />
+		<result property="hotelId" column="objectid" nullValue="0" />
+		<result property="classify" column="classify" nullValue="0" />
+	</resultMap>
+
+	<resultMap id="get_picurl_result" class="com.mangocity.hotel.base.persistence.HtlPictureUrl">
+		<result property="pictureId" column="pictureid" nullValue="0" />
+		<result property="pictureType" column="picturetype" nullValue="0" />
+		<result property="pictureURL" column="pictureurl" nullValue="0" />
+	</resultMap>
+	
+    <resultMap id="get_common_membercd_result" class="com.mangocity.hotel.base.persistence.OrParam">
+		<result property="ID" column="ID" nullValue="0" />
+		<result property="name" column="name" nullValue="0" />
+		<result property="value" column="value" nullValue="0" />
+		<result property="modifyTime" column="modifytime" nullValue="0" />
+		<result property="remark" column="remark" nullValue="0" />
+	</resultMap>
+	
+	 <select id="selectCommonMemberCd"   resultMap="get_common_membercd_result">
+	  <![CDATA[
+           select o.id, 
+                    o.name, 
+                    o.value, 
+                    o.modifytime,
+                    o.remark
+            from OR_PARAM o
+          where o.name = 'HOTEL_COMMON_MEMBERCD'
+	  ]]>
+	</select>
+	
+     <select id="selectPicUrl" parameterClass="com.mangocity.hotel.base.persistence.HtlCoverPicture"   resultMap="get_picurl_result">
+	  <![CDATA[
+            select u.pictureid,
+                     u.picturetype,
+                     u.pictureurl 
+             from htl_pic_picurl u 
+           where u.pictureid =  #pictureId:NUMERIC#
+	  ]]>
+	</select>
+	
+	<select id="selectCoverPicture" parameterClass="com.mangocity.hotel.base.persistence.HtlHotel"   resultMap="get_coverpic_result">
+	  <![CDATA[
+select p.picturename picturename,
+       p.pictureid pictureid,
+       rr.objectid  objectid,
+       a.classify classify
+  from htl_pic_picture p, htl_alb_hotel_relationship rr,htl_pic_album a 
+ where p.albumid = rr.albumid
+   and a.albumid = rr.albumid
+   and p.pictureid = a.coverid
+   and rr.objectid = #ID:NUMERIC#
+   and a.classify in (1,2,3)
+   and p.active = 1
+   and rr.active = 1
+	  ]]>
+	</select>
+	
+	<select id="selectRoomTypeCoverPicture" parameterClass="com.mangocity.hotel.base.persistence.HtlHotel"   resultMap="get_coverpic_result">
+	  <![CDATA[
+select p.picturename picturename,
+       p.pictureid pictureid,
+       rr.objectid  objectid,
+       a.classify classify
+  from htl_pic_picture p,htl_alb_hotel_relationship rr,htl_pic_album a 
+ where p.albumid = rr.albumid
+   and a.albumid = rr.albumid
+   and p.pictureid = a.coverid
+   and rr.objectid in (select t.room_type_id from htl_roomtype t where t.hotel_id = #ID:NUMERIC# and t.active = 1)
+   and rr.objecttype = 2
+   and a.classify = 0
+   and p.active = 1
+   and rr.active = 1
+	  ]]>
+	</select>
+	
+	<select id="selectNoPicHotels" parameterClass="com.mangocity.hotel.base.persistence.HtlHotel"   resultMap="get_noPicHotels_result" >
+	  <![CDATA[
+select hh.hotel_id, hh.chn_name, hh.city, hh.product_manager
+  from htl_hotel hh
+ where hh.active = 1
+   and upper(hh.country) = upper('CN')
+   and hh.hotel_id in
+       (select h.hotel_id
+          from htl_hotel h,
+               htl_alb_hotel_relationship r,
+               htl_pic_album a,
+               (select p.pictureid,
+                       p.active,
+                       p.albumid
+                  from htl_pic_picture p) pic
+         where 1 = 1
+           and h.active = 1
+           and upper(h.country) = upper('CN')
+           and r.objectid = h.hotel_id
+           and r.albumid = a.albumid
+           and a.albumid = pic.albumid
+           and a.classify in (0, 1, 2, 3)
+           and r.active = 1
+           and pic.active = 1
+        minus (select p.hotel_id from HTL_PICTURE p))
+ order by hh.city
+
+	  ]]>
+	</select>
+	
+	<select id="selectPicById" parameterClass="com.mangocity.hotel.base.persistence.HtlPictureInfo" resultMap="get_hotelpicinfo_result" >
+	  <![CDATA[
+		select ID 
+		      ,HOTELID 
+		      ,TITLE 
+		      ,SPIC
+		      ,BPIC 
+		      ,ISTYPE  
+		      ,SORTNO 
+	    from Htl_HOTEL_PICINFO where ID=#id:NUMERIC#
+	  ]]>
+	</select>
+	
+	<select id="selectPic" parameterClass="com.mangocity.hotel.base.persistence.HtlPictureInfo" resultMap="get_hotelpicinfo_result" >
+	  <![CDATA[
+		select ID 
+		      ,HOTELID 
+		      ,TITLE 
+		      ,SPIC
+		      ,BPIC 
+		      ,ISTYPE  
+		      ,SORTNO 
+	    from Htl_HOTEL_PICINFO where HOTELID=#hotelId:NUMERIC# order by ID desc
+	  ]]>
+	</select>
+		
+	<insert id="insertPic" parameterClass="com.mangocity.hotel.base.persistence.HtlPictureInfo">
+	  <selectKey resultClass="long" keyProperty="id">
+		select SEQ_HOTEL_PICINFO.nextval as id from dual
+	  </selectKey>
+	  <![CDATA[
+	    insert into Htl_HOTEL_PICINFO (
+				ID 
+		        ,HOTELID 
+		        ,TITLE 
+		        ,SPIC
+		        ,BPIC 
+		        ,ISTYPE  
+		        ,SORTNO 
+	        ) 
+	        values 
+	        (
+	            #id:NUMERIC#
+	            ,#hotelId:NUMERIC#
+	            ,#title:VARCHAR#
+	            ,#smollPic:VARCHAR#
+	            ,#bigPic:VARCHAR#
+	            ,#isType:VARCHAR#
+	            ,#sortNo:NUMERIC#
+
+	        )
+	  ]]>
+    </insert> 
+    
+    <delete id="deletePic" parameterClass="com.mangocity.hotel.base.persistence.HtlPictureInfo">
+      <![CDATA[
+        delete from Htl_HOTEL_PICINFO where id=#id:NUMERIC#
+	  ]]>	
+	</delete>
+	
+	<update id="updatePic" parameterClass="com.mangocity.hotel.base.persistence.HtlPictureInfo">
+	  <![CDATA[
+	    update Htl_HOTEL_PICINFO 
+	        set TITLE=#title:VARCHAR#
+	            ,SORTNO=#sortNo:NUMERIC#
+	            ,ISTYPE=#isType:VARCHAR#
+	 ]]>
+	 <isNotEmpty prepend="," property="smollPic">
+	    <![CDATA[				
+  		    SPIC=#smollPic:VARCHAR#
+	  	]]>	
+	 </isNotEmpty>
+	 <isNotEmpty prepend="," property="bigPic">
+	    <![CDATA[				
+  		   BPIC=#bigPic:VARCHAR#
+	  	]]>	
+	 </isNotEmpty>
+	 <![CDATA[       
+	    where id=#id:NUMERIC#
+	 ]]> 
+	 
+	</update>	
+    
+	
+</sqlMap>
+
+
